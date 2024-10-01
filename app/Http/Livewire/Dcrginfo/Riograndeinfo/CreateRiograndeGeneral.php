@@ -1,0 +1,1563 @@
+<?php
+
+namespace App\Http\Livewire\Dcrginfo\Riograndeinfo;
+
+use App\Models\AuditoriaInventarioRiogrande;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Livewire\Component;
+
+
+use App\Models\ComisariaPrimera;
+use App\Models\Cantidadram;
+use App\Models\DependenciaRiogrande;
+use App\Models\Riograndegenerale;
+use App\Models\Tipodeoficina;
+use App\Models\Tipodispositivo;
+use App\Models\Slotmemoria;
+use App\Models\Riogrande;
+
+use App\Models\gubernamentalgenerale;
+use App\Models\gubernamentale;
+use App\Models\Jefatura;
+use App\Models\Destacamento;
+use App\Models\RecursoHumano;
+use App\Models\Investigacione;
+use App\Models\Investigacionesgenerale;
+use App\Models\Jefaturagenerale;
+use App\Models\Recursoshumanosgenerale;
+use App\Models\Serviciosespeciale;
+use App\Models\Serviciosespecialesgenerale;
+use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
+use Livewire\WithFileUploads;
+use Exception;
+use Throwable;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
+class CreateRiograndeGeneral extends Component
+{
+    use WithFileUploads;
+
+    public $showModal = false;
+    public $modalContent = [];
+    public $button = null;
+
+    public $TipoDispositivo = [];
+    public $CantidadRam = [];
+    public $TipodeOficina = [];
+    public $SlotMemoria = [];
+    public $Dependencia_Riogrande = [];
+
+    public $JEfatura = [];
+    public $Riogrande = [];
+    public $INvestigacione = [];
+    public $Recurso_Humano = [];
+    public $DEstacamento = [];
+    public $SErviciosespeciale = [];
+
+
+    public $codigo_qr, $riogrRiograndegenerale, $investigacionesgenerale_id, $gubernamentalgenerale_id, $dependencia_riogrande_id, $comisariaprimera_id, $tipodispositivo_id, $tipodeoficina_id, $cantidadram_id, $slotmemoria_id,
+        $softwares_instalados, $serviciosespeciale_id, $investigacione_id, $riogrande_id, $gubernamentale_id, $recurso_humano_id, $destacamento_id, $jefatura_id, $comisariaprimera, $marca, $modelo, $procesador,  $sistema_operativo,  $fecha_service, $tipo_service,
+        $fecha_inventario, $activo, $detalles_inventario, $tipo_ram, $tipo_disco, $cant_almacenamiento, $tipo_mouse, $tipo_teclado, $rg, $inve, $recursos, $jefa, $servicios;
+    //$monitor,$tipo_impresora,
+
+    protected $rules = [
+        'dependencia_riogrande_id' => 'nullable',
+        'tipodeoficina_id' => 'nullable',
+        'tipodispositivo_id' => 'nullable',
+        'cantidadram_id' => 'nullable',
+        'slotmemoria_id' => 'nullable',
+        'dependencia_riogrande_id' => 'nullable',
+
+        'destacamento_id' => 'nullable',
+        'jefatura_id' => 'nullable',
+        'destacamento_id' => 'nullable',
+        'investigacione_id' => 'nullable',
+        'recurso_humano_id' => 'nullable',
+        'serviciosespeciale_id' => 'nullable',
+        'gubernamentale_id' => 'nullable',
+
+
+        'marca' => 'nullable',
+        'modelo' => 'nullable',
+        'procesador' => 'nullable',
+        'sistema_operativo' => 'nullable',
+        'fecha_service' => 'nullable',
+        'tipo_service' => 'nullable',
+        'fecha_inventario' => 'nullable',
+        'detalles_inventario' => 'nullable',
+        'tipo_ram' => 'nullable',
+        'tipo_disco' => 'nullable',
+        'cant_almacenamiento' => 'nullable',
+        'tipo_mouse' => 'nullable',
+        'tipo_teclado' => 'nullable',
+        'softwares_instalados' => 'nullable',
+    ];
+
+
+    public function mount()
+    {
+
+        $this->cantidadram_id = "";
+        $this->tipodeoficina_id = "";
+        $this->tipodispositivo_id = "";
+        $this->slotmemoria_id = "";
+
+        $this->dependencia_riogrande_id = "";
+        $this->jefatura_id = "";
+        $this->riogrande_id = "";
+        $this->recurso_humano_id = "";
+        $this->destacamento_id = "";
+        $this->investigacione_id = "";
+        $this->serviciosespeciale_id = '';
+        $this->gubernamentale_id = '';
+
+        $this->CantidadRam = Cantidadram::all();
+        $this->TipodeOficina = Tipodeoficina::all(); // Cargar los datos de tipo de oficina
+        $this->TipoDispositivo = Tipodispositivo::all();
+        $this->SlotMemoria = Slotmemoria::all();
+        $this->Dependencia_Riogrande = DependenciaRiogrande::all();
+        $this->Dependencia_Riogrande = DependenciaRiogrande::all();
+
+        $this->JEfatura = Jefatura::all();
+        $this->Riogrande = Riogrande::all();
+        $this->INvestigacione = Investigacione::all();
+        $this->Recurso_Humano = RecursoHumano::all();
+        $this->DEstacamento = Destacamento::all();
+        $this->SErviciosespeciale = Serviciosespeciale::all();
+    }
+
+    public function guardarriogrande()
+    {
+        $this->validate();
+        // DB::beginTransaction();
+        // try {
+
+        $this->rg = new Riograndegenerale();
+        $this->rg->tipodeoficina_id = $this->tipodeoficina_id ?: null;
+        $this->rg->cantidadram_id = $this->cantidadram_id ?: null;
+        $this->rg->slotmemoria_id = $this->slotmemoria_id ?: null;
+        $this->rg->tipodispositivo_id = $this->tipodispositivo_id ?: null;
+        $this->rg->dependencia_riogrande_id = $this->dependencia_riogrande_id ?: null;
+        $this->rg->riogrande_id = $this->riogrande_id ?: null;
+        $this->rg->marca = $this->marca ?: null;
+        $this->rg->modelo = $this->modelo ?: null;
+        $this->rg->procesador = $this->procesador ?: null;
+        $this->rg->cant_almacenamiento = $this->cant_almacenamiento ?: null;
+        $this->rg->tipo_ram = $this->tipo_ram ?: null;
+        $this->rg->sistema_operativo = $this->sistema_operativo ?: null;
+        $this->rg->tipo_disco = $this->tipo_disco ?: null;
+        $this->rg->tipo_teclado = $this->tipo_teclado ?: null;
+        $this->rg->tipo_mouse = $this->tipo_mouse ?: null;
+        $this->rg->fecha_inventario = $this->fecha_inventario ?: null;
+        $this->rg->fecha_service = $this->fecha_service ?: null;
+        $this->rg->tipo_service = $this->tipo_service ?: null;
+        $this->rg->detalles_inventario = $this->detalles_inventario ?: null;
+        $this->rg->softwares_instalados = $this->softwares_instalados ?: null;
+        $this->rg->activo = $this->activo ? 1 : 0;
+        $this->rg->save();
+
+        // Guardar el historial de ediciones si el campo detalles_inventario cambia
+        if ($this->rg->isDirty('detalles_inventario')) {
+            AuditoriaInventarioRiogrande::create([
+                'riogrRiograndegenerale_id' => $this->rg->id,
+                'detalles_inventario' => $this->rg->detalles_inventario,
+            ]);
+        }
+
+        $dependencia_riogrande = $this->dependencia_riogrande_id ? DependenciaRiogrande::find($this->dependencia_riogrande_id)->nombre : null;
+        $tipodeoficina = $this->tipodeoficina_id ? Tipodeoficina::find($this->tipodeoficina_id)->nombre : null;
+        $rg_poli = $this->riogrande_id ? Riogrande::find($this->riogrande_id)->nombre : null;
+        $tipoDispositivo = $this->tipodispositivo_id ? Tipodispositivo::find($this->tipodispositivo_id)->nombre : null;
+        $cantidadRam = $this->cantidadram_id ? Cantidadram::find($this->cantidadram_id)->cantidad : null;
+        $slotMemoria = $this->slotmemoria_id ? Slotmemoria::find($this->slotmemoria_id)->cantidad : null;
+
+        $codigoQRData = ' Nro de indentificacion: ' . $this->rg->id .  ' - Fecha del inventario: ' . $this->fecha_inventario . //' - Tipo de oficina: ' . $tipoOficina .
+            ' - Tipo de dispositivo: ' . $tipoDispositivo . ' - Riogrande: ' . $rg_poli . ' Softwares: ' . $this->softwares_instalados .  // ' - Jefatura: ' . $jefatura_poli . ' - Investigaciones: ' . $investigacione_poli . ' - Recursos Humanos: ' . $recurso_humano_poli . ' - Destacamentos: ' . $destacamento_poli . ' - Servicios Especiales: ' . $serviciosespeciale_poli .                                ' - Marca: ' . $this->marca . ' - Modelo: ' . $this->modelo . ' - Procesador: ' .
+            $this->procesador . ' - Sistema operativo: ' . $this->sistema_operativo . ' Slot de memoria: ' . $slotMemoria . ' - Tipo de Ram: ' . $this->tipo_ram . ' - Cantidad de Ram: ' . $cantidadRam . ' -tipo de disco ' . $this->tipo_disco . ' -Cantidad de Almacenamiento: ' . $this->cant_almacenamiento .
+            ' - Tipo de Teclado: ' . $this->tipo_teclado . ' - Tipo de mouse: ' . $this->tipo_mouse .
+            ' - Detalles del inventario: ' . $this->detalles_inventario . ' -La computadora se encuentra: ' . $this->activo . ' -Ultima fecha de service: ' . $this->fecha_service . ' -Tipo de service: ' . $this->tipo_service;
+
+        $codigoQR = QrCode::format('png')->size(200)->generate($codigoQRData);
+
+        $nombreImagenQR = 'codigo_qr_' . $this->rg->id . '.png';
+        $rutaImagenQR = 'public/codigoQR/Riogrande/' . $nombreImagenQR;
+        Storage::put($rutaImagenQR, $codigoQR);
+
+        //' -Tipo de monitor: ' . $this->monitor .' - Tipo de Impresora: ' . $this->tipo_impresora .
+
+        // Actualizar el campo "codigo_qr" en el modelo ComisariaPrimera
+        $this->rg->codigo_qr = $nombreImagenQR;
+        $this->rg->save();
+
+
+
+        session()->flash('message', 'Datos guardados correctamente.');
+
+        // DB::commit();
+        //$this->clearForm();
+
+        // } catch (\Exception $e) {
+        // DB::rollback();
+        //return $e->getMessage();
+        //}
+    }
+
+    public function showModal($button)
+    {
+
+        $this->modalContent = [];
+
+        $this->button = $button;
+        $this->showModal = true;
+
+        switch ($button) {
+            case 'Comisairia Primera R.G':
+                // Código para el caso 'Cria 1'
+                break;
+            case 'Comisairia Segunda R.G':
+                // Código para el caso 'Cria 2'
+                break;
+            case 'Comisairia Tercera R.G':
+                // Código para el caso 'Cria 3'
+                break;
+            case 'Comisairia Cuarta R.G':
+                // Código para el caso 'Cria 4'
+                break;
+            case 'Comisairia Quinta R.G':
+                // Código para el caso 'Cria 5'
+                break;
+            case 'Comisaria de Genero y Familia R.G':
+                // Código para el caso 'Cria GF'
+                break;
+            case 'D.S.E.R.G':
+                // Código para el caso 'DSERG'
+                break;
+            case 'D.R.Z.N':
+                // Código para el caso 'DRZN'
+                break;
+            case 'Escuela de Policia':
+                // Código para el caso 'Escuela'
+                break;
+            case 'Repetidora Cerro Laucha':
+                // Código para el caso 'Repetidora'
+                break;
+            case 'D.C.R.G':
+                // Código para el caso 'Central Comunicaciones'
+                break;
+            case 'Investigaciones R.G':
+                // Código para el caso 'Investigaciones'
+                break;
+            case 'Bienestar R.G':
+                // Código para el caso 'Bienestar'
+                break;
+            case 'Brigada Narcocriminalidad R.G':
+                // Código para el caso 'Narco'
+                break;
+            case 'Brigada Delitos Complejos R.G':
+                // Código para el caso 'Complejos'
+                break;
+            case 'Automotores R.G':
+                // Código para el caso 'Automotores'
+                break;
+            case 'Otras Dependencias':
+                // Código para el caso 'Gobierno'
+                break;
+            default:
+                // Código por defecto si no se cumple ningún caso
+                break;
+        }
+
+
+        $this->emit('openModal');
+    }
+
+
+    public function closeModal()
+    {
+        $this->showModal = false;
+    }
+
+
+
+    public function render()
+    {
+
+        //---------Comisaria Primera R.G-------------//
+        $primeraotros = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+        $primeraPc = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefe = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefe = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcofservicio = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 5)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsumariante = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 6)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcguardia = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcdedia = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 8)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcadministrativa = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcautomotores = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaser = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorro = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 10)
+            ->count();
+        $switch = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruter = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camaras = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidor = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonica = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijo = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+        $SuboficialesPc = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $ServiciosExternosPc = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 13)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $JefeTurnoPc = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            ->where('tipodeoficina_id', 14)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        //---------Comisaria segunda R.G-------------//
+        $segundaotros = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+        $segundaPc = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefe2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefe2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcofservicio2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 5)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsumariante2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 6)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcguardia2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcdedia2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 8)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcadministrativa2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcautomotores2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaser2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorro2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 10)
+            ->count();
+        $switch2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruter2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camaras2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidor2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonica2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijo2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+        $Suboficiales2Pc = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $ServiciosExternos2Pc = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 13)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $JefeTurno2Pc = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            ->where('tipodeoficina_id', 14)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        //---------Comisaria tercera R.G-------------//
+        $terceraotros = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+        $terceraPc = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefe3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefe3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcofservicio3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 5)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsumariante3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 6)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcguardia3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcdedia3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 8)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcadministrativa3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcautomotores3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaser3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+
+        $impresoraChorro3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 10)
+            ->count();
+        $switch3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruter3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camaras3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidor3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonica3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijo3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+        $Suboficiales3Pc = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $ServiciosExternos3Pc = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 13)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $JefeTurno3Pc = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            ->where('tipodeoficina_id', 14)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        //---------Comisaria cuarta R.G-------------//
+        $cuartaotros = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+        $cuartaPc = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefe4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefe4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcofservicio4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 5)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsumariante4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 6)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcguardia4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcdedia4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 8)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcadministrativa4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcautomotores4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaser4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorro4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 10)
+            ->count();
+        $switch4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruter4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camaras4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidor4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonica4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijo4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+        $Suboficiales4Pc = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $ServiciosExternos4Pc = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 13)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $JefeTurno4Pc = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            ->where('tipodeoficina_id', 14)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+
+        //---------Comisaria quinta R.G-------------//
+        $quintaotros = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+        $quintaPc = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefe5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefe5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcofservicio5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 5)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsumariante5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 6)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcguardia5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcdedia5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 8)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcadministrativa5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcautomotores5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaser5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorro5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 10)
+            ->count();
+        $switch5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruter5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camaras5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidor5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonica5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijo5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+        $Suboficiales5Pc = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $ServiciosExternos5Pc = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 13)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $JefeTurno5Pc = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            ->where('tipodeoficina_id', 14)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        //---------Comisaria familia R.G-------------//
+        $fliaotros = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+        $fliaPc = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcjefeFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcsubjefeFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcofservicioFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 5)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcsumarianteFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 6)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcguardiaFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcdediaFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 8)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcadministrativaFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcautomotoresFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaserFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorroFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 10)
+            ->count();
+        $switchFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruterFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidorFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicaFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijoFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+        $SuboficialesPCFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $ServiciosExternosPCFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 13)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $JefeTurnoPCFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            ->where('tipodeoficina_id', 14)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        //---------DSERG--------------------------//
+        $serviciosotros = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+        $serviciosPc = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcjefeServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcsubjefeServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcCanes = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcOpTacticas = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcGrupoInfanteria = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcBusquedaRescate = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcSeccionExplosivos = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcAdministrativa = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaserServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorroServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 10)
+            ->count();
+        $switchServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruterServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidorServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicaServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijoServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+
+        //-----DRZN
+        $direccionotros = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+
+        $direccionPc = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefedireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefedireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcGuardiadireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        $impresoraLaserdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorrodireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 10)
+            ->count();
+        $switchdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruterdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidordireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicadireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijodireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+        $sumaTotalPcdireccion = Riograndegenerale::where('tipodispositivo_id', 3)
+            ->whereIn('dependencia_riogrande_id', [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])
+            ->count();
+
+        //-----Escuela de Policia
+        $escuelaotros = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+
+        $escuelaPc = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefeescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefeescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcGuardiaescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaserescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorroescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $switchescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruterescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidorescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicaescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijoescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+
+        //-----Repetidora Cerro Laucha
+        $repetidoraotros = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+
+        $repetidoraPc = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaserrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorrorepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $switchrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruterrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidorrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicarepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijorepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+
+        //-----Central R.G
+        $centralotros = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+        $centralPc = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefecentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefecentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcGuardiacentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLasercentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorrocentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $switchcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $rutercentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarascentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidorcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicacentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijocentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+
+        //-----Invertigaciones R.G
+        $invesotros = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+
+        $invesPc = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefeinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefeinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcGuardiainves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLaserinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorroinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $switchinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruterinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidorinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicainves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijoinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+
+        //-----Bienestar R.G
+        $bienestarotros = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+
+        $bienestarPc = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefebienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefebienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcGuardiabienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        $impresoraLaserbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorrobienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $switchbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruterbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidorbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicabienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijobienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+
+        //-----Narco R.G
+        $narcootros = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+
+        $narcoPc = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefenarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefenarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcGuardianarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $impresoraLasernarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorronarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $switchnarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruternarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasnarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidornarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicanarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijonarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+
+        //-----Complejos R.G
+        $delitootros = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+
+        $delitoPc = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefedelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefedelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcGuardiadelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        $impresoraLaserdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorrodelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $switchdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruterdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidordelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicadelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijodelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+        $sumaTotalPcdelito = Riograndegenerale::where('tipodispositivo_id', 3)
+            ->whereIn('dependencia_riogrande_id', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])
+            ->count();
+
+        //-----Automotores
+        $autootros = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 1)
+            ->count();
+
+        $autoPc = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcjefeauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodeoficina_id', 3)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $Pcsubjefeauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodeoficina_id', 4)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+        $PcGuardiaauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodeoficina_id', 7)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        $impresoraLaserauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $impresoraChorroauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 11)
+            ->count();
+        $switchauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 13)
+            ->count();
+        $ruterauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 14)
+            ->count();
+        $camarasauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 16)
+            ->count();
+        $servidorauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 18)
+            ->count();
+        $centralTelefonicaauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 23)
+            ->count();
+        $telefonoFijoauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 9)
+            ->count();
+
+        //otras dependencias rg
+        $OtrasPc = Riograndegenerale::where('dependencia_riogrande_id', 1)
+            ->where('tipodispositivo_id', 3)
+            ->count();
+
+        $sumaTotalPc = Riograndegenerale::where('tipodispositivo_id', 3)
+            ->whereIn('dependencia_riogrande_id', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])
+            ->count();
+
+
+        return view('livewire.dcrginfo.riograndeinfo.create-riogrande-general', compact(
+            'OtrasPc',
+            'primeraotros',
+            'primeraPc',
+            'Pcjefe',
+            'Pcsubjefe',
+            'Pcofservicio',
+            'Pcsumariante',
+            'SuboficialesPc',
+            'JefeTurnoPc',
+            'ServiciosExternosPc',
+            'Pcguardia',
+            'Pcdedia',
+            'Pcadministrativa',
+            'Pcautomotores',
+            'impresoraChorro',
+            'impresoraLaser',
+            'switch',
+            'ruter',
+            'camaras',
+            'servidor',
+            'centralTelefonica',
+            'telefonoFijo',
+
+
+            //-----
+            'segundaotros',
+            'segundaPc',
+            'Pcjefe2da',
+            'Pcsubjefe2da',
+            'Pcofservicio2da',
+            'Pcsumariante2da',
+            'Suboficiales2Pc',
+            'JefeTurno2Pc',
+            'ServiciosExternos2Pc',
+            'Pcguardia2da',
+            'Pcdedia2da',
+            'Pcadministrativa2da',
+            'Pcautomotores2da',
+            'impresoraChorro2da',
+            'impresoraLaser2da',
+            'switch2da',
+            'ruter2da',
+            'camaras2da',
+            'servidor2da',
+            'centralTelefonica2da',
+            'telefonoFijo2da',
+
+            //-----
+            'terceraotros',
+            'terceraPc',
+            'Pcjefe3da',
+            'Pcsubjefe3da',
+            'Pcofservicio3da',
+            'Pcsumariante3da',
+            'Suboficiales3Pc',
+            'JefeTurno3Pc',
+            'ServiciosExternos3Pc',
+            'Pcguardia3da',
+            'Pcdedia3da',
+            'Pcadministrativa3da',
+            'Pcautomotores3da',
+            'impresoraChorro3da',
+            'impresoraLaser3da',
+            'switch3da',
+            'camaras3da',
+            'ruter3da',
+            'camaras3da',
+            'servidor3da',
+            'centralTelefonica3da',
+            'telefonoFijo3da',
+
+            //-----
+            'cuartaotros',
+            'cuartaPc',
+            'Pcjefe4da',
+            'Pcsubjefe4da',
+            'Pcofservicio4da',
+            'Pcsumariante4da',
+            'Suboficiales4Pc',
+            'JefeTurno4Pc',
+            'ServiciosExternos4Pc',
+            'Pcguardia4da',
+            'Pcdedia4da',
+            'Pcadministrativa4da',
+            'Pcautomotores4da',
+            'impresoraChorro4da',
+            'impresoraLaser4da',
+            'switch4da',
+            'ruter4da',
+            'camaras4da',
+            'servidor4da',
+            'centralTelefonica4da',
+            'telefonoFijo4da',
+
+            //-----
+            'quintaotros',
+            'quintaPc',
+            'Pcjefe5da',
+            'Pcsubjefe5da',
+            'Pcofservicio5da',
+            'Pcsumariante5da',
+            'Suboficiales5Pc',
+            'JefeTurno5Pc',
+            'ServiciosExternos5Pc',
+            'Pcguardia5da',
+            'Pcdedia5da',
+            'Pcadministrativa5da',
+            'Pcautomotores5da',
+            'impresoraChorro5da',
+            'impresoraLaser5da',
+            'switch5da',
+            'ruter5da',
+            'camaras5da',
+            'servidor5da',
+            'centralTelefonica5da',
+            'telefonoFijo5da',
+
+            //-----
+            'fliaotros',
+            'fliaPc',
+            'PcjefeFlia',
+            'PcsubjefeFlia',
+            'PcofservicioFlia',
+            'PcsumarianteFlia',
+            'SuboficialesPCFlia',
+            'ServiciosExternosPCFlia',
+            'JefeTurnoPCFlia',
+            'PcguardiaFlia',
+            'PcdediaFlia',
+            'PcadministrativaFlia',
+            'PcautomotoresFlia',
+            'impresoraChorroFlia',
+            'impresoraLaserFlia',
+            'switchFlia',
+            'ruterFlia',
+            'camarasFlia',
+            'servidorFlia',
+            'centralTelefonicaFlia',
+            'telefonoFijoFlia',
+
+
+            //-----
+            'serviciosotros',
+            'serviciosPc',
+            'PcjefeServicios',
+            'PcsubjefeServicios',
+            'PcCanes',
+            'PcOpTacticas',
+            'PcGrupoInfanteria',
+            'PcBusquedaRescate',
+            'PcSeccionExplosivos',
+            'PcAdministrativa',
+            'impresoraChorroServicios',
+            'impresoraLaserServicios',
+            'switchServicios',
+            'ruterServicios',
+            'camarasServicios',
+            'servidorServicios',
+            'centralTelefonicaServicios',
+            'telefonoFijoServicios',
+
+            //----------
+            'direccionotros',
+            'direccionPc',
+            'Pcjefedireccion',
+            'Pcsubjefedireccion',
+            'PcGuardiadireccion',
+            'impresoraChorrodireccion',
+            'impresoraLaserdireccion',
+            'switchdireccion',
+            'ruterdireccion',
+            'camarasdireccion',
+            'servidordireccion',
+            'centralTelefonicadireccion',
+            'telefonoFijodireccion',
+
+            //----------
+            'escuelaotros',
+            'escuelaPc',
+            'Pcjefeescuela',
+            'Pcsubjefeescuela',
+            'PcGuardiaescuela',
+            'impresoraChorroescuela',
+            'impresoraLaserescuela',
+            'switchescuela',
+            'ruterescuela',
+            'camarasescuela',
+            'servidorescuela',
+            'centralTelefonicaescuela',
+            'telefonoFijoescuela',
+
+            //-----
+            'repetidoraotros',
+            'repetidoraPc',
+            'impresoraChorrorepetidora',
+            'impresoraLaserrepetidora',
+            'switchrepetidora',
+            'ruterrepetidora',
+            'camarasrepetidora',
+            'servidorrepetidora',
+            'centralTelefonicarepetidora',
+            'telefonoFijorepetidora',
+
+            //-----
+            'centralotros',
+            'centralPc',
+            'Pcjefecentral',
+            'Pcsubjefecentral',
+            'PcGuardiacentral',
+            'impresoraChorrocentral',
+            'impresoraLasercentral',
+            'switchcentral',
+            'rutercentral',
+            'camarascentral',
+            'servidorcentral',
+            'centralTelefonicacentral',
+            'telefonoFijocentral',
+
+            //-----
+            'invesotros',
+            'invesPc',
+            'Pcjefeinves',
+            'Pcsubjefeinves',
+            'PcGuardiainves',
+            'impresoraChorroinves',
+            'impresoraLaserinves',
+            'switchinves',
+            'ruterinves',
+            'camarasinves',
+            'servidorinves',
+            'centralTelefonicainves',
+            'telefonoFijoinves',
+
+            //-----
+            'bienestarotros',
+            'bienestarPc',
+            'Pcjefebienestar',
+            'Pcsubjefebienestar',
+            'PcGuardiabienestar',
+            'impresoraChorrobienestar',
+            'impresoraLaserbienestar',
+            'switchbienestar',
+            'ruterbienestar',
+            'camarasbienestar',
+            'servidorbienestar',
+            'centralTelefonicabienestar',
+            'telefonoFijobienestar',
+
+            //-----
+            'narcootros',
+            'narcoPc',
+            'Pcjefenarco',
+            'Pcsubjefenarco',
+            'PcGuardianarco',
+            'impresoraChorronarco',
+            'impresoraLasernarco',
+            'switchnarco',
+            'ruternarco',
+            'camarasnarco',
+            'servidornarco',
+            'centralTelefonicanarco',
+            'telefonoFijonarco',
+
+            //-----
+            'delitootros',
+            'delitoPc',
+            'Pcjefedelito',
+            'Pcsubjefedelito',
+            'PcGuardiadelito',
+            'impresoraChorrodelito',
+            'impresoraLaserdelito',
+            'switchdelito',
+            'ruterdelito',
+            'camarasdelito',
+            'servidordelito',
+            'centralTelefonicadelito',
+            'telefonoFijodelito',
+
+            //-----
+            'autootros',
+            'autoPc',
+            'Pcjefeauto',
+            'Pcsubjefeauto',
+            'PcGuardiaauto',
+            'impresoraChorroauto',
+            'impresoraLaserauto',
+            'switchauto',
+            'ruterauto',
+            'camarasauto',
+            'servidorauto',
+            'centralTelefonicaauto',
+            'telefonoFijoauto',
+
+            //----
+            'sumaTotalPc',
+        ));
+    }
+}
