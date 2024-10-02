@@ -6,9 +6,9 @@
                 {{--   <div class="float-right ml-10"><h2 class="text-orange-500 text-center ">ULTIMO LEGAJO REGISTRADO:<span class="font-bold text-amber-400 ml-1">{{ $contador_pront }}</span></h2> </div>
                     <div class="float-right mr-10"><h2 class="text-green-500 ">ULTIMO PRONTUARIO REGISTRADO:<span class="font-bold text-amber-400 ml-1">{{ $contador_lega }}</span></h2> </div> --}}
             </h2>
-            <button class="bg-blue-800 rounded-md p-3 text-white">
+{{--             <button class="bg-blue-800 rounded-md p-3 text-white">
                 <a href="{{ route('ver-notificaciones') }}">Ordenes de Trabajo</a>
-            </button>
+            </button> --}}
         </x-slot>
 
 

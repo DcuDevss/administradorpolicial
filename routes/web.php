@@ -107,6 +107,8 @@ use App\Http\Livewire\Dcrgcomu\Riograndecomu\IndexComunicacionesRiogrande;
 use App\Http\Livewire\Comunicaciones\Dcu\CreateComunicacionesDcu;
 use App\Http\Livewire\Comunicaciones\Dcu\EditComunicacionesDcu;
 use App\Http\Livewire\Comunicaciones\Dcu\IndexComunicacionesDcu;
+use App\Http\Livewire\Comunicaciones\Dcu\HistorialComunicacionesDcu;
+
 
 //use App\Http\Livewire\Comisaria1\CreateComisariaPrimera;
 //use App\Http\Livewire\Comisaria1\EditComisariaPrimera;
@@ -510,6 +512,10 @@ Route::get('/historial-trabajo-informatica/{trabajosInformaticaId}', HistorialTr
 Route::get('/historial-trabajo-ushuaia/{trabajosUshuaiaId}', HistorialComunicacionesUshuaia::class)
     ->name('historial-trabajo-ushuaia');
 
+//ruta para ver historial de trabajos dcu
+Route::get('/historial-trabajo-dcu/{trabajosDcuId}', HistorialComunicacionesDcu::class)
+    ->name('historial-trabajo-dcu');
+
 //ruta para ver historial de trabajos toluhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)
     ->name('historial-trabajo-tolhuin');
@@ -529,6 +535,6 @@ Route::get('/historial-inventario-general/{generalInformaticaId}', HistorialInve
 Route::get('/historial-tolhuin-general/{tolhuinGeneraleId}', HistorialTolhuinGeneral::class)
     ->name('historial-tolhuin-general');
 
-    //ruta historial informatica rg
+//ruta historial informatica rg
 Route::get('/historial-riogrande-general/{riograndeGeneraleId}', HistorialRiograndeGeneral::class)
-->name('historial-riogrande-general');
+    ->name('historial-riogrande-general');
