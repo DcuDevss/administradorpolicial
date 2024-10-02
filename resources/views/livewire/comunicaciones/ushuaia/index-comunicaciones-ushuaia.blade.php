@@ -94,23 +94,23 @@
 
                                 @foreach ($comunicaciones as $comu)
                                     <tr>
-                                        <td class="text-center py-6 font-bold">{{ $comu->id }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->id ?? 'No Encontrado' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->dependenciaushuaia->nombre }}
                                         </td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->equipocomunicacion->nombre ?? 'Sin datos' }}
+                                        <td class="text-center py-6 font-bold">{{ $comu->equipocomunicacion->nombre ?? 'No Encontrado' }}
                                         </td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->marcaequipo->nombre ??'Sin datos' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->vhfantena->nombre ??'Sin datos' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ??'Sin datos' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->nro_serie ??'Sin datos' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->lugar_colocacion ??'Sin datos' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->marcaequipo->nombre ?? 'No Encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->vhfantena->nombre ?? 'No Encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? 'No Encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->nro_serie ?? 'No Encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->lugar_colocacion ?? 'No Encontrado' }}</td>
                                         <td class="text-center py-6 font-bold">
-                                            {{ $comu->condicion_equipo_comunicacion ?? 'Sin datos' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ??'Sin datos' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ??'Sin datos' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ??'Sin datos' }}</td>
+                                            {{ $comu->condicion_equipo_comunicacion ?? 'No Encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? 'No Encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? 'No Encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? 'No Encontrado' }}</td>
                                         <td class="text-center py-6 font-bold">
-                                            <div class="whitespace-normal break-words">{{ $comu->detalle_inventario ??'Sin datos' }}
+                                            <div class="whitespace-normal break-words">{{ $comu->detalle_inventario ?? 'No Encontrado' }}
                                             </div>
                                         </td>
                                         <td class="text-center py-2 flex flex-col space-y-2">

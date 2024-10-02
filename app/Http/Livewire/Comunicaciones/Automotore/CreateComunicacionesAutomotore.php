@@ -78,19 +78,17 @@ class CreateComunicacionesAutomotore extends Component
         try {
 
             $this->comunicacionesautomotore = new Comunicacionesautomotore();
-            $this->comunicacionesautomotore->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionesautomotore->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionesautomotore->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionesautomotore->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionesautomotore->modelo = $this->modelo;
-            $this->comunicacionesautomotore->nro_serie = $this->nro_serie;
-            $this->comunicacionesautomotore->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionesautomotore->fecha_service = $this->fecha_service;
-            $this->comunicacionesautomotore->tipo_service = $this->tipo_service;
-            $this->comunicacionesautomotore->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionesautomotore->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionesautomotore->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null : $this->lugar_colocacion;
+            $this->comunicacionesautomotore->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id == '') ? null : $this->equipocomunicacion_id;
+            $this->comunicacionesautomotore->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null : $this->marcaequipo_id ;
+            $this->comunicacionesautomotore->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null : $this->vhfantena_id;
+            $this->comunicacionesautomotore->modelo = ($this->modelo === null || $this->modelo === '') ? null : $this->modelo;
+            $this->comunicacionesautomotore->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null : $this->nro_serie;
+            $this->comunicacionesautomotore->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this->condicion_equipo_comunicacion === '') ? null : $this->condicion_equipo_comunicacion;
+            $this->comunicacionesautomotore->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null : $this->fecha_service;
+            $this->comunicacionesautomotore->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null : $this ->tipo_service;
+            $this->comunicacionesautomotore->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null : $this->fecha_service;
+            $this->comunicacionesautomotore->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null : $this->detalle_inventario;
             $this->comunicacionesautomotore->save();
 
 

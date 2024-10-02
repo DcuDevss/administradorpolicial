@@ -58,6 +58,7 @@ use App\Http\Livewire\Comunicaciones\Recurso\IndexComunicacionesRecurso;
 use App\Http\Livewire\Comunicaciones\Administracion\CreateComunicacionesAdministracion;
 use App\Http\Livewire\Comunicaciones\Administracion\EditComunicacionesAdministracion;
 use App\Http\Livewire\Comunicaciones\Administracion\IndexComunicacionesAdministracion;
+use App\Http\Livewire\Comunicaciones\Administracion\HistorialComunicacionesAdministracion;
 
 
 use App\Http\Livewire\Comunicaciones\Jefatura\CreateComunicacionesJefatura;
@@ -78,6 +79,7 @@ use App\Http\Livewire\Comunicaciones\Complejo\IndexComunicacionesComplejo;
 use App\Http\Livewire\Comunicaciones\Automotore\CreateComunicacionesAutomotore;
 use App\Http\Livewire\Comunicaciones\Automotore\EditComunicacionesAutomotore;
 use App\Http\Livewire\Comunicaciones\Automotore\IndexComunicacionesAutomotore;
+use App\Http\Livewire\Comunicaciones\Automotore\HistorialComunicacionesAutomotore;
 
 
 use App\Http\Livewire\Comunicaciones\Dto365\CreateComunicacionesDto365;
@@ -498,7 +500,7 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register.c
 Route::get('/registrar-usuario', [RegisterController::class, 'create'])->middleware([])->name('register.create');
 Route::post('/registrar-usuario', [RegisterController::class, 'store'])->middleware([])->name('register.store');
 
-
+//******HISTORIALES PARA INFORMATICA************///
 //ruta para ver historial de trabajos taller
 Route::get('/historial-trabajo-general/{trabajosGeneraleId}', HistorialTrabajoGeneral::class)
     ->name('historial-trabajo-general');
@@ -508,6 +510,8 @@ Route::get('/historial-trabajo-general/{trabajosGeneraleId}', HistorialTrabajoGe
 Route::get('/historial-trabajo-informatica/{trabajosInformaticaId}', HistorialTrabajoInformatica::class)
     ->name('historial-trabajo-informatica');
 
+
+//******HISTORIALES PARA COMUNICACIONES************//
 //ruta para ver historial de trabajos ushuaia
 Route::get('/historial-trabajo-ushuaia/{trabajosUshuaiaId}', HistorialComunicacionesUshuaia::class)
     ->name('historial-trabajo-ushuaia');
@@ -515,6 +519,14 @@ Route::get('/historial-trabajo-ushuaia/{trabajosUshuaiaId}', HistorialComunicaci
 //ruta para ver historial de trabajos dcu
 Route::get('/historial-trabajo-dcu/{trabajosDcuId}', HistorialComunicacionesDcu::class)
     ->name('historial-trabajo-dcu');
+
+//ruta para ver historial de trabajos administracion
+Route::get('/historial-trabajo-administracion/{trabajosAdministracionId}', HistorialComunicacionesAdministracion::class)
+->name('historial-trabajo-administracion');
+
+//ruta para ver historial de trabajos automotore
+Route::get('/historial-trabajo-automotore/{trabajosAutomotoreId}', HistorialComunicacionesAutomotore::class)
+->name('historial-trabajo-automotore');
 
 //ruta para ver historial de trabajos toluhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)

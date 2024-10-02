@@ -79,19 +79,18 @@ class CreateComunicacionesAdministracion extends Component
         try {
 
             $this->comunicacionesadministracion = new Comunicacionesadministracion();
-            $this->comunicacionesadministracion->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionesadministracion->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionesadministracion->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionesadministracion->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionesadministracion->modelo = $this->modelo;
-            $this->comunicacionesadministracion->nro_serie = $this->nro_serie;
-            $this->comunicacionesadministracion->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionesadministracion->fecha_service = $this->fecha_service;
-            $this->comunicacionesadministracion->tipo_service = $this->tipo_service;
-            $this->comunicacionesadministracion->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionesadministracion->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionesadministracion->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null : $this->lugar_colocacion;
+            $this->comunicacionesadministracion->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null : $this->equipocomunicacion_id;
+            $this->comunicacionesadministracion->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null : $this->marcaequipo_id;
+            $this->comunicacionesadministracion->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null : $this->vhfantena_id;
+            $this->comunicacionesadministracion->modelo = ($this->modelo === null || $this->modelo === '') ? null : $this->modelo;
+            $this->comunicacionesadministracion->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null : $this->nro_serie;
+            $this->comunicacionesadministracion->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this->condicion_equipo_comunicacion === '') ? null : $this->condicion_equipo_comunicacion;
+            $this->comunicacionesadministracion->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null : $this->fecha_service;
+            $this->comunicacionesadministracion->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null : $this->tipo_service;
+            $this->comunicacionesadministracion->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null : $this->fecha_inventario;
+            $this->comunicacionesadministracion->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null : $this->detalle_inventario;
+
             $this->comunicacionesadministracion->save();
 
 
