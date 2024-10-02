@@ -35,9 +35,7 @@
                                                     class="block text-sm font-medium text-gray-700">categoria de herramientas
                                                     </label>
                                                 <select class="w-full form-control" wire:model="categoriacomunicacion_id">
-                                                    <option value="" selected disabled>Seleccione la categoria.
-                                                    </option>
-
+                                                    <option value="">Seleccione la categoría</option>
                                                     @foreach ($Categoriacomunicaciones as $catecomu)
                                                         <option value="{{ $catecomu->id }}">{{ $catecomu->name }}
                                                         </option>

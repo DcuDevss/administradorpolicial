@@ -64,7 +64,7 @@ class CreateComunicacionesDcu extends Component
         try {
 
             $this->comunicacionesdcu = new Comunicacionesdcu();
-            $this->categoriacomunicacion_id = ($this->categoriacomunicacion_id === null || $this->categoriacomunicacion_id === '') ? null : $this->categoriacomunicacion_id;
+            $this->comunicacionesdcu->categoriacomunicacion_id = ($this->categoriacomunicacion_id === null || $this->categoriacomunicacion_id === '') ? null : $this->categoriacomunicacion_id;
             $this->comunicacionesdcu->nombre = ($this->nombre === null || $this->nombre === '') ? null : $this->nombre;
             $this->comunicacionesdcu->marca = ($this->marca === null || $this->marca === '') ? null : $this->marca;
             $this->comunicacionesdcu->modelo = ($this->modelo === null || $this->modelo === '') ? null : $this->modelo;
