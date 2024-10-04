@@ -24,7 +24,11 @@ use App\Observers\ComunicacionesDcuObserver;
 use App\Models\Comunicacionesadministracion;
 use App\Observers\ComunicacionesAdministracionObserver;
 use App\Models\Comunicacionesautomotore;
+use App\Models\Comunicacionescientifica;
+use App\Models\Comunicacionescomplejo;
 use App\Observers\ComunicacionesAutomotoreObserver;
+use App\Observers\ComunicacionesCientificaObserver;
+use App\Observers\ComunicacionesComplejoObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,6 +56,8 @@ class AppServiceProvider extends ServiceProvider
         Comunicacionesdcu::observe(ComunicacionesdcuObserver::class);
         Comunicacionesadministracion::observe(ComunicacionesadministracionObserver::class);
         Comunicacionesautomotore::observe(ComunicacionesautomotoreObserver::class);
+        Comunicacionescientifica::observe(ComunicacionescientificaObserver::class);
+        Comunicacionescomplejo::observe(ComunicacionesComplejoObserver::class);
     }
 
 

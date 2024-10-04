@@ -113,7 +113,7 @@
                                     </div>
 
                                     <div class="mt-1">
-                                        <label class="block text-white text-sm font-bold mb-1" for="estado">Estado
+                                        <label class="block text-gray-700 text-sm font-bold mb-1" for="estado">Estado
                                         </label>
                                         <input type="text" id="estado" name="estado"
                                             class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"

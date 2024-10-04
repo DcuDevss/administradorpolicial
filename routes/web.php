@@ -32,6 +32,7 @@ use App\Http\Livewire\Comunicaciones\Quinta\IndexComunicacionesQuinta;
 use App\Http\Livewire\Comunicaciones\Cientifica\CreateComunicacionesCientifica;
 use App\Http\Livewire\Comunicaciones\Cientifica\EditComunicacionesCientifica;
 use App\Http\Livewire\Comunicaciones\Cientifica\IndexComunicacionesCientifica;
+use App\Http\Livewire\Comunicaciones\Cientifica\HistorialComunicacionesCientifica;
 
 use App\Http\Livewire\Comunicaciones\Dseu\CreateComunicacionesDseu;
 use App\Http\Livewire\Comunicaciones\Dseu\EditComunicacionesDseu;
@@ -74,7 +75,7 @@ use App\Http\Livewire\Comunicaciones\Narco\IndexComunicacionesNarco;
 use App\Http\Livewire\Comunicaciones\Complejo\CreateComunicacionesComplejo;
 use App\Http\Livewire\Comunicaciones\Complejo\EditComunicacionesComplejo;
 use App\Http\Livewire\Comunicaciones\Complejo\IndexComunicacionesComplejo;
-
+use App\Http\Livewire\Comunicaciones\Complejo\HistorialComunicacionesComplejo;
 
 use App\Http\Livewire\Comunicaciones\Automotore\CreateComunicacionesAutomotore;
 use App\Http\Livewire\Comunicaciones\Automotore\EditComunicacionesAutomotore;
@@ -527,6 +528,14 @@ Route::get('/historial-trabajo-administracion/{trabajosAdministracionId}', Histo
 //ruta para ver historial de trabajos automotore
 Route::get('/historial-trabajo-automotore/{trabajosAutomotoreId}', HistorialComunicacionesAutomotore::class)
 ->name('historial-trabajo-automotore');
+
+//ruta para ver historial de trabajos cientifica
+Route::get('/historial-trabajo-cientifica/{trabajosCientificaId}', HistorialComunicacionesCientifica::class)
+->name('historial-trabajo-cientifica');
+
+//ruta para ver historial de trabajos complejo
+Route::get('/historial-trabajo-complejo/{trabajosComplejoId}', HistorialComunicacionesComplejo::class)
+->name('historial-trabajo-complejo');
 
 //ruta para ver historial de trabajos toluhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)

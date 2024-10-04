@@ -236,6 +236,8 @@
                                         {{ $FuenteCount }}</p>
                                     <p class="text-slate-800 font-extrabold mb-2">Total de "Balizas":
                                         {{ $BalizaCount }}</p>
+                                        <p class="text-slate-800 font-extrabold mb-2">Total de "Otros":
+                                            {{ $OtrosCount }}</p>
                                 </div>
                             </div>
                         </div>

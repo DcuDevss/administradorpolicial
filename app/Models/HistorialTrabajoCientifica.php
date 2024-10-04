@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HistorialTrabajoAdministracion extends Model
+class HistorialTrabajoCientifica extends Model
 {
     // Asegúrate de que el nombre de la tabla es correcto
-    protected $table = 'historial_comunicaciones_admin';
+    protected $table = 'historial_comunicaciones_cientifica';
 
-    protected $fillable = ['trabajos_admin_id', 'detalle_inventario'];
+    protected $fillable = ['trabajos_cientifica_id', 'detalle_inventario'];
 
-    public function trabajosAdministracion()
+    public function trabajosDcu()
     {
-        return $this->belongsTo(Comunicacionesadministracion::class, 'trabajos_admin_id');
+        return $this->belongsTo(Comunicacionescientifica::class, 'trabajos_cientifica_id');
     }
 
     // Configura eventos para el modelo
