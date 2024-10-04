@@ -34,7 +34,7 @@ class EditComunicacionesdcu extends Component
     {
         $this->Categoriacomunicaciones = Categoriacomunicacion::all();
 
-        $this->comunicaciones =$comunicaciones;
+        $this->comunicaciones = $comunicaciones;
         $this->categoriacomunicacion_id = $comunicaciones->categoriacomunicacion_id;
         $this->nombre = $comunicaciones->nombre;
         $this->marca = $comunicaciones->marca;
@@ -42,8 +42,7 @@ class EditComunicacionesdcu extends Component
         $this->numero_serie = $comunicaciones->numero_serie;
         $this->fecha_service = $comunicaciones->fecha_service;
         $this->fecha_inventario = $comunicaciones->fecha_inventario;
-        $this->detalle_inventario = $comunicaciones->detalle_inventario;
-
+        /*         $this->detalle_inventario = $comunicaciones->detalle_inventario; */
     }
 
     public function edit()
@@ -51,7 +50,7 @@ class EditComunicacionesdcu extends Component
         $this->validate();
 
 
-        $this ->comunicaciones->update([
+        $this->comunicaciones->update([
             'nombre' => $this->nombre,
             'categoriacomunicacion_id' => $this->categoriacomunicacion_id,
             'marca' => $this->marca,

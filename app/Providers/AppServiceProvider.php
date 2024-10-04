@@ -19,6 +19,12 @@ use App\Observers\GeneralinformaticaObserver;
 use App\Observers\TolhuinGeneraleObserver;
 use App\Models\Riograndegenerale;
 use App\Observers\RiograndegeneraleObserver;
+use App\Models\Comunicacionesdcu;
+use App\Observers\ComunicacionesDcuObserver;
+use App\Models\Comunicacionesadministracion;
+use App\Observers\ComunicacionesAdministracionObserver;
+use App\Models\Comunicacionesautomotore;
+use App\Observers\ComunicacionesAutomotoreObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,6 +49,9 @@ class AppServiceProvider extends ServiceProvider
         Generalinformatica::observe(GeneralinformaticaObserver::class);
         Tolhuingenerale::observe(TolhuingeneraleObserver::class);
         Riograndegenerale::observe(RiograndegeneraleObserver::class);
+        Comunicacionesdcu::observe(ComunicacionesdcuObserver::class);
+        Comunicacionesadministracion::observe(ComunicacionesadministracionObserver::class);
+        Comunicacionesautomotore::observe(ComunicacionesautomotoreObserver::class);
     }
 
 

@@ -87,24 +87,28 @@
 
                                 @foreach ($comunicacionesdcu as $comu)
                                     <tr>
-                                        <td class="text-center py-6 font-bold">{{ $comu->id }}</td>{{--
-                                        <td class="text-center py-6 font-bold">{{ $comu->categoriacomunicacions->name }}</td> --}}
-                                        <td class="text-center py-6 font-bold">{{ $comu->nombre }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->marca }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->modelo }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->numero_serie }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->estado }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->id ?? ''}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->categoriacomunicacions->name ?? ''}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->nombre ?? 'Sin Datos'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->marca ?? 'Sin Datos'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? 'Sin Datos'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->numero_serie ?? 'Sin Datos'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? 'Sin Datos'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? 'Sin Datos'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->estado ?? 'Sin Datos'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? 'Sin Datos'}}</td>
                                         <td class="text-center py-6 font-bold">
-                                            <div class="whitespace-normal break-words">{{ $comu->detalle_inventario }}
+                                            <div class="whitespace-normal break-words">{{ $comu->detalle_inventario ?? '' }}
                                             </div>
                                         </td>
-                                        <td class="text-center py-2">
+                                        <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editComunicacionesDcu', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Editar
+                                            </a>
+                                            <a href="{{ route('historial-trabajo-dcu', $comu->id) }}"
+                                                class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
+                                                Modificaciones
                                             </a>
                                         </td>
                                     </tr>

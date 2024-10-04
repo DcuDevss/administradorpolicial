@@ -10,12 +10,12 @@ class Categoriacomunicacion extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
-    public function comunicacionesdcus(){
-
-        return $this->belongsTo(Categoriacomunicacion::class, 'categoriacomunicacion_id');
-
+    public function comunicacionesdcus()
+    {
+        return $this->hasMany(Comunicacionesdcu::class, 'categoriacomunicacion_id');
     }
 
-  
+
+
 
 }

@@ -18,12 +18,15 @@ class Comunicacionesdcu extends Model
         'tipo_service',
         'estado',
         'fecha_inventario',
-        'detalle_inventario',
-        'codigo_qr',  ];
+        'detalle_inventario'];
 
         public function categoriacomunicacions()
         {
-            return $this->belongsTo('App\Models\Categoriacomunicacion', 'categoriacomunicacion_id', 'id');
+            return $this->belongsTo(Categoriacomunicacion::class, 'categoriacomunicacion_id', 'id');
+        }
+        public function historialDetalles()
+        {
+            return $this->hasMany(HistorialTrabajoDcu::class);
         }
 
 }
