@@ -31,7 +31,6 @@ class CreateComunicacionesRiogrande extends Component
     public $showModal = false;
     public $modalContent = [];
     public $button = null;
-
     public $MarcaEquipo = [];
     public $EquipoComunicacion = [];
     public $VhfAntena = [];
