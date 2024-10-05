@@ -24,6 +24,7 @@ use App\Http\Livewire\Comunicaciones\Tercera\IndexComunicacionesTercera;
 use App\Http\Livewire\Comunicaciones\Cuarta\CreateComunicacionesCuarta;
 use App\Http\Livewire\Comunicaciones\Cuarta\EditComunicacionesCuarta;
 use App\Http\Livewire\Comunicaciones\Cuarta\IndexComunicacionesCuarta;
+use App\Http\Livewire\Comunicaciones\Cuarta\HistorialComunicacionesCuarta;
 
 use App\Http\Livewire\Comunicaciones\Quinta\CreateComunicacionesQuinta;
 use App\Http\Livewire\Comunicaciones\Quinta\EditComunicacionesQuinta;
@@ -92,6 +93,7 @@ use App\Http\Livewire\Comunicaciones\Dto365\IndexComunicacionesDto365;
 use App\Http\Livewire\Comunicaciones\Custodia\CreateComunicacionesCustodia;
 use App\Http\Livewire\Comunicaciones\Custodia\EditComunicacionesCustodia;
 use App\Http\Livewire\Comunicaciones\Custodia\IndexComunicacionesCustodia;
+use App\Http\Livewire\Comunicaciones\Custodia\HistorialComunicacionesCustodia;
 
 use App\Http\Livewire\Comunicaciones\Ushuaia\CreateComunicacionesUshuaia;
 use App\Http\Livewire\Comunicaciones\Ushuaia\EditComunicacionesUshuaia;
@@ -536,6 +538,14 @@ Route::get('/historial-trabajo-cientifica/{trabajosCientificaId}', HistorialComu
 //ruta para ver historial de trabajos complejo
 Route::get('/historial-trabajo-complejo/{trabajosComplejoId}', HistorialComunicacionesComplejo::class)
 ->name('historial-trabajo-complejo');
+
+//ruta para ver historial de trabajos complejo
+Route::get('/historial-trabajo-cuarta/{trabajosCuartaId}', HistorialComunicacionesCuarta::class)
+->name('historial-trabajo-cuarta');
+
+//ruta para ver historial de trabajos custodia
+Route::get('/historial-trabajo-custodia/{trabajosCustodiaId}', HistorialComunicacionesCustodia::class)
+->name('historial-trabajo-custodia');
 
 //ruta para ver historial de trabajos toluhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)

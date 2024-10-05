@@ -79,19 +79,17 @@ class CreateComunicacionesCuarta extends Component
         try {
 
             $this->comunicacionescuarta = new Comunicacionescuarta();
-            $this->comunicacionescuarta->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionescuarta->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionescuarta->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionescuarta->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionescuarta->modelo = $this->modelo;
-            $this->comunicacionescuarta->nro_serie = $this->nro_serie;
-            $this->comunicacionescuarta->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionescuarta->fecha_service = $this->fecha_service;
-            $this->comunicacionescuarta->tipo_service = $this->tipo_service;
-            $this->comunicacionescuarta->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionescuarta->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionescuarta->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null: $this->lugar_colocacion;
+            $this->comunicacionescuarta->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null: $this->equipocomunicacion_id;
+            $this->comunicacionescuarta->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null: $this->marcaequipo_id;
+            $this->comunicacionescuarta->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null: $this->vhfantena_id;
+            $this->comunicacionescuarta->modelo = ($this->modelo === null || $this->modelo === '') ? null: $this->modelo;
+            $this->comunicacionescuarta->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null: $this->nro_serie;
+            $this->comunicacionescuarta->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this-> condicion_equipo_comunicacion === '') ? null: $this->condicion_equipo_comunicacion;
+            $this->comunicacionescuarta->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null: $this->fecha_service;
+            $this->comunicacionescuarta->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null: $this->tipo_service;
+            $this->comunicacionescuarta->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null: $this->fecha_inventario;
+            $this->comunicacionescuarta->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null: $this->detalle_inventario;
             $this->comunicacionescuarta->save();
 
 
@@ -194,6 +192,7 @@ class CreateComunicacionesCuarta extends Component
         $RepetidoraCount = Comunicacionescuarta::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionescuarta::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionescuarta::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionescuarta::where('equipocomunicacion_id', '1')->count();
 
 
         return view('livewire.comunicaciones.cuarta.create-comunicaciones-cuarta',compact(
@@ -202,6 +201,7 @@ class CreateComunicacionesCuarta extends Component
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',

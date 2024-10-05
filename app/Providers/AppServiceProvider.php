@@ -26,9 +26,13 @@ use App\Observers\ComunicacionesAdministracionObserver;
 use App\Models\Comunicacionesautomotore;
 use App\Models\Comunicacionescientifica;
 use App\Models\Comunicacionescomplejo;
+use App\Models\Comunicacionescuarta;
+use App\Models\Comunicacionescustodia;
 use App\Observers\ComunicacionesAutomotoreObserver;
 use App\Observers\ComunicacionesCientificaObserver;
 use App\Observers\ComunicacionesComplejoObserver;
+use App\Observers\ComunicacionesCuartaObserver;
+use App\Observers\ComunicacionesCustodiaObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -58,6 +62,8 @@ class AppServiceProvider extends ServiceProvider
         Comunicacionesautomotore::observe(ComunicacionesautomotoreObserver::class);
         Comunicacionescientifica::observe(ComunicacionescientificaObserver::class);
         Comunicacionescomplejo::observe(ComunicacionesComplejoObserver::class);
+        Comunicacionescuarta::observe(ComunicacionesCuartaObserver::class);
+        Comunicacionescustodia::observe(ComunicacionesCustodiaObserver::class);
     }
 
 
