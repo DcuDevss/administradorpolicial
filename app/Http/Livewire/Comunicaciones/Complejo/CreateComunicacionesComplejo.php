@@ -78,19 +78,17 @@ class CreateComunicacionesComplejo extends Component
         try {
 
             $this->comunicacionescomplejo = new Comunicacionescomplejo();
-            $this->comunicacionescomplejo->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionescomplejo->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionescomplejo->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionescomplejo->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionescomplejo->modelo = $this->modelo;
-            $this->comunicacionescomplejo->nro_serie = $this->nro_serie;
-            $this->comunicacionescomplejo->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionescomplejo->fecha_service = $this->fecha_service;
-            $this->comunicacionescomplejo->tipo_service = $this->tipo_service;
-            $this->comunicacionescomplejo->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionescomplejo->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionescomplejo->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null: $this->lugar_colocacion;
+            $this->comunicacionescomplejo->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null: $this->equipocomunicacion_id;
+            $this->comunicacionescomplejo->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '')? null: $this->marcaequipo_id;
+            $this->comunicacionescomplejo->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null: $this->vhfantena_id;
+            $this->comunicacionescomplejo->modelo = ($this->modelo === null || $this->modelo === '') ? null: $this->modelo;
+            $this->comunicacionescomplejo->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null: $this->nro_serie;
+            $this->comunicacionescomplejo->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion  === null || $this->condicion_equipo_comunicacion === '')  ? null: $this->condicion_equipo_comunicacion;
+            $this->comunicacionescomplejo->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null: $this->fecha_service;
+            $this->comunicacionescomplejo->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null: $this->tipo_service;
+            $this->comunicacionescomplejo->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null: $this->fecha_inventario;
+            $this->comunicacionescomplejo->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null: $this->detalle_inventario;
             $this->comunicacionescomplejo->save();
 
 

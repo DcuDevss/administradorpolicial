@@ -91,25 +91,29 @@
 
                                 @foreach ($comunicaciones as $comu)
                                     <tr>
-                                        <td class="text-center py-6 font-bold">{{ $comu->id }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->equipocomunicacion->nombre }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->marcaequipo->nombre }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->vhfantena->nombre }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->modelo }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->nro_serie }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->lugar_colocacion }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->condicion_equipo_comunicacion }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->id ?? 'No encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->equipocomunicacion->nombre ?? 'No encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->marcaequipo->nombre ?? 'No encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->vhfantena->nombre ?? 'No encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? 'No encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->nro_serie ?? 'No encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->lugar_colocacion ?? 'No encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->condicion_equipo_comunicacion ?? 'No encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? 'No encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? 'No encontrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? 'No encontrado' }}</td>
                                         <td class="text-center py-6 font-bold">
-                                            <div class="whitespace-normal break-words">{{ $comu->detalle_inventario }}
+                                            <div class="whitespace-normal break-words">{{ $comu->detalle_inventario ?? 'No encontrado' }}
                                             </div>
                                         </td>
-                                        <td class="text-center py-2">
+                                        <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editComunicacionesCientifica', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Editar
+                                            </a>
+                                            <a  href="{{ route('historial-trabajo-cientifica', $comu->id) }}"
+                                                class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
+                                                Modificaciones
                                             </a>
                                         </td>
                                     </tr>

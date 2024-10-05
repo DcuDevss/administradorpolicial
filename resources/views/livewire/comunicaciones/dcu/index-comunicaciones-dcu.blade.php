@@ -55,15 +55,15 @@
 
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
+                                        Fecha Service
+
+                                    </th>
+                                    <th class="p-1   text-center text-xs text-blue-800">
+                                        Tipo service
+
+                                    </th>
+                                    <th class="p-1   text-center text-xs text-blue-800">
                                         Estado
-
-                                    </th>
-                                    <th class="p-1   text-center text-xs text-blue-800">
-                                        Fecha service
-
-                                    </th>
-                                    <th class="p-1   text-center text-xs text-blue-800">
-                                        Tipo de service
 
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">

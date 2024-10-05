@@ -1,4 +1,4 @@
-<div class="bg-slate-800 text-gray-900 tracking-wider leading-normal m-4">
+<div class=" text-gray-900 tracking-wider leading-normal m-4">
     {{--  <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto  px-2"> --}}
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
         <section class=" bg-white text-gray-600 rounded-md px-1">

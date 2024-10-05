@@ -78,19 +78,17 @@ class CreateComunicacionesCientifica extends Component
         try {
 
             $this->comunicacionescientifica = new Comunicacionescientifica();
-            $this->comunicacionescientifica->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionescientifica->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionescientifica->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionescientifica->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionescientifica->modelo = $this->modelo;
-            $this->comunicacionescientifica->nro_serie = $this->nro_serie;
+            $this->comunicacionescientifica->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null: $this->lugar_colocacion;
+            $this->comunicacionescientifica->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null: $this->equipocomunicacion_id;
+            $this->comunicacionescientifica->marcaequipo_id = ($this->marcaequipo_id === null || $this ->marcaequipo_id === '') ? null: $this->marcaequipo_id;
+            $this->comunicacionescientifica->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null: $this->vhfantena_id;
+            $this->comunicacionescientifica->modelo = ($this->modelo === null || $this->modelo === '') ? null: $this->modelo;
+            $this->comunicacionescientifica->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null: $this->nro_serie;
             $this->comunicacionescientifica->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionescientifica->fecha_service = $this->fecha_service;
-            $this->comunicacionescientifica->tipo_service = $this->tipo_service;
-            $this->comunicacionescientifica->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionescientifica->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionescientifica->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null: $this->fecha_service;
+            $this->comunicacionescientifica->tipo_service = ($this->tipo_service === null || $this->tipo_service== '') ? null: $this->tipo_service;
+            $this->comunicacionescientifica->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null: $this->fecha_inventario;
+            $this->comunicacionescientifica->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null: $this->detalle_inventario;
             $this->comunicacionescientifica->save();
 
 

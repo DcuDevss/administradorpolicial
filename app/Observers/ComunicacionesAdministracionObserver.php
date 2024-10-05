@@ -11,7 +11,7 @@ class ComunicacionesAdministracionObserver
         // Asegúrate de que el campo correcto de 'detalle_inventario' esté siendo utilizado
         if ($comunicacionesadministracion->detalle_inventario) {
             HistorialTrabajoAdministracion::create([
-                'trabajos_administracion_id' => $comunicacionesadministracion->id,
+                'trabajos_admin_id' => $comunicacionesadministracion->id,
                 'detalle_inventario' => $comunicacionesadministracion->detalle_inventario,
             ]);
         }

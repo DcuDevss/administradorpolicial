@@ -24,7 +24,7 @@ class HistorialComunicacionesAdministracion extends Component
     public function getHistorialTrabajosProperty()
     {
         // Recupera el historial de trabajos con base en el ID
-        return HistorialTrabajoAdministracion::where('trabajos_administracion_id', $this->trabajosAdministracionId)
+        return HistorialTrabajoAdministracion::where('trabajos_adminin_id', $this->trabajosAdministracionId)
             ->orderBy('updated_at', 'desc')
             ->paginate(15);
     }
@@ -33,7 +33,7 @@ class HistorialComunicacionesAdministracion extends Component
 
     public function render()
     {
-        $historialTrabajos = HistorialTrabajoAdministracion::where('trabajos_administracion_id', $this->trabajosAdministracionId)
+        $historialTrabajos = HistorialTrabajoAdministracion::where('trabajos_admin_id', $this->trabajosAdministracionId)
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 

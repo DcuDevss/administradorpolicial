@@ -39,9 +39,11 @@ class EditComunicacionesdcu extends Component
         $this->nombre = $comunicaciones->nombre;
         $this->marca = $comunicaciones->marca;
         $this->modelo = $comunicaciones->modelo;
+        $this->estado = $comunicaciones->estado;
+        $this->tipo_service = $comunicaciones->tipo_service;
         $this->numero_serie = $comunicaciones->numero_serie;
-        $this->fecha_service = $comunicaciones->fecha_service;
-        $this->fecha_inventario = $comunicaciones->fecha_inventario;
+        $this->fecha_service = $comunicaciones->fecha_service ? Carbon::parse($comunicaciones->fecha_service)->format('Y-m-d') : null;
+        $this->fecha_inventario = $comunicaciones->fecha_inventario ? Carbon::parse($comunicaciones->fecha_inventario)->format('Y-m-d') : null;
         /*         $this->detalle_inventario = $comunicaciones->detalle_inventario; */
     }
 
@@ -55,6 +57,8 @@ class EditComunicacionesdcu extends Component
             'categoriacomunicacion_id' => $this->categoriacomunicacion_id,
             'marca' => $this->marca,
             'modelo' => $this->modelo,
+            'estado' => $this->estado,
+            'tipo_service' => $this->tipo_service,
             'numero_serie' => $this->numero_serie,
             'fecha_service' => $this->fecha_service,
             'fecha_inventario' => $this->fecha_inventario,
