@@ -28,11 +28,18 @@ use App\Models\Comunicacionescientifica;
 use App\Models\Comunicacionescomplejo;
 use App\Models\Comunicacionescuarta;
 use App\Models\Comunicacionescustodia;
+use App\Models\Comunicacionesdseu;
+use App\Models\Comunicacionesdto365;
+use App\Models\Comunicacionesfamilia1;
 use App\Observers\ComunicacionesAutomotoreObserver;
 use App\Observers\ComunicacionesCientificaObserver;
 use App\Observers\ComunicacionesComplejoObserver;
 use App\Observers\ComunicacionesCuartaObserver;
 use App\Observers\ComunicacionesCustodiaObserver;
+use App\Observers\ComunicacionesdseuObserver;
+use App\Observers\Comunicacionesdto365Observer;
+use App\Observers\Comunicacionesfamilia1Observer;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -64,6 +71,9 @@ class AppServiceProvider extends ServiceProvider
         Comunicacionescomplejo::observe(ComunicacionesComplejoObserver::class);
         Comunicacionescuarta::observe(ComunicacionesCuartaObserver::class);
         Comunicacionescustodia::observe(ComunicacionesCustodiaObserver::class);
+        Comunicacionesdseu::observe(ComunicacionesdseuObserver::class);
+        Comunicacionesdto365::observe(Comunicacionesdto365Observer::class);
+        Comunicacionesfamilia1::observe(Comunicacionesfamilia1Observer::class);
     }
 
 

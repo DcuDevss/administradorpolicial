@@ -82,7 +82,7 @@
                                         QR
 
                                     </th> --}}
-                                    <th class="p-1   text-right text-xs text-blue-800">
+                                    <th class="p-1 text-center text-xs text-blue-800">
                                         Acciones
                                     </th>
                                 </tr>

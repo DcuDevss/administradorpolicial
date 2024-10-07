@@ -38,10 +38,12 @@ use App\Http\Livewire\Comunicaciones\Cientifica\HistorialComunicacionesCientific
 use App\Http\Livewire\Comunicaciones\Dseu\CreateComunicacionesDseu;
 use App\Http\Livewire\Comunicaciones\Dseu\EditComunicacionesDseu;
 use App\Http\Livewire\Comunicaciones\Dseu\IndexComunicacionesDseu;
+use App\Http\Livewire\Comunicaciones\Dseu\HistorialComunicacionesDseu;
 
 use App\Http\Livewire\Comunicaciones\Familia1\CreateComunicacionesFamilia1;
-use App\Http\Livewire\Comunicaciones\Familia1\EditComunicacionesFamilia1;
 use App\Http\Livewire\Comunicaciones\Familia1\IndexComunicacionesFamilia1;
+use App\Http\Livewire\Comunicaciones\Familia1\EditComunicacionesMinoridaduno;
+use App\Http\Livewire\Comunicaciones\Familia1\HistorialComunicacionesFamilia1;
 
 use App\Http\Livewire\Comunicaciones\Familia2\CreateComunicacionesFamilia2;
 use App\Http\Livewire\Comunicaciones\Familia2\EditComunicacionesFamilia2;
@@ -87,6 +89,7 @@ use App\Http\Livewire\Comunicaciones\Automotore\HistorialComunicacionesAutomotor
 use App\Http\Livewire\Comunicaciones\Dto365\CreateComunicacionesDto365;
 use App\Http\Livewire\Comunicaciones\Dto365\EditComunicacionesDto365;
 use App\Http\Livewire\Comunicaciones\Dto365\IndexComunicacionesDto365;
+use App\Http\Livewire\Comunicaciones\Dto365\HistorialComunicacionesDto365;
 
 
 
@@ -138,7 +141,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\Chat\Chat;
 use App\Http\Livewire\Chat\ChatList;
 use App\Http\Livewire\Chat\Index;
-use App\Http\Livewire\Comunicaciones\Familia1\EditComunicacionesMinoridaduno;
 use App\Http\Livewire\Comunicaciones\Familia2\EditComunicacionesMinoridaddos;
 use App\Http\Livewire\Informatica\General\CreateInventarioGeneral;
 use App\Http\Livewire\Informatica\General\EditInventarioGeneral;
@@ -539,13 +541,25 @@ Route::get('/historial-trabajo-cientifica/{trabajosCientificaId}', HistorialComu
 Route::get('/historial-trabajo-complejo/{trabajosComplejoId}', HistorialComunicacionesComplejo::class)
 ->name('historial-trabajo-complejo');
 
-//ruta para ver historial de trabajos complejo
+//ruta para ver historial de trabajos cuarta
 Route::get('/historial-trabajo-cuarta/{trabajosCuartaId}', HistorialComunicacionesCuarta::class)
 ->name('historial-trabajo-cuarta');
 
 //ruta para ver historial de trabajos custodia
 Route::get('/historial-trabajo-custodia/{trabajosCustodiaId}', HistorialComunicacionesCustodia::class)
 ->name('historial-trabajo-custodia');
+
+//ruta para ver historial de trabajos dseu
+Route::get('/historial-trabajo-dseu/{trabajosDseuId}', HistorialComunicacionesDseu::class)
+->name('historial-trabajo-dseu');
+
+//ruta para ver historial de trabajos dto365
+Route::get('/historial-trabajo-dto365/{trabajosDto365Id}', HistorialComunicacionesDto365::class)
+->name('historial-trabajo-dto365');
+
+//ruta para ver historial de trabajos dto365
+Route::get('/historial-trabajo-familia1/{trabajosFamilia1Id}', HistorialComunicacionesFamilia1::class)
+->name('historial-trabajo-familia1');
 
 //ruta para ver historial de trabajos toluhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)

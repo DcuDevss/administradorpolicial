@@ -78,7 +78,7 @@
                                         Detalle inventario
 
                                     </th>
-                                    <th class="p-1  text-center text-xs text-blue-800">
+                                    <th class="p-1 text-center text-xs text-blue-800">
                                         Acciones
                                     </th>
                                 </tr>

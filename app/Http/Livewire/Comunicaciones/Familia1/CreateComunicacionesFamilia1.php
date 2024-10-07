@@ -79,19 +79,17 @@ class CreateComunicacionesFamilia1 extends Component
         try {
 
             $this->comunicacionesfamilia1 = new Comunicacionesfamilia1();
-            $this->comunicacionesfamilia1->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionesfamilia1->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionesfamilia1->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionesfamilia1->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionesfamilia1->modelo = $this->modelo;
-            $this->comunicacionesfamilia1->nro_serie = $this->nro_serie;
-            $this->comunicacionesfamilia1->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionesfamilia1->fecha_service = $this->fecha_service;
-            $this->comunicacionesfamilia1->tipo_service = $this->tipo_service;
-            $this->comunicacionesfamilia1->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionesfamilia1->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionesfamilia1->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion ==='') ? null: $this->lugar_colocacion;
+            $this->comunicacionesfamilia1->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null: $this->equipocomunicacion_id;
+            $this->comunicacionesfamilia1->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null: $this->marcaequipo_id;
+            $this->comunicacionesfamilia1->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null: $this->vhfantena_id;
+            $this->comunicacionesfamilia1->modelo = ($this->modelo === null || $this->modelo === '') ? null: $this->modelo;
+            $this->comunicacionesfamilia1->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null: $this->nro_serie;
+            $this->comunicacionesfamilia1->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this->condicion_equipo_comunicacion === '') ? null: $this->condicion_equipo_comunicacion;
+            $this->comunicacionesfamilia1->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null: $this->fecha_service;
+            $this->comunicacionesfamilia1->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null: $this->tipo_service;
+            $this->comunicacionesfamilia1->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null: $this->fecha_inventario;
+            $this->comunicacionesfamilia1->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null: $this->detalle_inventario;
             $this->comunicacionesfamilia1->save();
 
 
@@ -196,6 +194,7 @@ class CreateComunicacionesFamilia1 extends Component
         $RepetidoraCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '1')->count();
 
 
         return view('livewire.comunicaciones.familia1.create-comunicaciones-familia1',compact(
@@ -204,6 +203,7 @@ class CreateComunicacionesFamilia1 extends Component
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',
