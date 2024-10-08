@@ -82,7 +82,7 @@
                                         QR
 
                                     </th> --}}
-                                    <th class="p-1   text-right text-xs text-blue-800">
+                                    <th class="p-1 text-center text-xs text-blue-800">
                                         Acciones
                                     </th>
                                 </tr>
@@ -91,25 +91,29 @@
 
                                 @foreach ($comunicaciones as $comu)
                                     <tr>
-                                        <td class="text-center py-6 font-bold">{{ $comu->id }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->equipocomunicacion->nombre }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->marcaequipo->nombre }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->vhfantena->nombre }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->modelo }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->nro_serie }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->lugar_colocacion }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->condicion_equipo_comunicacion }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->id ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->equipocomunicacion->nombre ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->marcaequipo->nombre ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->vhfantena->nombre ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->nro_serie ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->lugar_colocacion ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->condicion_equipo_comunicacion ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? 'No Encontrado'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? 'No Encontrado'}}</td>
                                         <td class="text-center py-6 font-bold">
-                                            <div class="whitespace-normal break-words">{{ $comu->detalle_inventario }}
+                                            <div class="whitespace-normal break-words">{{ $comu->detalle_inventario ?? 'No Encontrado'}}
                                             </div>
                                         </td>
-                                        <td class="text-center py-2">
+                                        <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editComunicacionesJefatura', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Editar
+                                            </a>
+                                            <a  href="{{ route('historial-trabajo-jefatura', $comu->id) }}"
+                                                class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
+                                                Modificaciones
                                             </a>
                                         </td>
                                     </tr>

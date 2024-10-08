@@ -79,19 +79,17 @@ class CreateComunicacionesInvestigacion extends Component
         try {
 
             $this->comunicacionesinvestigacion = new Comunicacionesinvestigacion();
-            $this->comunicacionesinvestigacion->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionesinvestigacion->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionesinvestigacion->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionesinvestigacion->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionesinvestigacion->modelo = $this->modelo;
-            $this->comunicacionesinvestigacion->nro_serie = $this->nro_serie;
-            $this->comunicacionesinvestigacion->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionesinvestigacion->fecha_service = $this->fecha_service;
-            $this->comunicacionesinvestigacion->tipo_service = $this->tipo_service;
-            $this->comunicacionesinvestigacion->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionesinvestigacion->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionesinvestigacion->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null : $this->lugar_colocacion;
+            $this->comunicacionesinvestigacion->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null : $this->equipocomunicacion_id;
+            $this->comunicacionesinvestigacion->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null : $this->marcaequipo_id;
+            $this->comunicacionesinvestigacion->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null : $this->vhfantena_id;
+            $this->comunicacionesinvestigacion->modelo = ($this->modelo === null || $this->modelo === '') ? null : $this->modelo;
+            $this->comunicacionesinvestigacion->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null : $this->nro_serie;
+            $this->comunicacionesinvestigacion->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this->condicion_equipo_comunicacion === '') ? null : $this->condicion_equipo_comunicacion;
+            $this->comunicacionesinvestigacion->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null : $this->fecha_service;
+            $this->comunicacionesinvestigacion->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null : $this->tipo_service;
+            $this->comunicacionesinvestigacion->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null : $this->fecha_inventario;
+            $this->comunicacionesinvestigacion->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null : $this->detalle_inventario;
             $this->comunicacionesinvestigacion->save();
 
 
@@ -194,13 +192,15 @@ class CreateComunicacionesInvestigacion extends Component
         $RepetidoraCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '1')->count();
 
-        return view('livewire.comunicaciones.investigacion.create-comunicaciones-investigacion',compact(
+        return view('livewire.comunicaciones.investigacion.create-comunicaciones-investigacion', compact(
             'HtCount',
             'BaseCount',
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',

@@ -46,13 +46,15 @@ use App\Http\Livewire\Comunicaciones\Familia1\EditComunicacionesMinoridaduno;
 use App\Http\Livewire\Comunicaciones\Familia1\HistorialComunicacionesFamilia1;
 
 use App\Http\Livewire\Comunicaciones\Familia2\CreateComunicacionesFamilia2;
-use App\Http\Livewire\Comunicaciones\Familia2\EditComunicacionesFamilia2;
 use App\Http\Livewire\Comunicaciones\Familia2\IndexComunicacionesFamilia2;
+use App\Http\Livewire\Comunicaciones\Familia2\EditComunicacionesMinoridaddos;
+use App\Http\Livewire\Comunicaciones\Familia2\HistorialComunicacionesFamilia2;
 
 
 use App\Http\Livewire\Comunicaciones\Investigacion\CreateComunicacionesInvestigacion;
 use App\Http\Livewire\Comunicaciones\Investigacion\EditComunicacionesInvestigacion;
 use App\Http\Livewire\Comunicaciones\Investigacion\IndexComunicacionesInvestigacion;
+use App\Http\Livewire\Comunicaciones\Investigacion\HistorialComunicacionesInvestigaciones;
 
 use App\Http\Livewire\Comunicaciones\Recurso\CreateComunicacionesRecurso;
 use App\Http\Livewire\Comunicaciones\Recurso\EditComunicacionesRecurso;
@@ -68,11 +70,13 @@ use App\Http\Livewire\Comunicaciones\Administracion\HistorialComunicacionesAdmin
 use App\Http\Livewire\Comunicaciones\Jefatura\CreateComunicacionesJefatura;
 use App\Http\Livewire\Comunicaciones\Jefatura\EditComunicacionesJefatura;
 use App\Http\Livewire\Comunicaciones\Jefatura\IndexComunicacionesJefatura;
+use App\Http\Livewire\Comunicaciones\Jefatura\HistorialComunicacionesJefatura;
 
 
 use App\Http\Livewire\Comunicaciones\Narco\CreateComunicacionesNarco;
 use App\Http\Livewire\Comunicaciones\Narco\EditComunicacionesNarco;
 use App\Http\Livewire\Comunicaciones\Narco\IndexComunicacionesNarco;
+use App\Http\Livewire\Comunicaciones\Narco\HistorialComunicacionesNarco;
 
 
 use App\Http\Livewire\Comunicaciones\Complejo\CreateComunicacionesComplejo;
@@ -141,7 +145,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\Chat\Chat;
 use App\Http\Livewire\Chat\ChatList;
 use App\Http\Livewire\Chat\Index;
-use App\Http\Livewire\Comunicaciones\Familia2\EditComunicacionesMinoridaddos;
 use App\Http\Livewire\Informatica\General\CreateInventarioGeneral;
 use App\Http\Livewire\Informatica\General\EditInventarioGeneral;
 use App\Http\Livewire\Informatica\General\IndexInventarioGeneral;
@@ -150,6 +153,7 @@ use App\Http\Livewire\Informatica\General\HistorialInventarioGeneral;
 use App\Http\Livewire\Informatica\Investigaciones\CreateInvestigacionesGeneral;
 use App\Http\Livewire\Informatica\Investigaciones\EditInvestigacionesGeneral;
 use App\Http\Livewire\Informatica\Investigaciones\IndexInvestigacionesGeneral;
+
 
 
 use App\Http\Livewire\Informatica\Administracion\CreateAdministracionGeneral;
@@ -527,39 +531,57 @@ Route::get('/historial-trabajo-dcu/{trabajosDcuId}', HistorialComunicacionesDcu:
 
 //ruta para ver historial de trabajos administracion
 Route::get('/historial-trabajo-administracion/{trabajosAdministracionId}', HistorialComunicacionesAdministracion::class)
-->name('historial-trabajo-administracion');
+    ->name('historial-trabajo-administracion');
 
 //ruta para ver historial de trabajos automotore
 Route::get('/historial-trabajo-automotore/{trabajosAutomotoreId}', HistorialComunicacionesAutomotore::class)
-->name('historial-trabajo-automotore');
+    ->name('historial-trabajo-automotore');
 
 //ruta para ver historial de trabajos cientifica
 Route::get('/historial-trabajo-cientifica/{trabajosCientificaId}', HistorialComunicacionesCientifica::class)
-->name('historial-trabajo-cientifica');
+    ->name('historial-trabajo-cientifica');
 
 //ruta para ver historial de trabajos complejo
 Route::get('/historial-trabajo-complejo/{trabajosComplejoId}', HistorialComunicacionesComplejo::class)
-->name('historial-trabajo-complejo');
+    ->name('historial-trabajo-complejo');
 
 //ruta para ver historial de trabajos cuarta
 Route::get('/historial-trabajo-cuarta/{trabajosCuartaId}', HistorialComunicacionesCuarta::class)
-->name('historial-trabajo-cuarta');
+    ->name('historial-trabajo-cuarta');
 
 //ruta para ver historial de trabajos custodia
 Route::get('/historial-trabajo-custodia/{trabajosCustodiaId}', HistorialComunicacionesCustodia::class)
-->name('historial-trabajo-custodia');
+    ->name('historial-trabajo-custodia');
 
 //ruta para ver historial de trabajos dseu
 Route::get('/historial-trabajo-dseu/{trabajosDseuId}', HistorialComunicacionesDseu::class)
-->name('historial-trabajo-dseu');
+    ->name('historial-trabajo-dseu');
 
 //ruta para ver historial de trabajos dto365
 Route::get('/historial-trabajo-dto365/{trabajosDto365Id}', HistorialComunicacionesDto365::class)
-->name('historial-trabajo-dto365');
+    ->name('historial-trabajo-dto365');
 
-//ruta para ver historial de trabajos dto365
+//ruta para ver historial de trabajos FAMILIA1
 Route::get('/historial-trabajo-familia1/{trabajosFamilia1Id}', HistorialComunicacionesFamilia1::class)
-->name('historial-trabajo-familia1');
+    ->name('historial-trabajo-familia1');
+
+//ruta para ver historial de trabajos FAMILIA2
+Route::get('/historial-trabajo-familia2/{trabajosFamilia2Id}', HistorialComunicacionesFamilia2::class)
+    ->name('historial-trabajo-familia2');
+
+
+//ruta para ver historial de trabajos investigaciones
+Route::get('/historial-trabajo-investigaciones/{trabajosInvestigacionId}', HistorialComunicacionesInvestigaciones::class)
+    ->name('historial-trabajo-investigaciones');
+
+
+//ruta para ver historial de trabajos jefatura
+Route::get('/historial-trabajo-jefatura/{trabajosJefaturaId}', HistorialComunicacionesJefatura::class)
+    ->name('historial-trabajo-jefatura');
+
+//ruta para ver historial de trabajos narco
+Route::get('/historial-trabajo-narco/{trabajosNarcoId}', HistorialComunicacionesNarco::class)
+    ->name('historial-trabajo-narco');
 
 //ruta para ver historial de trabajos toluhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)
@@ -572,6 +594,8 @@ Route::get('/historial-trabajo-riogrande/{trabajosRiograndeId}', HistorialComuni
 
 //ruta historial informatica ush
 // routes/web.php
+
+//******HISTORIALES PARA INFORMATICA********** */
 
 Route::get('/historial-inventario-general/{generalInformaticaId}', HistorialInventarioGeneral::class)
     ->name('historial-inventario-general');

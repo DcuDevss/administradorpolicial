@@ -172,36 +172,16 @@
                             </div>
 
                         </div>
-
-
-                        <!-- ... resto del código ... -->{{--
-                        <div x-data="{ open: false }" class="shadow-lg">
-                            <div @click="open = !open"
-                                class="flex items-center justify-between bg-slate-600 border p-4 rounded-md transition">
-                                <p class="text-lg font-extrabold text-white">COMISARIA SEGUNDA</p>
-                                <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
+                        <div x-data="{ mensaje: '' }">
+                            <div class="mt-6">
+                                <button @click="mensaje = '¡Cambios guardados correctamente!'"
+                                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                    Guardar cambios
+                                </button>
                             </div>
-                            <div x-show.transition.in.duration.800ms="open" class="border p-4">
-                                <!-- Contenido del acordeón aquí -->
-
-
-                            </div>
-                        </div>
-                        <div x-data="{ open: false }" class="shadow-lg">
-                            <div @click="open = !open"
-                                class="flex items-center justify-between bg-slate-400 border p-4 rounded-md transition">
-                                <p class="text-lg font-extrabold text-white">BRIGADA NARCOCRMINALIDAD</p>
-                                <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
-                            </div>
-                            <div x-show.transition.in.duration.800ms="open" class="border p-4"> --}}
-                                <!-- Contenido del acordeón aquí -->
-
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <button type="submit"
-                                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Guardar
-                                cambios</button>
+                            <p x-show.transition.duration.500ms="mensaje"
+                                class="mt-2 px-4 py-2  text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto"
+                                x-text="mensaje"></p>
                         </div>
                     </div>
                 </div>

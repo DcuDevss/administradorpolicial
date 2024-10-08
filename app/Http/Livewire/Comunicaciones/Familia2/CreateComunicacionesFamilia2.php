@@ -79,19 +79,17 @@ class CreateComunicacionesFamilia2 extends Component
         try {
 
             $this->comunicacionesfamilia2 = new Comunicacionesfamilia2();
-            $this->comunicacionesfamilia2->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionesfamilia2->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionesfamilia2->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionesfamilia2->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionesfamilia2->modelo = $this->modelo;
-            $this->comunicacionesfamilia2->nro_serie = $this->nro_serie;
-            $this->comunicacionesfamilia2->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionesfamilia2->fecha_service = $this->fecha_service;
-            $this->comunicacionesfamilia2->tipo_service = $this->tipo_service;
-            $this->comunicacionesfamilia2->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionesfamilia2->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionesfamilia2->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null : $this->lugar_colocacion;
+            $this->comunicacionesfamilia2->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id  === '') ? null : $this->equipocomunicacion_id;
+            $this->comunicacionesfamilia2->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null : $this->marcaequipo_id;
+            $this->comunicacionesfamilia2->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null : $this->vhfantena_id;
+            $this->comunicacionesfamilia2->modelo = ($this->modelo === null || $this->modelo === '') ? null : $this->modelo;
+            $this->comunicacionesfamilia2->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ?  null : $this->nro_serie;
+            $this->comunicacionesfamilia2->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this->condicion_equipo_comunicacion === '') ? null : $this->condicion_equipo_comunicacion;
+            $this->comunicacionesfamilia2->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null : $this->fecha_service;
+            $this->comunicacionesfamilia2->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null : $this->tipo_service;
+            $this->comunicacionesfamilia2->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null : $this->fecha_inventario;
+            $this->comunicacionesfamilia2->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null : $this->detalle_inventario;
             $this->comunicacionesfamilia2->save();
 
 
@@ -114,11 +112,11 @@ class CreateComunicacionesFamilia2 extends Component
     {
         $HtCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '4')->count();
         $marcaSindatos = Comunicacionesfamilia2::where('equipocomunicacion_id', 4)
-        ->where('marcaequipo_id', 1)
-        ->count();
+            ->where('marcaequipo_id', 1)
+            ->count();
         $marcaotros = Comunicacionesfamilia2::where('equipocomunicacion_id', 4)
-        ->where('marcaequipo_id', 2)
-        ->count();
+            ->where('marcaequipo_id', 2)
+            ->count();
         $marcaMotorola = Comunicacionesfamilia2::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 3)
             ->count();
@@ -137,11 +135,11 @@ class CreateComunicacionesFamilia2 extends Component
 
         $BaseCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '3')->count();
         $baseSindatos = Comunicacionesfamilia2::where('equipocomunicacion_id', 3)
-        ->where('marcaequipo_id', 1)
-        ->count();
+            ->where('marcaequipo_id', 1)
+            ->count();
         $baseotros = Comunicacionesfamilia2::where('equipocomunicacion_id', 3)
-        ->where('marcaequipo_id', 2)
-        ->count();
+            ->where('marcaequipo_id', 2)
+            ->count();
         $baseMotorola = Comunicacionesfamilia2::where('equipocomunicacion_id', 3)
             ->where('marcaequipo_id', 3)
             ->count();
@@ -160,11 +158,11 @@ class CreateComunicacionesFamilia2 extends Component
 
         $AntenaCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '8')->count();
         $Otros = Comunicacionesfamilia2::where('equipocomunicacion_id', 8)
-        ->where('vhfantena_id', 1)
-        ->count();
+            ->where('vhfantena_id', 1)
+            ->count();
         $Sindatos = Comunicacionesfamilia2::where('equipocomunicacion_id', 8)
-        ->where('vhfantena_id', 2)
-        ->count();
+            ->where('vhfantena_id', 2)
+            ->count();
         $dipolo2 = Comunicacionesfamilia2::where('equipocomunicacion_id', 8)
             ->where('vhfantena_id', 3)
             ->count();
@@ -196,16 +194,18 @@ class CreateComunicacionesFamilia2 extends Component
         $RepetidoraCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '1')->count();
 
 
 
 
-        return view('livewire.comunicaciones.familia2.create-comunicaciones-familia2',compact(
+        return view('livewire.comunicaciones.familia2.create-comunicaciones-familia2', compact(
             'HtCount',
             'BaseCount',
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',
