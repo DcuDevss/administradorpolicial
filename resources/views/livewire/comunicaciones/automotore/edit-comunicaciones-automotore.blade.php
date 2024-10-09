@@ -168,22 +168,23 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div x-data="{ mensaje: '' }">
+                                    <div class="mt-6">
+                                        <button @click="mensaje = '¡Cambios guardados correctamente!'"
+                                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                            Guardar cambios
+                                        </button>
+                                    </div>
+                                    <p x-show.transition.duration.500ms="mensaje"
+                                        class="mt-2 px-4 py-2  text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto"
+                                        x-text="mensaje"></p>
+                                </div>
 
                             </div>
 
                         </div>
 
-                        <div x-data="{ mensaje: '' }">
-                            <div class="mt-6">
-                                <button @click="mensaje = '¡Cambios guardados correctamente!'"
-                                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                                    Guardar cambios
-                                </button>
-                            </div>
-                            <p x-show.transition.duration.500ms="mensaje"
-                                class="mt-2 px-4 py-2  text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto"
-                                x-text="mensaje"></p>
-                        </div>
+
                     </div>
                 </div>
             </div>

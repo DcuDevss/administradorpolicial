@@ -29,4 +29,8 @@ class Comunicacionesprimera extends Model
     {
         return $this->belongsTo('App\Models\Vhfantena', 'vhfantena_id', 'id');
     }
+    public function historialDetalles()
+    {
+        return $this->hasMany(HistorialTrabajoPrimera::class);
+    }
 }

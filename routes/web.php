@@ -12,14 +12,17 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Livewire\Comunicaciones\Primera\CreateComunicacionesPrimera;
 use App\Http\Livewire\Comunicaciones\Primera\IndexComunicacionesPrimera;
 use App\Http\Livewire\Comunicaciones\Primera\EditComunicacionesPrimera;
+use App\Http\Livewire\Comunicaciones\Primera\HistorialComunicacionesPrimera;
 
 use App\Http\Livewire\Comunicaciones\Segunda\CreateComunicacionesSegunda;
 use App\Http\Livewire\Comunicaciones\Segunda\EditComunicacionesSegunda;
 use App\Http\Livewire\Comunicaciones\Segunda\IndexComunicacionesSegunda;
+use App\Http\Livewire\Comunicaciones\Segunda\HistorialComunicacionesSegunda;
 
 use App\Http\Livewire\Comunicaciones\Tercera\CreateComunicacionesTercera;
 use App\Http\Livewire\Comunicaciones\Tercera\EditComunicacionesTercera;
 use App\Http\Livewire\Comunicaciones\Tercera\IndexComunicacionesTercera;
+use App\Http\Livewire\Comunicaciones\Tercera\HistorialComunicacionesTercera;
 
 use App\Http\Livewire\Comunicaciones\Cuarta\CreateComunicacionesCuarta;
 use App\Http\Livewire\Comunicaciones\Cuarta\EditComunicacionesCuarta;
@@ -29,6 +32,7 @@ use App\Http\Livewire\Comunicaciones\Cuarta\HistorialComunicacionesCuarta;
 use App\Http\Livewire\Comunicaciones\Quinta\CreateComunicacionesQuinta;
 use App\Http\Livewire\Comunicaciones\Quinta\EditComunicacionesQuinta;
 use App\Http\Livewire\Comunicaciones\Quinta\IndexComunicacionesQuinta;
+use App\Http\Livewire\Comunicaciones\Quinta\HistorialComunicacionesQuinta;
 
 use App\Http\Livewire\Comunicaciones\Cientifica\CreateComunicacionesCientifica;
 use App\Http\Livewire\Comunicaciones\Cientifica\EditComunicacionesCientifica;
@@ -59,6 +63,7 @@ use App\Http\Livewire\Comunicaciones\Investigacion\HistorialComunicacionesInvest
 use App\Http\Livewire\Comunicaciones\Recurso\CreateComunicacionesRecurso;
 use App\Http\Livewire\Comunicaciones\Recurso\EditComunicacionesRecurso;
 use App\Http\Livewire\Comunicaciones\Recurso\IndexComunicacionesRecurso;
+use App\Http\Livewire\Comunicaciones\Recurso\HistorialComunicacionesRecurso;
 
 
 use App\Http\Livewire\Comunicaciones\Administracion\CreateComunicacionesAdministracion;
@@ -583,7 +588,27 @@ Route::get('/historial-trabajo-jefatura/{trabajosJefaturaId}', HistorialComunica
 Route::get('/historial-trabajo-narco/{trabajosNarcoId}', HistorialComunicacionesNarco::class)
     ->name('historial-trabajo-narco');
 
-//ruta para ver historial de trabajos toluhuin
+//ruta para ver historial de trabajos primera
+Route::get('/historial-trabajo-primera/{trabajosPrimeraId}', HistorialComunicacionesPrimera::class)
+    ->name('historial-trabajo-primera');
+
+//ruta para ver historial de trabajos quinta
+Route::get('/historial-trabajo-quinta/{trabajosQuintaId}', HistorialComunicacionesQuinta::class)
+->name('historial-trabajo-quinta');
+
+//ruta para ver historial de trabajos recursos humanos
+Route::get('/historial-trabajo-recurso/{trabajosRecursoId}', HistorialComunicacionesRecurso::class)
+->name('historial-trabajo-recurso');
+
+//ruta para ver historial de trabajos recursos comisaria segunda
+Route::get('/historial-trabajo-segunda/{trabajosSegundaId}', HistorialComunicacionesSegunda::class)
+->name('historial-trabajo-segunda');
+
+//ruta para ver historial de trabajos recursos comisaria tercera
+Route::get('/historial-trabajo-tercera/{trabajosTerceraId}', HistorialComunicacionesTercera::class)
+->name('historial-trabajo-tercera');
+
+//ruta para ver historial de trabajos tolhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)
     ->name('historial-trabajo-tolhuin');
 

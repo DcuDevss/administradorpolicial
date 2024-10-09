@@ -194,6 +194,7 @@ class CreateComunicacionesCientifica extends Component
         $RepetidoraCount = Comunicacionescientifica::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionescientifica::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionescientifica::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionescientifica::where('equipocomunicacion_id', '1')->count();
 
 
 
@@ -203,6 +204,7 @@ class CreateComunicacionesCientifica extends Component
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',

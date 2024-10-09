@@ -200,7 +200,7 @@ class CreateComunicacionesInvestigacion extends Component
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
-            'OtrosCount',
+            'OtrsCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',

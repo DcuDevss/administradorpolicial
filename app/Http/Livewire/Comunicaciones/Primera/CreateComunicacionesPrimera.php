@@ -165,19 +165,17 @@ class CreateComunicacionesPrimera extends Component
         try {
 
             $this->comunicacionesprimera = new Comunicacionesprimera();
-            $this->comunicacionesprimera->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionesprimera->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionesprimera->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionesprimera->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionesprimera->modelo = $this->modelo;
-            $this->comunicacionesprimera->nro_serie = $this->nro_serie;
-            $this->comunicacionesprimera->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionesprimera->fecha_service = $this->fecha_service;
-            $this->comunicacionesprimera->tipo_service = $this->tipo_service;
-            $this->comunicacionesprimera->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionesprimera->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionesprimera->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null : $this->lugar_colocacion;
+            $this->comunicacionesprimera->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null : $this->equipocomunicacion_id;
+            $this->comunicacionesprimera->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null : $this->marcaequipo_id;
+            $this->comunicacionesprimera->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null : $this->vhfantena_id;
+            $this->comunicacionesprimera->modelo = ($this->modelo === null || $this->modelo === '') ? null : $this->modelo;
+            $this->comunicacionesprimera->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null : $this->nro_serie;
+            $this->comunicacionesprimera->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this->condicion_equipo_comunicacion === '') ? null : $this->condicion_equipo_comunicacion;
+            $this->comunicacionesprimera->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null : $this->fecha_service;
+            $this->comunicacionesprimera->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null : $this->tipo_service;
+            $this->comunicacionesprimera->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null : $this->fecha_inventario;
+            $this->comunicacionesprimera->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null : $this->detalle_inventario;
             $this->comunicacionesprimera->save();
 
             // Obtengo el nombre de la marca equipo
@@ -223,11 +221,11 @@ class CreateComunicacionesPrimera extends Component
 
         $HtCount = Comunicacionesprimera::where('equipocomunicacion_id', '4')->count();
         $marcaSindatos = Comunicacionesprimera::where('equipocomunicacion_id', 4)
-        ->where('marcaequipo_id', 1)
-        ->count();
+            ->where('marcaequipo_id', 1)
+            ->count();
         $marcaotros = Comunicacionesprimera::where('equipocomunicacion_id', 4)
-        ->where('marcaequipo_id', 2)
-        ->count();
+            ->where('marcaequipo_id', 2)
+            ->count();
         $marcaMotorola = Comunicacionesprimera::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 3)
             ->count();
@@ -241,16 +239,16 @@ class CreateComunicacionesPrimera extends Component
             ->where('marcaequipo_id', 6)
             ->count();
         $marcaAlcom = Comunicacionesprimera::where('equipocomunicacion_id', 4)
-        ->where('marcaequipo_id', 7)
-        ->count();
+            ->where('marcaequipo_id', 7)
+            ->count();
 
         $BaseCount = Comunicacionesprimera::where('equipocomunicacion_id', '3')->count();
         $baseSindatos = Comunicacionesprimera::where('equipocomunicacion_id', 3)
-        ->where('marcaequipo_id', 1)
-        ->count();
+            ->where('marcaequipo_id', 1)
+            ->count();
         $baseotros = Comunicacionesprimera::where('equipocomunicacion_id', 3)
-        ->where('marcaequipo_id', 2)
-        ->count();
+            ->where('marcaequipo_id', 2)
+            ->count();
         $baseMotorola = Comunicacionesprimera::where('equipocomunicacion_id', 3)
             ->where('marcaequipo_id', 3)
             ->count();
@@ -264,16 +262,16 @@ class CreateComunicacionesPrimera extends Component
             ->where('marcaequipo_id', 6)
             ->count();
         $baseAlcom = Comunicacionesprimera::where('equipocomunicacion_id', 3)
-        ->where('marcaequipo_id', 7)
-        ->count();
+            ->where('marcaequipo_id', 7)
+            ->count();
 
         $AntenaCount = Comunicacionesprimera::where('equipocomunicacion_id', '8')->count();
         $Otros = Comunicacionesprimera::where('equipocomunicacion_id', 8)
-        ->where('vhfantena_id', 1)
-        ->count();
+            ->where('vhfantena_id', 1)
+            ->count();
         $Sindatos = Comunicacionesprimera::where('equipocomunicacion_id', 8)
-        ->where('vhfantena_id', 2)
-        ->count();
+            ->where('vhfantena_id', 2)
+            ->count();
         $dipolo2 = Comunicacionesprimera::where('equipocomunicacion_id', 8)
             ->where('vhfantena_id', 3)
             ->count();
@@ -305,38 +303,41 @@ class CreateComunicacionesPrimera extends Component
         $RepetidoraCount = Comunicacionesprimera::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesprimera::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesprimera::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionesprimera::where('equipocomunicacion_id', '1')->count();
 
 
-        return view('livewire.comunicaciones.primera.create-comunicaciones-primera',
+        return view(
+            'livewire.comunicaciones.primera.create-comunicaciones-primera',
             compact(
                 'HtCount',
-            'BaseCount',
-            'RepetidoraCount',
-            'FuenteCount',
-            'BalizaCount',
-            'marcaSindatos',
-            'marcaotros',
-            'marcaMotorola',
-            'marcaKenwood',
-            'marcaYaesu',
-            'marcaHytera',
-            'marcaAlcom',
-            'baseSindatos',
-            'baseotros',
-            'baseMotorola',
-            'baseKenwood',
-            'baseYaesu',
-            'baseHytera',
-            'baseAlcom',
-            'AntenaCount',
-            'Otros',
-            'Sindatos',
-            'dipolo2',
-            'dipolo4',
-            'dipolo8',
-            'yagi',
-            'latigo',
-            'ringo',
+                'BaseCount',
+                'RepetidoraCount',
+                'FuenteCount',
+                'BalizaCount',
+                'OtrosCount',
+                'marcaSindatos',
+                'marcaotros',
+                'marcaMotorola',
+                'marcaKenwood',
+                'marcaYaesu',
+                'marcaHytera',
+                'marcaAlcom',
+                'baseSindatos',
+                'baseotros',
+                'baseMotorola',
+                'baseKenwood',
+                'baseYaesu',
+                'baseHytera',
+                'baseAlcom',
+                'AntenaCount',
+                'Otros',
+                'Sindatos',
+                'dipolo2',
+                'dipolo4',
+                'dipolo8',
+                'yagi',
+                'latigo',
+                'ringo',
             )
         );
     }

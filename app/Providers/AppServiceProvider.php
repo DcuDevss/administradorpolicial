@@ -35,6 +35,11 @@ use App\Models\Comunicacionesfamilia2;
 use App\Models\Comunicacionesinvestigacion;
 use App\Models\Comunicacionesjefatura;
 use App\Models\Comunicacionesnarco;
+use App\Models\Comunicacionesprimera;
+use App\Models\Comunicacionesquinta;
+use App\Models\Comunicacionesrecurso;
+use App\Models\Comunicacionessegunda;
+use App\Models\Comunicacionestercera;
 use App\Observers\ComunicacionesAutomotoreObserver;
 use App\Observers\ComunicacionesCientificaObserver;
 use App\Observers\ComunicacionesComplejoObserver;
@@ -47,6 +52,11 @@ use App\Observers\Comunicacionesfamilia2Observer;
 use App\Observers\ComunicacionesinvestigacionesObserver;
 use App\Observers\ComunicacionesjefaturaObserver;
 use App\Observers\ComunicacionesnarcoObserver;
+use App\Observers\ComunicacionesprimeraObserver;
+use App\Observers\ComunicacionesquintaObserver;
+use App\Observers\ComunicacionesrecursoObserver;
+use App\Observers\ComunicacionessegundaObserver;
+use App\Observers\ComunicacionesterceraObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 class AppServiceProvider extends ServiceProvider
@@ -86,6 +96,11 @@ class AppServiceProvider extends ServiceProvider
         Comunicacionesinvestigacion::observe(ComunicacionesinvestigacionesObserver::class);
         Comunicacionesjefatura::observe(ComunicacionesjefaturaObserver::class);
         Comunicacionesnarco::observe(ComunicacionesnarcoObserver::class);
+        Comunicacionesprimera::observe(ComunicacionesprimeraObserver::class);
+        Comunicacionesquinta::observe(ComunicacionesquintaObserver::class);
+        Comunicacionesrecurso::observe(ComunicacionesrecursoObserver::class);
+        Comunicacionessegunda::observe(ComunicacionessegundaObserver::class);
+        Comunicacionestercera::observe(ComunicacionesterceraObserver::class);
     }
 
 
