@@ -165,21 +165,21 @@ class EditRiograndeGeneral extends Component
         $this->riogrande->save();
 
         // Generar el código QR después de guardar los cambios
-        $this->generateQRCode();
+        /* $this->generateQRCode(); */
 
         session()->flash('message', 'Datos actualizados correctamente.');
     }
 
-    private function generateQRCode()
-{/*
+   /*  private function generateQRCode() */
+/*{
     $dependencia_riogrande = $this->dependencia_riogrande_id ? Tipodispositivo::find($this->dependencia_riogrande_id)->nombre : null; */
-    $tipoDispositivo = $this->tipodispositivo_id ? Tipodispositivo::find($this->tipodispositivo_id)->nombre : null;
+    /* $tipoDispositivo = $this->tipodispositivo_id ? Tipodispositivo::find($this->tipodispositivo_id)->nombre : null;
     $cantidadRam = $this->cantidadram_id ? Cantidadram::find($this->cantidadram_id)->cantidad : null;
     $slotMemoria = $this->slotmemoria_id ? Slotmemoria::find($this->slotmemoria_id)->cantidad : null;
-    $riogrande_poli = $this->riogrande_id ? Riogrande::find($this->riogrande_id)->nombre : null;
+    $riogrande_poli = $this->riogrande_id ? Riogrande::find($this->riogrande_id)->nombre : null; */
    // $cientifica_poli = $this->cientifica_id ? Cientifica::find($this->cientifica_id)->nombre : null;
 
-
+/*
     $codigoQRData = 'Nro de identificacion: ' . $this->riogrande->id . ' - Fecha del inventario: ' . $this->fecha_inventario . ' - Riogrande: ' . $riogrande_poli . ' - Tipo de dispositivo: ' . $tipoDispositivo . ' - Marca: ' . $this->marca . ' - Modelo: ' . $this->modelo . ' - Procesador: ' . $this->procesador . ' - Tipo de RAM: ' . $this->tipo_ram .  ' - Cantidad de RAM: ' . $cantidadRam . ' - Slot de memoria: ' . $slotMemoria . ' -Tipo de disco: ' . $this->tipo_disco . ' - Cantidad de almacenamiento: ' . $this->cant_almacenamiento . ' - Sistema operativo: ' . $this->sistema_operativo . ' -Softwares Instalados: ' . $this->softwares_instalados . ' - Detalles del inventario: ' . $this->detalles_inventario . ' - La computadora se encuentra: ' . $this->activo;
     $codigoQR = QrCode::format('png')->size(200)->generate($codigoQRData);
     $nombreImagenQR = 'codigo_qr_' . $this->riogrande->id . '.png';
@@ -188,7 +188,7 @@ class EditRiograndeGeneral extends Component
 
     $this->riogrande->update([
         'codigo_qr' => $nombreImagenQR,
-    ]);
+    ]); */
 
    // $qrFolder = 'public/codigoQR/Dep.operativas/';
 
@@ -217,9 +217,9 @@ class EditRiograndeGeneral extends Component
     // Actualiza el campo "codigo_qr" en el modelo Generalinformatica
    /* $this->general->update([
         'codigo_qr' => $nombreImagenQR,
-    ]);*/
+    ]);
 
-}
+}*/
 
 
 

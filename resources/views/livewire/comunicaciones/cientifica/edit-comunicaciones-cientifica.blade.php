@@ -161,11 +161,11 @@
 
                                 <div class="mt-1">
                                     <label class="block text-gray-700 text-sm font-bold mb-1"
-                                        for="detalle_inventario">Detalle del inventario</label>
+                                        for="detalle_inventario">Mofificaciones Realizadas</label>
                                     <textarea
                                         class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         wire:model="detalle_inventario"value="{{ $comunicaciones->detalle_inventario }}"
-                                        placeholder="Detalles del Inventario"></textarea>
+                                        placeholder="Ingresar Mofificaciones Realizadas"></textarea>
                                     @error('detalle_inventario')
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror

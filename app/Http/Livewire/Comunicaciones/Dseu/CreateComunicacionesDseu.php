@@ -79,19 +79,17 @@ class CreateComunicacionesDseu extends Component
         try {
 
             $this->comunicacionesdseu = new Comunicacionesdseu();
-            $this->comunicacionesdseu->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionesdseu->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionesdseu->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionesdseu->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionesdseu->modelo = $this->modelo;
-            $this->comunicacionesdseu->nro_serie = $this->nro_serie;
-            $this->comunicacionesdseu->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionesdseu->fecha_service = $this->fecha_service;
-            $this->comunicacionesdseu->tipo_service = $this->tipo_service;
-            $this->comunicacionesdseu->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionesdseu->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionesdseu->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null : $this->lugar_colocacion;
+            $this->comunicacionesdseu->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null : $this->equipocomunicacion_id;
+            $this->comunicacionesdseu->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null : $this->marcaequipo_id;
+            $this->comunicacionesdseu->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null : $this->vhfantena_id;
+            $this->comunicacionesdseu->modelo = ($this->modelo === null || $this->modelo === '') ? null : $this->modelo;
+            $this->comunicacionesdseu->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null : $this->nro_serie;
+            $this->comunicacionesdseu->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null | $this->condicion_equipo_comunicacion === '') ? null : $this->condicion_equipo_comunicacion;
+            $this->comunicacionesdseu->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null : $this->fecha_service;
+            $this->comunicacionesdseu->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null : $this->tipo_service;
+            $this->comunicacionesdseu->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null : $this->fecha_inventario;
+            $this->comunicacionesdseu->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null : $this->detalle_inventario;
             $this->comunicacionesdseu->save();
 
 
@@ -106,8 +104,6 @@ class CreateComunicacionesDseu extends Component
             DB::rollback();
             return $e->getMessage();
         }
-
-
     }
 
 
@@ -116,11 +112,11 @@ class CreateComunicacionesDseu extends Component
     {
         $HtCount = Comunicacionesdseu::where('equipocomunicacion_id', '4')->count();
         $marcaSindatos = Comunicacionesdseu::where('equipocomunicacion_id', 4)
-        ->where('marcaequipo_id', 1)
-        ->count();
+            ->where('marcaequipo_id', 1)
+            ->count();
         $marcaotros = Comunicacionesdseu::where('equipocomunicacion_id', 4)
-        ->where('marcaequipo_id', 2)
-        ->count();
+            ->where('marcaequipo_id', 2)
+            ->count();
         $marcaMotorola = Comunicacionesdseu::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 3)
             ->count();
@@ -139,11 +135,11 @@ class CreateComunicacionesDseu extends Component
 
         $BaseCount = Comunicacionesdseu::where('equipocomunicacion_id', '3')->count();
         $baseSindatos = Comunicacionesdseu::where('equipocomunicacion_id', 3)
-        ->where('marcaequipo_id', 1)
-        ->count();
+            ->where('marcaequipo_id', 1)
+            ->count();
         $baseotros = Comunicacionesdseu::where('equipocomunicacion_id', 3)
-        ->where('marcaequipo_id', 2)
-        ->count();
+            ->where('marcaequipo_id', 2)
+            ->count();
         $baseMotorola = Comunicacionesdseu::where('equipocomunicacion_id', 3)
             ->where('marcaequipo_id', 3)
             ->count();
@@ -162,11 +158,11 @@ class CreateComunicacionesDseu extends Component
 
         $AntenaCount = Comunicacionesdseu::where('equipocomunicacion_id', '8')->count();
         $Otros = Comunicacionesdseu::where('equipocomunicacion_id', 8)
-        ->where('vhfantena_id', 1)
-        ->count();
+            ->where('vhfantena_id', 1)
+            ->count();
         $Sindatos = Comunicacionesdseu::where('equipocomunicacion_id', 8)
-        ->where('vhfantena_id', 2)
-        ->count();
+            ->where('vhfantena_id', 2)
+            ->count();
         $dipolo2 = Comunicacionesdseu::where('equipocomunicacion_id', 8)
             ->where('vhfantena_id', 3)
             ->count();
@@ -198,15 +194,17 @@ class CreateComunicacionesDseu extends Component
         $RepetidoraCount = Comunicacionesdseu::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesdseu::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesdseu::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionesdseu::where('equipocomunicacion_id', '1')->count();
 
 
         return view('livewire.comunicaciones.dseu.create-comunicaciones-Dseu
-        ',compact(
+        ', compact(
             'HtCount',
             'BaseCount',
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',

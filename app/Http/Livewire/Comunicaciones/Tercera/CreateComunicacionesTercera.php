@@ -78,19 +78,17 @@ class CreateComunicacionesTercera extends Component
         try {
 
             $this->comunicacionestercera = new Comunicacionestercera();
-            $this->comunicacionestercera->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionestercera->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionestercera->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionestercera->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionestercera->modelo = $this->modelo;
-            $this->comunicacionestercera->nro_serie = $this->nro_serie;
-            $this->comunicacionestercera->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionestercera->fecha_service = $this->fecha_service;
-            $this->comunicacionestercera->tipo_service = $this->tipo_service;
-            $this->comunicacionestercera->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionestercera->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionestercera->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null : $this->lugar_colocacion;
+            $this->comunicacionestercera->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null : $this->equipocomunicacion_id;
+            $this->comunicacionestercera->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null : $this->marcaequipo_id;
+            $this->comunicacionestercera->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null : $this->vhfantena_id;
+            $this->comunicacionestercera->modelo = ($this->modelo === null || $this->modelo === '') ? null : $this->modelo;
+            $this->comunicacionestercera->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null : $this->nro_serie;
+            $this->comunicacionestercera->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this->condicion_equipo_comunicacion === '') ? null : $this->condicion_equipo_comunicacion;
+            $this->comunicacionestercera->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null : $this->fecha_service;
+            $this->comunicacionestercera->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null : $this->tipo_service;
+            $this->comunicacionestercera->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null : $this->fecha_inventario;
+            $this->comunicacionestercera->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null : $this->detalle_inventario;
             $this->comunicacionestercera->save();
 
 
@@ -112,11 +110,11 @@ class CreateComunicacionesTercera extends Component
     {
         $HtCount = Comunicacionestercera::where('equipocomunicacion_id', '4')->count();
         $marcaSindatos = Comunicacionestercera::where('equipocomunicacion_id', 4)
-        ->where('marcaequipo_id', 1)
-        ->count();
+            ->where('marcaequipo_id', 1)
+            ->count();
         $marcaotros = Comunicacionestercera::where('equipocomunicacion_id', 4)
-        ->where('marcaequipo_id', 2)
-        ->count();
+            ->where('marcaequipo_id', 2)
+            ->count();
         $marcaMotorola = Comunicacionestercera::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 3)
             ->count();
@@ -135,11 +133,11 @@ class CreateComunicacionesTercera extends Component
 
         $BaseCount = Comunicacionestercera::where('equipocomunicacion_id', '3')->count();
         $baseSindatos = Comunicacionestercera::where('equipocomunicacion_id', 3)
-        ->where('marcaequipo_id', 1)
-        ->count();
+            ->where('marcaequipo_id', 1)
+            ->count();
         $baseotros = Comunicacionestercera::where('equipocomunicacion_id', 3)
-        ->where('marcaequipo_id', 2)
-        ->count();
+            ->where('marcaequipo_id', 2)
+            ->count();
         $baseMotorola = Comunicacionestercera::where('equipocomunicacion_id', 3)
             ->where('marcaequipo_id', 3)
             ->count();
@@ -158,11 +156,11 @@ class CreateComunicacionesTercera extends Component
 
         $AntenaCount = Comunicacionestercera::where('equipocomunicacion_id', '8')->count();
         $Otros = Comunicacionestercera::where('equipocomunicacion_id', 8)
-        ->where('vhfantena_id', 1)
-        ->count();
+            ->where('vhfantena_id', 1)
+            ->count();
         $Sindatos = Comunicacionestercera::where('equipocomunicacion_id', 8)
-        ->where('vhfantena_id', 2)
-        ->count();
+            ->where('vhfantena_id', 2)
+            ->count();
         $dipolo2 = Comunicacionestercera::where('equipocomunicacion_id', 8)
             ->where('vhfantena_id', 3)
             ->count();
@@ -194,14 +192,16 @@ class CreateComunicacionesTercera extends Component
         $RepetidoraCount = Comunicacionestercera::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionestercera::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionestercera::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionestercera::where('equipocomunicacion_id', '1')->count();
 
 
-        return view('livewire.comunicaciones.tercera.create-comunicaciones-tercera',compact(
+        return view('livewire.comunicaciones.tercera.create-comunicaciones-tercera', compact(
             'HtCount',
             'BaseCount',
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',

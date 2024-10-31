@@ -28,7 +28,7 @@
 
                                 <div class="grid grid-cols-3 gap-3 mb-10">
 
-                                      <div class="mt-2">
+                                    <div class="mt-2">
                                         <label for="equipocomunicacion_id"
                                             class="block text-sm font-medium text-gray-700">Tipo de
                                             Equipo:</label>
@@ -197,36 +197,45 @@
                                 <div>
                                     <h1 class="text-red-800 text-lg font-bold mb-2">Total de equipos "Ht":
                                         {{ $HtCount }}</h1>
-                                        <p class="text-purple-800 font-bold mb-2">Ht Sin datos: {{ $marcaSindatos }} </p>
-                                        <p class="text-purple-800 font-bold mb-2">Ht Otros: {{ $marcaotros }} </p>
-                                        <p class="text-purple-800 font-bold mb-2">Ht Motorola: {{ $marcaMotorola }} </p>
-                                        <p class="text-purple-800 font-bold mb-2">Ht Kenwood: {{ $marcaKenwood }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Ht Yaesu: {{ $marcaYaesu }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Ht Hytera: {{ $marcaHytera }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Ht Alcom: {{ $marcaAlcom }} </p>
-                                     </div>
+                                    <p class="text-purple-800 font-bold mb-2">Ht Sin datos: {{ $marcaSindatos }} </p>
+                                    <p class="text-purple-800 font-bold mb-2">Ht Otros: {{ $marcaotros }} </p>
+                                    <p class="text-purple-800 font-bold mb-2">Ht Motorola: {{ $marcaMotorola }} </p>
+                                    <p class="text-purple-800 font-bold mb-2">Ht Kenwood: {{ $marcaKenwood }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Ht Yaesu: {{ $marcaYaesu }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Ht Hytera: {{ $marcaHytera }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Ht Alcom: {{ $marcaAlcom }} </p>
+                                </div>
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Equipos Base":
                                         {{ $BaseCount }}</h1>
-                                        <p class="text-purple-800 font-bold mb-2">Equipo Base Sin datos:{{ $baseSindatos }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Equipo Base Otros:{{ $baseotros }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Equipo Base Motorola:{{ $baseMotorola }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Equipo Base Kenwood:{{ $baseKenwood }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Equipo Base Yaesu:{{ $baseYaesu }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Equipo Base Hytera:{{ $baseHytera }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Equipo Base Alcom:{{ $baseAlcom }}</p>
-                                  </div>
+                                    <p class="text-purple-800 font-bold mb-2">Equipo Base Sin
+                                        datos:{{ $baseSindatos }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Equipo Base Otros:{{ $baseotros }}
+                                    </p>
+                                    <p class="text-purple-800 font-bold mb-2">Equipo Base Motorola:{{ $baseMotorola }}
+                                    </p>
+                                    <p class="text-purple-800 font-bold mb-2">Equipo Base Kenwood:{{ $baseKenwood }}
+                                    </p>
+                                    <p class="text-purple-800 font-bold mb-2">Equipo Base Yaesu:{{ $baseYaesu }}
+                                    </p>
+                                    <p class="text-purple-800 font-bold mb-2">Equipo Base Hytera:{{ $baseHytera }}
+                                    </p>
+                                    <p class="text-purple-800 font-bold mb-2">Equipo Base Alcom:{{ $baseAlcom }}
+                                    </p>
+                                </div>
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Antenas":
                                         {{ $AntenaCount }}</h1>
-                                        <p class="text-purple-800 font-bold mb-2">Antena Otros:{{ $Otros }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Antena Sin datos:{{ $Sindatos }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Antena Dipolo 2:{{ $dipolo2 }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Antena Dipolo 4:{{ $dipolo4 }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Antena Dipolo 8:{{ $dipolo8 }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Antena Dipolo Yagi:{{ $yagi }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Antena Dipolo Latigo:{{ $latigo }}</p>
-                                        <p class="text-purple-800 font-bold mb-2">Antena Ringo:{{ $ringo }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Antena Otros:{{ $Otros }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Antena Sin datos:{{ $Sindatos }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Antena Dipolo 2:{{ $dipolo2 }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Antena Dipolo 4:{{ $dipolo4 }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Antena Dipolo 8:{{ $dipolo8 }}</p>
+                                    <p class="text-purple-800 font-bold mb-2">Antena Dipolo Yagi:{{ $yagi }}
+                                    </p>
+                                    <p class="text-purple-800 font-bold mb-2">Antena Dipolo Latigo:{{ $latigo }}
+                                    </p>
+                                    <p class="text-purple-800 font-bold mb-2">Antena Ringo:{{ $ringo }}</p>
 
                                 </div>
 
@@ -238,6 +247,8 @@
                                         {{ $FuenteCount }}</p>
                                     <p class="text-slate-800 font-extrabold mb-2">Total de "Balizas":
                                         {{ $BalizaCount }}</p>
+                                    <p class="text-slate-800 font-extrabold mb-2">Total de "Otros":
+                                        {{ $OtrosCount }}</p>
                                 </div>
                             </div>
                         </div>

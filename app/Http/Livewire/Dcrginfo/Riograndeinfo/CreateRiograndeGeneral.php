@@ -135,26 +135,26 @@ class CreateRiograndeGeneral extends Component
         // try {
 
         $this->rg = new Riograndegenerale();
-        $this->rg->tipodeoficina_id = $this->tipodeoficina_id ?: null;
-        $this->rg->cantidadram_id = $this->cantidadram_id ?: null;
-        $this->rg->slotmemoria_id = $this->slotmemoria_id ?: null;
-        $this->rg->tipodispositivo_id = $this->tipodispositivo_id ?: null;
-        $this->rg->dependencia_riogrande_id = $this->dependencia_riogrande_id ?: null;
-        $this->rg->riogrande_id = $this->riogrande_id ?: null;
-        $this->rg->marca = $this->marca ?: null;
-        $this->rg->modelo = $this->modelo ?: null;
-        $this->rg->procesador = $this->procesador ?: null;
-        $this->rg->cant_almacenamiento = $this->cant_almacenamiento ?: null;
-        $this->rg->tipo_ram = $this->tipo_ram ?: null;
-        $this->rg->sistema_operativo = $this->sistema_operativo ?: null;
-        $this->rg->tipo_disco = $this->tipo_disco ?: null;
-        $this->rg->tipo_teclado = $this->tipo_teclado ?: null;
-        $this->rg->tipo_mouse = $this->tipo_mouse ?: null;
-        $this->rg->fecha_inventario = $this->fecha_inventario ?: null;
-        $this->rg->fecha_service = $this->fecha_service ?: null;
-        $this->rg->tipo_service = $this->tipo_service ?: null;
-        $this->rg->detalles_inventario = $this->detalles_inventario ?: null;
-        $this->rg->softwares_instalados = $this->softwares_instalados ?: null;
+        $this->rg->tipodeoficina_id = ($this->tipodeoficina_id === null || $this->tipodeoficina_id === '') ? null : $this->tipodeoficina_id;
+        $this->rg->cantidadram_id = ($this->cantidadram_id === null || $this->cantidadram_id === '') ? null : $this->cantidadram_id;
+        $this->rg->slotmemoria_id = ($this->slotmemoria_id === null || $this->slotmemoria_id === '') ? null : $this->slotmemoria_id;
+        $this->rg->tipodispositivo_id = ($this->tipodispositivo_id === null || $this->tipodispositivo_id === '') ? null : $this->tipodispositivo_id;
+        $this->rg->dependencia_riogrande_id = ($this->dependencia_riogrande_id === null || $this->dependencia_riogrande_id === '') ? null : $this->dependencia_riogrande_id;
+        $this->rg->riogrande_id = ($this->riogrande_id === null || $this->riogrande_id === '') ? null : $this->riogrande_id;
+        $this->rg->marca = ($this->marca === null || $this->marca === '') ? null : $this->marca;
+        $this->rg->modelo = ($this->modelo === null || $this->modelo === '') ? null : $this->modelo;
+        $this->rg->procesador = ($this->procesador === null || $this->procesador === '') ? null : $this->procesador;
+        $this->rg->cant_almacenamiento = ($this->cant_almacenamiento === null || $this->cant_almacenamiento === '') ? null : $this->cant_almacenamiento;
+        $this->rg->tipo_ram = ($this->tipo_ram === null || $this->tipo_ram === '') ? null : $this->tipo_ram;
+        $this->rg->sistema_operativo = ($this->sistema_operativo === null || $this->sistema_operativo === '') ? null : $this->sistema_operativo;
+        $this->rg->tipo_disco = ($this->tipo_disco === null || $this->tipo_disco === '') ? null : $this->tipo_disco;
+        $this->rg->tipo_teclado = ($this->tipo_teclado === null || $this->tipo_teclado === '') ? null : $this->tipo_teclado;
+        $this->rg->tipo_mouse = ($this->tipo_mouse === null || $this->tipo_mouse === '') ? null : $this->tipo_mouse;
+        $this->rg->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null : $this->fecha_inventario;
+        $this->rg->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null : $this->fecha_service;
+        $this->rg->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null : $this->tipo_service;
+        $this->rg->detalles_inventario = ($this->detalles_inventario === null || $this->detalles_inventario === '') ? null : $this->detalles_inventario;
+        $this->rg->softwares_instalados = ($this->softwares_instalados === null || $this->softwares_instalados === '') ? null : $this->softwares_instalados;
         $this->rg->activo = $this->activo ? 1 : 0;
         $this->rg->save();
 
@@ -173,7 +173,7 @@ class CreateRiograndeGeneral extends Component
         $cantidadRam = $this->cantidadram_id ? Cantidadram::find($this->cantidadram_id)->cantidad : null;
         $slotMemoria = $this->slotmemoria_id ? Slotmemoria::find($this->slotmemoria_id)->cantidad : null;
 
-        $codigoQRData = ' Nro de indentificacion: ' . $this->rg->id .  ' - Fecha del inventario: ' . $this->fecha_inventario . //' - Tipo de oficina: ' . $tipoOficina .
+        /* $codigoQRData = ' Nro de indentificacion: ' . $this->rg->id .  ' - Fecha del inventario: ' . $this->fecha_inventario . //' - Tipo de oficina: ' . $tipoOficina .
             ' - Tipo de dispositivo: ' . $tipoDispositivo . ' - Riogrande: ' . $rg_poli . ' Softwares: ' . $this->softwares_instalados .  // ' - Jefatura: ' . $jefatura_poli . ' - Investigaciones: ' . $investigacione_poli . ' - Recursos Humanos: ' . $recurso_humano_poli . ' - Destacamentos: ' . $destacamento_poli . ' - Servicios Especiales: ' . $serviciosespeciale_poli .                                ' - Marca: ' . $this->marca . ' - Modelo: ' . $this->modelo . ' - Procesador: ' .
             $this->procesador . ' - Sistema operativo: ' . $this->sistema_operativo . ' Slot de memoria: ' . $slotMemoria . ' - Tipo de Ram: ' . $this->tipo_ram . ' - Cantidad de Ram: ' . $cantidadRam . ' -tipo de disco ' . $this->tipo_disco . ' -Cantidad de Almacenamiento: ' . $this->cant_almacenamiento .
             ' - Tipo de Teclado: ' . $this->tipo_teclado . ' - Tipo de mouse: ' . $this->tipo_mouse .
@@ -184,13 +184,13 @@ class CreateRiograndeGeneral extends Component
         $nombreImagenQR = 'codigo_qr_' . $this->rg->id . '.png';
         $rutaImagenQR = 'public/codigoQR/Riogrande/' . $nombreImagenQR;
         Storage::put($rutaImagenQR, $codigoQR);
-
+ */
         //' -Tipo de monitor: ' . $this->monitor .' - Tipo de Impresora: ' . $this->tipo_impresora .
 
         // Actualizar el campo "codigo_qr" en el modelo ComisariaPrimera
-        $this->rg->codigo_qr = $nombreImagenQR;
+        /*         $this->rg->codigo_qr = $nombreImagenQR;
         $this->rg->save();
-
+ */
 
 
         session()->flash('message', 'Datos guardados correctamente.');

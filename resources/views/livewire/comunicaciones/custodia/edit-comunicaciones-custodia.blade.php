@@ -160,14 +160,25 @@
 
                                 <div class="mt-1">
                                     <label class="block text-gray-700 text-sm font-bold mb-1"
-                                        for="detalle_inventario">Detalle del inventario</label>
+                                        for="detalle_inventario">Mofificaciones Realizadas</label>
                                     <textarea
                                         class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         wire:model="detalle_inventario"value="{{ $comunicaciones->detalle_inventario }}"
-                                        placeholder="Detalles del Inventario"></textarea>
+                                        placeholder="Ingresar Mofificaciones Realizadas"></textarea>
                                     @error('detalle_inventario')
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
+                                </div>
+                                <div x-data="{ mensaje: '' }">
+                                    <div class="mt-6">
+                                        <button @click="mensaje = '¡Cambios guardados correctamente!'"
+                                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                            Guardar cambios
+                                        </button>
+                                    </div>
+                                    <p x-show.transition.duration.500ms="mensaje"
+                                        class="mt-2 px-4 py-2  text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto"
+                                        x-text="mensaje"></p>
                                 </div>
 
                             </div>
@@ -175,35 +186,6 @@
                         </div>
 
 
-                        <!-- ... resto del código ... -->
-                        {{-- <div x-data="{ open: false }" class="shadow-lg">
-                            <div @click="open = !open"
-                                class="flex items-center justify-between bg-slate-600 border p-4 rounded-md transition">
-                                <p class="text-lg font-extrabold text-white">CUSTODIA GUBERNAMENTAL</p>
-                                <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
-                            </div>
-                            <div x-show.transition.in.duration.800ms="open" class="border p-4"> --}}
-                                <!-- Contenido del acordeón aquí -->
-
-{{-- 
-                            </div>
-                        </div>
-                        <div x-data="{ open: false }" class="shadow-lg">
-                            <div @click="open = !open"
-                                class="flex items-center justify-between bg-slate-400 border p-4 rounded-md transition">
-                                <p class="text-lg font-extrabold text-white">CUSTODIA GUBERNAMENTAL</p>
-                                <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
-                            </div>
-                            <div x-show.transition.in.duration.800ms="open" class="border p-4"> --}}
-                                <!-- Contenido del acordeón aquí -->
-{{-- 
-                            </div>
-                        </div> --}}
-                        <div class="mt-6">
-                            <button type="submit"
-                                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Guardar
-                                cambios</button>
-                        </div>
                     </div>
                 </div>
             </div>

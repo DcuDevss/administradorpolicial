@@ -156,7 +156,7 @@
                                     <tr>
                                         {{-- <td class="text-center py-6 font-bold">{{ $comu->id }}</td> --}}{{--
                                         <td class="text-center py-6 font-bold">{{ $comu->riogrande->nombre ?? '----' }}</td> --}}
-                                        <td class="text-center py-6 font-bold">{{ $comu->dependencia_riogrande->nombre }}
+                                        <td class="text-center py-6 font-bold">{{ $comu->dependencia_riogrande->nombre ??'---' }}
                                         </td>
                                        <td class="text-center py-6 font-bold">{{ $comu->tipodeoficina->nombre ??'---'}}</td>
                                        {{-- <td class="text-center py-6 font-bold">{{ $comu->jefatura->nombre ?? '----' }}</td>

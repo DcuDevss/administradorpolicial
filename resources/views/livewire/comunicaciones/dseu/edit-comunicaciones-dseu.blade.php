@@ -53,7 +53,8 @@
                                     </div>
 
                                     <div class="mt-1">
-                                        <label class="block text-gray-700 text-sm font-bold mb-1" for="vhfantena_id">Tipo
+                                        <label class="block text-gray-700 text-sm font-bold mb-1"
+                                            for="vhfantena_id">Tipo
                                             de antena
                                         </label>
                                         <select class="w-full form-control rounded-md" wire:model="vhfantena_id">
@@ -119,7 +120,8 @@
                                     </div>
 
                                     <div class="mt-1">
-                                        <label class="block text-gray-700 text-sm font-bold mb-1" for="fecha_service">Fecha
+                                        <label class="block text-gray-700 text-sm font-bold mb-1"
+                                            for="fecha_service">Fecha
                                             de Service</label>
                                         <input type="date"
                                             class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
@@ -131,7 +133,8 @@
                                     </div>
 
                                     <div class="mt-1">
-                                        <label class="block text-gray-700 text-sm font-bold mb-1" for="tipo_service">Tipo
+                                        <label class="block text-gray-700 text-sm font-bold mb-1"
+                                            for="tipo_service">Tipo
                                             de service
                                         </label>
                                         <input type="text"
@@ -173,15 +176,16 @@
                             </div>
 
                         </div>
-
-
-
-                        <div class="mt-6">
-                            <button type="submit"
-                                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Guardar
-                                cambios
-                            </button>
-
+                        <div x-data="{ mensaje: '' }">
+                            <div class="mt-6">
+                                <button @click="mensaje = '¡Cambios guardados correctamente!'"
+                                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                    Guardar cambios
+                                </button>
+                            </div>
+                            <p x-show.transition.duration.500ms="mensaje"
+                                class="mt-2 px-4 py-2  text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto"
+                                x-text="mensaje"></p>
                         </div>
                     </div>
                 </div>

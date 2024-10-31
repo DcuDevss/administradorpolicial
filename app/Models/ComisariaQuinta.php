@@ -26,4 +26,5 @@ class ComisariaQuinta extends Model
     {
         return $this->belongsTo('App\Models\Cantidadram', 'cantidadram_id', 'id');
     }
+    
 }

@@ -12,22 +12,27 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Livewire\Comunicaciones\Primera\CreateComunicacionesPrimera;
 use App\Http\Livewire\Comunicaciones\Primera\IndexComunicacionesPrimera;
 use App\Http\Livewire\Comunicaciones\Primera\EditComunicacionesPrimera;
+use App\Http\Livewire\Comunicaciones\Primera\HistorialComunicacionesPrimera;
 
 use App\Http\Livewire\Comunicaciones\Segunda\CreateComunicacionesSegunda;
 use App\Http\Livewire\Comunicaciones\Segunda\EditComunicacionesSegunda;
 use App\Http\Livewire\Comunicaciones\Segunda\IndexComunicacionesSegunda;
+use App\Http\Livewire\Comunicaciones\Segunda\HistorialComunicacionesSegunda;
 
 use App\Http\Livewire\Comunicaciones\Tercera\CreateComunicacionesTercera;
 use App\Http\Livewire\Comunicaciones\Tercera\EditComunicacionesTercera;
 use App\Http\Livewire\Comunicaciones\Tercera\IndexComunicacionesTercera;
+use App\Http\Livewire\Comunicaciones\Tercera\HistorialComunicacionesTercera;
 
 use App\Http\Livewire\Comunicaciones\Cuarta\CreateComunicacionesCuarta;
 use App\Http\Livewire\Comunicaciones\Cuarta\EditComunicacionesCuarta;
 use App\Http\Livewire\Comunicaciones\Cuarta\IndexComunicacionesCuarta;
+use App\Http\Livewire\Comunicaciones\Cuarta\HistorialComunicacionesCuarta;
 
 use App\Http\Livewire\Comunicaciones\Quinta\CreateComunicacionesQuinta;
 use App\Http\Livewire\Comunicaciones\Quinta\EditComunicacionesQuinta;
 use App\Http\Livewire\Comunicaciones\Quinta\IndexComunicacionesQuinta;
+use App\Http\Livewire\Comunicaciones\Quinta\HistorialComunicacionesQuinta;
 
 use App\Http\Livewire\Comunicaciones\Cientifica\CreateComunicacionesCientifica;
 use App\Http\Livewire\Comunicaciones\Cientifica\EditComunicacionesCientifica;
@@ -37,23 +42,28 @@ use App\Http\Livewire\Comunicaciones\Cientifica\HistorialComunicacionesCientific
 use App\Http\Livewire\Comunicaciones\Dseu\CreateComunicacionesDseu;
 use App\Http\Livewire\Comunicaciones\Dseu\EditComunicacionesDseu;
 use App\Http\Livewire\Comunicaciones\Dseu\IndexComunicacionesDseu;
+use App\Http\Livewire\Comunicaciones\Dseu\HistorialComunicacionesDseu;
 
 use App\Http\Livewire\Comunicaciones\Familia1\CreateComunicacionesFamilia1;
-use App\Http\Livewire\Comunicaciones\Familia1\EditComunicacionesFamilia1;
 use App\Http\Livewire\Comunicaciones\Familia1\IndexComunicacionesFamilia1;
+use App\Http\Livewire\Comunicaciones\Familia1\EditComunicacionesMinoridaduno;
+use App\Http\Livewire\Comunicaciones\Familia1\HistorialComunicacionesFamilia1;
 
 use App\Http\Livewire\Comunicaciones\Familia2\CreateComunicacionesFamilia2;
-use App\Http\Livewire\Comunicaciones\Familia2\EditComunicacionesFamilia2;
 use App\Http\Livewire\Comunicaciones\Familia2\IndexComunicacionesFamilia2;
+use App\Http\Livewire\Comunicaciones\Familia2\EditComunicacionesMinoridaddos;
+use App\Http\Livewire\Comunicaciones\Familia2\HistorialComunicacionesFamilia2;
 
 
 use App\Http\Livewire\Comunicaciones\Investigacion\CreateComunicacionesInvestigacion;
 use App\Http\Livewire\Comunicaciones\Investigacion\EditComunicacionesInvestigacion;
 use App\Http\Livewire\Comunicaciones\Investigacion\IndexComunicacionesInvestigacion;
+use App\Http\Livewire\Comunicaciones\Investigacion\HistorialComunicacionesInvestigaciones;
 
 use App\Http\Livewire\Comunicaciones\Recurso\CreateComunicacionesRecurso;
 use App\Http\Livewire\Comunicaciones\Recurso\EditComunicacionesRecurso;
 use App\Http\Livewire\Comunicaciones\Recurso\IndexComunicacionesRecurso;
+use App\Http\Livewire\Comunicaciones\Recurso\HistorialComunicacionesRecurso;
 
 
 use App\Http\Livewire\Comunicaciones\Administracion\CreateComunicacionesAdministracion;
@@ -65,11 +75,13 @@ use App\Http\Livewire\Comunicaciones\Administracion\HistorialComunicacionesAdmin
 use App\Http\Livewire\Comunicaciones\Jefatura\CreateComunicacionesJefatura;
 use App\Http\Livewire\Comunicaciones\Jefatura\EditComunicacionesJefatura;
 use App\Http\Livewire\Comunicaciones\Jefatura\IndexComunicacionesJefatura;
+use App\Http\Livewire\Comunicaciones\Jefatura\HistorialComunicacionesJefatura;
 
 
 use App\Http\Livewire\Comunicaciones\Narco\CreateComunicacionesNarco;
 use App\Http\Livewire\Comunicaciones\Narco\EditComunicacionesNarco;
 use App\Http\Livewire\Comunicaciones\Narco\IndexComunicacionesNarco;
+use App\Http\Livewire\Comunicaciones\Narco\HistorialComunicacionesNarco;
 
 
 use App\Http\Livewire\Comunicaciones\Complejo\CreateComunicacionesComplejo;
@@ -86,12 +98,14 @@ use App\Http\Livewire\Comunicaciones\Automotore\HistorialComunicacionesAutomotor
 use App\Http\Livewire\Comunicaciones\Dto365\CreateComunicacionesDto365;
 use App\Http\Livewire\Comunicaciones\Dto365\EditComunicacionesDto365;
 use App\Http\Livewire\Comunicaciones\Dto365\IndexComunicacionesDto365;
+use App\Http\Livewire\Comunicaciones\Dto365\HistorialComunicacionesDto365;
 
 
 
 use App\Http\Livewire\Comunicaciones\Custodia\CreateComunicacionesCustodia;
 use App\Http\Livewire\Comunicaciones\Custodia\EditComunicacionesCustodia;
 use App\Http\Livewire\Comunicaciones\Custodia\IndexComunicacionesCustodia;
+use App\Http\Livewire\Comunicaciones\Custodia\HistorialComunicacionesCustodia;
 
 use App\Http\Livewire\Comunicaciones\Ushuaia\CreateComunicacionesUshuaia;
 use App\Http\Livewire\Comunicaciones\Ushuaia\EditComunicacionesUshuaia;
@@ -136,8 +150,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\Chat\Chat;
 use App\Http\Livewire\Chat\ChatList;
 use App\Http\Livewire\Chat\Index;
-use App\Http\Livewire\Comunicaciones\Familia1\EditComunicacionesMinoridaduno;
-use App\Http\Livewire\Comunicaciones\Familia2\EditComunicacionesMinoridaddos;
 use App\Http\Livewire\Informatica\General\CreateInventarioGeneral;
 use App\Http\Livewire\Informatica\General\EditInventarioGeneral;
 use App\Http\Livewire\Informatica\General\IndexInventarioGeneral;
@@ -146,6 +158,7 @@ use App\Http\Livewire\Informatica\General\HistorialInventarioGeneral;
 use App\Http\Livewire\Informatica\Investigaciones\CreateInvestigacionesGeneral;
 use App\Http\Livewire\Informatica\Investigaciones\EditInvestigacionesGeneral;
 use App\Http\Livewire\Informatica\Investigaciones\IndexInvestigacionesGeneral;
+
 
 
 use App\Http\Livewire\Informatica\Administracion\CreateAdministracionGeneral;
@@ -522,21 +535,79 @@ Route::get('/historial-trabajo-dcu/{trabajosDcuId}', HistorialComunicacionesDcu:
 
 //ruta para ver historial de trabajos administracion
 Route::get('/historial-trabajo-administracion/{trabajosAdministracionId}', HistorialComunicacionesAdministracion::class)
-->name('historial-trabajo-administracion');
+    ->name('historial-trabajo-administracion');
 
 //ruta para ver historial de trabajos automotore
 Route::get('/historial-trabajo-automotore/{trabajosAutomotoreId}', HistorialComunicacionesAutomotore::class)
-->name('historial-trabajo-automotore');
+    ->name('historial-trabajo-automotore');
 
 //ruta para ver historial de trabajos cientifica
 Route::get('/historial-trabajo-cientifica/{trabajosCientificaId}', HistorialComunicacionesCientifica::class)
-->name('historial-trabajo-cientifica');
+    ->name('historial-trabajo-cientifica');
 
 //ruta para ver historial de trabajos complejo
 Route::get('/historial-trabajo-complejo/{trabajosComplejoId}', HistorialComunicacionesComplejo::class)
-->name('historial-trabajo-complejo');
+    ->name('historial-trabajo-complejo');
 
-//ruta para ver historial de trabajos toluhuin
+//ruta para ver historial de trabajos cuarta
+Route::get('/historial-trabajo-cuarta/{trabajosCuartaId}', HistorialComunicacionesCuarta::class)
+    ->name('historial-trabajo-cuarta');
+
+//ruta para ver historial de trabajos custodia
+Route::get('/historial-trabajo-custodia/{trabajosCustodiaId}', HistorialComunicacionesCustodia::class)
+    ->name('historial-trabajo-custodia');
+
+//ruta para ver historial de trabajos dseu
+Route::get('/historial-trabajo-dseu/{trabajosDseuId}', HistorialComunicacionesDseu::class)
+    ->name('historial-trabajo-dseu');
+
+//ruta para ver historial de trabajos dto365
+Route::get('/historial-trabajo-dto365/{trabajosDto365Id}', HistorialComunicacionesDto365::class)
+    ->name('historial-trabajo-dto365');
+
+//ruta para ver historial de trabajos FAMILIA1
+Route::get('/historial-trabajo-familia1/{trabajosFamilia1Id}', HistorialComunicacionesFamilia1::class)
+    ->name('historial-trabajo-familia1');
+
+//ruta para ver historial de trabajos FAMILIA2
+Route::get('/historial-trabajo-familia2/{trabajosFamilia2Id}', HistorialComunicacionesFamilia2::class)
+    ->name('historial-trabajo-familia2');
+
+
+//ruta para ver historial de trabajos investigaciones
+Route::get('/historial-trabajo-investigaciones/{trabajosInvestigacionId}', HistorialComunicacionesInvestigaciones::class)
+    ->name('historial-trabajo-investigaciones');
+
+
+//ruta para ver historial de trabajos jefatura
+Route::get('/historial-trabajo-jefatura/{trabajosJefaturaId}', HistorialComunicacionesJefatura::class)
+    ->name('historial-trabajo-jefatura');
+
+//ruta para ver historial de trabajos narco
+Route::get('/historial-trabajo-narco/{trabajosNarcoId}', HistorialComunicacionesNarco::class)
+    ->name('historial-trabajo-narco');
+
+//ruta para ver historial de trabajos primera
+Route::get('/historial-trabajo-primera/{trabajosPrimeraId}', HistorialComunicacionesPrimera::class)
+    ->name('historial-trabajo-primera');
+
+//ruta para ver historial de trabajos quinta
+Route::get('/historial-trabajo-quinta/{trabajosQuintaId}', HistorialComunicacionesQuinta::class)
+->name('historial-trabajo-quinta');
+
+//ruta para ver historial de trabajos recursos humanos
+Route::get('/historial-trabajo-recurso/{trabajosRecursoId}', HistorialComunicacionesRecurso::class)
+->name('historial-trabajo-recurso');
+
+//ruta para ver historial de trabajos recursos comisaria segunda
+Route::get('/historial-trabajo-segunda/{trabajosSegundaId}', HistorialComunicacionesSegunda::class)
+->name('historial-trabajo-segunda');
+
+//ruta para ver historial de trabajos recursos comisaria tercera
+Route::get('/historial-trabajo-tercera/{trabajosTerceraId}', HistorialComunicacionesTercera::class)
+->name('historial-trabajo-tercera');
+
+//ruta para ver historial de trabajos tolhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)
     ->name('historial-trabajo-tolhuin');
 
@@ -546,6 +617,8 @@ Route::get('/historial-trabajo-riogrande/{trabajosRiograndeId}', HistorialComuni
 
 //ruta historial informatica ush
 // routes/web.php
+
+//******HISTORIALES PARA INFORMATICA********** */
 
 Route::get('/historial-inventario-general/{generalInformaticaId}', HistorialInventarioGeneral::class)
     ->name('historial-inventario-general');

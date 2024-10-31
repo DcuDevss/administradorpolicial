@@ -78,19 +78,17 @@ class CreateComunicacionesNarco extends Component
         try {
 
             $this->comunicacionesnarco = new Comunicacionesnarco();
-            $this->comunicacionesnarco->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionesnarco->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionesnarco->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionesnarco->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionesnarco->modelo = $this->modelo;
-            $this->comunicacionesnarco->nro_serie = $this->nro_serie;
-            $this->comunicacionesnarco->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionesnarco->fecha_service = $this->fecha_service;
-            $this->comunicacionesnarco->tipo_service = $this->tipo_service;
-            $this->comunicacionesnarco->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionesnarco->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionesnarco->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null: $this->lugar_colocacion;
+            $this->comunicacionesnarco->equipocomunicacion_id = ($this->equipocomunicacion_id === null|| $this->equipocomunicacion_id === '') ? null: $this->equipocomunicacion_id;
+            $this->comunicacionesnarco->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null: $this->marcaequipo_id;
+            $this->comunicacionesnarco->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null: $this->vhfantena_id;
+            $this->comunicacionesnarco->modelo = ($this->modelo === null || $this->modelo === '') ? null: $this->modelo;
+            $this->comunicacionesnarco->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null: $this->nro_serie;
+            $this->comunicacionesnarco->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this->condicion_equipo_comunicacion === '') ? null: $this->condicion_equipo_comunicacion;
+            $this->comunicacionesnarco->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null: $this->fecha_service;
+            $this->comunicacionesnarco->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null: $this->tipo_service;
+            $this->comunicacionesnarco->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null: $this->fecha_inventario;
+            $this->comunicacionesnarco->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null: $this->detalle_inventario;
             $this->comunicacionesnarco->save();
 
 
@@ -195,6 +193,7 @@ class CreateComunicacionesNarco extends Component
         $RepetidoraCount = Comunicacionesnarco::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesnarco::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesnarco::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionesnarco::where('equipocomunicacion_id', '1')->count();
 
 
         return view('livewire.comunicaciones.narco.create-comunicaciones-narco',compact(
@@ -203,6 +202,7 @@ class CreateComunicacionesNarco extends Component
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',

@@ -78,19 +78,17 @@ class CreateComunicacionesQuinta extends Component
         try {
 
             $this->comunicacionesquinta = new Comunicacionesquinta();
-            $this->comunicacionesquinta->lugar_colocacion = $this->lugar_colocacion;
-            $this->comunicacionesquinta->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $this->comunicacionesquinta->marcaequipo_id = $this->marcaequipo_id;
-            $this->comunicacionesquinta->vhfantena_id = $this->vhfantena_id;
-            $this->comunicacionesquinta->modelo = $this->modelo;
-            $this->comunicacionesquinta->nro_serie = $this->nro_serie;
-            $this->comunicacionesquinta->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            //$this->comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $this->comunicacionesquinta->fecha_service = $this->fecha_service;
-            $this->comunicacionesquinta->tipo_service = $this->tipo_service;
-            $this->comunicacionesquinta->fecha_inventario = $this->fecha_inventario;
-            $this->comunicacionesquinta->detalle_inventario = $this->detalle_inventario;
+            $this->comunicacionesquinta->lugar_colocacion = ($this->lugar_colocacion === null || $this->lugar_colocacion === '') ? null: $this->lugar_colocacion;
+            $this->comunicacionesquinta->equipocomunicacion_id = ($this->equipocomunicacion_id === null || $this->equipocomunicacion_id === '') ? null: $this->equipocomunicacion_id;
+            $this->comunicacionesquinta->marcaequipo_id = ($this->marcaequipo_id === null || $this->marcaequipo_id === '') ? null: $this->marcaequipo_id;
+            $this->comunicacionesquinta->vhfantena_id = ($this->vhfantena_id === null || $this->vhfantena_id === '') ? null: $this->vhfantena_id;
+            $this->comunicacionesquinta->modelo = ($this->modelo === null || $this->modelo === '') ? null: $this->modelo;
+            $this->comunicacionesquinta->nro_serie = ($this->nro_serie === null || $this->nro_serie === '') ? null: $this->nro_serie;
+            $this->comunicacionesquinta->condicion_equipo_comunicacion = ($this->condicion_equipo_comunicacion === null || $this->condicion_equipo_comunicacion === '') ? null: $this->condicion_equipo_comunicacion;
+            $this->comunicacionesquinta->fecha_service = ($this->fecha_service === null || $this->fecha_service === '') ? null: $this->fecha_service;
+            $this->comunicacionesquinta->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null: $this->fecha_service;
+            $this->comunicacionesquinta->fecha_inventario = ($this->fecha_inventario === null || $this->fecha_inventario === '') ? null: $this->fecha_inventario;
+            $this->comunicacionesquinta->detalle_inventario = ($this->detalle_inventario === null|| $this->detalle_inventario === '') ? null: $this->detalle_inventario;
             $this->comunicacionesquinta->save();
 
 
@@ -194,6 +192,7 @@ class CreateComunicacionesQuinta extends Component
         $RepetidoraCount = Comunicacionesquinta::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesquinta::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesquinta::where('equipocomunicacion_id', '7')->count();
+        $OtrosCount = Comunicacionesquinta::where('equipocomunicacion_id', '1')->count();
 
         return view('livewire.comunicaciones.quinta.create-comunicaciones-quinta',compact(
             'HtCount',
@@ -201,6 +200,7 @@ class CreateComunicacionesQuinta extends Component
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',
