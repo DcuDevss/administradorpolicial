@@ -16,89 +16,7 @@ use Exception;
 use Throwable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
-
-
-/*class CreateComunicacionesPrimera extends Component
-{
-    use WithFileUploads;
-
-    public $MarcaEquipo = [];
-    public $EquipoComunicacion = [];
-
-    public $equipocomunicacion_id, $marcaequipo_id, $lugar_colocacion, $modelo,
-           $nro_serie, $condicion_equipo_comunicacion, $condicion_fuente, $condicion_baliza,
-           $fecha_inventario, $fecha_service, $tipo_service, $detalle_inventario, $codigo_qr, $comunicacionesprimera_id;
-
-    protected $rules = [
-        'equipocomunicacion_id' => 'nullable',
-        'marcaequipo_id' => 'nullable',
-        'lugar_colocacion' => 'required',
-        'modelo' => 'required',
-        'nro_serie' => 'required',
-        'condicion_equipo_comunicacion' => 'required',
-        'condicion_fuente' => 'required',
-        'condicion_baliza' => 'required',
-        'fecha_service' => 'required',
-        'tipo_service' => 'required',
-        'fecha_inventario' => 'required',
-        'detalle_inventario' => 'required',
-    ];
-
-    public function mount()
-    {
-        $this->MarcaEquipo = Marcaequipo::all();
-        $this->EquipoComunicacion = Equipocomunicacion::all();
-    }
-
-    public function guardar()
-    {
-        $this->validate();
-
-        DB::beginTransaction();
-        try {
-            $comunicacionesprimera = new Comunicacionesprimera();
-            $comunicacionesprimera->lugar_colocacion = $this->lugar_colocacion;
-            $comunicacionesprimera->equipocomunicacion_id = $this->equipocomunicacion_id;
-            $comunicacionesprimera->marcaequipo_id = $this->marcaequipo_id;
-            $comunicacionesprimera->modelo = $this->modelo;
-            $comunicacionesprimera->nro_serie = $this->nro_serie;
-            $comunicacionesprimera->condicion_equipo_comunicacion = $this->condicion_equipo_comunicacion;
-            $comunicacionesprimera->condicion_fuente = $this->condicion_fuente;
-            $comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
-            $comunicacionesprimera->fecha_service = $this->fecha_service;
-            $comunicacionesprimera->tipo_service = $this->tipo_service;
-            $comunicacionesprimera->fecha_inventario = $this->fecha_inventario;
-            $comunicacionesprimera->detalle_inventario = $this->detalle_inventario;
-            $comunicacionesprimera->save();
-
-            // Generar y almacenar la imagen QR
-            $codigoQRData = '...'; // Código QR Data aquí
-            $codigoQR = QrCode::format('png')->size(200)->generate($codigoQRData);
-            $nombreImagenQR = 'codigo_qr_' . $comunicacionesprimera->id . '.png';
-            $rutaImagenQR = 'public/codigoQR/comunicacionesPrimera/' . $nombreImagenQR;
-            Storage::put($rutaImagenQR, $codigoQR);
-
-            // Actualizar el campo "codigo_qr" en el modelo Comunicacionesprimera
-            $comunicacionesprimera->codigo_qr = $nombreImagenQR;
-            $comunicacionesprimera->save();
-
-            DB::commit();
-            session()->flash('message', 'Datos guardados correctamente.');
-        } catch (\Exception $e) {
-            DB::rollback();
-            return $e->getMessage();
-        }
-    }
-
-    public function render()
-    {
-        return view('livewire.comunicaciones.primera.create-comunicaciones-primera');
-    }
-}*/
-
-
-
-
+use App\Models\EstadoEquipo;
 
 
 
@@ -110,6 +28,10 @@ class CreateComunicacionesPrimera extends Component
     public $EquipoComunicacion = [];
     public $VhfAntena = [];
     public $showingModal = false;
+
+    public $estados; // Almacena los estados cargados desde la base de datos
+    public $estado_equipo_id; // Campo para el estado seleccionado en el dropdown
+
 
 
     public $codigo_qr, $comunicacionesprimera_id, $equipocomunicacion_id, $marcaequipo_id, $vhfantena_id, $lugar_colocacion, $modelo,
@@ -129,6 +51,7 @@ class CreateComunicacionesPrimera extends Component
         'tipo_service' => 'nullable',
         'fecha_inventario' => 'nullable',
         'detalle_inventario' => 'nullable',
+        'estado_equipo_id' => 'nullable',
 
     ];
 
@@ -150,8 +73,9 @@ class CreateComunicacionesPrimera extends Component
         $this->equipocomunicacion_id = "";
         $this->marcaequipo_id = "";
         $this->vhfantena_id = "";
+        $this->estado_equipo_id = "";
 
-
+        $this->estados = EstadoEquipo::all(); // Carga todos los estados disponibles
         $this->MarcaEquipo = Marcaequipo::all();
         $this->VhfAntena = Vhfantena::all();
         $this->EquipoComunicacion = Equipocomunicacion::all(); // Cargar los datos
@@ -178,32 +102,15 @@ class CreateComunicacionesPrimera extends Component
             $this->comunicacionesprimera->tipo_service = $this->tipo_service;
             $this->comunicacionesprimera->fecha_inventario = $this->fecha_inventario;
             $this->comunicacionesprimera->detalle_inventario = $this->detalle_inventario;
+            //$comunicacion->estados()->attach($this->estado_equipo_id);
             $this->comunicacionesprimera->save();
 
-            // Obtengo el nombre de la marca equipo
-            // $marcaEquipo = Marcaequipo::find($this->marcaequipo_id)->nombre;
+                  // Asocia el estado del equipo seleccionado a la comunicación en la tabla intermedia
+            if ($this->estado_equipo_id) {
+                $this->comunicacionesprimera->estados()->attach($this->estado_equipo_id);
+            }
 
-            // Obtengo el nombre del equipo de comunicacion
-            // $equipoComunicacion = Equipocomunicacion::find($this->equipocomunicacion_id)->nombre;
-
-
-
-            /* $codigoQRData = ' Nro de identificacion: ' . $this->comunicacionesprimera->id . ' - Fecha del inventario: ' . $this->fecha_inventario . ' - Tipo de equipo: ' .
-                $equipoComunicacion . ' - Marca del Equipo: ' . $marcaEquipo . ' - Modelo: ' . $this->modelo . ' - Nro de serie: ' .
-                $this->nro_serie . ' - Condicion del Equipo de comunicacion: ' . $this->condicion_equipo_comunicacion . ' condicion de la fuente: ' . $this->condicion_fuente . ' - Condicion de la Baliza: ' .
-                $this->condicion_baliza . ' - Tipo de service: ' . $this->tipo_service . ' -Fecha del invenatrio: ' . $this->fecha_inventario . ' -Detalle del inventario ' . $this->detalle_inventario;
-
-
-            $codigoQR = QrCode::format('png')->size(50)->generate($codigoQRData);
-
-            $nombreImagenQR = 'codigo_qr_' . $this->comunicacionesprimera->id . '.png';
-            $rutaImagenQR = 'public/codigoQR/comunicacionesPrimera/' . $nombreImagenQR;
-            Storage::put($rutaImagenQR, $codigoQR);
-
-            // Actualizar el campo "codigo_qr" en el modelo ComisariaPrimera
-            $this->comunicacionesprimera->codigo_qr = $nombreImagenQR;
-            $this->comunicacionesprimera->save();*/
-
+           
             session()->flash('message', 'Datos guardados correctamente.');
 
 

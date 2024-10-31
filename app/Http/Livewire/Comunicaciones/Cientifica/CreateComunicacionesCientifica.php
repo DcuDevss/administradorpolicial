@@ -194,7 +194,7 @@ class CreateComunicacionesCientifica extends Component
         $RepetidoraCount = Comunicacionescientifica::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionescientifica::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionescientifica::where('equipocomunicacion_id', '7')->count();
-
+        $OtrosCount = Comunicacionescientifica::where('equipocomunicacion_id', '0')->count();
 
 
         return view('livewire.comunicaciones.cientifica.create-comunicaciones-cientifica', compact(
@@ -203,6 +203,7 @@ class CreateComunicacionesCientifica extends Component
             'RepetidoraCount',
             'FuenteCount',
             'BalizaCount',
+            'OtrosCount',
             'marcaSindatos',
             'marcaotros',
             'marcaMotorola',

@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('historial_comunicaciones_cientifica', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('trabajos_cientifica_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('trabajos_cientifica_id')->nullable();
             $table->string('detalle_inventario')->nullable();
             $table->timestamps();
 
-            $table->foreign('trabajos_cientifica_id')
+             // Asignar un nombre personalizado a la clave externa para evitar el límite de longitud
+            $table->foreign('trabajos_cientifica_id', 'fk_trabajos_cientifica')
             ->references('id')
             ->on('comunicacionescientificas')
             ->onDelete('cascade');

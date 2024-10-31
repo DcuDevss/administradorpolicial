@@ -191,6 +191,8 @@ use App\Http\Livewire\Informatica\Trabajos\IndexTrabajosInformatica;
 use App\Http\Livewire\Informatica\Trabajos\HistorialTrabajoInformatica;
 use App\Http\Livewire\Comunicaciones\Tolhuin\HistorialComunicacionesTolhuin;
 
+use App\Http\Livewire\Comunicaciones\Totalequiposush\SumarEquipos;
+
 use App\Http\Livewire\NotificacionChat;
 use App\Http\Livewire\TrabajosGeneralesChart;
 use App\Http\Livewire\Username;
@@ -318,7 +320,6 @@ Route::prefix('panel-dependencias')->group(function () {
 });*/
 
 
-
 //---------rutas informatica-----------------------
 //Route::view('/panel-dependencias', 'panel-dependencias.comisaria1')->name('panel.comisaria1');
 Route::get('comisaria1/add', CreateComisariaPrimera::class)->name('createComisaria1');
@@ -427,6 +428,9 @@ Route::get('comunicaciones/general/add', CreateTrabajoGeneral::class)->name('cre
 Route::get('comunicaciones/general/', IndexTrabajoGeneral::class)->name('indexTrabajoGeneral');
 Route::get('comunicaciones/general/edit/{trabajo}', EditTrabajoGeneral::class)->name('editTrabajoGeneral');
 
+//----suma total-equipos-comunicacion-----
+Route::get('comunicaciones/totalequiposush/', SumarEquipos::class)->name('TotalEquiposComunicacion');
+
 //---InformaticaGeneral-----------------
 Route::get('informatica/general/add', CreateInventarioGeneral::class)->name('createInventarioGeneral');
 Route::get('informatica/general/', IndexInventarioGeneral::class)->name('indexInventarioGeneral');
@@ -457,12 +461,10 @@ Route::get('informatica/especiales/add', CreateServiciosespecialesGeneral::class
 Route::get('informatica/especiales/', IndexServiciosespecialesGeneral::class)->name('indexEspecialesGeneral');
 Route::get('informatica/especiales/edit/{especiales}', EditServiciosespecialesGeneral::class)->name('editEspecialesGeneral');
 
-
 //---TolhuinGeneral-----------------
 Route::get('informatica/tolhuin/add', CreateTolhuinGeneral::class)->name('createTolhuinGeneral');
 Route::get('informatica/toluin/', IndexTolhuinGeneral::class)->name('indexTolhuinGeneral');
 Route::get('informatica/tolhuin/edit/{tolhuin}', EditTolhuinGeneral::class)->name('editTolhuinGeneral');
-
 
 //---RiograndeGeneral-----------------
 Route::get('dcrginfo/riogrande/add', CreateRiograndeGeneral::class)->name('createRiograndeGeneral');
@@ -495,7 +497,6 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.
 Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
 
 
-
 //Route::get('/reservar-turno', TurnoReservation::class);
 
 Route::get('/registrar-usuario', [RegisterController::class, 'create'])->middleware([])->name('register.create');
@@ -506,11 +507,9 @@ Route::post('/registrar-usuario', [RegisterController::class, 'store'])->middlew
 Route::get('/historial-trabajo-general/{trabajosGeneraleId}', HistorialTrabajoGeneral::class)
     ->name('historial-trabajo-general');
 
-
 //ruta para ver historial de trabajos informatica
 Route::get('/historial-trabajo-informatica/{trabajosInformaticaId}', HistorialTrabajoInformatica::class)
     ->name('historial-trabajo-informatica');
-
 
 //******HISTORIALES PARA COMUNICACIONES************//
 //ruta para ver historial de trabajos ushuaia
@@ -540,7 +539,6 @@ Route::get('/historial-trabajo-complejo/{trabajosComplejoId}', HistorialComunica
 //ruta para ver historial de trabajos toluhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)
     ->name('historial-trabajo-tolhuin');
-
 
 //ruta para ver historial de trabajos Rio Grande
 Route::get('/historial-trabajo-riogrande/{trabajosRiograndeId}', HistorialComunicacionesRg::class)
