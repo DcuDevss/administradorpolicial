@@ -14,12 +14,9 @@ class EstadoEquipoSeeder extends Seeder
     public function run(): void
     {
         $estados = [
-            'Dañado',
-            'Fuera de servicio',
-            'Sin antena',
-            'Partido',
+            'Nuevo',
             'Regular',
-            'Buen estado',
+            'Sin servicio',
         ];
 
         foreach ($estados as $estado) {

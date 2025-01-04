@@ -13,31 +13,21 @@ class EquipocomunicacionSeeder extends Seeder
      */
     public function run(): void
     {
-        Equipocomunicacion::create([
-            'nombre' => 'Otros'
-        ]);
-        Equipocomunicacion::create([
-            'nombre' => 'Sin datos'
-        ]);
-        Equipocomunicacion::create([
-            'nombre' => 'Equipo base'
-        ]);
-        Equipocomunicacion::create([
-            'nombre' => 'Ht'
-        ]);
-        Equipocomunicacion::create([
-            'nombre' => 'Repetidora'
-        ]);
-        Equipocomunicacion::create([
-            'nombre' => 'Fuente de poder'
-        ]);
-        Equipocomunicacion::create([
-            'nombre' => 'Baliza'
-        ]);
-        Equipocomunicacion::create([
-            'nombre' => 'Antena'
-        ]);
+        $items = [
+            'Otros',
+            'Sin datos',
+            'Equipo base',
+            'Ht',
+            'Repetidora',
+            'Fuente de poder',
+            'Baliza',
+            'Antena',
+            'Ptt',
+            'Comando Baliza'
+        ];
 
-
+        foreach ($items as $nombre) {
+            Equipocomunicacion::firstOrCreate(['nombre' => $nombre]);
+        }
     }
 }
