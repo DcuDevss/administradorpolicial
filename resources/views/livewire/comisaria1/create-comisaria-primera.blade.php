@@ -25,7 +25,7 @@
 
            {{-- @if (session()->has('message'))
             <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Éxitoo!</strong>
+                <strong class="font-bold">Éxitooo!</strong>
                 <span class="block sm:inline">{{ session('message') }}</span>
                 <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
                     <svg class="fill-current h-6 w-6 text-blue-500" role="button" xmlns="http://www.w3.org/2000/svg"
