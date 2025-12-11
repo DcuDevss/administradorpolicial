@@ -231,7 +231,7 @@
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="fecha_inventario">Fecha
-                                            del Invenatrio</label>
+                                            del Inventario</label>
                                         <input type="date"
                                             class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                             wire:model="fecha_inventario" placeholder="Fecha de Inventario" />
@@ -338,7 +338,7 @@
                     <div x-data="{ open: false }" class="shadow-lg">
                         <div @click="open = !open"
                             class="flex items-center justify-between bg-slate-800 border p-4 rounded-md transition">
-                            <p class="text-lg font-extrabold text-white">INVENATRIO GENERAL</p>
+                            <p class="text-lg font-extrabold text-white">INVENTARIO GENERAL</p>
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">

@@ -214,10 +214,34 @@
         </div>
 
         <div class="h-32 rounded-lg bg-gray-300 relative">
-            <img src="{{ asset('foto/ht.jpg') }}" alt="image"
+            <img src="{{ asset('foto/banderatdf.jpg') }}" alt="image"
+                class="w-full h-full object-cover rounded-lg shadow-lg">
+            <a href="{{ route('TotalEquiposComunicacionProv') }}" class="absolute inset-0 flex items-center justify-center text-center text-white text-lg font-bold bg-black bg-opacity-20 rounded-lg">
+                <h2>Inventario Provincial</h2>
+            </a>
+        </div>
+
+        <div class="h-32 rounded-lg bg-gray-300 relative">
+            <img src="{{ asset('foto/ushuaiafoto.jpg') }}" alt="image"
                 class="w-full h-full object-cover rounded-lg shadow-lg">
             <a href="{{ route('TotalEquiposComunicacion') }}" class="absolute inset-0 flex items-center justify-center text-center text-white text-lg font-bold bg-black bg-opacity-20 rounded-lg">
                 <h2>Inventario general Ushuaia</h2>
+            </a>
+        </div>
+
+        <div class="h-32 rounded-lg bg-gray-300 relative">
+            <img src="{{ asset('foto/rgfoto.jpg') }}" alt="image"
+                class="w-full h-full object-cover rounded-lg shadow-lg">
+            <a href="{{ route('TotalEquiposComunicacionRg') }}" class="absolute inset-0 flex items-center justify-center text-center text-white text-lg font-bold bg-black bg-opacity-20 rounded-lg">
+                <h2>Inventario general Río Grande</h2>
+            </a>
+        </div>
+
+        <div class="h-32 rounded-lg bg-gray-300 relative">
+            <img src="{{ asset('foto/tolhuinfoto.jpg') }}" alt="image"
+                class="w-full h-full object-cover rounded-lg shadow-lg">
+            <a href="{{ route('TotalEquiposComunicacionTol') }}" class="absolute inset-0 flex items-center justify-center text-center text-white text-lg font-bold bg-black bg-opacity-20 rounded-lg">
+                <h2>Inventario general Tolhuin</h2>
             </a>
         </div>
 

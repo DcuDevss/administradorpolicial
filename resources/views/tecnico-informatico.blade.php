@@ -92,19 +92,34 @@
             </a>
         </div>
 
+        <div class="h-52 rounded-lg bg-gray-300 relative">
+            <img src="{{ asset('foto/banderatdf.jpg') }}" alt="image"
+                class="w-full h-full object-cover rounded-lg shadow-lg">
+            <a href="{{ route('TotalInventarioProvincia') }}" class="absolute inset-0 flex items-center justify-center text-center text-white text-lg font-bold bg-black bg-opacity-20 rounded-lg">
+                <h2>Inventario general Provincial</h2>
+            </a>
+        </div>
+
 
         <div class="h-52 rounded-lg bg-gray-300 relative">
-            <img src="{{ asset('foto/imagen-inventario.jpeg') }}" alt="image"
+            <img src="{{ asset('foto/ushuaiafoto.jpg') }}" alt="image"
                 class="w-full h-full object-cover rounded-lg shadow-lg">
             <a href="{{ route('TotalInventarioInformatica') }}" class="absolute inset-0 flex items-center justify-center text-center text-white text-lg font-bold bg-black bg-opacity-20 rounded-lg">
-                <h2>Inventario general 2</h2>
+                <h2>Inventario general Ushuaia</h2>
             </a>
         </div>
         <div class="h-52 rounded-lg bg-gray-300 relative">
-            <img src="{{ asset('foto/imagen-inventario.jpeg') }}" alt="image"
+            <img src="{{ asset('foto/rgfoto.jpg') }}" alt="image"
                 class="w-full h-full object-cover rounded-lg shadow-lg">
-            <a href="{{ route('TotalInventarioInformatica') }}" class="absolute inset-0 flex items-center justify-center text-center text-white text-lg font-bold bg-black bg-opacity-20 rounded-lg">
-                <h2>Inventario general 2</h2>
+            <a href="{{ route('TotalInventarioInformaticaRioGrande') }}" class="absolute inset-0 flex items-center justify-center text-center text-white text-lg font-bold bg-black bg-opacity-20 rounded-lg">
+                <h2>Inventario general Rio Grande</h2>
+            </a>
+        </div>
+        <div class="h-52 rounded-lg bg-gray-300 relative">
+            <img src="{{ asset('foto/tolhuinfoto.jpg') }}" alt="image"
+                class="w-full h-full object-cover rounded-lg shadow-lg">
+            <a href="{{ route('TotalInventarioInformaticaTolhuin') }}" class="absolute inset-0 flex items-center justify-center text-center text-white text-lg font-bold bg-black bg-opacity-20 rounded-lg">
+                <h2>Inventario general Tolhuin</h2>
             </a>
         </div>
     </div>

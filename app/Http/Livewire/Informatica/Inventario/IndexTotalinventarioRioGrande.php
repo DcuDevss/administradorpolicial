@@ -6,8 +6,8 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Livewire\Component;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\GeneralInformatica; // Ajusta la ruta del modelo según tu estructura
-use App\Models\Investigacionesgenerale; // Ajusta la ruta del modelo según tu estructura
+use App\Models\GeneralInformatica;
+use App\Models\Investigacionesgenerale;
 use App\Models\ComisariaPrimera;
 use App\Models\Cantidadram;
 use App\Models\DependenciaTolhuin;
@@ -36,7 +36,10 @@ use Throwable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
-class IndexTotalinventario extends Component
+// 👇 agregá tu modelo de dependencias de Río Grande
+use App\Models\DependenciaRiogrande;
+
+class IndexTotalinventarioRioGrande extends Component
 {
     use WithFileUploads;
 
@@ -44,7 +47,7 @@ class IndexTotalinventario extends Component
     public $CantidadRam = [];
     public $TipodeOficina = [];
     public $SlotMemoria = [];
-    public $Dependencia_Ushuaia = [];
+    public $Dependencia_RioGrande = [];
 
     public $JEfatura = [];
     public $ADministracion = [];
@@ -54,11 +57,9 @@ class IndexTotalinventario extends Component
     public $SErviciosespeciale = [];
     public $CUstodiagubernamentale = [];
 
-    public $codigo_qr, $generalinformatica, $administraciongenerale_id, $investigacionesgenerale_id, $custodiagubernamentalgenerale_id, $dependencia_ushuaia_id, $comisariaprimera_id, $tipodispositivo_id, $tipodeoficina_id, $cantidadram_id, $slotmemoria_id,
+    public $codigo_qr, $generalinformatica, $administraciongenerale_id, $investigacionesgenerale_id, $custodiagubernamentalgenerale_id, $dependencia_riogrande_id, $comisariaprimera_id, $tipodispositivo_id, $tipodeoficina_id, $cantidadram_id, $slotmemoria_id,
         $serviciosespeciale_id, $investigacione_id, $administracion_id, $custodiagubernamentale_id, $recurso_humano_id, $destacamento_id, $jefatura_id, $comisariaprimera, $marca, $modelo, $procesador,  $sistema_operativo,  $fecha_service, $tipo_service,
         $fecha_inventario, $activo, $detalles_inventario, $tipo_ram, $tipo_disco, $cant_almacenamiento, $tipo_mouse, $tipo_teclado, $admin, $inve, $recursos, $jefa, $servicios, $custodia;
-    //$monitor,$tipo_impresora,
-
 
     public function mount()
     {
@@ -66,7 +67,7 @@ class IndexTotalinventario extends Component
         $this->tipodeoficina_id = "";
         $this->tipodispositivo_id = "";
         $this->slotmemoria_id = "";
-        $this->dependencia_ushuaia_id = "";
+        $this->dependencia_riogrande_id = "";
 
         $this->jefatura_id = "";
         $this->administracion_id = "";
@@ -76,28 +77,28 @@ class IndexTotalinventario extends Component
         $this->serviciosespeciale_id = '';
         $this->custodiagubernamentale_id = '';
 
-        $this->CantidadRam = Cantidadram::all();
-        $this->TipodeOficina = Tipodeoficina::all(); // Cargar los datos de tipo de oficina
-        $this->TipoDispositivo = Tipodispositivo::all();
-        $this->SlotMemoria = Slotmemoria::all();
-        $this->Dependencia_Ushuaia = DependenciaUshuaia::all();
+        $this->CantidadRam      = Cantidadram::all();
+        $this->TipodeOficina    = Tipodeoficina::all();
+        $this->TipoDispositivo  = Tipodispositivo::all();
+        $this->SlotMemoria      = Slotmemoria::all();
 
-        $this->JEfatura = Jefatura::all();
-        $this->ADministracion = Administracion::all();
-        $this->INvestigacione = Investigacione::all();
-        $this->Recurso_Humano = RecursoHumano::all();
-        $this->DEstacamento = Destacamento::all();
+        // 🔹 acá cargás las dependencias de Río Grande
+        $this->Dependencia_RioGrande = DependenciaRiogrande::all();
+
+        $this->JEfatura          = Jefatura::all();
+        $this->ADministracion    = Administracion::all();
+        $this->INvestigacione    = Investigacione::all();
+        $this->Recurso_Humano    = RecursoHumano::all();
+        $this->DEstacamento      = Destacamento::all();
         $this->SErviciosespeciale = Serviciosespeciale::all();
         $this->CUstodiagubernamentale = Custodiagubernamentale::all();
     }
 
-
-
     public function render()
     {
-        $sumaTotalPc = DB::table('generalinformaticas')
+        $sumaTotalPc = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 3)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 3)
@@ -111,14 +112,13 @@ class IndexTotalinventario extends Component
             + DB::table('recursoshumanosgenerales')
                 ->where('tipodispositivo_id', 3)
                 ->count();
-        /*  + DB::table('serviciosespecialesgenerales')
+            + DB::table('serviciosespecialesgenerales')
                 ->where('tipodispositivo_id', 3)
-                ->whereNotNull('dependencia_ushuaia_id')
-                ->count(); */
+                ->count();
 
-        $sumaTotalMonitor_pc = DB::table('generalinformaticas')
+        $sumaTotalMonitor_pc = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 4)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 4)
@@ -133,9 +133,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 4)
                 ->count();
 
-        $sumaTotalNotebook = DB::table('generalinformaticas')
+        $sumaTotalNotebook = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 5)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 5)
@@ -150,15 +150,14 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 5)
                 ->count();
 
-        $sumaTotalNetbook = DB::table('generalinformaticas')
+        $sumaTotalNetbook = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 6)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 6)
                 ->count()
             + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 6)
                 ->count()
             + DB::table('jefaturagenerales')
                 ->where('tipodispositivo_id', 6)
@@ -167,9 +166,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 6)
                 ->count();
 
-        $sumaTotalCelular = DB::table('generalinformaticas')
+        $sumaTotalCelular = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 7)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 7)
@@ -184,9 +183,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 7)
                 ->count();
 
-        $sumaTotalTablet = DB::table('generalinformaticas')
+        $sumaTotalTablet = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 8)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 8)
@@ -201,9 +200,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 8)
                 ->count();
 
-        $sumaTotalTelefono_fijo = DB::table('generalinformaticas')
+        $sumaTotalTelefono_fijo = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 9)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 9)
@@ -218,9 +217,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 9)
                 ->count();
 
-        $sumaTotalTelefono_inalambrico = DB::table('generalinformaticas')
+        $sumaTotalTelefono_inalambrico = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 10)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 10)
@@ -235,9 +234,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 10)
                 ->count();
 
-        $sumaTotalImpresora_laser = DB::table('generalinformaticas')
+        $sumaTotalImpresora_laser = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 11)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 11)
@@ -252,9 +251,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 11)
                 ->count();
 
-        $sumaTotalImpresora_tinta = DB::table('generalinformaticas')
+        $sumaTotalImpresora_tinta = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 12)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 12)
@@ -269,9 +268,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 12)
                 ->count();
 
-        $sumaTotalSwitch = DB::table('generalinformaticas')
+        $sumaTotalSwitch = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 13)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 13)
@@ -286,9 +285,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 13)
                 ->count();
 
-        $sumaTotalRuter = DB::table('generalinformaticas')
+        $sumaTotalRuter = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 14)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 14)
@@ -303,9 +302,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 14)
                 ->count();
 
-        $sumaTotalUps = DB::table('generalinformaticas')
+        $sumaTotalUps = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 15)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 15)
@@ -320,9 +319,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 15)
                 ->count();
 
-        $sumaTotalCamaras_video = DB::table('generalinformaticas')
+        $sumaTotalCamaras_video = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 16)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 16)
@@ -337,9 +336,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 16)
                 ->count();
 
-        $sumaTotalEstacion_trabajo = DB::table('generalinformaticas')
+        $sumaTotalEstacion_trabajo = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 17)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 17)
@@ -354,9 +353,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 17)
                 ->count();
 
-        $sumaTotalServidor = DB::table('generalinformaticas')
+        $sumaTotalServidor = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 18)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 18)
@@ -371,9 +370,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 18)
                 ->count();
 
-        $sumaTotalEstabilizador_tension = DB::table('generalinformaticas')
+        $sumaTotalEstabilizador_tension = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 19)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 19)
@@ -388,9 +387,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 19)
                 ->count();
 
-        $sumaTotalAuriculares = DB::table('generalinformaticas')
+        $sumaTotalAuriculares = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 20)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 20)
@@ -405,9 +404,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 20)
                 ->count();
 
-        $sumaTotalCable_estructurado = DB::table('generalinformaticas')
+        $sumaTotalCable_estructurado = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 21)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 21)
@@ -422,9 +421,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 21)
                 ->count();
 
-        $sumaTotalTv = DB::table('generalinformaticas')
+        $sumaTotalTv = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 22)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 22)
@@ -439,9 +438,9 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 22)
                 ->count();
 
-        $sumaTotalCentral_telefonica = DB::table('generalinformaticas')
+        $sumaTotalCentral_telefonica = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 23)
-            ->whereNotNull('dependencia_ushuaia_id')
+            ->whereNotNull('dependencia_riogrande_id')
             ->count()
             + DB::table('investigacionesgenerales')
                 ->where('tipodispositivo_id', 23)
@@ -456,7 +455,7 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 23)
                 ->count();
 
-        return view('livewire.informatica.inventario.index-totalinventario',compact('sumaTotalPc','sumaTotalMonitor_pc','sumaTotalNotebook',
+        return view('livewire.informatica.inventario.index-totalinventario-rio-grande',compact('sumaTotalPc','sumaTotalMonitor_pc','sumaTotalNotebook',
         'sumaTotalNetbook','sumaTotalCelular','sumaTotalTablet','sumaTotalTelefono_fijo','sumaTotalTelefono_inalambrico',
         'sumaTotalImpresora_laser','sumaTotalImpresora_tinta','sumaTotalSwitch','sumaTotalRuter','sumaTotalUps','sumaTotalCamaras_video',
         'sumaTotalEstacion_trabajo','sumaTotalServidor','sumaTotalEstabilizador_tension','sumaTotalAuriculares',

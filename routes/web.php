@@ -197,14 +197,21 @@ use App\Http\Livewire\Comunicaciones\General\EditTrabajoGeneral;
 use App\Http\Livewire\Comunicaciones\General\IndexTrabajoGeneral;
 use App\Http\Livewire\Comunicaciones\General\HistorialTrabajoGeneral;
 use App\Http\Livewire\Dcrgcomu\Riograndecomu\HistorialComunicacionesRg;
+use App\Http\Livewire\Informatica\Inventario\IndexTotalInventarioProvincia;
 use App\Http\Livewire\Informatica\Inventario\IndexTotalinventario;
+use App\Http\Livewire\Informatica\Inventario\IndexTotalinventarioRioGrande;
+use App\Http\Livewire\Informatica\Inventario\IndexTotalinventarioTolhuin;
+
 use App\Http\Livewire\Informatica\Trabajos\CreateTrabajosInformatica;
 use App\Http\Livewire\Informatica\Trabajos\EditTrabajosInformatica;
 use App\Http\Livewire\Informatica\Trabajos\IndexTrabajosInformatica;
 use App\Http\Livewire\Informatica\Trabajos\HistorialTrabajoInformatica;
 use App\Http\Livewire\Comunicaciones\Tolhuin\HistorialComunicacionesTolhuin;
 
+use App\Http\Livewire\Comunicaciones\Totalequiposprov\SumarEquiposProv;
 use App\Http\Livewire\Comunicaciones\Totalequiposush\SumarEquipos;
+use App\Http\Livewire\Comunicaciones\Totalequiposrg\SumarEquiposRg;
+use App\Http\Livewire\Comunicaciones\Totalequipostol\SumarEquiposTol;
 
 use App\Http\Livewire\NotificacionChat;
 use App\Http\Livewire\TrabajosGeneralesChart;
@@ -442,7 +449,16 @@ Route::get('comunicaciones/general/', IndexTrabajoGeneral::class)->name('indexTr
 Route::get('comunicaciones/general/edit/{trabajo}', EditTrabajoGeneral::class)->name('editTrabajoGeneral');
 
 //----suma total-equipos-comunicacion-----
+Route::get('comunicaciones/totalequiposprov', SumarEquiposProv::class)
+    ->name('TotalEquiposComunicacionProv');
+/* ushuaia */
 Route::get('comunicaciones/totalequiposush/', SumarEquipos::class)->name('TotalEquiposComunicacion');
+// Río Grande
+Route::get('comunicaciones/totalequiposrg/', SumarEquiposRg::class)
+    ->name('TotalEquiposComunicacionRg');
+/* tolhuin */
+Route::get('comunicaciones/totalequipostol', SumarEquiposTol::class)
+    ->name('TotalEquiposComunicacionTol');
 
 //---InformaticaGeneral-----------------
 Route::get('informatica/general/add', CreateInventarioGeneral::class)->name('createInventarioGeneral');
@@ -485,7 +501,17 @@ Route::get('dcrginfo/riogrande/', IndexRiograndeGeneral::class)->name('indexRiog
 Route::get('dcrginfo/riogrande/edit/{riogrande}', EditRiograndeGeneral::class)->name('editRiograndeGeneral');
 
 //----inventario total informatica-----
+/* provincial */
+Route::get('informatica/inventario/provincia', IndexTotalInventarioProvincia::class)
+    ->name('TotalInventarioProvincia');
+/* ushuaia */
 Route::get('informatica/inventario/', IndexTotalinventario::class)->name('TotalInventarioInformatica');
+/* Rio Grande */
+Route::get('informatica/inventario/riogrande', IndexTotalinventarioRioGrande::class)
+    ->name('TotalInventarioInformaticaRioGrande');
+/* tolhuin */
+Route::get('informatica/inventario/tolhuin', IndexTotalinventarioTolhuin::class)
+    ->name('TotalInventarioInformaticaTolhuin');
 
 //-----Tabajos informaticos---------
 Route::get('informatica/trabajos/add', CreateTrabajosInformatica::class)->name('createTrabajosInformatica');
