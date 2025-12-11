@@ -145,6 +145,23 @@
         }
     </style>
 
+    <style>
+        /* Forzar color visible en inputs del login */
+        .login-page input,
+        .login-page input[type="password"],
+        .login-page input[type="email"],
+        .login-page input[type="text"] {
+            color: #ffffff !important;
+            /* blanco visible */
+        }
+
+        .login-page input::placeholder {
+            color: #d1d5db !important;
+            /* gris medio visible */
+        }
+    </style>
+
+
 
 
 
