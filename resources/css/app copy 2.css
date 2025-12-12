@@ -11,15 +11,14 @@
    🎨 ESTILOS GLOBALES & RESETEOS DE JETSTREAM
    ============================================ */
 
-/* 1. RESET: Forzar transparencia en contenedores principales de Jetstream */
+/* 1. RESET: Forzar transparencia en contenedores principales de Jetstream
+   Esto permite que la imagen de fondo del <body> se vea.
+   Usamos selectores más específicos para aplicar transparencia solo a los contenedores DIV.
+   Dejamos que los botones, inputs y menús se manejen en sus propias secciones. */
 .bg-white,
-.dark .bg-gray-100,
-/* FIX ESPECÍFICO AÑADIDO: Contenedores comunes en Livewire (tablas, paginación, formularios) */
-.px-4.py-4.sm\:px-6,
-.bg-gray-50, /* Otro fondo claro común de Tailwind */
-.shadow-md {
+.dark .bg-gray-100 {
+    /* La anulación de color base */
     background-color: transparent !important;
-    box-shadow: none !important;
 }
 
 /* 2. Proteger las áreas de contenido de Jetstream (las que envuelven la tabla/formulario) */

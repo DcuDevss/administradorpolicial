@@ -71,7 +71,7 @@
                                         <td class="text-center py-6 font-bold">{{ $comu->fecha_trabajo ?? '----' }}
                                         </td>
                                         <td class="text-center py-6 font-bold">{{ $comu->detalles_trabajo ?? '----' }}
-                                            <td class="text-center py-2 flex flex-col space-y-2">
+                                        <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editTrabajosInformatica', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Editar

@@ -26,13 +26,13 @@
 
     <style>
         /* Fondo general */
-        body {
+        /*  body {
             background-image: url('/foto/base.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
-        }
+        } */
 
         /* Para inputs del login */
         .login-page input,
@@ -139,24 +139,31 @@
     </style>
 </head>
 
-<body class="font-san antialiased bg-gray-800 p-0 mt-16 mb-16">
+<body class="antialiased font-sans text-gray-100 bg-[#0f172a]">
 
     <x-banner />
 
     <div class="min-h-screen">
 
+        <!-- NAV -->
         @livewire('navigation-menu')
 
+        <!-- HEADER -->
         @if (isset($header))
-            <header class="bg-slate-800 shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <header class="bg-[#1e293b]/70 backdrop-blur-md shadow border-b border-white/10 mt-16">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-gray-100">
                     {{ $header }}
                 </div>
             </header>
         @endif
 
-        <main class=>
-            {{ $slot }}
+        <!-- MAIN CONTENT -->
+        <main class="mt-6 mb-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="bg-[#1e293b]/60  rounded-xl p-6 shadow-xl border border-white/10">
+                    {{ $slot }}
+                </div>
+            </div>
         </main>
     </div>
 
@@ -164,20 +171,20 @@
 
     @livewireScripts
 
+    <!-- FullCalendar -->
     <script src="https://unpkg.com/@fullcalendar/core/main.js"></script>
     <script src="https://unpkg.com/@fullcalendar/daygrid/main.js"></script>
     <script src="https://unpkg.com/@fullcalendar/timegrid/main.js"></script>
     <script src="https://unpkg.com/@fullcalendar/interaction/main.js"></script>
 
+    <!-- Alpine -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js"></script>
 
-    {{-- <script src="{{ asset('vendor/jetstream/js/jetstream.js') }}"></script> --}}
-
+    <!-- Pusher -->
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     @push('scripts')
         <script>
-            // Inicializar DataTable (si usas jQuery/DataTables)
             $(document).ready(function() {
                 $('#notificacionesTable').DataTable();
             });
@@ -194,21 +201,21 @@
 
             if (tipoEquipoSelect) {
                 tipoEquipoSelect.addEventListener("change", function() {
-                    // Ocultar ambos por defecto
                     if (formularioImpresora) formularioImpresora.classList.add("hidden");
                     if (formularioPC) formularioPC.classList.add("hidden");
 
-                    const selectedOption = tipoEquipoSelect.value;
-                    if (selectedOption === "1" && formularioImpresora) { // ID de impresora
+                    if (this.value === "1" && formularioImpresora)
                         formularioImpresora.classList.remove("hidden");
-                    } else if (selectedOption === "2" && formularioPC) { // ID de PC
+
+                    if (this.value === "2" && formularioPC)
                         formularioPC.classList.remove("hidden");
-                    }
                 });
             }
         });
     </script>
+
 </body>
+
 
 <footer class="text-center py-3 bg-transparent text-xs text-white fixed bottom-0 left-0 w-full shadow-lg">
     <p>@ 2024 Policía de Tierra del Fuego, Antártida e Islas del Atlántico Sur.</p>

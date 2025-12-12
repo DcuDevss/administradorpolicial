@@ -26,8 +26,8 @@
                                 <option value="20">20</option>
                             </select>
 
-                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md"
-                                wire:model="search" placeholder="Ingrese la busqueda">
+                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model="search"
+                                placeholder="Ingrese la busqueda">
                             <button wire:click="clear" class="ml-2"><span class="fa fa-eraser"></span></button>
 
 
@@ -105,8 +105,8 @@
                                                         <button @click="isOpen = !isOpen"
                                                             class="relative z-10 flex items-center p-1 text-sm text-gray-600 bg-green-800 border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
                                                             <span class="mx-1 text-gray-200">Editar</span>
-                                                            <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24"
-                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
                                                                 <path
                                                                     d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z"
                                                                     fill="currentColor"></path>
@@ -164,21 +164,21 @@
                                                                 </span>
                                                             </a>
                                                             <a href="#"
-                                                            class="flex items-center p-1 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                                                                class="flex items-center p-1 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
 
-                                                            <span class="mx-1">
-                                                                <a href="{{ route('editMorfologias', $persona->id) }}"
-                                                                    class="text-center block px-4 py-2 text-lg hover:bg-blue-300 dark:hover:bg-gray-600 text-red-800 font-extrabold">
-                                                                    Editar Morfologia
-                                                                </a>
-                                                            </span>
-                                                        </a>
+                                                                <span class="mx-1">
+                                                                    <a href="{{ route('editMorfologias', $persona->id) }}"
+                                                                        class="text-center block px-4 py-2 text-lg hover:bg-blue-300 dark:hover:bg-gray-600 text-red-800 font-extrabold">
+                                                                        Editar Morfologia
+                                                                    </a>
+                                                                </span>
+                                                            </a>
 
 
                                                         </div>
                                                     </div>
 
-                         </div>
+                    </div>
 
 
 
@@ -277,15 +277,15 @@
                                 </a>
 
                                 <a href="#"
-                                           class="flex items-center p-1 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                                    class="flex items-center p-1 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
 
-                                <span class="mx-1">
-                                    <a href="{{ route('editMorfologias', $persona->id) }}"
-                                        class="text-center block px-4 py-2 text-lg hover:bg-blue-300 dark:hover:bg-gray-600 text-red-800 font-extrabold">
-                                        Editar Morfologia
-                                    </a>
-                                </span>
-                            </a>
+                                    <span class="mx-1">
+                                        <a href="{{ route('editMorfologias', $persona->id) }}"
+                                            class="text-center block px-4 py-2 text-lg hover:bg-blue-300 dark:hover:bg-gray-600 text-red-800 font-extrabold">
+                                            Editar Morfologia
+                                        </a>
+                                    </span>
+                                </a>
 
 
 
@@ -302,8 +302,7 @@
 
 
 
-                <button
-                    onclick="confirm('Sguro deseas eliminar este prontuario?')||event.stopImmediatePropagation()"
+                <button onclick="confirm('Sguro deseas eliminar este prontuario?')||event.stopImmediatePropagation()"
                     wire:click="delete({{ $persona->id }})"
                     class="my-1 z-10 block rounded-md  px-4 focus:outline-none  bg-red-600 text-gray-200 text-sm py-1 overflow-hidden  focus:border-white">
                     Eliminar
@@ -338,7 +337,3 @@
     </div>
     </section>
 </div>
-
-
-
-

@@ -36,7 +36,7 @@
 
                                         Administracion
                                     </th>
-                                   {{-- <th class="p-1   text-center text-xs text-blue-800">
+                                    {{-- <th class="p-1   text-center text-xs text-blue-800">
 
                                         Oficinias operativas
                                     </th>
@@ -65,7 +65,7 @@
                                     <th class="p-1   text-center text-xs text-blue-800">
                                        Destacamentos
 
-                                    </th>--}}
+                                    </th> --}}
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de dispositivos
@@ -83,7 +83,7 @@
                                         Procesador
 
                                     </th>
-                                      <th class="p-1   text-center text-xs text-blue-800">
+                                    <th class="p-1   text-center text-xs text-blue-800">
                                         Sistema operativo
 
                                     </th>
@@ -108,14 +108,14 @@
                                         Cantidad de almacenamiento
 
                                     </th>
-                                    {{--<th class="p-1   text-center text-xs text-blue-800">
+                                    {{-- <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de mouse
 
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de teclado
 
-                                    </th>--}}
+                                    </th> --}}
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha de servis
 
@@ -154,31 +154,41 @@
                                 @foreach ($administra as $comu)
                                     <tr>
                                         <td class="text-center py-6 font-bold">{{ $comu->id }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->administracion->nombre ?? '----' }}</td>
-                                        {{--<td class="text-center py-6 font-bold">{{ $comu->tipodeoficina->nombre ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->administracion->nombre ?? '----' }}</td>
+                                        {{-- <td class="text-center py-6 font-bold">{{ $comu->tipodeoficina->nombre ?? '----' }}</td>
                                        <td class="text-center py-6 font-bold">{{ $comu->jefatura->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->investigacione->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->administracion->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->recursohumano->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->serviciosespeciale->nombre ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->destacamento->nombre ?? '----' }}</td>--}}
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipodispositivo->nombre ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->marca ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->procesador ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->sistema_operativo ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_ram ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->cantidadram->cantidad ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->slotmemoria->cantidad ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_disco ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->cant_almacenamiento ?? '----'}}</td>
-                                        {{--<td class="text-center py-6 font-bold">{{ $comu->tipo_mouse}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->destacamento->nombre ?? '----' }}</td> --}}
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->tipodispositivo->nombre ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->marca ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->procesador ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->sistema_operativo ?? '----' }}
+                                        </td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_ram ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->cantidadram->cantidad ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->slotmemoria->cantidad ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_disco ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->cant_almacenamiento ?? '----' }}</td>
+                                        {{-- <td class="text-center py-6 font-bold">{{ $comu->tipo_mouse}}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->tipo_teclado}}</td> --}}
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->softwares_instalados ?? '----'}}</td>{{-- --}}
-                                        <td class="text-center py-6 font-bold">{{ $comu->detalles_inventario ?? '----'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? '----' }}
+                                        </td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? '----' }}
+                                        </td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->softwares_instalados ?? '----' }}</td>{{-- --}}
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->detalles_inventario ?? '----' }}</td>
 
                                         <td class="border px-4 py-2">
                                             @if ($comu->codigo_qr)
@@ -237,4 +247,3 @@
             </div>
         </section>
     </div>
-
