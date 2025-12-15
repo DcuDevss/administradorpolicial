@@ -86,7 +86,7 @@
 
                         <!-- Contenedor del menú desplegable -->
                         <div x-show="open" @click.away="open = false"
-                            class="absolute right-0 mt-2 py-2 w-32 bg-white border border-gray-300 rounded-md shadow-lg">
+                            class="absolute right-0 mt-2 py-2 w-32 bg-white border border-gray-300 rounded-md shadow-xl">
                             <!-- Opciones del menú -->
                             <a href="{{ route('users.index') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Rol de usuario</a>
@@ -237,10 +237,10 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="flex-col hidden md:hidden">
         <div class="flex flex-col ml-2 sm:flex-row sm:space-x-4">
-        <a class="mb-4 mr-4 px-3 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition  flex-shrink-0"
-            href="{{ route('userpolicia') }}">Usuarios</a>
-        <a class="mr-4 px-2 py-2 bg-pink-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition  flex-shrink-0"
-            href="{{ route('chatlist') }}">Chats<span class="ml-1">@livewire('notificacion-chat')</span></a>
+            <a class="mb-4 mr-4 px-3 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition  flex-shrink-0"
+                href="{{ route('userpolicia') }}">Usuarios</a>
+            <a class="mr-4 px-2 py-2 bg-pink-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition  flex-shrink-0"
+                href="{{ route('chatlist') }}">Chats<span class="ml-1">@livewire('notificacion-chat')</span></a>
         </div>
 
         @can('tecnico-informatico')
@@ -283,31 +283,31 @@
                 <div class="flex flex-col ml-2 sm:flex-row sm:space-x-4">
 
                     <button @click="open = !open"
-                    class="flex flex-col items-center justify-center ml-2 mt-0 mr-4 px-3 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition flex-shrink-0">
-                    Administrador
-                    <!-- Icono de flecha hacia abajo para indicar que es un menú desplegable -->
-                    <svg x-bind:class="{ 'rotate-180': open }"
-                        class="flex-col items-center justify-center w-4 h-4 ml-1 -mr-1 w-fit transform transition-transform ease-in-out duration-200"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7">
-                        </path>
-                    </svg>
-                </button>
+                        class="flex flex-col items-center justify-center ml-2 mt-0 mr-4 px-3 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition flex-shrink-0">
+                        Administrador
+                        <!-- Icono de flecha hacia abajo para indicar que es un menú desplegable -->
+                        <svg x-bind:class="{ 'rotate-180': open }"
+                            class="flex-col items-center justify-center w-4 h-4 ml-1 -mr-1 w-fit transform transition-transform ease-in-out duration-200"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
 
 
-                <!-- Contenedor del menú desplegable -->
+                    <!-- Contenedor del menú desplegable -->
 
-                <div x-show="open" @click.away="open = false"
-                    class="flex flex-col items-center justify-center mt-4 mb-3 ml-2 w-fit bg-white border border-gray-300 rounded-md shadow-lg">
-                    <!-- Opciones del menú -->
-                    <a href="{{ route('users.index') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Rol de usuario</a>
-                    <a href="{{ route('admin-roles.index') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Crud de roles</a>
+                    <div x-show="open" @click.away="open = false"
+                        class="flex flex-col items-center justify-center mt-4 mb-3 ml-2 w-fit bg-white border border-gray-300 rounded-md shadow-lg">
+                        <!-- Opciones del menú -->
+                        <a href="{{ route('users.index') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Rol de usuario</a>
+                        <a href="{{ route('admin-roles.index') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Crud de roles</a>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
         @endcan
 
         @can('tecnico-informatico')
