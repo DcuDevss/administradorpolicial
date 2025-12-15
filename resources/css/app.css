@@ -15,8 +15,9 @@
 .bg-white,
 .dark .bg-gray-100,
 /* FIX ESPECÍFICO AÑADIDO: Contenedores comunes en Livewire (tablas, paginación, formularios) */
-.px-4.py-4.sm\:px-6, /* Contenedor de tablas y formularios */
+/* .px-4.py-4.sm\:px-6,  *//* Contenedor de tablas y formularios */
 .bg-gray-50, /* Otro fondo claro común de Tailwind */
+.bg-gray-300,
 .shadow-md {
     background-color: transparent !important;
     box-shadow: none !important;
@@ -127,7 +128,7 @@ td {
 /* 1. FIX DE BOTONES */
 .btn-color-fix,
 .bg-indigo-600, /* Clase común en botones de Jetstream */
-.bg-gray-800 {
+.bg-gray-200 {
     /* Clase común en botones de Jetstream */
     /* Reseteamos el fondo para que acepte el color de la clase Tailwind que tenga */
     background-color: initial !important;
@@ -160,36 +161,52 @@ button[type="submit"]:hover,
 .inline-flex.items-center.px-4.py-2.bg-gray-800:hover,
 /* AÑADIR/CORREGIR: Hover para el botón 'Enable' */
 button[type="button"].inline-flex.items-center.bg-gray-800:hover {
-    background-color: #007bff !important; /* Azul un poco más oscuro al hacer hover */
+    background-color: #d22d2d !important; /* Azul un poco más oscuro al hacer hover */
 }
 
 /* 2. Corregir Menús Desplegables de Jetstream/Usuario (Fondo Sólido legible) */
 /* (El resto del código del menú desplegable se mantiene igual que en la última corrección) */
 .bg-white.shadow-xl,
 .dark .bg-gray-700,
-.origin-top-right {
-    background-color: #1f2937 !important;
+.origin-top-right,
+.bg-gray-300,
+/* SELECTORES COMUNES PARA EL CONTENEDOR DE OPCIONES DE FORMULARIO/LIVEWIRE */
+div[x-show].absolute,
+div[x-show][style*="display: block"],
+div[role="listbox"] {
+    /* Si el select es un componente avanzado */
+    /* USAMOS EL ESTILO GLASS OSCURO DE TUS TABLAS (es más estético que un gris sólido) */
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
     color: #ffffff !important;
     border-radius: 0.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+/* 2.1 Estilo de las Opciones/Ítems dentro del menú */
 .origin-top-right a,
 .origin-top-right div,
 .origin-top-right a.block,
 .origin-top-right div.block,
-.origin-top-right .text-gray-700,
-.origin-top-right .text-gray-600 {
-    color: #ffffff !important;
+.block.px-4.py-2.text-sm {
+    color: #e8eef5 !important;
     background-color: transparent !important;
     padding: 0.5rem 1rem;
 }
 
+/* 2.2 Hover de las Opciones */
 .origin-top-right a:hover,
 .origin-top-right div:hover,
 .dark .hover\:bg-gray-600:hover,
-.hover\:bg-gray-100:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+.hover\:bg-gray-100:hover,
+.block.px-4.py-2.text-sm:hover {
+    background-color: rgba(
+        79,
+        156,
+        255,
+        0.15
+    ) !important; /* Azul sutil al hacer hover */
     color: #4f9cff !important;
 }
 
@@ -216,6 +233,7 @@ button[type="button"].inline-flex.items-center.bg-gray-800:hover {
 .bg-slate-800 {
     background-color: #1e293b !important;
 }
+
 /* ============================================
     FIX DE BOTONES DE FONDO BLANCO (Team Switcher)
     ============================================ */
@@ -232,4 +250,35 @@ a.bg-white {
     }
 
     /* El color de texto de este botón es text-gray-500, no lo modificamos aquí */
+}
+
+/* ------------------------------------------------------------------------ */
+
+/* Intento de forzar el estilo a las opciones del menú nativo */
+select option {
+    background-color: #1f2937 !important; /* Fondo oscuro sólido */
+    color: #ffffff !important;
+}
+
+select option:checked,
+select option:hover {
+    background-color: #4f9cff !important; /* Azul en la opción seleccionada */
+}
+
+/* ============================================
+    FIX DE ESPECIFICIDAD: BOTONES DE DEPENDENCIA
+    ============================================ */
+/* Apunta a los botones con bg-slate-800 que están dentro del contenedor de botones.
+   Esto fuerza el color azul primario para que contrasten. */
+.text-center button.bg-slate-800,
+.justify-center button.bg-slate-800 {
+    background-color: #4f9cff !important; /* AZUL PRIMARIO FUERTE */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil para separarlos */
+    transition: background-color 0.2s ease;
+}
+
+/* Opcional: Estilo Hover para estos botones */
+.text-center button.bg-slate-800:hover,
+.justify-center button.bg-slate-800:hover {
+    background-color: #3b7ed8 !important; /* Un azul ligeramente más oscuro al pasar el ratón */
 }
