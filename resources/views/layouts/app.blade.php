@@ -217,8 +217,10 @@
 </body>
 
 
-<footer class="text-center py-3 bg-transparent text-xs text-white fixed bottom-0 left-0 w-full shadow-lg">
-    <p>@ 2024 Policía de Tierra del Fuego, Antártida e Islas del Atlántico Sur.</p>
+<footer
+    class="text-center footer-tight bg-gray-800 font-semibold text-xs text-white {{-- fixed bottom-0 --}} left-0 w-full shadow-lg z-20 flex items-center justify-center space-x-2">
+    <img src="{{ asset('foto/Escudo comunicaciones 50x50.png') }}" alt="Escudo Comunicaciones" class="h-8 w-auto">
+    <p class="m-0">© 2024 Policía de Tierra del Fuego, Antártida e Islas del Atlántico Sur.</p>
 </footer>
 
 </html>

@@ -282,3 +282,9 @@ select option:hover {
 .justify-center button.bg-slate-800:hover {
     background-color: #3b7ed8 !important; /* Un azul ligeramente más oscuro al pasar el ratón */
 }
+
+/* Ajuste fino para el footer, si py-0 de Tailwind es demasiado poco */
+.footer-tight {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
