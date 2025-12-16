@@ -26,9 +26,6 @@
         <table class="table-auto w-full">
             <thead>
                 <tr>
-                    {{-- CORRECCIÓN DE ALINEACIÓN: Necesitamos solo 3 columnas. --}}
-                    {{-- La fila del <tbody> tiene 3 celdas (Rol, Editar, Eliminar). --}}
-                    {{-- QUITAMOS EL COLSPAN y dejamos las columnas de Editar y Eliminar separadas --}}
                     <th class="px-4 py-2">Rol</th>
                     <th class="px-4 py-2">Editar</th>
                     <th class="px-4 py-2">Eliminar</th>
@@ -48,17 +45,19 @@
                             </a>
                         </td>
 
-                        {{-- Columna 3: Eliminar (Formulario/Botón) --}}
+                        {{-- Columna 3: Eliminar (¡MODIFICADA PARA SWEETALERT2!) --}}
                         <td class="border px-4 py-2 text-center">
-                            <form action="{{ route('admin-roles.destroy', $role) }}" method="post"
-                                onsubmit="return confirm('¿Estás seguro de que deseas eliminar este rol?');">
+                            {{-- 1. Asignamos un ID único al formulario --}}
+                            <form id="delete-role-form-{{ $role->id }}"
+                                action="{{ route('admin-roles.destroy', $role) }}" method="post">
                                 @method('delete')
                                 @csrf
 
                                 <div class="text-center">
+                                    {{-- 2. Cambiamos 'type="submit"' por 'type="button"' y llamamos a confirmDelete --}}
                                     <button
                                         class="bg-red-600 hover:bg-red-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                                        type="submit">
+                                        type="button" onclick="confirmDeleteRole({{ $role->id }})">
                                         Eliminar Rol
                                     </button>
                                 </div>
@@ -67,7 +66,6 @@
                     </tr>
                 @empty
                     <tr>
-                        {{-- CORRECCIÓN DE ALINEACIÓN: El colspan debe ser 3 para abarcar las 3 columnas --}}
                         <td colspan="3" class="border px-4 py-4 text-center text-gray-500">
                             No se encontraron roles que coincidan con "{{ $search }}".
                         </td>
@@ -82,3 +80,27 @@
         </div>
     </div>
 </div>
+
+{{-- *** FUNCIÓN JAVASCRIPT CON SWEETALERT2 PARA ROLES *** --}}
+@push('scripts')
+    <script>
+        // Usamos un nombre diferente (confirmDeleteRole) para evitar conflictos con confirmDelete de usuarios
+        function confirmDeleteRole(roleId) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡El rol será eliminado permanentemente!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33', // Rojo para eliminar
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, ¡borrar el rol!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, envía el formulario con el ID único
+                    document.getElementById('delete-role-form-' + roleId).submit();
+                }
+            })
+        }
+    </script>
+@endpush

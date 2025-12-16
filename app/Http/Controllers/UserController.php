@@ -11,8 +11,8 @@ class UserController extends Controller
 {
     public function __construct()
     {
-       // $this->middleware('can:users.index')->only('index');
-       // $this->middleware('can:users.edit')->only('edit','update');
+        // $this->middleware('can:users.index')->only('index');
+        // $this->middleware('can:users.edit')->only('edit','update');
     }
 
     public function index()
@@ -22,8 +22,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $roles=Role::all();
-        return view('admin.edit',compact('user', 'roles'));
+        $roles = Role::all();
+        return view('admin.edit', compact('user', 'roles'));
     }
 
     public function destroy(User $user)
@@ -33,20 +33,15 @@ class UserController extends Controller
 
         $user->delete();
 
-
-
-        return redirect('users')->with('success', 'Usuario eliminado exitosamente.');
+        // [MODIFICACIÓN CLAVE] AGREGAR MENSAJE DE SESIÓN PARA LA ALERTA DE ÉXITO
+        // NOTA: Revisa que 'users.index' sea el nombre correcto de tu ruta de índice.
+        return redirect()->route('users.index')->with('success', '¡El usuario ha sido eliminado correctamente!');
     }
-
-
-
 
 
     public function update(Request $request, User $user)
     {
         $user->roles()->sync($request->roles);
-        return redirect()->route('users.edit',$user)->with('info','Se asigno los roles correctamente');
+        return redirect()->route('users.edit', $user)->with('info', 'Se asigno los roles correctamente');
     }
-
-
 }

@@ -23,7 +23,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::all();
-        return view('admin-roles.create',compact('permissions'));
+        return view('admin-roles.create', compact('permissions'));
     }
 
     /**
@@ -32,12 +32,12 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-           'name'=>'required'
+            'name' => 'required'
         ]);
 
         $role = Role::create($request->all());
         $role->permissions()->sync($request->permissions);
-        return redirect()->route('admin-roles.edit', $role)->with('info','EL rol se creo con exito');
+        return redirect()->route('admin-roles.edit', $role)->with('info', 'EL rol se creo con exito');
     }
 
     /**
@@ -45,7 +45,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return view('admin-roles.show',compact('role'));
+        return view('admin-roles.show', compact('role'));
     }
 
     /**
@@ -53,8 +53,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $permissions=Permission::all();
-        return view('admin-roles.edit',compact('role','permissions'));
+        $permissions = Permission::all();
+        return view('admin-roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -63,13 +63,12 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $request->validate([
-            'name'=>'required'
-         ]);
+            'name' => 'required'
+        ]);
 
-         $role->update($request->all());
-         $role->permissions()->sync($request->permissions);
-         return redirect()->route('admin-roles.edit', $role)->with('info','EL rol se actualizo con exito');
-
+        $role->update($request->all());
+        $role->permissions()->sync($request->permissions);
+        return redirect()->route('admin-roles.edit', $role)->with('info', 'EL rol se actualizo con exito');
     }
 
     /**
@@ -80,7 +79,8 @@ class RoleController extends Controller
         // Eliminar el rol y sus relaciones con los permisos
         $role->delete();
 
-        // Redirigir a la lista de roles con un mensaje de éxito
-        return redirect()->route('admin-roles.index')->with('info', 'El rol fue eliminado exitosamente.');
+        // [MODIFICACIÓN CLAVE]
+        // Se cambió 'info' a 'success' para que lo detecte el SweetAlert2 del layout.
+        return redirect()->route('admin-roles.index')->with('success', '¡El rol fue eliminado exitosamente!');
     }
 }

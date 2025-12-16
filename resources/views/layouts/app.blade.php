@@ -24,9 +24,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         /* Fondo general */
-        /*  body {
+        /* body {
             background-image: url('/foto/base.png');
             background-size: cover;
             background-repeat: no-repeat;
@@ -145,10 +147,8 @@
 
     <div class="min-h-screen">
 
-        <!-- NAV -->
         @livewire('navigation-menu')
 
-        <!-- HEADER -->
         @if (isset($header))
             <header class="bg-[#1e293b]/70 backdrop-blur-md shadow border-b border-white/10 mt-16">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-gray-100">
@@ -157,7 +157,6 @@
             </header>
         @endif
 
-        <!-- MAIN CONTENT -->
         <main class="mt-6 mb-16 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <div class="bg-[#1e293b]/60  rounded-xl p-6 shadow-xl border border-white/10">
@@ -171,27 +170,28 @@
 
     @livewireScripts
 
-    <!-- FullCalendar -->
     <script src="https://unpkg.com/@fullcalendar/core/main.js"></script>
     <script src="https://unpkg.com/@fullcalendar/daygrid/main.js"></script>
     <script src="https://unpkg.com/@fullcalendar/timegrid/main.js"></script>
     <script src="https://unpkg.com/@fullcalendar/interaction/main.js"></script>
 
-    <!-- Alpine -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js"></script>
 
-    <!-- Pusher -->
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
-    @push('scripts')
-        <script>
-            $(document).ready(function() {
-                $('#notificacionesTable').DataTable();
-            });
-        </script>
-    @endpush
-
     @stack('scripts')
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        </script>
+    @endif
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

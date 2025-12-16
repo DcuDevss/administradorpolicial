@@ -40,13 +40,16 @@
                         </td>
 
                         {{-- Columna Eliminar --}}
+                        {{-- Columna Eliminar --}}
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                class="inline-block text-center"
-                                onsubmit="return confirm('¿Está seguro que desea eliminar este usuario?');">
+                            {{-- 1. Asignamos un ID único al formulario --}}
+                            <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}"
+                                method="POST" class="inline-block text-center">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="p-0 bg-transparent border-none">
+                                {{-- 2. El botón ahora es de tipo 'button' y llama a la función JS --}}
+                                <button type="button" onclick="confirmDelete({{ $user->id }})"
+                                    class="p-0 bg-transparent border-none">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="w-6 h-6 text-red-600 hover:text-red-500" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -78,3 +81,26 @@
     </div>
 
 </div>
+
+{{-- *** FUNCIÓN JAVASCRIPT CON SWEETALERT2 *** --}}
+@push('scripts')
+    <script>
+        function confirmDelete(userId) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, ¡borrarlo!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, envía el formulario con el ID único
+                    document.getElementById('delete-form-' + userId).submit();
+                }
+            })
+        }
+    </script>
+@endpush
