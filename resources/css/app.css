@@ -288,3 +288,77 @@ select option:hover {
     padding-top: 2px !important;
     padding-bottom: 2px !important;
 }
+
+/* ============================================
+   FIX DE MODALES SÓLIDAS Y COLORES ESPECÍFICOS (SOLUCIÓN DEFINITIVA)
+   ============================================ */
+
+/* 1. Fuerza el fondo y la sombra del contenedor de la modal */
+div.bg-white.p-4.rounded-md.shadow-md {
+    /* Fondo sólido y oscuro para contraste */
+    background-color: #1e293b !important;
+
+    /* Restaurar sombra */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 2. FUERZA el color CLARO para la etiqueta que tiene text-slate-800 */
+div.bg-white.p-4.rounded-md.shadow-md .text-slate-800 {
+    color: #e8eef5 !important;
+}
+
+/* 3. FUERZA el color CLARO para el TÍTULO H2 (que no tiene clase de color) */
+div.bg-white.p-4.rounded-md.shadow-md h2 {
+    color: #e8eef5 !important;
+}
+
+/* 4. REAFIRMAR el color ROJO. Es crucial para que gane a cualquier otro !important. */
+.text-red-800 {
+    color: #b91c1c !important; /* Rojo 800 de Tailwind (hex value) */
+}
+
+/* 5. FIX FINAL para STRONG (donde están los contadores rojos)
+   Esto asegura que la herencia no arruine el color rojo si la regla .text-red-800 falla. */
+div.bg-white.p-4.rounded-md.shadow-md strong.text-red-800 {
+    color: #b91c1c !important;
+}
+
+/*------------------MODAL SCROL---------------*/
+
+/* ---------------------------------------------------- */
+/* 1. ADAPTACIÓN DE ANCHO PARA PANTALLAS PEQUEÑAS (Móviles) */
+/* ---------------------------------------------------- */
+@media screen and (max-width: 640px) {
+    /* Buscamos todos los elementos que tengan la clase w-96 */
+    /* y forzamos su ancho a ser adaptable en móviles */
+    .w-96 {
+        /* Ocupa el 90% del ancho de la pantalla */
+        width: 90vw !important;
+
+        /* Aseguramos que nunca sea más grande que su ancho normal */
+        max-width: 384px !important;
+
+        /* Centramos el elemento si la vista lo permite */
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+/* ---------------------------------------------------- */
+/* 2. GESTIÓN DE SCROLL VERTICAL DENTRO DE MODALES */
+/* ---------------------------------------------------- */
+
+/* Seleccionamos el div que contiene la lista de detalles */
+/* Asume que el contenedor principal es un w-96 (o el que estés usando para el modal) */
+.w-96 > h2 + .mb-4 {
+    /* Altura máxima del contenido: 100% de la ventana - lo que ocupan título y botones */
+    max-height: calc(100vh - 200px);
+
+    /* Activa el scroll vertical si el contenido excede la altura */
+    overflow-y: auto;
+
+    /* Oculta cualquier overflow horizontal residual, aunque ya corregimos w-96 */
+    overflow-x: hidden;
+
+    /* Añade un poco de espacio para la barra de scroll */
+    padding-right: 0.5rem;
+}

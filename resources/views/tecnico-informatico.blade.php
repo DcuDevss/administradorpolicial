@@ -35,15 +35,27 @@
                 ['img' => 'notificacion4.png', 'title' => 'Notificaciones de trabajo', 'route' => 'ver-notificaciones'],
                 ['img' => 'estadistica.jpg', 'title' => 'Estadísticas', 'route' => 'estadistica'],
                 ['img' => 'reparador.jpg', 'title' => 'Trabajos Generales', 'route' => 'createTrabajosInformatica'],
+
+                // --- SECCIONES DE INVENTARIO GENERAL CORREGIDAS ---
                 [
-                    'img' => 'imagen-inventario.jpeg',
-                    'title' => 'Inventario General 2',
+                    'img' => 'banderatdf.jpg', // Imagen de la provincia (TDF)
+                    'title' => 'Inventario general Provincial',
+                    'route' => 'TotalInventarioProvincia',
+                ],
+                [
+                    'img' => 'ushuaiafoto.jpg', // Imagen de Ushuaia
+                    'title' => 'Inventario general Ushuaia',
                     'route' => 'TotalInventarioInformatica',
                 ],
                 [
-                    'img' => 'imagen-inventario.jpeg',
-                    'title' => 'Inventario General 2',
-                    'route' => 'TotalInventarioInformatica',
+                    'img' => 'rgfoto.jpg', // Imagen de Río Grande
+                    'title' => 'Inventario general Río Grande',
+                    'route' => 'TotalInventarioInformaticaRioGrande',
+                ],
+                [
+                    'img' => 'tolhuinfoto.jpg', // Imagen de Tolhuin
+                    'title' => 'Inventario general Tolhuin',
+                    'route' => 'TotalInventarioInformaticaTolhuin',
                 ],
             ];
         @endphp
