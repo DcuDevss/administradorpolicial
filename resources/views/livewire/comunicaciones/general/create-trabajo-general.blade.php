@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
         <x-slot name="header">
             <h2 class="font-semibold text-xl  text-red-500 leading-tight">
-                {{ __('TRBAJOS GENERALES') }}
+                {{ __('TRABAJOS GENERALES') }}
                 {{--   <div class="float-right ml-10"><h2 class="text-orange-500 text-center ">ULTIMO LEGAJO REGISTRADO:<span class="font-bold text-amber-400 ml-1">{{ $contador_pront }}</span></h2> </div>
                     <div class="float-right mr-10"><h2 class="text-green-500 ">ULTIMO PRONTUARIO REGISTRADO:<span class="font-bold text-amber-400 ml-1">{{ $contador_lega }}</span></h2> </div> --}}
             </h2>
