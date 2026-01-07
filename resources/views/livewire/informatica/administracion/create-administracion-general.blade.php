@@ -26,7 +26,7 @@
                             {{-- return view('livewire.informatica.general.create-inventario-general',compact('primeraPc',
                                 'Pcjefe','Pcsubjefe','Pcofservicio','Pcsumariante','Pcguardia','Pcdedia','Pcadministrativa',
                                 'Pcautomotores','impresoraChorro','impresoraLaser','switch','ruter','servidor','centralTelefonica')); --}}
-                         {{--
+                            {{--
                             <p class="text-slate-800 font-bold mb-2">Pc en Comisaria Primera: {{ $primeraPc }} </p>
                             <p class="text-purple-800 font-bold mb-2">Pc Oficina del jefe: {{ $Pcjefe }} </p>
                             <p class="text-purple-800 font-bold mb-2">Pc Oficina del Subjefe: {{ $Pcsubjefe }} </p>
@@ -49,7 +49,7 @@
                             <p class="text-amber-800 font-bold mb-2">Sevidor/es: {{ $servidor }} </p>
                             <p class="text-yellow-500 font-bold mb-2">Central telefonica: {{ $centralTelefonica }}
                             </p>
-                            <p class="text-slate-800 font-bold mb-2">Telefono fijo: </p>--}}
+                            <p class="text-slate-800 font-bold mb-2">Telefono fijo: </p> --}}
 
                             <h1 class="text-xl font-bold text-blue-800 mb-4">Total de computadoras en Administracion:
                                 <strong class="text-red-800 font-semibold"> {{ $totalPc }}</strong>
@@ -66,8 +66,7 @@
                         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
                             x-show="showModal" x-cloak>
 
-                            <div class="bg-white p-4 rounded-md shadow-md w-96"
-                                @click.away="showModal = false">
+                            <div class="bg-white p-4 rounded-md shadow-md w-96" @click.away="showModal = false">
                                 <h2 class="text-2xl font-semibold mb-2 underline">Detalles del Inventario
                                 </h2>
 
@@ -78,24 +77,24 @@
                                         @case('administracion')
                                             <div>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Total de Pc. en
-                                                    Administracion: <strong
-                                                        class="text-red-800">{{ $totalPc }}</strong></p>
+                                                    Administracion: <strong class="text-red-800">{{ $totalPc }}</strong>
+                                                </p>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Pc.en la oficina del Director
-                                                     <strong
-                                                        class="text-red-800">{{ $directorPc }}</strong></p>
+                                                    <strong class="text-red-800">{{ $directorPc }}</strong>
+                                                </p>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina del
                                                     subjefe/Director:
                                                     <strong class="text-red-800">{{ $subjefePc }}</strong>
                                                 </p>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de seguros:
-                                                     <strong
-                                                        class="text-red-800">{{ $segurosPc }}</strong></p>
+                                                    <strong class="text-red-800">{{ $segurosPc }}</strong>
+                                                </p>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de adicional:
-                                                     <strong
-                                                        class="text-red-800">{{ $adicionalPc }}</strong></p>
+                                                    <strong class="text-red-800">{{ $adicionalPc }}</strong>
+                                                </p>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de compra:
-                                                     <strong
-                                                        class="text-red-800">{{ $comprasPc }}</strong></p>
+                                                    <strong class="text-red-800">{{ $comprasPc }}</strong>
+                                                </p>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de combustible:
                                                     <strong class="text-red-800">{{ $combustiblePc }}</strong>
                                                 </p>
@@ -107,17 +106,17 @@
                                                         class="text-red-800">{{ $juridicoPc }}</strong>
                                                 </p>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de
-                                                    Tesosreria: <strong
-                                                        class="text-red-800">{{ $tesoreriaPc }}</strong></p>
+                                                    Tesosreria: <strong class="text-red-800">{{ $tesoreriaPc }}</strong></p>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de automotores:
-                                                     <strong
-                                                        class="text-red-800">{{ $automotoresPc }}</strong></p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina verificacion automotores:
-                                                     <strong
-                                                        class="text-red-800">{{ $verificacionautomotoresPc }}</strong></p>
+                                                    <strong class="text-red-800">{{ $automotoresPc }}</strong>
+                                                </p>
+                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina verificacion
+                                                    automotores:
+                                                    <strong class="text-red-800">{{ $verificacionautomotoresPc }}</strong>
+                                                </p>
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de armeria:
-                                                  <strong
-                                                        class="text-red-800">{{ $armeriaPc }}</strong></p>
+                                                    <strong class="text-red-800">{{ $armeriaPc }}</strong>
+                                                </p>
 
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Impresoras a
                                                     Chorro:
@@ -145,12 +144,13 @@
                                                 <p class="text-slate-800 font-bold mb-2 text-xl">Telefono fijo:
                                                     <strong v>{{ $telefonoFijo }}</strong>
                                                 </p>
+                                                <p class="text-slate-800 font-bold mb-2 text-xl">Telefono Inalambrico:
+                                                    <strong v>{{ $telefonoInalambrico }}</strong>
+                                                </p>
 
 
                                             </div>
                                         @break
-
-
 
                                         @default
                                             <!-- Código por defecto si no se cumple ningún caso -->
@@ -199,8 +199,7 @@
                                         <label for="tipodispositivo_id"
                                             class="block text-sm font-medium text-gray-700">Tipo de
                                             Dispositivo:</label>
-                                        <select class="w-full form-control rounded-md"
-                                            wire:model="tipodispositivo_id">
+                                        <select class="w-full form-control rounded-md" wire:model="tipodispositivo_id">
                                             <option value="" selected disabled>Seleccione el dispositivo.
                                             </option>
                                             @foreach ($TipoDispositivo as $tipoDisp)
@@ -430,9 +429,8 @@
 
         </div>
 
-@livewire('informatica.administracion.index-administracion-general')
+        @livewire('informatica.administracion.index-administracion-general')
 
     </div>
 
 </div>
-

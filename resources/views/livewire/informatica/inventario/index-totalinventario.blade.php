@@ -23,7 +23,7 @@
                         <p class="text-sm font-semibold">Impresoras a laser: </p>
                         <p class="text-2xl font-bold">{{ $sumaTotalImpresora_laser }}</p>
                     </div>
-                   
+
                     <div class="bg-pink-500 p-4 text-white rounded-lg">
                         <p class="text-sm font-semibold">cantidad de ruters:</p>
                         <p class="text-2xl font-bold">{{ $sumaTotalRuter }}</p>
@@ -40,6 +40,10 @@
                         <p class="text-sm font-semibold">Cantidad de Telefono fijos: </p>
                         <p class="text-2xl font-bold">{{ $sumaTotalTelefono_fijo }}</p>
                     </div>
+                    <div class="bg-green-700 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">Cantidad de Telefono inalambricos: </p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalTelefono_inalambrico }}</p>
+                    </div>
                     <div class="bg-red-500 p-4 text-white rounded-lg">
                         <p class="text-sm font-semibold">Cantidad Notbooks: </p>
                         <p class="text-2xl font-bold">{{ $sumaTotalNotebook }}</p>
@@ -49,16 +53,16 @@
                         <p class="text-2xl font-bold">{{ $sumaTotalCentral_telefonica }}</p>
                     </div>
                     <div class="bg-black p-4 text-white rounded-lg">
-                        <p class="text-sm font-semibold">Canidad de monitores:  </p>
+                        <p class="text-sm font-semibold">Canidad de monitores: </p>
                         <p class="text-2xl font-bold">{{ $sumaTotalMonitor_pc }}</p>
                     </div>
                     <div class="bg-blue-300 p-4 text-white rounded-lg">
-                        <p class="text-sm font-semibold">Camaras video vigilancias:  </p>
-                        <p class="text-2xl font-bold">{{ $sumaTotalCamaras_video }}</</p>
+                        <p class="text-sm font-semibold">Camaras video vigilancias: </p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalCamaras_video }}</< /p>
                     </div>
                     <div class="bg-slate-700 p-4 text-white rounded-lg">
-                        <p class="text-sm font-semibold">Estacion de trabajo:  </p>
-                        <p class="text-2xl font-bold">{{ $sumaTotalEstacion_trabajo }}</</p>
+                        <p class="text-sm font-semibold">Estacion de trabajo: </p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalEstacion_trabajo }}</< /p>
                     </div>
                 </div>
             </div>

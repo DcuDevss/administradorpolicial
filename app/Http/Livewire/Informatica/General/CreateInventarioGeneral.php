@@ -352,6 +352,8 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 9)
             ->count();
+        $telefonoInalambrico = Generalinformatica::where('tipodispositivo_id', 10)
+            ->count();
         $SuboficialesPc = Generalinformatica::where('dependencia_ushuaia_id', 3)
             ->where('tipodeoficina_id', 12)
             ->where('tipodispositivo_id', 3)
@@ -436,6 +438,9 @@ class CreateInventarioGeneral extends Component
         $telefonoFijo2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 9)
+            ->count();
+        $telefonoInalambrico2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
+            ->where('tipodispositivo_id', 10)
             ->count();
         $Suboficiales2Pc = Generalinformatica::where('dependencia_ushuaia_id', 4)
             ->where('tipodeoficina_id', 12)
@@ -553,6 +558,9 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 9)
             ->count();
+        $telefonoInalambrico3da = Generalinformatica::where('dependencia_ushuaia_id', 5)
+            ->where('tipodispositivo_id', 10)
+            ->count();
         $Suboficiales3Pc = Generalinformatica::where('dependencia_ushuaia_id', 5)
             ->where('tipodeoficina_id', 12)
             ->where('tipodispositivo_id', 3)
@@ -638,6 +646,9 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 9)
             ->count();
+        $telefonoInalambrico4da = Generalinformatica::where('dependencia_ushuaia_id', 6)
+            ->where('tipodispositivo_id', 10)
+            ->count();
         $Suboficiales4Pc = Generalinformatica::where('dependencia_ushuaia_id', 6)
             ->where('tipodeoficina_id', 12)
             ->where('tipodispositivo_id', 3)
@@ -721,6 +732,9 @@ class CreateInventarioGeneral extends Component
         $telefonoFijo5da = Generalinformatica::where('dependencia_ushuaia_id', 7)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 9)
+            ->count();
+        $telefonoInalambrico5da = Generalinformatica::where('dependencia_ushuaia_id', 7)
+            ->where('tipodispositivo_id', 10)
             ->count();
         $Suboficiales5Pc = Generalinformatica::where('dependencia_ushuaia_id', 7)
             ->where('tipodeoficina_id', 12)
@@ -1090,6 +1104,7 @@ class CreateInventarioGeneral extends Component
             'servidor',
             'centralTelefonica',
             'telefonoFijo',
+            'telefonoInalambrico',
 
 
             //-----
@@ -1114,6 +1129,7 @@ class CreateInventarioGeneral extends Component
             'servidor2da',
             'centralTelefonica2da',
             'telefonoFijo2da',
+            'telefonoInalambrico2da',
 
             //-----
             'terceraotros',
@@ -1144,6 +1160,7 @@ class CreateInventarioGeneral extends Component
             'servidor3da',
             'centralTelefonica3da',
             'telefonoFijo3da',
+            'telefonoInalambrico3da',
 
             //-----
             'cuartaotros',
@@ -1167,6 +1184,7 @@ class CreateInventarioGeneral extends Component
             'servidor4da',
             'centralTelefonica4da',
             'telefonoFijo4da',
+            'telefonoInalambrico4da',
 
             //-----
             'quintaotros',
@@ -1190,6 +1208,7 @@ class CreateInventarioGeneral extends Component
             'servidor5da',
             'centralTelefonica5da',
             'telefonoFijo5da',
+            'telefonoInalambrico5da',
 
             //-----
             'flia1otros',

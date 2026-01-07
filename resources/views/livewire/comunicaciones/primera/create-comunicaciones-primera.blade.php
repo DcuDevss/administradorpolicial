@@ -232,7 +232,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mt-2">
+                                    {{--    <div class="mt-2">
                                         <label for="estado_equipo" class="block text-sm font-medium text-gray-700">Estado del Equipo:</label>
                                         <select class="w-full form-control" wire:model="estado_equipo_id">
                                             <option value="" selected disabled>Seleccione el estado</option>
@@ -240,8 +240,8 @@
                                                 <option value="{{ $estado->id }}">{{ $estado->nombre }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                    
+                                    </div> --}}
+
 
 
                                 </div>
@@ -256,8 +256,8 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                
-                                
+
+
                                 <div class="flex justify-end mr-3 mt-4">
                                     <button
                                         class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

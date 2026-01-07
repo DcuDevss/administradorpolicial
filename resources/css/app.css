@@ -221,6 +221,10 @@ div[role="listbox"] {
     box-shadow: initial !important;
     color: #e8eef5 !important;
 }
+/* 1.1 Proteger el texto dentro del contenedor oscuro */
+.text-slate-800 {
+    color: #93c5fd !important; /* azul claro */
+}
 
 /* 2. Proteger el padding común cuando está en el contenedor oscuro (Sobreescribe el Bloque 1: .px-4.py-4.sm\:px-6) */
 /* Esto cubre si el div con bg-slate-800 también tiene clases de padding */
@@ -315,6 +319,12 @@ div.bg-white.p-4.rounded-md.shadow-md h2 {
 /* 4. REAFIRMAR el color ROJO. Es crucial para que gane a cualquier otro !important. */
 .text-red-800 {
     color: #b91c1c !important; /* Rojo 800 de Tailwind (hex value) */
+}
+
+/* Métricas secundarias */
+.text-metric-secondary {
+    color: #c084fc !important; /* púrpura visible sobre fondo oscuro */
+    font-weight: 700;
 }
 
 /* 5. FIX FINAL para STRONG (donde están los contadores rojos)

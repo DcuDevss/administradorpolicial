@@ -257,13 +257,14 @@
 
 
                                         <div>
-                                            <p class="text-slate-800 font-extrabold mb-2">Total de "Repetidoras":
+                                            <p class="text-red-800 font-extrabold mb-2">Total de "Repetidoras":
                                                 {{ $RepetidoraCount }}</p>
-                                            <p class="text-slate-800 font-extrabold mb-2">Total de "Fuentes de Poder":
+                                            <p class="text-purple-800  font-extrabold mb-2">Total de "Fuentes de
+                                                Poder":
                                                 {{ $FuenteCount }}</p>
-                                            <p class="text-slate-800 font-extrabold mb-2">Total de "Balizas":
+                                            <p class="text-purple-800  font-extrabold mb-2">Total de "Balizas":
                                                 {{ $BalizaCount }}</p>
-                                            <p class="text-slate-800 font-extrabold mb-2">Total de "Otros" equipos:
+                                            <p class="text-purple-800  font-extrabold mb-2">Total de "Otros" equipos:
                                                 {{ $OtrosCount }}</p>
                                         </div>
                                     </div>

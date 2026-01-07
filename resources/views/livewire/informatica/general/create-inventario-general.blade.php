@@ -370,8 +370,8 @@
                                     class="bg-slate-800 rounded-md px-3 py-3 mt-2 text-white m-2">Custodia
                                     Gubernamental</button>
                                 <button wire:click="showModal('Otras Dependencias')"
-                                class="bg-slate-800 rounded-md px-3 py-3 mt-2 text-white m-2">Pc en
-                                Otras Dependencias</button>
+                                    class="bg-slate-800 rounded-md px-3 py-3 mt-2 text-white m-2">Pc en
+                                    Otras Dependencias</button>
                             </div>
 
                             <div class="grid grid-cols-4 gap-2 mb-10">
@@ -466,6 +466,10 @@
                                                                 telefonica:
                                                                 <strong v>{{ $centralTelefonica }}</strong>
                                                             </p>
+                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Telefono
+                                                                Inalambrico:
+                                                                <strong v>{{ $telefonoInalambrico }}</strong>
+                                                            </p>
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Telefono fijo:
                                                                 <strong v>{{ $telefonoFijo }}</strong>
                                                             </p>
@@ -557,6 +561,10 @@
                                                             </p>
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Telefono fijo:
                                                                 <strong class="text-red-800">{{ $telefonoFijo2da }}</strong>
+                                                            </p>
+                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Telefono
+                                                                Inalambrico:
+                                                                <strong v>{{ $telefonoInalambrico2da }}</strong>
                                                             </p>
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Otros equipos:
                                                                 <strong v>{{ $segundaotros }}</strong>
@@ -672,6 +680,10 @@
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Telefono fijo:
                                                                 <strong class="text-red-800">{{ $telefonoFijo3da }}</strong>
                                                             </p>
+                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Telefono
+                                                                Inalambrico:
+                                                                <strong v>{{ $telefonoInalambrico3da }}</strong>
+                                                            </p>
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Otros equipos:
                                                                 <strong v>{{ $terceraotros }}</strong>
                                                             </p>
@@ -762,6 +774,10 @@
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Telefono fijo:
                                                                 <strong class="text-red-800">{{ $telefonoFijo4da }}</strong>
                                                             </p>
+                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Telefono
+                                                                Inalambrico:
+                                                                <strong v>{{ $telefonoInalambrico4da }}</strong>
+                                                            </p>
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Otros equipos:
                                                                 <strong v>{{ $cuartaotros }}</strong>
                                                             </p>
@@ -851,6 +867,10 @@
                                                             </p>
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Telefono fijo:
                                                                 <strong class="text-red-800">{{ $telefonoFijo5da }}</strong>
+                                                            </p>
+                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Telefono
+                                                                Inalambrico:
+                                                                <strong v>{{ $telefonoInalambrico5da }}</strong>
                                                             </p>
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Otros equipos:
                                                                 <strong v>{{ $quintaotros }}</strong>
@@ -1279,7 +1299,7 @@
                                                             <p class="text-slate-800 font-bold mb-2 text-xl">Total de Pc. en
                                                                 Otras Dependencias: <strong
                                                                     class="text-red-800">{{ $OtrasPc }}</strong></p>
-                                                    @break
+                                                        @break
 
                                                         @default
                                                             <!-- Código por defecto si no se cumple ningún caso -->
