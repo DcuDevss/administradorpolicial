@@ -221,10 +221,6 @@ div[role="listbox"] {
     box-shadow: initial !important;
     color: #e8eef5 !important;
 }
-/* 1.1 Proteger el texto dentro del contenedor oscuro */
-.text-slate-800 {
-    color: #93c5fd !important; /* azul claro */
-}
 
 /* 2. Proteger el padding común cuando está en el contenedor oscuro (Sobreescribe el Bloque 1: .px-4.py-4.sm\:px-6) */
 /* Esto cubre si el div con bg-slate-800 también tiene clases de padding */
@@ -306,8 +302,8 @@ div.bg-white.p-4.rounded-md.shadow-md {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* 2. FUERZA el color CLARO para la etiqueta que tiene text-slate-800 */
-div.bg-white.p-4.rounded-md.shadow-md .text-slate-800 {
+/* 2. FUERZA el color CLARO para la etiqueta que tiene text-metric-primary */
+div.bg-white.p-4.rounded-md.shadow-md .text-metric-primary {
     color: #e8eef5 !important;
 }
 
@@ -323,7 +319,12 @@ div.bg-white.p-4.rounded-md.shadow-md h2 {
 
 /* Métricas secundarias */
 .text-metric-secondary {
-    color: #c084fc !important; /* púrpura visible sobre fondo oscuro */
+    color: #ffffff !important; /* púrpura visible sobre fondo oscuro */
+    font-weight: 700;
+}
+
+.text-metric-primary {
+    color: #ffffff !important; /*cambio color tipografia en inventario*/
     font-weight: 700;
 }
 

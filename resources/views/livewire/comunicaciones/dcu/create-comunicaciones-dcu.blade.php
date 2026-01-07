@@ -171,19 +171,23 @@
 
                                 <div class="grid grid-cols-4 gap-2 mb-10">
                                     <div>
-                                        <p class="text-slate-800 text-lg font-bold mb-2">Total del Heramientas comunes:
+                                        <p class="text-metric-primary text-lg font-bold mb-2">Total del Heramientas
+                                            comunes:
                                             {{ $HerramientacomunCount }}</p>
-                                        <p class="text-slate-800 text-lg font-bold mb-2">Total del Heramientas de
+                                        <p class="text-metric-primary text-lg font-bold mb-2">Total del Heramientas de
                                             medición:
                                             {{ $HerramientamedicionCount }}</p>
-                                        <p class="text-slate-800 text-lg font-bold mb-2">Total de Equipos informaticos:
+                                        <p class="text-metric-primary text-lg font-bold mb-2">Total de Equipos
+                                            informaticos:
                                             {{ $EquipoinformaticoCount }}</p>
-                                        <p class="text-slate-800 text-lg font-bold mb-2">Total de Equipos de radio:
+                                        <p class="text-metric-primary text-lg font-bold mb-2">Total de Equipos de
+                                            radio:
                                             {{ $EquiporadioCount }}</p>
-                                        <p class="text-slate-800 text-lg font-bold mb-2">Total de Equippos de Radio en
+                                        <p class="text-metric-primary text-lg font-bold mb-2">Total de Equippos de
+                                            Radio en
                                             la guardia:
                                             {{ $EquipoguardiaradioCount }}</p>
-                                        <p class="text-slate-800 text-lg font-bold mb-2">Total de Otros Equipos:
+                                        <p class="text-metric-primary text-lg font-bold mb-2">Total de Otros Equipos:
                                             {{ $OtrosCount }}</p>
                                     </div>
 

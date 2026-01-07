@@ -30,21 +30,21 @@
                             {{-- return view('livewire.informatica.general.create-inventario-general',compact('primeraPc',
                                 'Pcjefe','Pcsubjefe','Pcofservicio','Pcsumariante','Pcguardia','Pcdedia','Pcadministrativa',
                                 'Pcautomotores','impresoraChorro','impresoraLaser','switch','ruter','servidor','centralTelefonica')); --}}
-                         {{--
-                            <p class="text-slate-800 font-bold mb-2">Pc en Comisaria Primera: {{ $primeraPc }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del jefe: {{ $Pcjefe }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Subjefe: {{ $Pcsubjefe }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. servicio: {{ $Pcofservicio }}
+                            {{--
+                            <p class="text-metric-primary font-bold mb-2">Pc en Comisaria Primera: {{ $primeraPc }} </p>
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del jefe: {{ $Pcjefe }} </p>
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Subjefe: {{ $Pcsubjefe }} </p>
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. servicio: {{ $Pcofservicio }}
                             </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. sumariante:
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. sumariante:
                                 {{ $Pcsumariante }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. guardia: {{ $Pcguardia }}
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. guardia: {{ $Pcguardia }}
                             </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. de dia: {{ $Pcdedia }}
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. de dia: {{ $Pcdedia }}
                             </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. administrativa:
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. administrativa:
                                 {{ $Pcadministrativa }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of de automotores:
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of de automotores:
                                 {{ $Pcautomotores }} </p>
                             <p class="text-green-800 font-bold mb-2">Impresoras a Chorro: {{ $impresoraChorro }} </p>
                             <p class="text-green-800 font-bold mb-2">Impresora laser: {{ $impresoraLaser }} </p>
@@ -53,11 +53,13 @@
                             <p class="text-amber-800 font-bold mb-2">Sevidor/es: {{ $servidor }} </p>
                             <p class="text-yellow-500 font-bold mb-2">Central telefonica: {{ $centralTelefonica }}
                             </p>
-                            <p class="text-slate-800 font-bold mb-2">Telefono fijo: </p>--}}
+                            <p class="text-metric-primary font-bold mb-2">Telefono fijo: </p> --}}
 
                             <div class="text-center flex flex-wrap justify-center">
-                                <button wire:click="showModal('Investigaciones')" class="bg-slate-800 rounded-md px-3 py-3 text-white m-2">Investigaciones</button>
-                                <button wire:click="showModal('Cientifica')" class="bg-slate-800 rounded-md px-3 py-3 text-white m-2">Cientifica</button>
+                                <button wire:click="showModal('Investigaciones')"
+                                    class="bg-slate-800 rounded-md px-3 py-3 text-white m-2">Investigaciones</button>
+                                <button wire:click="showModal('Cientifica')"
+                                    class="bg-slate-800 rounded-md px-3 py-3 text-white m-2">Cientifica</button>
                             </div>
 
                             <div class="grid grid-cols-4 gap-2 mb-10">
@@ -77,78 +79,89 @@
                                                 @switch($button)
                                                     @case('Investigaciones')
                                                         <div>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc. en
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc. en
                                                                 Of del director:
-                                                                 <strong
-                                                                    class="text-red-800">{{ $directorPc }}</strong></p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina del
+                                                                <strong class="text-red-800">{{ $directorPc }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina del
                                                                 Segundo jefe:
                                                                 <strong class="text-red-800">{{ $segundoJefePc }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de Prontuario:
-                                                                 <strong
-                                                                    class="text-red-800">{{  $prontuarioPc }}</strong></p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de Repar:
-                                                                 <strong
-                                                                    class="text-red-800">{{ $reparPc }}</strong></p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of.Judicial
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina de
+                                                                Prontuario:
+                                                                <strong class="text-red-800">{{ $prontuarioPc }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc Of. de
+                                                                Repar:
+                                                                <strong class="text-red-800">{{ $reparPc }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc Of.Judicial
                                                                 sumariante: <strong
                                                                     class="text-red-800">{{ $judicialPc }}</strong></p>
 
 
 
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de Convenio:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc Of. de
+                                                                Convenio:
 
                                                                 <strong class="text-red-800">{{ $convenioPc }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de Mesa de entrada:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc Of. de Mesa
+                                                                de
+                                                                entrada:
 
-                                                                <strong class="text-red-800">{{ $guardiaPc}}</strong>
+                                                                <strong class="text-red-800">{{ $guardiaPc }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de Carta de ciudadania:
-                                                                 <strong
-                                                                    class="text-red-800">{{ $ciudadaniaPc }}</strong>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc Of. de
+                                                                Carta de
+                                                                ciudadania:
+                                                                <strong class="text-red-800">{{ $ciudadaniaPc }}</strong>
                                                             </p>
 
 
 
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc en Delitos Complejos:
-                                                                 <strong
-                                                                    class="text-red-800">{{ $delitoscomplejosPc }}</strong></p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc en Delitos
+                                                                Complejos:
+                                                                <strong class="text-red-800">{{ $delitoscomplejosPc }}</strong>
+                                                            </p>
 
 
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc en Narcocriminalidad:
-                                                                 <strong
-                                                                    class="text-red-800">{{ $narcocriminalidadPc }}</strong></p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Pc de detal de pronturaio(galpon)
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc en
+                                                                Narcocriminalidad:
+                                                                <strong
+                                                                    class="text-red-800">{{ $narcocriminalidadPc }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Pc de detal de
+                                                                pronturaio(galpon)
                                                                 : <strong
                                                                     class="text-red-800">{{ $detalprontuarioPc }}</strong></p>
 
 
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Impresoras a
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Impresoras a
                                                                 Chorro:
                                                                 <strong class="text-red-800">{{ $impresoraChorro }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Impresora laser:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Impresora
+                                                                laser:
                                                                 <strong class="text-red-800">{{ $impresoraLaser }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Switch/es:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Switch/es:
                                                                 <strong class="text-red-800">{{ $switch }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Camaras:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Camaras:
                                                                 <strong class="text-red-800">{{ $camaras }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Ruter/s:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Ruter/s:
                                                                 <strong class="text-red-800">{{ $ruter }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Sevidor/es:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Sevidor/es:
                                                                 <strong class="text-red-800">{{ $servidor }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Central
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Central
                                                                 telefonica:
                                                                 <strong v>{{ $centralTelefonica }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Telefono fijo:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Telefono fijo:
                                                                 <strong v>{{ $telefonoFijo }}</strong>
                                                             </p>
 
@@ -158,45 +171,48 @@
 
                                                     @case('Cientifica')
                                                         <div>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Total de Pc. en
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Total de Pc.
+                                                                en
                                                                 Cientifica: <strong
                                                                     class="text-red-800">{{ $cientificaPc }}</strong>
                                                             </p>
 
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Impresoras a
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Impresoras a
                                                                 Chorro:
                                                                 <strong
-                                                                    class="text-red-800">{{ $impresoraChorroCientifica  }}</strong>
+                                                                    class="text-red-800">{{ $impresoraChorroCientifica }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Impresora laser:
-                                                                <strong class="text-red-800">{{ $impresoraLaserCientifica }}</strong>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Impresora
+                                                                laser:
+                                                                <strong
+                                                                    class="text-red-800">{{ $impresoraLaserCientifica }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Switch/es:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Switch/es:
                                                                 <strong class="text-red-800">{{ $switchCientifica }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Ruter/s:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Ruter/s:
                                                                 <strong class="text-red-800">{{ $ruterCientifica }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Camaras video
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Camaras video
                                                                 vigilancia:
-                                                                <strong class="text-red-800">{{ $camarasCientifica}}</strong>
+                                                                <strong class="text-red-800">{{ $camarasCientifica }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Sevidor/es:
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Sevidor/es:
                                                                 <strong class="text-red-800">{{ $servidorCientifica }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Central
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Central
                                                                 telefonica:
                                                                 <strong
                                                                     class="text-red-800">{{ $centralTelefonicaCientifica }}</strong>
                                                             </p>
-                                                            <p class="text-slate-800 font-bold mb-2 text-xl">Telefono fijo:
-                                                                <strong class="text-red-800">{{ $telefonoFijoCientifica}}</strong>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Telefono fijo:
+                                                                <strong
+                                                                    class="text-red-800">{{ $telefonoFijoCientifica }}</strong>
                                                             </p>
 
 
                                                         </div>
                                                     @break
-
 
                                                     @default
                                                         <!-- Código por defecto si no se cumple ningún caso -->
@@ -232,8 +248,7 @@
                                     <div class="mt-2">
                                         <label for="investigacione_id"
                                             class="block text-sm font-medium text-gray-700">Investigaciones:</label>
-                                        <select class="w-full form-control rounded-md"
-                                            wire:model="investigacione_id">
+                                        <select class="w-full form-control rounded-md" wire:model="investigacione_id">
                                             <option value="" selected disabled>Seleccione el departamento.
                                             </option>
 
@@ -244,20 +259,20 @@
                                     </div>
 
                                     @if ($investigacione_id == 13)
-                                    <div class="mt-2">
-                                        <label for="cientifica_id"
-                                            class="block text-sm font-medium text-gray-700">Policia
-                                            cientifica:</label>
-                                        <select class="w-full form-control rounded-md" wire:model="cientifica_id">
-                                            <option value="" selected disabled>Seleccione la oficina.
-                                            </option>
+                                        <div class="mt-2">
+                                            <label for="cientifica_id"
+                                                class="block text-sm font-medium text-gray-700">Policia
+                                                cientifica:</label>
+                                            <select class="w-full form-control rounded-md" wire:model="cientifica_id">
+                                                <option value="" selected disabled>Seleccione la oficina.
+                                                </option>
 
-                                            @foreach ($CIentifica as $cien)
-                                                <option value="{{ $cien->id }}">{{ $cien->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endif
+                                                @foreach ($CIentifica as $cien)
+                                                    <option value="{{ $cien->id }}">{{ $cien->nombre }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
 
 
                                 </div>
@@ -311,8 +326,7 @@
                                     </div>
 
                                     <div class="mt-1">
-                                        <label class="block text-gray-700 text-sm font-bold mb-1"
-                                            for="tipo_ram">Tipo
+                                        <label class="block text-gray-700 text-sm font-bold mb-1" for="tipo_ram">Tipo
                                             de Ram</label>
                                         <input type="text"
                                             class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
@@ -491,8 +505,7 @@
             </div>
         </div>
 
-@livewire('informatica.investigaciones.index-investigaciones-general')
+        @livewire('informatica.investigaciones.index-investigaciones-general')
 
     </div>
 </div>
-

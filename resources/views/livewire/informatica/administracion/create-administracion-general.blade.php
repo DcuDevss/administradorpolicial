@@ -27,20 +27,20 @@
                                 'Pcjefe','Pcsubjefe','Pcofservicio','Pcsumariante','Pcguardia','Pcdedia','Pcadministrativa',
                                 'Pcautomotores','impresoraChorro','impresoraLaser','switch','ruter','servidor','centralTelefonica')); --}}
                             {{--
-                            <p class="text-slate-800 font-bold mb-2">Pc en Comisaria Primera: {{ $primeraPc }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del jefe: {{ $Pcjefe }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Subjefe: {{ $Pcsubjefe }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. servicio: {{ $Pcofservicio }}
+                            <p class="text-metric-primary font-bold mb-2">Pc en Comisaria Primera: {{ $primeraPc }} </p>
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del jefe: {{ $Pcjefe }} </p>
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Subjefe: {{ $Pcsubjefe }} </p>
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. servicio: {{ $Pcofservicio }}
                             </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. sumariante:
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. sumariante:
                                 {{ $Pcsumariante }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. guardia: {{ $Pcguardia }}
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. guardia: {{ $Pcguardia }}
                             </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. de dia: {{ $Pcdedia }}
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. de dia: {{ $Pcdedia }}
                             </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. administrativa:
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. administrativa:
                                 {{ $Pcadministrativa }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of de automotores:
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of de automotores:
                                 {{ $Pcautomotores }} </p>
                             <p class="text-green-800 font-bold mb-2">Impresoras a Chorro: {{ $impresoraChorro }} </p>
                             <p class="text-green-800 font-bold mb-2">Impresora laser: {{ $impresoraLaser }} </p>
@@ -49,7 +49,7 @@
                             <p class="text-amber-800 font-bold mb-2">Sevidor/es: {{ $servidor }} </p>
                             <p class="text-yellow-500 font-bold mb-2">Central telefonica: {{ $centralTelefonica }}
                             </p>
-                            <p class="text-slate-800 font-bold mb-2">Telefono fijo: </p> --}}
+                            <p class="text-metric-primary font-bold mb-2">Telefono fijo: </p> --}}
 
                             <h1 class="text-xl font-bold text-blue-800 mb-4">Total de computadoras en Administracion:
                                 <strong class="text-red-800 font-semibold"> {{ $totalPc }}</strong>
@@ -76,75 +76,76 @@
                                     @switch($button)
                                         @case('administracion')
                                             <div>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Total de Pc. en
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Total de Pc. en
                                                     Administracion: <strong class="text-red-800">{{ $totalPc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc.en la oficina del Director
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc.en la oficina del
+                                                    Director
                                                     <strong class="text-red-800">{{ $directorPc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina del
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina del
                                                     subjefe/Director:
                                                     <strong class="text-red-800">{{ $subjefePc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de seguros:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Of. de seguros:
                                                     <strong class="text-red-800">{{ $segurosPc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de adicional:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Of. de adicional:
                                                     <strong class="text-red-800">{{ $adicionalPc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Of. de compra:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Of. de compra:
                                                     <strong class="text-red-800">{{ $comprasPc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de combustible:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina de combustible:
                                                     <strong class="text-red-800">{{ $combustiblePc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de patrimonio:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina de patrimonio:
                                                     <strong class="text-red-800">{{ $patrimonioPc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina de
                                                     juridico/contable: <strong
                                                         class="text-red-800">{{ $juridicoPc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina de
                                                     Tesosreria: <strong class="text-red-800">{{ $tesoreriaPc }}</strong></p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de automotores:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina de automotores:
                                                     <strong class="text-red-800">{{ $automotoresPc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina verificacion
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina verificacion
                                                     automotores:
                                                     <strong class="text-red-800">{{ $verificacionautomotoresPc }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Pc Oficina de armeria:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina de armeria:
                                                     <strong class="text-red-800">{{ $armeriaPc }}</strong>
                                                 </p>
 
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Impresoras a
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Impresoras a
                                                     Chorro:
                                                     <strong class="text-red-800">{{ $impresoraTinta }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Impresora laser:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Impresora laser:
                                                     <strong class="text-red-800">{{ $impresoraLaser }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Switch/es:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Switch/es:
                                                     <strong class="text-red-800">{{ $switch }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Camaras:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Camaras:
                                                     <strong class="text-red-800">{{ $camaras }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Ruter/s:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Ruter/s:
                                                     <strong class="text-red-800">{{ $ruter }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Sevidor/es:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Sevidor/es:
                                                     <strong class="text-red-800">{{ $servidor }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Central
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Central
                                                     telefonica:
                                                     <strong v>{{ $centralTelefonica }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Telefono fijo:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Telefono fijo:
                                                     <strong v>{{ $telefonoFijo }}</strong>
                                                 </p>
-                                                <p class="text-slate-800 font-bold mb-2 text-xl">Telefono Inalambrico:
+                                                <p class="text-metric-primary font-bold mb-2 text-xl">Telefono Inalambrico:
                                                     <strong v>{{ $telefonoInalambrico }}</strong>
                                                 </p>
 

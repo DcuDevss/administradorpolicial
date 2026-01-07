@@ -26,21 +26,21 @@
                             {{-- return view('livewire.informatica.general.create-inventario-general',compact('primeraPc',
                                 'Pcjefe','Pcsubjefe','Pcofservicio','Pcsumariante','Pcguardia','Pcdedia','Pcadministrativa',
                                 'Pcautomotores','impresoraChorro','impresoraLaser','switch','ruter','servidor','centralTelefonica')); --}}
-                         {{--
-                            <p class="text-slate-800 font-bold mb-2">Pc en Comisaria Primera: {{ $primeraPc }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del jefe: {{ $Pcjefe }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Subjefe: {{ $Pcsubjefe }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. servicio: {{ $Pcofservicio }}
+                            {{--
+                            <p class="text-metric-primary font-bold mb-2">Pc en Comisaria Primera: {{ $primeraPc }} </p>
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del jefe: {{ $Pcjefe }} </p>
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Subjefe: {{ $Pcsubjefe }} </p>
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. servicio: {{ $Pcofservicio }}
                             </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. sumariante:
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. sumariante:
                                 {{ $Pcsumariante }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. guardia: {{ $Pcguardia }}
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. guardia: {{ $Pcguardia }}
                             </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. de dia: {{ $Pcdedia }}
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. de dia: {{ $Pcdedia }}
                             </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of. administrativa:
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of. administrativa:
                                 {{ $Pcadministrativa }} </p>
-                            <p class="text-purple-800 font-bold mb-2">Pc Oficina del Of de automotores:
+                            <p class="text-metric-secondary font-bold mb-2">Pc Oficina del Of de automotores:
                                 {{ $Pcautomotores }} </p>
                             <p class="text-green-800 font-bold mb-2">Impresoras a Chorro: {{ $impresoraChorro }} </p>
                             <p class="text-green-800 font-bold mb-2">Impresora laser: {{ $impresoraLaser }} </p>
@@ -49,7 +49,7 @@
                             <p class="text-amber-800 font-bold mb-2">Sevidor/es: {{ $servidor }} </p>
                             <p class="text-yellow-500 font-bold mb-2">Central telefonica: {{ $centralTelefonica }}
                             </p>
-                            <p class="text-slate-800 font-bold mb-2">Telefono fijo: </p>--}}
+                            <p class="text-metric-primary font-bold mb-2">Telefono fijo: </p> --}}
 
                         </div>
                     </div>
@@ -87,8 +87,7 @@
                                         <label for="tipodispositivo_id"
                                             class="block text-sm font-medium text-gray-700">Tipo de
                                             Dispositivo:</label>
-                                        <select class="w-full form-control rounded-md"
-                                            wire:model="tipodispositivo_id">
+                                        <select class="w-full form-control rounded-md" wire:model="tipodispositivo_id">
                                             <option value="" selected disabled>Seleccione el dispositivo.
                                             </option>
                                             @foreach ($TipoDispositivo as $tipoDisp)
@@ -131,8 +130,7 @@
                                     </div>
 
                                     <div class="mt-1">
-                                        <label class="block text-gray-700 text-sm font-bold mb-1"
-                                            for="procesador">Tipo
+                                        <label class="block text-gray-700 text-sm font-bold mb-1" for="procesador">Tipo
                                             de Ram</label>
                                         <input type="text"
                                             class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
@@ -143,8 +141,7 @@
                                     </div>
 
                                     <div class="mt-2">
-                                        <label for="slotmemoria_id"
-                                            class="block text-sm font-medium text-gray-700">Slot
+                                        <label for="slotmemoria_id" class="block text-sm font-medium text-gray-700">Slot
                                             de memoria:</label>
                                         <select class="w-full form-control rounded-md" wire:model="slotmemoria_id">
                                             <option value="" selected disabled>Slot de memoria
@@ -302,8 +299,7 @@
             </div>
         </div>
 
-@livewire('informatica.especiales.index-serviciosespeciales-general')
+        @livewire('informatica.especiales.index-serviciosespeciales-general')
 
     </div>
 </div>
-
