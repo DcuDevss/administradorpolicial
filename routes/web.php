@@ -295,6 +295,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/chat/{query}', Chat::class)->name('chat');
 
     Route::get('/userpolicia', Userpolicia::class)->name('userpolicia');
+    /*  Route::view('/administrador', 'administrador')->name('panel-administrador'); */ //correccion de login para que envie directo
 });
 
 Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
@@ -619,19 +620,19 @@ Route::get('/historial-trabajo-primera/{trabajosPrimeraId}', HistorialComunicaci
 
 //ruta para ver historial de trabajos quinta
 Route::get('/historial-trabajo-quinta/{trabajosQuintaId}', HistorialComunicacionesQuinta::class)
-->name('historial-trabajo-quinta');
+    ->name('historial-trabajo-quinta');
 
 //ruta para ver historial de trabajos recursos humanos
 Route::get('/historial-trabajo-recurso/{trabajosRecursoId}', HistorialComunicacionesRecurso::class)
-->name('historial-trabajo-recurso');
+    ->name('historial-trabajo-recurso');
 
 //ruta para ver historial de trabajos recursos comisaria segunda
 Route::get('/historial-trabajo-segunda/{trabajosSegundaId}', HistorialComunicacionesSegunda::class)
-->name('historial-trabajo-segunda');
+    ->name('historial-trabajo-segunda');
 
 //ruta para ver historial de trabajos recursos comisaria tercera
 Route::get('/historial-trabajo-tercera/{trabajosTerceraId}', HistorialComunicacionesTercera::class)
-->name('historial-trabajo-tercera');
+    ->name('historial-trabajo-tercera');
 
 //ruta para ver historial de trabajos tolhuin
 Route::get('/historial-trabajo-tolhuin/{trabajosTolhuinId}', HistorialComunicacionesTolhuin::class)
