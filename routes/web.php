@@ -221,6 +221,8 @@ use App\Http\Livewire\Users;
 use App\Http\Livewire\Usuarios;
 use App\Models\AuditoriaDetalleInventario;
 
+use App\Http\Livewire\Auditorias\AuditoriaGeneral;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -657,3 +659,9 @@ Route::get('/historial-tolhuin-general/{tolhuinGeneraleId}', HistorialTolhuinGen
 //ruta historial informatica rg
 Route::get('/historial-riogrande-general/{riograndeGeneraleId}', HistorialRiograndeGeneral::class)
     ->name('historial-riogrande-general');
+
+
+//Auditorias:
+Route::get('/auditorias', AuditoriaGeneral::class)
+    ->middleware(['auth'])
+    ->name('auditorias-general');

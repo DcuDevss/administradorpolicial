@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
 
 class HistorialTrabajoDseu extends Model
 {
+    use Auditable;
     // Asegúrate de que el nombre de la tabla es correcto
     protected $table = 'historial_comunicaciones_dseu';
 

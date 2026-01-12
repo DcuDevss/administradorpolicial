@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use App\Helpers\AuditLogger;
+use App\Models\Traits\Auditable;
 
 class UserController extends Controller
 {
+    
     public function __construct()
     {
         // $this->middleware('can:users.index')->only('index');
@@ -26,22 +29,37 @@ class UserController extends Controller
         return view('admin.edit', compact('user', 'roles'));
     }
 
-    public function destroy(User $user)
-    {
-        // Asegúrate de que el usuario tiene permiso para eliminar
-
-
-        $user->delete();
-
-        // [MODIFICACIÓN CLAVE] AGREGAR MENSAJE DE SESIÓN PARA LA ALERTA DE ÉXITO
-        // NOTA: Revisa que 'users.index' sea el nombre correcto de tu ruta de índice.
-        return redirect()->route('users.index')->with('success', '¡El usuario ha sido eliminado correctamente!');
-    }
-
-
     public function update(Request $request, User $user)
     {
         $user->roles()->sync($request->roles);
-        return redirect()->route('users.edit', $user)->with('info', 'Se asigno los roles correctamente');
+
+        // 🔍 AUDITORÍA
+        AuditLogger::log(
+            'user.update',
+            $user,
+            "Actualización de roles del usuario {$user->name}"
+        );
+
+        return redirect()
+            ->route('users.edit', $user)
+            ->with('info', 'Se asignaron los roles correctamente');
+    }
+
+    public function destroy(User $user)
+    {
+        $nombre = $user->name;
+
+        $user->delete();
+
+        // 🔍 AUDITORÍA
+        AuditLogger::log(
+            'user.delete',
+            $user,
+            "Usuario Eliminado {$nombre}"
+        );
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', '¡El usuario ha sido eliminado correctamente!');
     }
 }

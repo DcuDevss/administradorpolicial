@@ -81,6 +81,8 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Rol de usuario</a>
                             <a href="{{ route('admin-roles.index') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Crud de roles</a>
+                            <a href="{{ route('auditorias-general') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Auditoria</a>
                         </div>
                     </div>
                 @endcan

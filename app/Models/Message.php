@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
 
 class Message extends Model
 {
     use HasFactory;
+    use Auditable;
 
-    protected $fillable=[
+    protected $fillable = [
         'body',
         'sender_id',
         'receiver_id',
@@ -21,7 +23,7 @@ class Message extends Model
     ];
 
 
-    protected $dates=['read_at','receiver_deleted_at','sender_deleted_at'];
+    protected $dates = ['read_at', 'receiver_deleted_at', 'sender_deleted_at'];
 
 
     /* relationship */
@@ -32,10 +34,10 @@ class Message extends Model
     }
 
 
-    public function isRead():bool
+    public function isRead(): bool
     {
 
-         return $this->read_at != null;
+        return $this->read_at != null;
     }
 
     public function sender()

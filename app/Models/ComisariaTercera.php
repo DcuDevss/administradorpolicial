@@ -4,14 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
+
 
 class ComisariaTercera extends Model
 {
     use HasFactory;
-
+    use Auditable;
     protected $fillable = [
-        'tipodispositivo_id', 'tipodeoficina_id', 'cantidadram_id', 'modelo', 'marca', 'procesador', 'almacenamiento', 'monitor',
-        'sistema_operativo', 'tipo_servicio', 'fecha_servicio', 'activo', 'detalle_servicio'
+        'tipodispositivo_id',
+        'tipodeoficina_id',
+        'cantidadram_id',
+        'modelo',
+        'marca',
+        'procesador',
+        'almacenamiento',
+        'monitor',
+        'sistema_operativo',
+        'tipo_servicio',
+        'fecha_servicio',
+        'activo',
+        'detalle_servicio'
     ];
 
     public function tipodispositivo()

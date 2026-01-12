@@ -4,15 +4,40 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
 
 class Generalinformatica extends Model
 {
     use HasFactory;
-       //'investigacione_id','administracion_id','jefatura_id','destacamento_id','recurso_humano_id','serviciosespeciale_id',
-    protected $fillable = ['dependencia_ushuaia_id','cientifica_id','serviciosespeciale_id','custodiagubernamentale_id','software_instalados',
-        'tipodispositivo_id', 'tipodeoficina_id', 'cantidadram_id', 'modelo', 'marca', 'procesador','monitor',
-        'sistema_operativo','fecha_inventario', 'activo', 'detalles_inventario','codigo_qr','slotmemoria_id','tipo_ram',
-        'tipo_disco','cant_almacenamiento','tipo_mouse','tipo_teclado','tipo_impresora','fecha_service','tipo_service'
+    use Auditable;
+    //'investigacione_id','administracion_id','jefatura_id','destacamento_id','recurso_humano_id','serviciosespeciale_id',
+    protected $fillable = [
+        'dependencia_ushuaia_id',
+        'cientifica_id',
+        'serviciosespeciale_id',
+        'custodiagubernamentale_id',
+        'software_instalados',
+        'tipodispositivo_id',
+        'tipodeoficina_id',
+        'cantidadram_id',
+        'modelo',
+        'marca',
+        'procesador',
+        'monitor',
+        'sistema_operativo',
+        'fecha_inventario',
+        'activo',
+        'detalles_inventario',
+        'codigo_qr',
+        'slotmemoria_id',
+        'tipo_ram',
+        'tipo_disco',
+        'cant_almacenamiento',
+        'tipo_mouse',
+        'tipo_teclado',
+        'tipo_impresora',
+        'fecha_service',
+        'tipo_service'
     ];
 
     public function cientifica()

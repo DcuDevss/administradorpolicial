@@ -4,19 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
 
 class Custodiagubernamentale extends Model
 {
     use HasFactory;
+    use Auditable;
     protected $fillable = ['nombre'];
 
-    public function custodiagubernamentale(){
+    public function custodiagubernamentale()
+    {
         return $this->hasMany(Custodiagubernamentale::class, 'custodiagubernamentale_id');
     }
 
-    public function generalinformatica(){
+    public function generalinformatica()
+    {
 
         return $this->hasMany(Custodiagubernamentale::class, 'custodiagubernamentale_id');
-
     }
 }
