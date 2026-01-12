@@ -21,4 +21,11 @@ class Riogrande extends Model
     {
         return $this->hasMany(Riograndegenerale::class, 'riogrande_id');
     }
+
+    /* ================== 🔍 AUDITORÍA ================== */
+
+    public function auditLabel(): string
+    {
+        return $this->nombre;
+    }
 }

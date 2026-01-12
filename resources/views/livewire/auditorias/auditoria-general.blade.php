@@ -68,9 +68,18 @@
                             <td class="px-4 py-2">
                                 {{ $a->description ?? '—' }}
                             </td>
-                            <td class="px-4 py-2">
+                            {{-- <td class="px-4 py-2">
                                 {{ $a->entity_label ?? '—' }}
+                            </td> --}}
+                            <td class="px-4 py-2">
+                                {{ $a->entity_label }}
                             </td>
+
+
+
+
+
+
                             {{--   <td class="px-4 py-2">
                                 {{ $a->ip_address ?? '—' }}
                             </td> --}}

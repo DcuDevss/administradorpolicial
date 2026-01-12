@@ -63,4 +63,13 @@ class Riograndegenerale extends Model
     {
         return $this->hasMany(AuditoriaInventarioRiogrande::class);
     }
+
+    /* ================== 🔍 AUDITORÍA ================== */
+
+    public function auditLabel(): string
+    {
+        return $this->dependencia_riogrande
+            ? $this->dependencia_riogrande->nombre
+            : 'Río Grande – Sin dependencia';
+    }
 }

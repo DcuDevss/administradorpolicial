@@ -96,4 +96,28 @@ class Generalinformatica extends Model
     {
         return $this->hasMany(AuditoriaDetalleInventario::class);
     }
+
+
+
+    public function auditLabel(): string
+    {
+        $map = [
+            'dependenciaushuaia'     => 'Ushuaia',
+            'cientifica'             => 'Ushuaia',
+            'serviciosespeciale'     => 'Ushuaia',
+            'custodiagubernamentale' => 'Ushuaia',
+            'investigacione'         => 'Ushuaia',
+            'recursohumano'          => 'Ushuaia',
+            'jefatura'               => 'Ushuaia',
+            'administracion'         => 'Ushuaia',
+        ];
+
+        foreach ($map as $relation => $city) {
+            if ($this->$relation) {
+                return $city . ' – ' . $this->$relation->nombre;
+            }
+        }
+
+        return 'Ushuaia – Sin dependencia';
+    }
 }

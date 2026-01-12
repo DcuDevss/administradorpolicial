@@ -19,4 +19,10 @@ class DependenciaRiogrande extends Model
 
         return $this->hasMany(DependenciaRiogrande::class, 'dependencia_rg_id');
     }
+
+    // 🔍 Cómo se muestra en auditoría
+    public function auditLabel(): string
+    {
+        return $this->nombre;
+    }
 }

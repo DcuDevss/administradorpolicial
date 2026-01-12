@@ -47,4 +47,9 @@ class Comunicacionestolhuin extends Model
     {
         return $this->hasMany(HistorialTrabajoTolhuin::class);
     }
+
+    public function auditLabel(): string
+    {
+        return 'Tolhuin – ' . optional($this->dependenciatolhuin)->nombre;
+    }
 }

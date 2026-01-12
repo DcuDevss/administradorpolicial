@@ -23,4 +23,9 @@ class DependenciaTolhuin extends Model
 
         return $this->hasMany(DependenciaTolhuin::class, 'dependencia_tolhuin_id');
     }
+
+    public function auditLabel(): string
+    {
+        return 'Tolhuin – ' . $this->nombre;
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Helpers\AuditEntityMapper;
 
 class Audit extends Model
 {
@@ -63,8 +64,32 @@ class Audit extends Model
 
 
     // Etiqueta legible de entidad
-    public function getEntityLabelAttribute()
+    /*  public function getEntityLabelAttribute()
     {
         return class_basename($this->auditable_type);
+    } */
+
+
+
+    /*  public function getEntityLabelAttribute()
+    {
+        return $this->auditable_type
+            ? AuditEntityMapper::label($this->auditable_type)
+            : '—';
+    } */
+
+    public function getEntityLabelAttribute(): string
+    {
+        // 1️⃣ Si el modelo existe y define etiqueta → usarla
+        if ($this->auditable && method_exists($this->auditable, 'auditLabel')) {
+            return $this->auditable->auditLabel();
+        }
+
+        // 2️⃣ Si no, usar mapper por tipo
+        if ($this->auditable_type) {
+            return \App\Helpers\AuditEntityMapper::label($this->auditable_type);
+        }
+
+        return '—';
     }
 }

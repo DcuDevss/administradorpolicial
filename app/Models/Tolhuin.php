@@ -21,4 +21,10 @@ class Tolhuin extends Model
     {
         return $this->hasMany(Tolhuingenerale::class, 'tolhuin_id');
     }
+
+
+    public function auditLabel(): string
+    {
+        return 'Tolhuin – ' . $this->nombre;
+    }
 }

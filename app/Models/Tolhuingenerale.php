@@ -63,4 +63,8 @@ class Tolhuingenerale extends Model
     {
         return $this->hasMany(AuditoriaInventarioTolhuin::class);
     }
+    public function auditLabel(): string
+    {
+        return 'Tolhuin – ' . optional($this->dependencia_tolhuin)->nombre;
+    }
 }

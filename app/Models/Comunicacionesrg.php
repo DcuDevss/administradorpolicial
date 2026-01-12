@@ -47,4 +47,10 @@ class Comunicacionesrg extends Model
     {
         return $this->hasMany(HistorialTrabajoRiogrande::class);
     }
+
+    // 🔍 Cómo se muestra esta entidad en la auditoría
+    public function auditLabel(): string
+    {
+        return 'D.C.R.G – ' . optional($this->dependenciarg)->nombre;
+    }
 }
