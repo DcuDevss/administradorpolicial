@@ -232,6 +232,38 @@
             /* Texto que escribes en negro/azul oscuro */
             background-color: #ffffff !important;
         }
+
+        /* FIX PARA BUSCADOR Y TEXTOS GRISES */
+        html.light-mode .text-gray-900,
+        html.light-mode .text-gray-800,
+        html.light-mode .text-gray-700,
+        html.light-mode .text-slate-900,
+        html.light-mode .text-slate-800,
+        html.light-mode .text-slate-700 {
+            color: #0f172a !important;
+            /* Negro azulado para textos principales */
+        }
+
+        html.light-mode .text-gray-600,
+        html.light-mode .text-gray-500,
+        html.light-mode .text-slate-600,
+        html.light-mode .text-slate-500 {
+            color: #475569 !important;
+            /* Gris intermedio para nombres en buscadores o placeholders */
+        }
+
+        /* REGLA DE ORO PARA EL BUSCADOR (Específica) */
+        html.light-mode input[type="text"],
+        html.light-mode input[type="search"] {
+            color: #000000 !important;
+            /* Lo que escribes debe ser negro puro */
+        }
+
+        html.light-mode input::placeholder {
+            color: #64748b !important;
+            /* El texto "Buscar..." ahora será visible */
+            opacity: 1 !important;
+        }
     </style>
 </head>
 
