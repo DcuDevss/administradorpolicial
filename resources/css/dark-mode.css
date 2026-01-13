@@ -1,0 +1,12 @@
+/* Este filtro invierte colores pero mantiene las imágenes y videos originales */
+.dark {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* Re-invertimos imágenes, videos y mapas para que se vean normales */
+.dark img,
+.dark video,
+.dark iframe,
+.dark .no-invert {
+    filter: invert(1) hue-rotate(180deg);
+}
