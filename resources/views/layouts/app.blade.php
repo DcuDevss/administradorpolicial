@@ -20,6 +20,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 
@@ -305,7 +308,27 @@
     @stack('modals')
     @livewireScripts
 
+    <script src="https://unpkg.com/@fullcalendar/core/main.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/daygrid/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+    @stack('scripts')
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        </script>
+    @endif
+
     <script>
+        // Tus funciones de toggleTheme y updateThemeUI...
         function toggleTheme() {
             const isLight = document.documentElement.classList.toggle('light-mode');
             localStorage.setItem('theme-police', isLight ? 'light' : 'dark');

@@ -102,17 +102,32 @@
         }
 
         /* 4. FIX DE TEXTOS "FANTASMA" (Tipografías generales) */
+        /* Todo el texto general de la web será negro en modo claro */
         html.light-mode h1,
         html.light-mode h2,
         html.light-mode h3,
         html.light-mode h4,
+        html.light-mode h5,
         html.light-mode p,
-        html.light-mode label,
-        html.light-mode .text-white:not(button):not(.btn):not(a) {
+        html.light-mode label {
             color: #000000 !important;
         }
 
-        /* 4.1 PROTECCIÓN TEXTO EN BOTONES */
+        /* 4.1 EXCEPCIÓN PARA IMÁGENES (ÁREAS OPERATIVAS / COMISARÍAS) */
+        /* Si el texto está dentro de un div con fondo oscuro (bg-black/40),
+   forzamos que sea BLANCO y quitamos cualquier sombra sucia */
+        html.light-mode .bg-black\/40 h2,
+        html.light-mode .bg-black\/40 p,
+        html.light-mode .bg-black\/40 h1,
+        html.light-mode [class*="bg-black/"] h2,
+        html.light-mode [class*="bg-black/"] p,
+        html.light-mode {
+            color: #ffffff !important;
+            text-shadow: none !important;
+            filter: none !important;
+        }
+
+        /* 4.2 PROTECCIÓN TEXTO EN BOTONES */
         html.light-mode a[class*="bg-blue-"],
         html.light-mode a[class*="bg-red-"],
         html.light-mode a[class*="bg-green-"],
@@ -199,6 +214,55 @@
         html.light-mode div[style*="background-image"] p,
         html.light-mode div[style*="background-image"] span {
             color: #ffffff !important;
+        }
+
+        /* 10. FIX ESPECÍFICO PARA BUSCADORES Y PLACEHOLDERS */
+        /* Esto hace que el texto "Buscar usuario..." sea visible en modo claro */
+        html.light-mode input::placeholder,
+        html.light-mode textarea::placeholder {
+            color: #64748b !important;
+            /* Un gris azulado oscuro legible */
+            opacity: 1 !important;
+        }
+
+        /* Si el input tiene un ID o clase específica como buscador */
+        html.light-mode input[type="search"],
+        html.light-mode input[type="text"] {
+            color: #1e293b !important;
+            /* Texto que escribes en negro/azul oscuro */
+            background-color: #ffffff !important;
+        }
+
+        /* FIX PARA BUSCADOR Y TEXTOS GRISES */
+        html.light-mode .text-gray-900,
+        html.light-mode .text-gray-800,
+        html.light-mode .text-gray-700,
+        html.light-mode .text-slate-900,
+        html.light-mode .text-slate-800,
+        html.light-mode .text-slate-700 {
+            color: #0f172a !important;
+            /* Negro azulado para textos principales */
+        }
+
+        html.light-mode .text-gray-600,
+        html.light-mode .text-gray-500,
+        html.light-mode .text-slate-600,
+        html.light-mode .text-slate-500 {
+            color: #475569 !important;
+            /* Gris intermedio para nombres en buscadores o placeholders */
+        }
+
+        /* REGLA DE ORO PARA EL BUSCADOR (Específica) */
+        html.light-mode input[type="text"],
+        html.light-mode input[type="search"] {
+            color: #000000 !important;
+            /* Lo que escribes debe ser negro puro */
+        }
+
+        html.light-mode input::placeholder {
+            color: #64748b !important;
+            /* El texto "Buscar..." ahora será visible */
+            opacity: 1 !important;
         }
     </style>
 </head>
