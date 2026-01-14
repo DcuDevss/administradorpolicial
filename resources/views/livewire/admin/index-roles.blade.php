@@ -82,7 +82,7 @@
 </div>
 
 {{-- *** FUNCIÓN JAVASCRIPT CON SWEETALERT2 PARA ROLES *** --}}
-@push('scripts')
+{{-- @push('scripts')
     <script>
         // Usamos un nombre diferente (confirmDeleteRole) para evitar conflictos con confirmDelete de usuarios
         function confirmDeleteRole(roleId) {
@@ -101,6 +101,41 @@
                     document.getElementById('delete-role-form-' + roleId).submit();
                 }
             })
+        }
+    </script>
+@endpush
+ --}}
+
+@push('scripts')
+    <script>
+        // Usamos un nombre diferente (confirmDeleteRole) para evitar conflictos con confirmDelete de usuarios
+        function confirmDeleteRole(roleId) {
+            const isLight = document.documentElement.classList.contains('light-mode');
+
+            Swal.fire({
+                title: "¿Estás seguro de eliminar?",
+                text: "¡No podrás revertir esta acción!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626', // Rojo oscuro, igual que usuarios
+                cancelButtonColor: '#64748b', // Gris azulado, igual que usuarios
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar',
+                background: isLight ? '#ffffff' : '#1e293b',
+                color: isLight ? '#1e293b' : '#ffffff',
+                customClass: {
+                    popup: 'rounded-xl border border-white/10'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, envía el formulario con el ID único
+                    const form = document.getElementById('delete-role-form-' + roleId);
+                    if (form) {
+                        form.dataset.confirmed = "true"; // Marcamos como confirmado para consistencia
+                        form.submit();
+                    }
+                }
+            });
         }
     </script>
 @endpush

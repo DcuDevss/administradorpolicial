@@ -83,7 +83,7 @@
 </div>
 
 {{-- *** FUNCIÓN JAVASCRIPT CON SWEETALERT2 *** --}}
-{{-- @push('scripts')
+@push('scripts')
     <script>
         function confirmDelete(userId) {
             Swal.fire({
@@ -101,44 +101,6 @@
                     document.getElementById('delete-form-' + userId).submit();
                 }
             })
-        }
-    </script>
-@endpush --}}
-@push('scripts')
-    <script>
-        function confirmDelete(userId) {
-            // Detenemos cualquier otro evento para que no aparezcan 2 alertas
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-
-            const isLight = document.documentElement.classList.contains('light-mode');
-
-            Swal.fire({
-                title: "¿Estás seguro de eliminar?",
-                text: "¡No podrás revertir esta acción!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#dc2626', // Rojo oscuro
-                cancelButtonColor: '#64748b', // Gris azulado
-                confirmButtonText: 'Sí, eliminar',
-                cancelButtonText: 'Cancelar',
-                background: isLight ? '#ffffff' : '#1e293b',
-                color: isLight ? '#1e293b' : '#ffffff',
-                customClass: {
-                    popup: 'rounded-xl border border-white/10'
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Buscamos el formulario y lo enviamos
-                    const form = document.getElementById('delete-form-' + userId);
-                    if (form) {
-                        form.dataset.confirmed = "true"; // Marcamos como confirmado para el global
-                        form.submit();
-                    }
-                }
-            });
         }
     </script>
 @endpush

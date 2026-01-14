@@ -352,6 +352,90 @@
             updateThemeUI(isLight);
         });
     </script>
+
+    {{-- Nuevo --}}
+
+    <script>
+        document.addEventListener('click', function(event) {
+
+            const btn = event.target.closest('button, a');
+            if (!btn) return;
+
+            if (btn.dataset.confirmed === "true") return;
+
+            const text = (btn.innerText || '')
+                .toLowerCase()
+                .replace(/[!?.¿¡]/g, '')
+                .trim();
+
+            // ❌ Ignorar acciones comunes
+            if (['buscar', 'cerrar', 'volver', 'cancelar'].some(p => text.includes(p))) return;
+
+            // 🔴 Eliminar → NO manejamos acá
+            const esEliminar =
+                text.includes('eliminar') ||
+                text.includes('borrar') ||
+                btn.classList.contains('bg-red-600');
+
+            if (esEliminar) return;
+
+            // 🟢 Acciones positivas
+            const esAccionPositiva = [
+                'guardar', 'actualizar', 'crear', 'registrar',
+                'modificar', 'confirmar', 'asignar'
+            ].some(p => text.includes(p));
+
+            if (!esAccionPositiva) return;
+
+            // 🔹 Solo preguntar si el botón realmente va a guardar o enviar datos
+            const form = btn.closest('form');
+            const esBotonSubmit = btn.type === 'submit' || form || btn.hasAttribute('wire:click');
+            if (!esBotonSubmit) return;
+
+
+            // ⛔ Frenamos SOLO UNA VEZ
+            event.preventDefault();
+
+            const isLight = document.documentElement.classList.contains('light-mode');
+
+            Swal.fire({
+                title: '¿Confirmar operación?',
+                text: '¿Deseas procesar los cambios realizados?',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, proceder',
+                cancelButtonText: 'Cancelar',
+                background: isLight ? '#ffffff' : '#1e293b',
+                color: isLight ? '#1e293b' : '#ffffff'
+            }).then((result) => {
+                if (!result.isConfirmed) return;
+
+                // 🔐 Marcamos confirmado
+                btn.dataset.confirmed = "true";
+
+                // ✅ FORM NORMAL
+                const form = btn.closest('form');
+                if (form && !form.hasAttribute('wire:submit')) {
+                    form.submit();
+                    return;
+                }
+
+                // ✅ LIVEWIRE
+                const wireClick = btn.getAttribute('wire:click');
+                if (wireClick) {
+                    Livewire.dispatch(wireClick);
+                }
+            });
+
+        }, true);
+    </script>
+
+
+
+
+
+
+
 </body>
 
 </html>

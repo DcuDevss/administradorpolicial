@@ -20,6 +20,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 
@@ -305,7 +308,28 @@
     @stack('modals')
     @livewireScripts
 
+    <script src="https://unpkg.com/@fullcalendar/core/main.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/daygrid/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+    @stack('scripts')
+
+    @if (session('success'))
     <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: '{{ session('
+            success ') }}',
+            showConfirmButton: false,
+            timer: 3000
+        })
+    </script>
+    @endif
+
+    <script>
+        // Tus funciones de toggleTheme y updateThemeUI...
         function toggleTheme() {
             const isLight = document.documentElement.classList.toggle('light-mode');
             localStorage.setItem('theme-police', isLight ? 'light' : 'dark');
@@ -328,6 +352,201 @@
             const isLight = document.documentElement.classList.contains('light-mode');
             updateThemeUI(isLight);
         });
+    </script>
+
+    {{-- Nuevo --}}
+
+    {{-- <script>
+        document.addEventListener('submit', function(event) {
+            const form = event.target;
+            const submitButton = event.submitter;
+
+            if (form.dataset.confirmed === "true") return;
+
+            // Si el formulario es de búsqueda, no preguntar (para no molestar al buscar)
+            if (form.method.toLowerCase() === 'get') return;
+
+            event.preventDefault();
+
+            const buttonText = submitButton ? submitButton.innerText.toLowerCase() : '';
+            const isDanger = submitButton && (submitButton.classList.contains('bg-red-600') || submitButton
+                .classList.contains('btn-danger'));
+
+            let title = "¿Deseas continuar?";
+            let text = "Esta acción se procesará en el sistema.";
+            let icon = "question";
+
+            // CASO 1: ELIMINAR
+            if (buttonText.includes('eliminar') || buttonText.includes('borrar') || isDanger) {
+                title = "¿Estás seguro de eliminar?";
+                text = "Esta acción no siempre se puede deshacer.";
+                icon = "warning";
+            }
+            // CASO 2: CREAR / GUARDAR / ACTUALIZAR (AQUÍ AGREGAMOS 'CREAR')
+            else if (buttonText.includes('asignar') ||
+                buttonText.includes('guardar') ||
+                buttonText.includes('actualizar') ||
+                buttonText.includes('crear') ||
+                buttonText.includes('nuevo') ||
+                buttonText.includes('registrar')) {
+
+                title = "¿Confirmar operación?";
+                text = "La información se guardará en la base de datos.";
+                icon = "info";
+            } else {
+                // Si el botón no tiene texto clave, enviamos directo
+                form.dataset.confirmed = "true";
+                form.submit();
+                return;
+            }
+
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: icon,
+                showCancelButton: true,
+                confirmButtonColor: isDanger ? '#dc2626' : '#2563eb',
+                cancelButtonColor: '#64748b',
+                confirmButtonText: 'Sí, proceder',
+                cancelButtonText: 'Cancelar',
+                background: document.documentElement.classList.contains('light-mode') ? '#ffffff' :
+                    '#1e293b',
+                color: document.documentElement.classList.contains('light-mode') ? '#000000' : '#ffffff'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.dataset.confirmed = "true";
+                    form.submit();
+                }
+            });
+        });
+    </script> --}}
+
+    {{-- Alerta Global para el proyecto --}}
+    {{-- <script>
+        // Usamos un detector de CLIC global para atrapar botones de Livewire, Formuarios y Enlaces
+        document.addEventListener('click', function(event) {
+            // 1. Buscamos si lo que clickearon es un botón o está dentro de uno
+            const btn = event.target.closest('button') || event.target.closest('.btn') || event.target.closest(
+                'a.bg-blue-600');
+            if (!btn) return;
+
+            // 2. Extraemos y limpiamos el texto del botón
+            const text = btn.innerText.toLowerCase().replace(/[!?.¿¡]/g, '').trim();
+
+            // 3. Definimos palabras clave
+            const esAccionCritica = [
+                'guardar', 'cambios', 'actualizar', 'crear', 'nuevo',
+                'registrar', 'asignar', 'modificar', 'confirmar',
+                'eliminar', 'borrar', 'quitar', 'suspender'
+            ].some(p => text.includes(p));
+
+            const esEliminar = text.includes('eliminar') || text.includes('borrar') || btn.classList.contains(
+                'bg-red-600');
+
+            // 4. Si no es una acción que queramos confirmar, o ya fue confirmada, dejamos pasar
+            if (!esAccionCritica || btn.dataset.confirmed === "true") return;
+
+            // 5. Si es un buscador o un botón de "Cerrar/Volver", no interrumpir
+            if (text.includes('buscar') || text.includes('cerrar') || text.includes('volver')) return;
+
+            // DETENEMOS TODO
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isLight = document.documentElement.classList.contains('light-mode');
+
+            Swal.fire({
+                title: esEliminar ? "¿Estás seguro de eliminar?" : "¿Confirmar operación?",
+                text: esEliminar ? "Esta acción no siempre se puede deshacer." :
+                    "¿Deseas procesar los cambios realizados?",
+                icon: esEliminar ? "warning" : "info",
+                showCancelButton: true,
+                confirmButtonColor: esEliminar ? '#dc2626' : '#2563eb',
+                cancelButtonColor: '#64748b',
+                confirmButtonText: 'Sí, proceder',
+                cancelButtonText: 'Cancelar',
+                background: isLight ? '#ffffff' : '#1e293b',
+                color: isLight ? '#1e293b' : '#ffffff'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Marcamos el botón para que el próximo clic pase
+                    btn.dataset.confirmed = "true";
+
+                    // Si es un botón de formulario, lo enviamos
+                    const form = btn.closest('form');
+                    if (form) {
+                        form.dataset.confirmed = "true";
+                        form.submit();
+                    } else {
+                        // Si es Livewire o un enlace simple, simulamos el clic de nuevo
+                        btn.click();
+                    }
+                }
+            });
+        }, true); // El 'true' es para que el evento se capture antes que cualquier otro script
+    </script> --}}
+
+    <script>
+        document.addEventListener('click', function(event) {
+            const btn = event.target.closest('button') || event.target.closest('.btn') || event.target.closest(
+                'a.bg-blue-600');
+
+            if (!btn) return;
+
+            // Si el botón ya fue confirmado, permitimos que la acción natural siga su curso
+            if (btn.dataset.confirmed === "true") return;
+
+            const text = btn.innerText.toLowerCase().replace(/[!?.¿¡]/g, '').trim();
+
+            // 1. Acciones positivas
+            const esAccionPositiva = [
+                'guardar', 'cambios', 'actualizar', 'crear', 'nuevo',
+                'registrar', 'asignar', 'modificar', 'confirmar'
+            ].some(p => text.includes(p));
+
+            // 2. Acciones de eliminar (las ignoramos para que use su propia función local)
+            const esEliminar = text.includes('eliminar') || text.includes('borrar') || btn.classList.contains(
+                'bg-red-600');
+
+            // Filtro de salida
+            if (esEliminar || !esAccionPositiva) return;
+            if (text.includes('buscar') || text.includes('cerrar') || text.includes('volver')) return;
+
+            // DETENEMOS LA ACCIÓN
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isLight = document.documentElement.classList.contains('light-mode');
+
+            Swal.fire({
+                title: "¿Confirmar operación?",
+                text: "¿Deseas procesar los cambios realizados?",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonColor: '#2563eb',
+                cancelButtonColor: '#64748b',
+                confirmButtonText: 'Sí, proceder',
+                cancelButtonText: 'Cancelar',
+                background: isLight ? '#ffffff' : '#1e293b',
+                color: isLight ? '#1e293b' : '#ffffff'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // MARCAMOS COMO CONFIRMADO
+                    btn.dataset.confirmed = "true";
+
+                    // BUSCAMOS SI ES UN FORMULARIO
+                    const form = btn.closest('form');
+                    if (form) {
+                        form.dataset.confirmed = "true";
+                        form.submit();
+                    } else {
+                        // PARA LIVEWIRE O BOTONES DINÁMICOS:
+                        // Disparamos un nuevo clic pero esta vez pasará por el filtro "if (btn.dataset.confirmed === 'true') return;"
+                        btn.click();
+                    }
+                }
+            });
+        }, true);
     </script>
 </body>
 
