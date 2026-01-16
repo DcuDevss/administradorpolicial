@@ -155,7 +155,7 @@ class CreateRiograndeGeneral extends Component
         $this->rg->tipo_service = ($this->tipo_service === null || $this->tipo_service === '') ? null : $this->tipo_service;
         $this->rg->detalles_inventario = ($this->detalles_inventario === null || $this->detalles_inventario === '') ? null : $this->detalles_inventario;
         $this->rg->softwares_instalados = ($this->softwares_instalados === null || $this->softwares_instalados === '') ? null : $this->softwares_instalados;
-        $this->rg->activo = $this->activo ? 1 : 0;
+        $this->rg->activo = $this->activo = $this->activo ? 1 : 0;
         $this->rg->save();
 
         // Guardar el historial de ediciones si el campo detalles_inventario cambia

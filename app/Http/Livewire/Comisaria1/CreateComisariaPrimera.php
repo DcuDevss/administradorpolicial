@@ -91,7 +91,7 @@ class CreateComisariaPrimera extends Component
         $this->comisariaprimera->tipo_mouse = $this->tipo_mouse;
         $this->comisariaprimera->tipo_impresora = $this->tipo_impresora;
         $this->comisariaprimera->fecha_inventario = $this->fecha_inventario;
-        $this->comisariaprimera->activo = $this->activo;
+        $this->comisariaprimera->activo = $this->activo = $this->activo ? 1 : 0;
         $this->comisariaprimera->detalles_inventario = $this->detalles_inventario;
         $this->comisariaprimera->save();
 

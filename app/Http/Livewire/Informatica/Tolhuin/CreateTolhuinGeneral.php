@@ -156,7 +156,7 @@ class CreateTolhuinGeneral extends Component
         $this->tol->tipo_service = $this->tipo_service ?: null;
         $this->tol->detalles_inventario = $this->detalles_inventario ?: null;
         $this->tol->softwares_instalados = $this->softwares_instalados ?: null;
-        $this->tol->activo = $this->activo ? 1 : 0;
+        $this->tol->activo = $this->activo = $this->activo ? 1 : 0;
         $this->tol->save();
 
 
@@ -174,7 +174,7 @@ class CreateTolhuinGeneral extends Component
         $cantidadRam = $this->cantidadram_id ? Cantidadram::find($this->cantidadram_id)->cantidad : null;
         $slotMemoria = $this->slotmemoria_id ? Slotmemoria::find($this->slotmemoria_id)->cantidad : null;
 
-         $codigoQRData = ' Nro de indentificacion: ' . $this->tol->id .  ' - Fecha del inventario: ' . $this->fecha_inventario . //' - Tipo de oficina: ' . $tipoOficina .
+        $codigoQRData = ' Nro de indentificacion: ' . $this->tol->id .  ' - Fecha del inventario: ' . $this->fecha_inventario . //' - Tipo de oficina: ' . $tipoOficina .
             ' - Tipo de dispositivo: ' . $tipoDispositivo . ' - Tolhuin: ' . $tol_poli . ' Softwares: ' . $this->softwares_instalados .  // ' - Jefatura: ' . $jefatura_poli . ' - Investigaciones: ' . $investigacione_poli . ' - Recursos Humanos: ' . $recurso_humano_poli . ' - Destacamentos: ' . $destacamento_poli . ' - Servicios Especiales: ' . $serviciosespeciale_poli .                                ' - Marca: ' . $this->marca . ' - Modelo: ' . $this->modelo . ' - Procesador: ' .
             $this->procesador . ' - Sistema operativo: ' . $this->sistema_operativo . ' Slot de memoria: ' . $slotMemoria . ' - Tipo de Ram: ' . $this->tipo_ram . ' - Cantidad de Ram: ' . $cantidadRam . ' -tipo de disco ' . $this->tipo_disco . ' -Cantidad de Almacenamiento: ' . $this->cant_almacenamiento .
             ' - Tipo de Teclado: ' . $this->tipo_teclado . ' - Tipo de mouse: ' . $this->tipo_mouse .
@@ -189,7 +189,7 @@ class CreateTolhuinGeneral extends Component
         //' -Tipo de monitor: ' . $this->monitor .' - Tipo de Impresora: ' . $this->tipo_impresora .
 
         // Actualizar el campo "codigo_qr" en el modelo ComisariaPrimera
-                $this->tol->codigo_qr = $nombreImagenQR;
+        $this->tol->codigo_qr = $nombreImagenQR;
         $this->tol->save();
 
 

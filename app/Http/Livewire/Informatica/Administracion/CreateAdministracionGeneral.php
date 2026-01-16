@@ -154,7 +154,7 @@ class CreateAdministracionGeneral extends Component
         $this->admin->tipo_service = $this->tipo_service;
         $this->admin->detalles_inventario = $this->detalles_inventario;
         $this->admin->softwares_instalados = $this->softwares_instalados;
-        $this->admin->activo = $this->activo;
+        $this->admin->activo = $this->activo = $this->activo ? 1 : 0;
         $this->admin->save();
 
 

@@ -161,7 +161,7 @@ class CreateInventarioGeneral extends Component
         $this->generalinformatica->tipo_service = $this->tipo_service ?: null;
         $this->generalinformatica->softwares_instalados = $this->softwares_instalados ?: null;
         $this->generalinformatica->detalles_inventario = $this->detalles_inventario ?: null;
-        $this->generalinformatica->activo = $this->activo ? 1 : 0;
+        $this->generalinformatica->activo = $this->activo = $this->activo ? 1 : 0;
         // Guardando la instancia en la base de datos
         $this->generalinformatica->save();
 
