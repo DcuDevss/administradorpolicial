@@ -144,11 +144,11 @@ td {
 
 /* Estilo para los botones primarios (ej. el botón "Save") */
 /* Buscamos el componente <x-button> o la clase que produce Jetstream para el botón primario */
+/* 1. TUS ESTILOS ORIGINALES (Color y Diseño) */
 button[type="submit"],
 .inline-flex.items-center.px-4.py-2.bg-gray-800,
-/* AÑADIR/CORREGIR: Captura el botón 'Enable' (que es type="button") y asegura que el color gane */
 button[type="button"].inline-flex.items-center.bg-gray-800 {
-    background-color: #4f9cff !important; /* Azul policía (o el color que prefieras) */
+    background-color: #4f9cff !important;
     color: #ffffff !important;
     border: none !important;
     border-radius: 0.25rem !important;
@@ -156,17 +156,36 @@ button[type="button"].inline-flex.items-center.bg-gray-800 {
     transition: background-color 0.2s;
 }
 
-/* 3. ESTILO HOVER - ACTUALIZADO A AZUL POLICIAL */
 button[type="submit"]:hover,
 .inline-flex.items-center.px-4.py-2.bg-gray-800:hover,
 button[type="button"].inline-flex.items-center.bg-gray-800:hover {
-    background-color: #2563eb !important; /* Azul intenso (equivalente a blue-600) */
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5); /* Efecto glow azul */
+    background-color: #2563eb !important;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
     transition: all 0.3s ease;
 }
 
+/* 2. COMPLEMENTO PARA VELOCIDAD Y CARGA */
+
+/* Mantiene el botón firme aunque cambie el texto a "Cargando..." */
+button[type="submit"] {
+    min-width: 140px; /* Ajusta según el largo de tu texto */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Evita el parpadeo blanco molesto de Livewire */
+[wire\:loading] {
+    display: none; /* Esto oculta cualquier indicador de carga que no hayas definido tú */
+}
+
+/*se vea suave */
+[wire\:loading].show {
+    display: inline-block !important;
+    transition: opacity 0.3s;
+}
+
 /* 2. Corregir Menús Desplegables de Jetstream/Usuario (Fondo Sólido legible) */
-/* (El resto del código del menú desplegable se mantiene igual que en la última corrección) */
 .bg-white.shadow-xl,
 .dark .bg-gray-700,
 .origin-top-right,
@@ -176,7 +195,6 @@ div[x-show].absolute,
 div[x-show][style*="display: block"],
 div[role="listbox"] {
     /* Si el select es un componente avanzado */
-    /* USAMOS EL ESTILO GLASS OSCURO DE TUS TABLAS (es más estético que un gris sólido) */
     background-color: rgba(0, 0, 0, 0.6) !important;
     backdrop-filter: blur(4px) !important;
     color: #ffffff !important;
@@ -373,4 +391,29 @@ div.bg-white.p-4.rounded-md.shadow-md strong.text-red-800 {
 
     /* Añade un poco de espacio para la barra de scroll */
     padding-right: 0.5rem;
+}
+
+/* Oculta el contenido hasta que Livewire esté listo */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Suaviza la transición de la página entera */
+body {
+    view-transition-name: main-content; /* Función moderna de navegadores */
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Mata el punto de carga blanco de la pestaña */
+.livewire-loading-indicator {
+    display: none !important;
 }
