@@ -2,7 +2,7 @@
     <div class="flex items-center justify-center h-screen">
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
-                <img class="rounded-t-lg" src="{{ asset('foto/comunicaciones.jpeg') }}" alt="" />
+                <img class="rounded-t-lg" src="{{ asset('foto/comunicaciones.jpeg') }}" alt="" loading="lazy" decoding="async/>
             </a>
             <div class="p-5">
                 <a href="#">

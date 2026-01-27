@@ -11,6 +11,16 @@ class Conversation extends Model
     use HasFactory;
     use Auditable;
 
+    protected $casts = [
+    'messages_max_created_at' => 'datetime',
+    ];
+
+    // App\Models\Conversation.php
+    public function lastMessage()
+    {
+        return $this->hasOne(\App\Models\Message::class, 'conversation_id')->latestOfMany();
+    }
+
     protected $fillable = [
         'receiver_id',
         'sender_id'

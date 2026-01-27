@@ -129,6 +129,16 @@ class IndexInventarioGeneral extends Component
         ->orWhereHas('slotmemoria', function ($query) {
             $query->where('cantidad', 'like', "%{$this->search}%");
         })
+        ->with([
+            'dependenciaushuaia',
+            'serviciosespeciale',
+            'destacamento',
+            'custodiagubernamentale',
+            'tipodispositivo',
+            'tipodeoficina',
+            'cantidadram',
+            'slotmemoria',
+        ])
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
 

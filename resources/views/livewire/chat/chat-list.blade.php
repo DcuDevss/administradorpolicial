@@ -2,22 +2,16 @@
 
     conversationElement = document.getElementById('conversation-' + query);
 
-
     //scroll to the element
-
     if (conversationElement) {
-
         conversationElement.scrollIntoView({ 'behavior': 'smooth' });
-
     }
 
 }, 200);
 
-
 Echo.private('users.{{ Auth()->User()->id }}')
     .notification((notification) => {
         if (notification['type'] == 'App\\Notifications\\MessageRead' || notification['type'] == 'App\\Notifications\\MessageSent') {
-
             window.Livewire.emit('refresh');
         }
     });" class="flex flex-col transition-all h-full overflow-hidden">
@@ -31,19 +25,16 @@ Echo.private('users.{{ Auth()->User()->id }}')
             </div>
 
             <button>
-
                 <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     viewBox="0 0 16 16">
                     <path
                         d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
                 </svg>
-
             </button>
 
         </div>
 
         {{-- Filtros --}}
-
         <div class="flex gap-3 items-center overflow-x-scroll p-2 bg-gray-300">
 
             <button @click="type='all'" :class="{ 'bg-blue-300 border-0 text-black': type == 'all' }"
@@ -59,11 +50,9 @@ Echo.private('users.{{ Auth()->User()->id }}')
 
     </header>
 
-
     <main class=" overflow-y-scroll overflow-hidden grow  h-full relative " style="contain:content">
 
         {{-- chatlist  --}}
-
         <ul class="p-2 grid w-full spacey-y-2">
 
             @if ($conversations)
@@ -88,17 +77,20 @@ Echo.private('users.{{ Auth()->User()->id }}')
                                             {{ $conversation->getReceiver()->name }}
                                         </h6>
 
-                                        <small
-                                            class="text-gray-900">{{ $conversation->messages?->last()?->created_at?->shortAbsoluteDiffForHumans() }}
+                                        <small class="text-gray-900">
+                                            {{ $conversation->relationLoaded('lastMessage')
+                                                ? $conversation->lastMessage?->created_at?->shortAbsoluteDiffForHumans()
+                                                : ''
+                                            }}
                                         </small>
 
                                     </div>
 
                                     {{-- Message body --}}
-
                                     <div class="flex gap-x-2 items-center ">
 
-                                        @if ($conversation->messages?->last()?->sender_id == auth()->id())
+                                        @if ($conversation->relationLoaded('lastMessage')
+                                                && $conversation->lastMessage?->sender_id == auth()->id())
                                             @if ($conversation->isLastMessageReadByUser())
                                                 {{-- double tick  --}}
                                                 <span>
@@ -124,16 +116,18 @@ Echo.private('users.{{ Auth()->User()->id }}')
                                             @endif
                                         @endif
 
-
                                         <p class="grow truncate text-sm font-[100]">
-                                            {{ $conversation->messages?->last()?->body ?? ' ' }}
+                                            {{ $conversation->relationLoaded('lastMessage')
+                                                ? ($conversation->lastMessage->body ?? ' ')
+                                                : ' '
+                                            }}
                                         </p>
 
-                                        {{-- countador de mensajes --}}
-                                        @if ($conversation->unreadMessagesCount() > 0)
+                                        {{-- contador de mensajes --}}
+                                        @if (($conversation->unread_count ?? 0) > 0)
                                             <span
                                                 class="font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white">
-                                                {{ $conversation->unreadMessagesCount() }}
+                                                {{ $conversation->unread_count }}
                                             </span>
                                         @endif
 
@@ -142,13 +136,11 @@ Echo.private('users.{{ Auth()->User()->id }}')
                             </a>
 
                             {{-- Dropdown --}}
-
                             <div class="col-span-1 flex flex-col text-center my-auto">
 
                                 <x-dropdown align="right" width="48">
                                     <x-slot name="trigger">
                                         <button>
-
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor"
                                                 class="bi bi-three-dots-vertical w-7 h-7 text-gray-700"
@@ -156,18 +148,14 @@ Echo.private('users.{{ Auth()->User()->id }}')
                                                 <path
                                                     d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                                             </svg>
-
-
                                         </button>
                                     </x-slot>
 
                                     <x-slot name="content">
-
                                         <div class="w-full p-1">
 
                                             <button
                                                 class="items-center gap-3 flex w-full px-4 py-2 text-left text-sm leading-5 text-gray-500 hover:bg-gray-100 transition-all duration-150 ease-in-out focus:outline-none focus:bg-gray-100">
-
                                                 <span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                         height="16" fill="currentColor" class="bi bi-person-circle"
@@ -177,15 +165,13 @@ Echo.private('users.{{ Auth()->User()->id }}')
                                                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                                                     </svg>
                                                 </span>
-
                                                 Ver perfil
-
                                             </button>
+
                                             <button
                                                 onclick="confirm('Seguro desea borrar?')||event.stopImmediatePropagation()"
                                                 wire:click="deleteByUser('{{ encrypt($conversation->id) }}')"
                                                 class="items-center gap-3 flex w-full px-4 py-2 text-left text-sm leading-5 text-gray-500 hover:bg-gray-100 transition-all duration-150 ease-in-out focus:outline-none focus:bg-gray-100">
-
                                                 <span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                         height="16" fill="currentColor" class="bi bi-trash-fill"
@@ -194,13 +180,10 @@ Echo.private('users.{{ Auth()->User()->id }}')
                                                             d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                                                     </svg>
                                                 </span>
-
                                                 Borrar
-
                                             </button>
 
                                         </div>
-
                                     </x-slot>
                                 </x-dropdown>
 

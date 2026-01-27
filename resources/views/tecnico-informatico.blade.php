@@ -3,7 +3,7 @@
     <style>
         /* Fondo general */
         body {
-            background-image: url('{{ asset('foto/base.png') }}');
+            background-image: url('{{ asset('foto/base.webp') }}');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;

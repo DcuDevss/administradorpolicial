@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\Auditable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+
+#[ObservedBy(\App\Observers\ComunicacionesAdministracionObserver::class)]
 
 
 class Comunicacionesadministracion extends Model

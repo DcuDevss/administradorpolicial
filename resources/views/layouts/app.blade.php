@@ -298,20 +298,20 @@
 
         <footer
             class="text-center footer-tight bg-gray-800 font-semibold text-xs text-white left-0 w-full shadow-lg z-20 flex items-center justify-center space-x-2 py-3 transition-all">
-            <img src="{{ asset('foto/Escudo comunicaciones 50x50.png') }}" alt="Escudo" class="h-8 w-auto">
+            <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo" class="h-8 w-auto" loading="lazy" decoding="async">
             <p class="m-0">© 2024 Policía de Tierra del Fuego.</p>
         </footer>
     </div>
 
-    <button onclick="toggleTheme()" id="theme-toggle-btn">
+{{--     <button onclick="toggleTheme()" id="theme-toggle-btn">
         <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
     </button>
-
+ --}}
     @stack('modals')
     @livewireScripts
 
-    <script src="https://unpkg.com/@fullcalendar/core/main.js"></script>
-    <script src="https://unpkg.com/@fullcalendar/daygrid/main.js"></script>
+    <script defer src="https://unpkg.com/@fullcalendar/core@6.1.20/index.global.min.js"></script>
+    <script defer src="https://unpkg.com/@fullcalendar/daygrid@6.1.20/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 

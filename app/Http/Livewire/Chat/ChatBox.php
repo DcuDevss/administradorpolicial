@@ -6,6 +6,8 @@ use App\Models\Message;
 use App\Notifications\MessageRead;
 use App\Notifications\MessageSent;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
+
 
 class ChatBox extends Component
 {
@@ -156,7 +158,11 @@ class ChatBox extends Component
 
     public function sendMessage()
     {
-
+        \Log::info('SEND_MESSAGE', [
+        'user_id' => auth()->id(),
+        'selected_conversation_id' => $this->selectedConversation?->id,
+        'body' => $this->body,
+    ]);
         $this->validate(['body' => 'required|string']);
 
 

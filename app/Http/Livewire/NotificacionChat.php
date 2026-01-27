@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Conversation;
+use Illuminate\Support\Facades\Cache;
+use App\Models\Message;
 
 class NotificacionChat extends Component
 {
@@ -74,12 +76,11 @@ class NotificacionChat extends Component
             ->count();
     }
 
+
     public function render()
     {
         $user = auth()->user();
 
-        // 1. Manejo de Usuario No Autenticado
-        // Si no hay usuario, devolvemos un conteo de 0 para evitar el error.
         if (!$user) {
             return view('livewire.notificacion-chat', [
                 'conversations' => collect(),
@@ -87,21 +88,31 @@ class NotificacionChat extends Component
             ]);
         }
 
-        // 2. Lógica para Usuario Autenticado
+        $conversations = $user->conversations()
+            ->with(['lastMessage' => function ($q) {
+                $q->select(
+                    'messages.id',
+                    'messages.conversation_id',
+                    'messages.sender_id',
+                    'messages.body',
+                    'messages.created_at'
+                );
+            }])
+            ->latest('updated_at')
+            ->get();
 
-        // Obtenemos todas las conversaciones del usuario
-        $conversations = $user->conversations()->latest('updated_at')->get();
-        $totalUnreadMessagesCount = 0;
-
-        // Iteramos sobre las conversaciones y sumamos los mensajes no leídos
-        // utilizando el método local del Livewire: $this->unreadMessagesCount()
-        foreach ($conversations as $conversation) {
-            $totalUnreadMessagesCount += $this->unreadMessagesCount($conversation);
-        }
+        $totalUnreadMessagesCount = Cache::remember(
+            "unread_total_{$user->id}",
+            now()->addSeconds(10),
+            fn () => Message::whereNull('read_at')
+                ->where('receiver_id', $user->id)
+                ->count()
+        );
 
         return view('livewire.notificacion-chat', [
             'conversations' => $conversations,
             'totalUnreadMessagesCount' => $totalUnreadMessagesCount,
         ]);
     }
+
 }
