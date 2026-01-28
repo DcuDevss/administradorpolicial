@@ -19,6 +19,7 @@ use App\Models\Tipodispositivo;
 use App\Models\Slotmemoria;
 use App\Models\Tolhuin;
 use App\Models\AuditoriaDetalleInventario;
+use App\Models\AuditoriaInventarioTolhuin;
 use App\Models\Custodiagubernamentalgenerale;
 use App\Models\Custodiagubernamentale;
 use App\Models\Jefatura;
@@ -132,7 +133,7 @@ class EditTolhuinGeneral extends Component
         $this->fecha_service = $tolhuin->fecha_service ? Carbon::parse($tolhuin->fecha_service)->format('Y-m-d') : '';
         $this->tipo_service = $tolhuin->tipo_service ?? '';
         $this->softwares_instalados = $tolhuin->softwares_instalados ?? '';
-        //$this->detalles_inventario = $tolhuin->detalles_inventario ?? '';
+        $this->detalles_inventario = $tolhuin->detalles_inventario ?? '';
         $this->activo = $tolhuin->activo ?? '';
     }
 
@@ -162,15 +163,14 @@ class EditTolhuinGeneral extends Component
         $this->tolhuin->tipo_mouse= $this->tipo_mouse ?: null;
         $this->tolhuin->tipo_teclado= $this->tipo_teclado ?: null;
         $this->tolhuin->softwares_instalados= $this->softwares_instalados ?: null;
-
-        AuditoriaDetalleInventario::create([
-            'generalinformatica_id' => $this->tolhuin->id,
+/*         AuditoriaInventarioTolhuin::create([
+            'tolhuingenerale_id' => $this->tolhuin->id,
             'detalles_inventario'   => $this->detalles_inventario,
             'user_id'               => auth()->id(),
             'ip_address'            => request()->ip(),
             'user_agent'            => request()->userAgent(),
         ]);
-
+ */
         $this->tolhuin->save();
 
         // Generar el código QR después de guardar los cambios

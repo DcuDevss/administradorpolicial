@@ -310,16 +310,10 @@
                         type="button"
                         wire:click="edit"
                         wire:loading.attr="disabled"
-                        @click="mensaje = '¡Cambios guardados correctamente!'"
                         class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                         <span wire:loading.remove>Guardar cambios</span>
                         <span wire:loading>Guardando...</span>
                     </button>
-
-                    <p x-show.transition.duration.500ms="mensaje"
-                       class="mt-2 px-4 py-2 text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto"
-                       x-text="mensaje">
-                    </p>
                 </div>
 
                 </div>

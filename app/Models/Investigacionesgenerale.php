@@ -12,7 +12,6 @@ class Investigacionesgenerale extends Model
     use Auditable;
     protected $fillable = [
         'investigacione_id',
-        'cientifica_id',
         'tipodispositivo_id',
         'cantidadram_id',
         'modelo',
@@ -37,10 +36,6 @@ class Investigacionesgenerale extends Model
     {
         return $this->belongsTo('App\Models\Investigacione', 'investigacione_id', 'id');
     }
-    public function cientifica()
-    {
-        return $this->belongsTo('App\Models\Cientifica', 'cientifica_id', 'id');
-    }
     public function tipodispositivo()
     {
         return $this->belongsTo('App\Models\Tipodispositivo', 'tipodispositivo_id', 'id');
@@ -52,5 +47,9 @@ class Investigacionesgenerale extends Model
     public function slotmemoria()
     {
         return $this->belongsTo('App\Models\Slotmemoria', 'slotmemoria_id', 'id');
+    }
+        public function auditorias()
+    {
+        return $this->hasMany(AuditoriaInventarioInvestigaciones::class);
     }
 }

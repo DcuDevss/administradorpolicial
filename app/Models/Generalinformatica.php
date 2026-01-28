@@ -17,6 +17,7 @@ class Generalinformatica extends Model
     protected $fillable = [
         'dependencia_ushuaia_id',
         'cientifica_id',
+        'investigacione_id',
         'serviciosespeciale_id',
         'custodiagubernamentale_id',
         'software_instalados',

@@ -183,14 +183,14 @@ class EditInventarioGeneral extends Component
         $this->general->softwares_instalados= $this->softwares_instalados ?: null;
 
         $this->general->save();
-
+/*
         AuditoriaDetalleInventario::create([
             'generalinformatica_id' => $this->general->id,
             'detalles_inventario'   => $this->detalles_inventario,
             'user_id'               => auth()->id(),
             'ip_address'            => request()->ip(),
             'user_agent'            => request()->userAgent(),
-        ]);
+        ]); */
 
         // Generar el código QR después de guardar los cambios
         $this->generateQRCode();

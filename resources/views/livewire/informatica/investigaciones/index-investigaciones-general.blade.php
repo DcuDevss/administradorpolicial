@@ -35,11 +35,11 @@
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
 
                                         Investigaciones
-                                    </th>
+                                    </th>{{--
                                     <th class="p-1   text-center text-xs text-blue-800">
 
                                         Oficinias Cientifica
-                                    </th>
+                                    </th> --}}
                                     {{-- <th class="p-1   text-center text-xs text-blue-800">
 
                                         Jefatura
@@ -156,8 +156,8 @@
                                         <td class="text-center py-6 font-bold">{{ $comu->id }}</td>
                                         <td class="text-center py-6 font-bold">
                                             {{ $comu->investigacione->nombre ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->cientifica->nombre ?? '----' }}
-                                        </td>
+                                      {{--   <td class="text-center py-6 font-bold">{{ $comu->cientifica->nombre ?? '----' }}
+                                        </td> --}}
                                         {{-- <td class="text-center py-6 font-bold">{{ $comu->tipodeoficina->nombre ?? '----' }}</td>
                                        <td class="text-center py-6 font-bold">{{ $comu->jefatura->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->investigacione->nombre ?? '----' }}</td>
@@ -227,10 +227,14 @@
                                             @endif
                                         </td>
 
-                                        <td class="text-center py-2 mr-1">
+                                        <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editInvestigacionesGeneral', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Editar
+                                            </a>
+                                            <a href="{{ route('historial-investigaciones-general', $comu->id) }}"
+                                                class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
+                                                Modificaciones
                                             </a>
 
                                         </td>

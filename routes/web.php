@@ -158,6 +158,7 @@ use App\Http\Livewire\Informatica\General\HistorialInventarioGeneral;
 use App\Http\Livewire\Informatica\Investigaciones\CreateInvestigacionesGeneral;
 use App\Http\Livewire\Informatica\Investigaciones\EditInvestigacionesGeneral;
 use App\Http\Livewire\Informatica\Investigaciones\IndexInvestigacionesGeneral;
+use App\Http\Livewire\Informatica\Investigaciones\HistorialinvestigacionesGeneral;
 
 
 
@@ -665,3 +666,6 @@ Route::get('/historial-riogrande-general/{riograndeGeneraleId}', HistorialRiogra
 Route::get('/auditorias', AuditoriaGeneral::class)
     ->middleware(['auth'])
     ->name('auditorias-general');
+
+Route::get('/historial-investigaciones-general/{investigacioneGeneraleId}', HistorialinvestigacionesGeneral::class)
+    ->name('historial-investigaciones-general');

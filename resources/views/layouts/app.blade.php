@@ -303,10 +303,10 @@
         </footer>
     </div>
 
-{{--     <button onclick="toggleTheme()" id="theme-toggle-btn">
+    <button onclick="toggleTheme()" id="theme-toggle-btn">
         <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
     </button>
- --}}
+
     @stack('modals')
     @livewireScripts
 

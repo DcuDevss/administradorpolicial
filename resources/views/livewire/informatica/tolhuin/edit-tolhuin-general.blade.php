@@ -259,10 +259,10 @@
 
                                 <div class="mt-2">
                                     <label class="block text-white text-sm font-bold mb-1"
-                                        for="detalles_servicios">Detalle de Modificacion</label>
+                                        for="detalles_inventario">Detalle de Modificacion</label>
                                     <textarea
                                         class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                                        wire:model="detalles_inventario" placeholder="Ingrese la Modificacion Realizada"value="{{ $tolhuin->detalles_inventario }}"></textarea>
+                                        wire:model="detalles_inventario" placeholder="Ingrese la Modificacion Realizada"></textarea>
                                     @error('detalles_inventario')
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
@@ -306,16 +306,10 @@
                         type="button"
                         wire:click="edit"
                         wire:loading.attr="disabled"
-                        @click="mensaje = '¡Cambios guardados correctamente!'"
                         class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                         <span wire:loading.remove>Guardar cambios</span>
                         <span wire:loading>Guardando...</span>
                     </button>
-
-                    <p x-show.transition.duration.500ms="mensaje"
-                       class="mt-2 px-4 py-2 text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto"
-                       x-text="mensaje">
-                    </p>
                 </div>
                 </div>
             </div>
