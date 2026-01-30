@@ -15,7 +15,7 @@ use App\Models\Administraciongenerale;
 use App\Models\Tipodeoficina;
 use App\Models\Tipodispositivo;
 use App\Models\Slotmemoria;
-use App\Models\Administracion;
+use App\Models\AuditoriaInventarioJefatura;
 use App\Models\Custodiagubernamentalgenerale;
 use App\Models\Custodiagubernamentale;
 use App\Models\Jefatura;
@@ -184,6 +184,13 @@ class EditJefaturaGeneral extends Component
         $this->jefatura->tipo_mouse= $this->tipo_mouse ?: null;
         $this->jefatura->tipo_teclado= $this->tipo_teclado ?: null;
         $this->jefatura->softwares_instalados= $this->softwares_instalados ?: null;
+        AuditoriaInventarioJefatura::create([
+        'jefaturagenerale_id' => $this->jefatura->id,
+        'detalles_inventario'   => $this->detalles_inventario,
+        'user_id'               => auth()->id(),
+        'ip_address'            => request()->ip(),
+        'user_agent'            => request()->userAgent(),
+        ]);
 
         $this->jefatura->save();
 

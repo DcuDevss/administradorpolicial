@@ -169,6 +169,7 @@ use App\Http\Livewire\Informatica\Administracion\IndexAdministracionGeneral;
 use App\Http\Livewire\Informatica\Jefatura\CreateJefaturaGeneral;
 use App\Http\Livewire\Informatica\Jefatura\EditJefaturaGeneral;
 use App\Http\Livewire\Informatica\Jefatura\IndexJefaturaGeneral;
+use App\Http\Livewire\Informatica\Jefatura\HistorialJefaturaGeneral;
 
 use App\Http\Livewire\Informatica\Recursos\CreateRecursosGeneral;
 use App\Http\Livewire\Informatica\Recursos\EditRecursosGeneral;
@@ -669,3 +670,6 @@ Route::get('/auditorias', AuditoriaGeneral::class)
 
 Route::get('/historial-investigaciones-general/{investigacioneGeneraleId}', HistorialinvestigacionesGeneral::class)
     ->name('historial-investigaciones-general');
+
+Route::get('/historial-jefatura-general/{jefaturaGeneraleId}', HistorialJefaturaGeneral::class)
+    ->name('historial-jefatura-general');
