@@ -167,7 +167,7 @@ class EditInvestigacionesGeneral extends Component
 
     $this->investigaciones->save();
 
-    // Generar el código QR después de guardar los cambios
+    // Generar el código QR después de guardar los cambioos
     $this->generateQRCode();
 
     session()->flash('message', 'Datos actualizados correctamente.');
