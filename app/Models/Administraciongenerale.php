@@ -50,4 +50,8 @@ class Administraciongenerale extends Model
     {
         return $this->belongsTo('App\Models\Slotmemoria', 'slotmemoria_id', 'id');
     }
+    public function auditorias()
+    {
+        return $this->hasMany(AuditoriaInventarioAdministracion::class);
+    }
 }

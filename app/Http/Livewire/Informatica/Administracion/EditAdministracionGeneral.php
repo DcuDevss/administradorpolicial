@@ -18,6 +18,7 @@ use App\Models\Tipodeoficina;
 use App\Models\Tipodispositivo;
 use App\Models\Slotmemoria;
 use App\Models\Administracion;
+use App\Models\AuditoriaInventarioAdministracion;
 use App\Models\Custodiagubernamentalgenerale;
 use App\Models\Custodiagubernamentale;
 use App\Models\Jefatura;
@@ -155,6 +156,13 @@ class EditAdministracionGeneral extends Component
         $this->administracion->tipo_mouse= $this->tipo_mouse ?: null;
         $this->administracion->tipo_teclado= $this->tipo_teclado ?: null;
         $this->administracion->softwares_instalados= $this->softwares_instalados ?: null;
+        AuditoriaInventarioAdministracion::create([
+        'administraciongenerale_id' => $this->administracion->id,
+        'detalles_inventario'   => $this->detalles_inventario,
+        'user_id'               => auth()->id(),
+        'ip_address'            => request()->ip(),
+        'user_agent'            => request()->userAgent(),
+        ]);
 
         $this->administracion->save();
 

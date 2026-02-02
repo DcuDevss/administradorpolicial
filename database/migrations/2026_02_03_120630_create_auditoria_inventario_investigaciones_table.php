@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('auditoria_inventario_investigaciones', function (Blueprint $table) {
@@ -17,16 +14,13 @@ return new class extends Migration
             $table->text('detalles_inventario');
             $table->timestamps();
 
-            $table->foreign('investigacionegenerale_id')
-            ->references('id')
-            ->on('investigacionegenerales')
-            ->onDelete('cascade');
+            $table->foreign('investigacionegenerale_id', 'fk_aud_inv_invest')
+                ->references('id')
+                ->on('investigacionesgenerales')
+                ->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('auditoria_inventario_investigaciones');
