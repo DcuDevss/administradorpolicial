@@ -11,31 +11,57 @@
    🎨 ESTILOS GLOBALES & RESETEOS DE JETSTREAM
    ============================================ */
 
-/* 1. RESET: Forzar transparencia en contenedores principales de Jetstream */
+/* 1. RESET: Transparencia pero con excepciones para bloques */
 .bg-white,
 .dark .bg-gray-100,
-/* FIX ESPECÍFICO AÑADIDO: Contenedores comunes en Livewire (tablas, paginación, formularios) */
-/* .px-4.py-4.sm\:px-6,  *//* Contenedor de tablas y formularios */
-.bg-gray-50, /* Otro fondo claro común de Tailwind */
+.bg-gray-50,
 .bg-gray-300,
 .shadow-md {
     background-color: transparent !important;
     box-shadow: none !important;
 }
 
-/* 2. Proteger las áreas de contenido de Jetstream (las que envuelven la tabla/formulario) */
+/* 2. Proteger las áreas de contenido */
 .max-w-7xl > div,
 .py-5,
 section {
     background-color: transparent !important;
 }
 
-/* 3. Proteger el texto general de los contenedores para que se vea claro */
+/* 🚀 FIX: SEPARACIÓN DE COLAPSABLES (Acordeones) */
+/* Esto arregla lo que viste en las fotos de Inventario/Investigaciones */
+.border.border-white\/10,
+div[x-data] > div.border,
+.shadow.sm\:rounded-lg {
+    margin-bottom: 0.4rem !important; /* Crea el hueco entre bloques */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 0.5rem !important;
+    background-color: rgba(
+        30,
+        41,
+        59,
+        0.4
+    ) !important; /* Fondo sutil para que se vea el límite */
+}
+
+/* 3. TEXTO GENERAL Y PAGINACIÓN (INTELIGENTE) */
+/* Color general para modo oscuro y selectores */
 .text-gray-900,
 .text-gray-700,
 .text-gray-800,
 .text-gray-600 {
-    color: #666464 !important;
+    color: #ece9e9 !important;
+}
+
+/* Forzar color oscuro SOLO en la paginación cuando hay fondo claro */
+nav[role="navigation"] .text-gray-600,
+nav[role="navigation"] .text-gray-700,
+nav[role="navigation"] p {
+    color: #1e293b !important; /* Un azul/negro oscuro para que se vea sobre el blanco */
+}
+/* Espacio extra al final de las tablas para que no toquen la paginación */
+.overflow-x-auto {
+    padding-bottom: 1.5rem !important;
 }
 
 /* ============================================
@@ -497,6 +523,16 @@ html.light-mode nav[role="navigation"] div p span {
     display: inline !important;
     visibility: visible !important;
     opacity: 1 !important;
+}
+
+html.light-mode nav[role="navigation"] span,
+html.light-mode nav[role="navigation"] a,
+html.light-mode nav[role="navigation"] p {
+    color: #1f2937 !important;
+}
+/* Si estamos en modo oscuro, el texto de la paginación puede ser blanco o gris claro */
+html:not(.light-mode) nav[role="navigation"] p {
+    color: #ffffff !important;
 }
 
 /* ESTILO PARA EL NÚMERO ACTIVO (Igual en ambos modos) */
