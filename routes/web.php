@@ -175,6 +175,7 @@ use App\Http\Livewire\Informatica\Jefatura\HistorialJefaturaGeneral;
 use App\Http\Livewire\Informatica\Recursos\CreateRecursosGeneral;
 use App\Http\Livewire\Informatica\Recursos\EditRecursosGeneral;
 use App\Http\Livewire\Informatica\Recursos\IndexRecursosGeneral;
+use App\Http\Livewire\Informatica\Recursos\HistorialRecursosGeneral;
 
 use App\Http\Livewire\Informatica\Especiales\CreateServiciosespecialesGeneral;
 use App\Http\Livewire\Informatica\Especiales\EditServiciosespecialesGeneral;
@@ -225,6 +226,7 @@ use App\Http\Livewire\Usuarios;
 use App\Models\AuditoriaDetalleInventario;
 
 use App\Http\Livewire\Auditorias\AuditoriaGeneral;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -677,3 +679,6 @@ Route::get('/historial-jefatura-general/{jefaturaGeneraleId}', HistorialJefatura
 
 Route::get('/historial-administracion-general/{administracionGeneraleId}', HistorialAdministracionGeneral::class)
     ->name('historial-administracion-general');
+
+Route::get('/historial-recursos-general/{recursosGeneraleId}', HistorialRecursosGeneral::class)
+    ->name('historial-recursos-general');

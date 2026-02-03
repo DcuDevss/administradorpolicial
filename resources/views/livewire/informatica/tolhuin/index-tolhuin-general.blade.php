@@ -225,8 +225,8 @@
                                             </a>
                                             <a href="{{ route('historial-tolhuin-general', $comu->id) }}"
                                                 class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
-                                                Modificaciones</a>
-
+                                                Modificaciones
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

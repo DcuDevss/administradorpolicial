@@ -22,6 +22,9 @@
                                 <th class="p-1 text-center text-m text-blue-800 font-bold">
                                     Fecha de Modificación
                                 </th>
+                                <th class="p-1 text-center text-m text-blue-800 font-bold">
+                                    Usuario
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,6 +49,9 @@
                                         @else
                                             Sin ediciones
                                         @endif
+                                    </td>
+                                    <td class="p-1 text-center text-m uppercase">
+                                        {{ auth()->user()->name }}
                                     </td>
                                 </tr>
                             @empty

@@ -95,6 +95,12 @@ class IndexRecursosGeneral extends Component
         ->orWhereHas('slotmemoria', function ($query) {
             $query->where('cantidad', 'like', "%{$this->search}%");
         })
+        ->with([
+            'recursohumano',
+            'tipodispositivo',
+            'cantidadram',
+            'slotmemoria',
+        ])
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
 
