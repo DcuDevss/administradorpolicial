@@ -284,16 +284,22 @@
                     </div>
                 </div>
 
-                <div x-data="{ mensaje: '' }" class="mt-6">
-                    <button
-                        type="button"
-                        wire:click="edit"
-                        wire:loading.attr="disabled"
-                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                        <span wire:loading.remove>Guardar cambios</span>
-                        <span wire:loading>Guardando...</span>
-                    </button>
-                </div>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            type="button"
+                            wire:click="edit"
+                            wire:loading.attr="disabled"
+                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            <span wire:loading.remove>Guardar cambios</span>
+                            <span wire:loading>Guardando...</span>
+                        </button>
+                        <button
+                            type="button"
+                            onclick="history.back()"
+                            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                            Cancelar
+                        </button>
+                    </div>
 
             </div>
         </div>

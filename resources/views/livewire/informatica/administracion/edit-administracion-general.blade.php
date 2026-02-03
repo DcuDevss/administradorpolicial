@@ -275,26 +275,21 @@
 
                     </div>
                     <!-- ... resto del código ... -->
-                    <div x-data="{ open: false }" class="shadow-lg">
-                        <div @click="open = !open"
-                            class="flex items-center justify-between bg-slate-400 border p-4 rounded-md transition">
-                            <p class="text-lg font-extrabold text-white">ESTADISTICA</p>
-                            <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
-                        </div>
-                        <div x-show.transition.in.duration.800ms="open" class="border p-4">
-                            <!-- Contenido del acordeón aquí -->
-
-                        </div>
-                    </div>
-                    <div class="mt-6">
-                    <button
-                        type="button"
-                        wire:click="edit"
-                        wire:loading.attr="disabled"
-                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                        <span wire:loading.remove>Guardar cambios</span>
-                        <span wire:loading>Guardando...</span>
-                    </button>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            type="button"
+                            wire:click="edit"
+                            wire:loading.attr="disabled"
+                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            <span wire:loading.remove>Guardar cambios</span>
+                            <span wire:loading>Guardando...</span>
+                        </button>
+                        <button
+                            type="button"
+                            onclick="history.back()"
+                            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                            Cancelar
+                        </button>
                     </div>
                 </div>
             </div>
