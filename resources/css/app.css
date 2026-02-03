@@ -35,7 +35,7 @@ section {
 .text-gray-700,
 .text-gray-800,
 .text-gray-600 {
-    color: #e8eef5 !important;
+    color: #666464 !important;
 }
 
 /* ============================================
@@ -416,4 +416,136 @@ body {
 /* Mata el punto de carga blanco de la pestaña */
 .livewire-loading-indicator {
     display: none !important;
+}
+
+/* ============================================
+    FIX ESPECÍFICO PARA PAGINACIÓN (INVENTARIO)
+   ============================================ */
+
+/* Forzamos que los botones de paginación SÍ tengan fondo y color */
+/* nav[role="navigation"] .inline-flex.shadow-sm.rounded-md {
+    background-color: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    overflow: hidden;
+} */
+
+/* Números y flechas */
+nav[role="navigation"] .inline-flex.shadow-sm.rounded-md a,
+nav[role="navigation"]
+    .inline-flex.shadow-sm.rounded-md
+    span[aria-disabled="true"]
+    span {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* El número de la página activa (ej: el "1" azul) */
+nav[role="navigation"]
+    .inline-flex.shadow-sm.rounded-md
+    span[aria-current="page"]
+    span {
+    background-color: #2563eb !important; /* Azul vibrante */
+    color: #ffffff !important;
+    border-color: #3b82f6 !important;
+}
+
+/* Hover para los números */
+nav[role="navigation"] .inline-flex.shadow-sm.rounded-md a:hover {
+    background-color: #334155 !important;
+}
+
+/* Fix para el texto "Showing 1 to 10..." que se pierde en el fondo */
+nav[role="navigation"] div div p {
+    color: #e8eef5 !important;
+}
+
+/* ===========================================================
+   FIX DEFINITIVO UNIFICADO: PAGINACIÓN SIN SOMBRAS
+   =========================================================== */
+
+/* Quitamos sombras y anillos molestos que pone Tailwind por defecto */
+nav[role="navigation"] .inline-flex,
+nav[role="navigation"] a,
+nav[role="navigation"] span {
+    box-shadow: none !important;
+    outline: none !important;
+    --tw-ring-offset-width: 0px !important;
+    --tw-ring-color: transparent !important;
+    text-shadow: none !important;
+}
+
+/* MODO OSCURO (Tu base actual que ya funciona bien) */
+html:not(.light-mode) nav[role="navigation"] a,
+html:not(.light-mode) nav[role="navigation"] .inline-flex > span {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* MODO CLARO (Limpiamos el sombreado del número) */
+/* html.light-mode nav[role="navigation"] a,
+html.light-mode nav[role="navigation"] .inline-flex > span {
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+    border: 1px solid #e2e8f0 !important;
+} */
+
+html.light-mode nav[role="navigation"] div p,
+html.light-mode nav[role="navigation"] div p span {
+    color: #1e293b !important;
+    display: inline !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ESTILO PARA EL NÚMERO ACTIVO (Igual en ambos modos) */
+nav[role="navigation"] span[aria-current="page"] span {
+    background-color: #2563eb !important; /* Azul sólido */
+    color: #ffffff !important;
+    border-color: #2563eb !important;
+    box-shadow: none !important; /* Sin sombra aquí también */
+}
+
+/* ===========================================================
+   FORZADO DE VISIBILIDAD TOTAL (MODO CLARO)
+   =========================================================== */
+
+/* Forzamos que el contenedor de la paginación sea visible y tenga capa superior */
+nav[role="navigation"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 50 !important;
+}
+
+/* Localizamos el texto "Showing..." específicamente en Modo Claro */
+html.light-mode nav[role="navigation"] div p,
+html.light-mode nav[role="navigation"] div p span {
+    color: #1e293b !important; /* Azul medianoche (bien oscuro) */
+    display: inline !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Si el texto está "escondido" en pantallas pequeñas por las clases de Jetstream */
+nav[role="navigation"] .flex.fill-current {
+    color: #1e293b !important;
+}
+
+/* REVISIÓN DE LAS FLECHAS QUE SE OCULTAN */
+/* Forzamos que el botón de la flecha tenga un ancho mínimo para que no colapse */
+nav[role="navigation"] .inline-flex a,
+nav[role="navigation"] .inline-flex span {
+    min-width: 38px !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* 1. Control del fondo del contenedor principal */
+html.light-mode .container-dinamico {
+    background-color: #ffffff !important; /* Fondo blanco en modo claro */
+    border: 1px solid #e2e8f0;
 }

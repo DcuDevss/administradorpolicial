@@ -13,6 +13,8 @@
                         {{ __('Principal') }}
                     </x-nav-link>
                 </div>
+
+
             </div>
 
 
@@ -75,6 +77,7 @@
                             </svg>
                         </button>
 
+
                         <div x-show="open" @click.away="open = false"
                             class="absolute right-0 mt-2 py-2 w-32 bg-white border border-gray-300 rounded-md shadow-xl">
                             <a href="{{ route('users.index') }}"
@@ -94,9 +97,11 @@
                 @endcan
 
                 @can('tecnico-comunicacion')
-                    <a class="inline-flex items-center justify-center float-right mr-4 px-3 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"
+                    <a class="inline-flex items-center justify-center float-right mr-1 px-3 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"
                         href="{{ route('tecnico-comunicacion') }}">Tec. comunicaciones</a>
                 @endcan
+
+
 
                 {{-- BLOQUE DE GESTIÓN DE EQUIPOS: Envuelto en @auth para prevenir errores si no hay usuario logueado --}}
                 @auth
@@ -152,6 +157,7 @@
                     @endif
                 @endauth
                 {{-- FIN BLOQUE DE GESTIÓN DE EQUIPOS --}}
+
 
                 <div class="ml-3 relative">
                     {{-- BLOQUE DE CONFIGURACIÓN DE PERFIL: Envuelto en @auth para prevenir errores si no hay usuario logueado --}}
@@ -209,6 +215,12 @@
                     @endauth
                     {{-- FIN BLOQUE DE CONFIGURACIÓN DE PERFIL --}}
                 </div>
+                <button onclick="toggleTheme()"
+                    class="inline-flex items-center justify-center px-2 py-2 ml-4 rounded-xl font-semibold text-xs uppercase tracking-widest transition duration-150 ease-in-out border border-white/10 bg-gray-700/50 hover:bg-gray-600 text-white focus:outline-none"
+                    id="nav-theme-toggle">
+                    <span id="theme-icon">🌙</span>
+                    {{-- <span id="theme-text" class="hidden lg:inline">Modo Oscuro</span> --}}
+                </button>
             </div>
 
             <div class="-mr-2 flex items-center md:hidden">
