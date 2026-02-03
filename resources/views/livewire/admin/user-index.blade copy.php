@@ -4,7 +4,7 @@
     <div class="flex justify-start items-center mb-6">
         <div class="w-full">
             <input wire:model.live="search"
-                class="bg-gray-800 appearance-none border-2 border-gray-700 rounded w-full py-2 px-4 text-white leading-tight focus:outline-none focus:bg-gray-700 focus:border-blue-500"
+                class="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded w-full py-2 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:border-blue-500 transition-colors duration-200"
                 type="text" placeholder="Buscar usuario por nombre o email...">
         </div>
     </div>
@@ -83,7 +83,7 @@
 </div>
 
 {{-- *** FUNCIÓN JAVASCRIPT CON SWEETALERT2 *** --}}
-@push('scripts')
+{{-- @push('scripts')
     <script>
         function confirmDelete(userId) {
             Swal.fire({
@@ -101,6 +101,44 @@
                     document.getElementById('delete-form-' + userId).submit();
                 }
             })
+        }
+    </script>
+@endpush --}}
+@push('scripts')
+    <script>
+        function confirmDelete(userId) {
+            // Detenemos cualquier otro evento para que no aparezcan 2 alertas
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            const isLight = document.documentElement.classList.contains('light-mode');
+
+            Swal.fire({
+                title: "¿Estás seguro de eliminar?",
+                text: "¡No podrás revertir esta acción!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626', // Rojo oscuro
+                cancelButtonColor: '#64748b', // Gris azulado
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar',
+                background: isLight ? '#ffffff' : '#1e293b',
+                color: isLight ? '#1e293b' : '#ffffff',
+                customClass: {
+                    popup: 'rounded-xl border border-white/10'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Buscamos el formulario y lo enviamos
+                    const form = document.getElementById('delete-form-' + userId);
+                    if (form) {
+                        form.dataset.confirmed = "true"; // Marcamos como confirmado para el global
+                        form.submit();
+                    }
+                }
+            });
         }
     </script>
 @endpush

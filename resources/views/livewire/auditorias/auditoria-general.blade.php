@@ -1,5 +1,5 @@
 <div class="px-6 py-4">
-    <div class="bg-gray-800 shadow rounded-lg">
+    <div class="container-dinamico bg-gray-800 shadow rounded-lg">
 
         <!-- 🔍 FILTROS -->
         <div class="flex flex-wrap gap-3 p-4">

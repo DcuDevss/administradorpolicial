@@ -198,6 +198,9 @@
             color: #475569 !important;
         }
 
+
+
+
         /* 8. EXCEPCIÓN PARA TEXTOS SOBRE IMÁGENES O FOTOS OSCURAS */
         /* Esta regla busca textos que estén dentro de contenedores con fondo de imagen */
         html.light-mode .relative h1,
@@ -211,7 +214,10 @@
             /* Mantenemos blanco sobre las fotos */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
             /* Agregamos sombra para legibilidad */
+
         }
+
+
 
         /* 9. EXCEPCIÓN ESPECÍFICA PARA TUS CARDS DE "ÁREAS OPERATIVAS" */
         /* Si usas una clase específica para esas fotos, agrégala aquí */
@@ -303,9 +309,9 @@
         </footer>
     </div>
 
-    <button onclick="toggleTheme()" id="theme-toggle-btn">
+   {{--  <button onclick="toggleTheme()" id="theme-toggle-btn">
         <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
-    </button>
+    </button> --}}
 
     @stack('modals')
     @livewireScripts
