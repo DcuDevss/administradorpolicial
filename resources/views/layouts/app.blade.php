@@ -34,7 +34,31 @@
 
     <style>
         /* ================================
-   MODO CLARO – FONDO + CAPAS desde aca
+   MODO OSCURO – FONDO + CAPAS
+   ================================ */
+
+        /* Base */
+        html:not(.light-mode) body {
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Fondo oscuro SIEMPRE atrás */
+        html:not(.light-mode) body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url('/foto/base.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -10;
+            pointer-events: none;
+            filter: brightness(0.85) contrast(1.05);
+        }
+
+        /* ================================
+   MODO CLARO – FONDO + CAPAS
    ================================ */
 
         /* Base */
@@ -43,7 +67,7 @@
             z-index: 0;
         }
 
-        /* Fondo con imagen SIEMPRE atrás */
+        /* Fondo claro SIEMPRE atrás */
         html.light-mode body::before {
             content: "";
             position: fixed;
@@ -65,7 +89,10 @@
         /* Contenido general (tablas, cards, vistas) */
         html.light-mode main,
         html.light-mode main>div,
-        html.light-mode .max-w-7xl {
+        html.light-mode .max-w-7xl,
+        html:not(.light-mode) main,
+        html:not(.light-mode) main>div,
+        html:not(.light-mode) .max-w-7xl {
             position: relative;
             z-index: 20;
         }
@@ -218,7 +245,7 @@
             color: #ffffff !important;
         }
 
-        /* 5. HEADER Y FOOTER - VERSIÓN COMPACTA */
+        /* 5. HEADER Y FOOTER - VERSIÓN COMPACTA Este es en modo claro*/
         html.light-mode header {
             background-color: rgba(241, 245, 249, 0.92) !important;
             color: #000000 !important;
@@ -237,7 +264,7 @@
         }
 
         html.light-mode footer {
-            background-color: rgba(241, 245, 249, 0.95) !important;
+            background-color: #03084769 !important;
             color: #1e293b !important;
             border-top: 1px solid rgba(15, 23, 42, 0.12) !important;
             padding-top: 0.25rem !important;
@@ -396,10 +423,17 @@
         </main>
 
         <footer
-            class="text-center footer-tight bg-gray-800 font-semibold text-xs text-white left-0 w-full shadow-lg z-20 flex items-center justify-center space-x-2 py-3 transition-all">
-            <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo" class="h-8 w-auto"
-                loading="lazy" decoding="async">
-            <p class="m-0">© 2024 Policía de Tierra del Fuego.</p>
+            class="text-center bg-gray-900/90 dark:bg-black/80 backdrop-blur-md font-medium text-[10px] md:text-xs text-gray-300 left-0 w-full z-20 flex items-center justify-center space-x-3 py-3 border-t border-white/5 transition-all">
+
+            {{-- Escudo con filtro para suavizar bordes --}}
+            <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo"
+                class="h-7 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300" loading="lazy"
+                decoding="async">
+
+            {{-- Texto con espaciado mejorado --}}
+            <p class="m-0 tracking-wider uppercase">
+                © {{ date('Y') }} <span class="text-white">Policía de Tierra del Fuego</span>
+            </p>
         </footer>
     </div>
 

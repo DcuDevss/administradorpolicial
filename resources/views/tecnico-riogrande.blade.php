@@ -1,14 +1,14 @@
 <x-app-layout>
 
     {{-- FONDO GENERAL IGUAL AL DE LA OTRA VISTA --}}
-    <style>
+    {{--  <style>
         body {
             background-image: url('{{ asset('foto/base.webp') }}');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-    </style>
+    </style> --}}
 
     {{-- TÍTULO --}}
     <div class="text-center text-xl font-bold text-white mb-4 mt-4">
