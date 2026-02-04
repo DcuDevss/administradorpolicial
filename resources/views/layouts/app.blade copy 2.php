@@ -31,12 +31,7 @@
             MODO CLARO PARA LARAVEL (POLICE CLEAN STYLE)
             =========================================================== */
 
-        /* 1. Fondo General y Reseteo */
-        html.light-mode body {
-            background-color: #f1f5f9 !important;
-            background-image: none !important;
-            color: #1e293b !important;
-        }
+
 
         /* 2. Contenedores de Blade (Solo Divs, NO botones) */
         html.light-mode div.bg-\[\#1e293b\]\/60,
@@ -308,8 +303,8 @@
     @stack('modals')
     @livewireScripts
 
-<script defer src="https://unpkg.com/@fullcalendar/core@6.1.20/index.global.min.js"></script>
-<script defer src="https://unpkg.com/@fullcalendar/daygrid@6.1.20/index.global.min.js"></script>
+    <script defer src="https://unpkg.com/@fullcalendar/core@6.1.20/index.global.min.js"></script>
+    <script defer src="https://unpkg.com/@fullcalendar/daygrid@6.1.20/index.global.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
