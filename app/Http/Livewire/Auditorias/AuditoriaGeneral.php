@@ -31,14 +31,46 @@ class AuditoriaGeneral extends Component
     {
         $s = mb_strtolower(trim($this->search));
 
-        $audits = Audit::with(['user', 'auditable'])
+        // 🟢 CARGA OPTIMIZADA: Incluimos todas las posibles relaciones de los modelos "Generale"
+        $audits = Audit::with([
+            'user',
+            'auditable' => function ($morphTo) {
+                $morphTo->morphWith([
+                    \App\Models\Generalinformatica::class => [
+                        'dependenciaushuaia',
+                        'cientifica',
+                        'serviciosespeciale',
+                        'custodiagubernamentale',
+                        'investigacione',
+                        'recursohumano',
+                        'jefatura',
+                        'administracion'
+                    ],
+                    \App\Models\Riograndegenerale::class => [
+                        'dependencia_riogrande',
+                        'riogrande'
+                    ],
+                    \App\Models\Tolhuingenerale::class => [
+                        'dependencia_tolhuin',
+                        'tolhuin'
+                    ],
+                    \App\Models\Investigacionesgenerale::class => ['investigacione'],
+                    \App\Models\Jefaturagenerale::class => ['jefatura'],
+                    \App\Models\Recursoshumanosgenerale::class => ['recursohumano', 'bienestare', 'sumario'],
+                    \App\Models\Serviciosespecialesgenerale::class => ['serviciosespeciale'],
+                ]);
+            }
+        ])
+
+
+            /*   $audits = Audit::with(['user', 'auditable'])
             // 🔎 búsqueda general
             ->when($s !== '', function ($q) use ($s) {
                 $q->where(function ($w) use ($s) {
                     $w->whereRaw('LOWER(action) LIKE ?', ["%{$s}%"])
                         ->orWhereRaw('LOWER(description) LIKE ?', ["%{$s}%"]);
                 });
-            })
+            }) */
             // 🎯 filtros
             ->when(
                 $this->action !== '',

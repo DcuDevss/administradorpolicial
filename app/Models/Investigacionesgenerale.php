@@ -48,8 +48,13 @@ class Investigacionesgenerale extends Model
     {
         return $this->belongsTo('App\Models\Slotmemoria', 'slotmemoria_id', 'id');
     }
-        public function auditorias()
+    public function auditorias()
     {
         return $this->hasMany(AuditoriaInventarioInvestigaciones::class);
+    }
+
+    public function auditLabel(): string
+    {
+        return 'Ushuaia – Investigaciones: ' . ($this->investigacione->nombre ?? 'Sin oficina');
     }
 }
