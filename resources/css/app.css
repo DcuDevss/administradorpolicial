@@ -2,405 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ocultar elementos con x-cloak */
-[x-cloak] {
-    display: none;
-}
-
 /* ============================================
-   🎨 ESTILOS GLOBALES & RESETEOS DE JETSTREAM
+   🚀 RESETEOS GLOBALES Y COMPORTAMIENTO BASE
    ============================================ */
 
-/* 1. RESET: Forzar transparencia en contenedores principales de Jetstream */
-.bg-white,
-.dark .bg-gray-100,
-/* FIX ESPECÍFICO AÑADIDO: Contenedores comunes en Livewire (tablas, paginación, formularios) */
-/* .px-4.py-4.sm\:px-6,  *//* Contenedor de tablas y formularios */
-.bg-gray-50, /* Otro fondo claro común de Tailwind */
-.bg-gray-300,
-.shadow-md {
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-
-/* 2. Proteger las áreas de contenido de Jetstream (las que envuelven la tabla/formulario) */
-.max-w-7xl > div,
-.py-5,
-section {
-    background-color: transparent !important;
-}
-
-/* 3. Proteger el texto general de los contenedores para que se vea claro */
-.text-gray-900,
-.text-gray-700,
-.text-gray-800,
-.text-gray-600 {
-    color: #e8eef5 !important;
-}
-
-/* ============================================
-   🔥 FORMULARIOS OSCUROS LEGIBLES – GLOBAL
-   ============================================ */
-
-/* Labels */
-label {
-    color: #e8eef5 !important; /* texto claro */
-    font-weight: 600;
-}
-
-/* Inputs, selects, textareas (Todos los campos de formulario) */
-input,
-select,
-textarea {
-    color: #ffffff !important;
-    background-color: rgba(0, 0, 0, 0.35) !important; /* Glass suave */
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 0.25rem;
-}
-
-input::placeholder,
-textarea::placeholder {
-    color: rgba(255, 255, 255, 0.55) !important;
-}
-
-/* Focus: resalta el campo cuando se está editando */
-input:focus,
-select:focus,
-textarea:focus {
-    background-color: rgba(0, 0, 0, 0.45) !important;
-    border-color: #4f9cff !important;
-    outline: none !important;
-    box-shadow: 0 0 8px rgba(79, 156, 255, 0.4);
-}
-
-/* ============================================
-   🎨 TABLAS GLOBALES PROFESIONALES (Glass Effect)
-   ============================================ */
-
-table {
-    @apply w-full text-gray-100 rounded-lg overflow-hidden;
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(6px);
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-/* encabezado */
-thead tr {
-    background: rgba(0, 0, 0, 0.55);
-}
-
-th {
-    @apply px-4 py-3 text-left font-semibold uppercase tracking-wider text-gray-200;
-    color: #ffffff !important;
-    background: rgba(0, 0, 0, 0.6) !important;
-}
-
-/* filas */
-tbody tr {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    transition: background 0.15s ease;
-}
-
-/* Rayado sutil para legibilidad (Zebra-striping) */
-tbody tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.05);
-}
-tbody tr:nth-child(odd) {
-    background: rgba(255, 255, 255, 0.02);
-}
-
-/* hover elegante */
-tbody tr:hover {
-    background: rgba(255, 255, 255, 0.12) !important;
-}
-
-/* celdas */
-td {
-    @apply px-4 py-3 text-sm text-gray-200;
-    color: #e8eef5 !important;
-}
-
-/* ============================================
-   ⚠️ CORRECCIÓN DE BOTONES Y MENÚS DESPLEGABLES (FIX FINAL)
-   ============================================ */
-
-/* 1. FIX DE BOTONES */
-.btn-color-fix,
-.bg-indigo-600, /* Clase común en botones de Jetstream */
-.bg-gray-200 {
-    /* Clase común en botones de Jetstream */
-    /* Reseteamos el fondo para que acepte el color de la clase Tailwind que tenga */
-    background-color: initial !important;
-}
-
-/* Estilo para los botones primarios (ej. el botón "Save") */
-/* Buscamos el componente <x-button> o la clase que produce Jetstream para el botón primario */
-/* ============================================
-    1. FIX DE BOTONES
-    ============================================ */
-
-/* ... (Las reglas de reseteo 'background-color: initial !important' se mantienen) ... */
-
-/* Estilo para los botones primarios (ej. el botón "Save") */
-/* Buscamos el componente <x-button> o la clase que produce Jetstream para el botón primario */
-/* 1. TUS ESTILOS ORIGINALES (Color y Diseño) */
-button[type="submit"],
-.inline-flex.items-center.px-4.py-2.bg-gray-800,
-button[type="button"].inline-flex.items-center.bg-gray-800 {
-    background-color: #4f9cff !important;
-    color: #ffffff !important;
-    border: none !important;
-    border-radius: 0.25rem !important;
-    padding: 0.5rem 1rem !important;
-    transition: background-color 0.2s;
-}
-
-button[type="submit"]:hover,
-.inline-flex.items-center.px-4.py-2.bg-gray-800:hover,
-button[type="button"].inline-flex.items-center.bg-gray-800:hover {
-    background-color: #2563eb !important;
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
-    transition: all 0.3s ease;
-}
-
-/* 2. COMPLEMENTO PARA VELOCIDAD Y CARGA */
-
-/* Mantiene el botón firme aunque cambie el texto a "Cargando..." */
-button[type="submit"] {
-    min-width: 140px; /* Ajusta según el largo de tu texto */
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Evita el parpadeo blanco molesto de Livewire */
-[wire\:loading] {
-    display: none; /* Esto oculta cualquier indicador de carga que no hayas definido tú */
-}
-
-/*se vea suave */
-[wire\:loading].show {
-    display: inline-block !important;
-    transition: opacity 0.3s;
-}
-
-/* 2. Corregir Menús Desplegables de Jetstream/Usuario (Fondo Sólido legible) */
-.bg-white.shadow-xl,
-.dark .bg-gray-700,
-.origin-top-right,
-.bg-gray-300,
-/* SELECTORES COMUNES PARA EL CONTENEDOR DE OPCIONES DE FORMULARIO/LIVEWIRE */
-div[x-show].absolute,
-div[x-show][style*="display: block"],
-div[role="listbox"] {
-    /* Si el select es un componente avanzado */
-    background-color: rgba(0, 0, 0, 0.6) !important;
-    backdrop-filter: blur(4px) !important;
-    color: #ffffff !important;
-    border-radius: 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-/* 2.1 Estilo de las Opciones/Ítems dentro del menú */
-.origin-top-right a,
-.origin-top-right div,
-.origin-top-right a.block,
-.origin-top-right div.block,
-.block.px-4.py-2.text-sm {
-    color: #e8eef5 !important;
-    background-color: transparent !important;
-    padding: 0.5rem 1rem;
-}
-
-/* 2.2 Hover de las Opciones */
-.origin-top-right a:hover,
-.origin-top-right div:hover,
-.dark .hover\:bg-gray-600:hover,
-.hover\:bg-gray-100:hover,
-.block.px-4.py-2.text-sm:hover {
-    background-color: rgba(
-        79,
-        156,
-        255,
-        0.15
-    ) !important; /* Azul sutil al hacer hover */
-    color: #4f9cff !important;
-}
-
-/* ============================================
-    FIXES DE ESPECIFICIDAD PARA CONTENEDOR DE CONTENIDO
-    ============================================ */
-
-/* 1. Proteger el div principal con bg-slate-800 (Sobreescribe el Bloque 2: .max-w-7xl > div) */
-/* El selector más específico y seguro */
-.max-w-7xl > div.bg-slate-800 {
-    background-color: #1e293b !important;
-    box-shadow: initial !important;
-    color: #e8eef5 !important;
-}
-
-/* 2. Proteger el padding común cuando está en el contenedor oscuro (Sobreescribe el Bloque 1: .px-4.py-4.sm\:px-6) */
-/* Esto cubre si el div con bg-slate-800 también tiene clases de padding */
-.bg-slate-800.px-4.py-4.sm\:px-6 {
-    /* Forzamos el color real de slate-800, ganando sobre la transparencia */
-    background-color: #1e293b !important;
-}
-
-/* 3. Protección general para la clase bg-slate-800 */
-.bg-slate-800 {
-    background-color: #1e293b !important;
-}
-
-/* ============================================
-    FIX DE BOTONES DE FONDO BLANCO (Team Switcher)
-    ============================================ */
-
-/* Apuntamos al botón con clase bg-white y aumentamos la especificidad */
-/* Usamos el color blanco (#ffffff) para anular el 'transparent !important' */
-button.bg-white,
-a.bg-white {
-    background-color: #ffffff !important;
-
-    /* Manejo de estados hover/focus para que se vean bien */
-    &:hover {
-        background-color: #f3f4f6 !important; /* bg-gray-100 */
-    }
-
-    /* El color de texto de este botón es text-gray-500, no lo modificamos aquí */
-}
-
-/* ------------------------------------------------------------------------ */
-
-/* Intento de forzar el estilo a las opciones del menú nativo */
-select option {
-    background-color: #1f2937 !important; /* Fondo oscuro sólido */
-    color: #ffffff !important;
-}
-
-select option:checked,
-select option:hover {
-    background-color: #4f9cff !important; /* Azul en la opción seleccionada */
-}
-
-/* ============================================
-    FIX DE ESPECIFICIDAD: BOTONES DE DEPENDENCIA
-    ============================================ */
-/* Apunta a los botones con bg-slate-800 que están dentro del contenedor de botones.
-   Esto fuerza el color azul primario para que contrasten. */
-.text-center button.bg-slate-800,
-.justify-center button.bg-slate-800 {
-    background-color: #4f9cff !important; /* AZUL PRIMARIO FUERTE */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil para separarlos */
-    transition: background-color 0.2s ease;
-}
-
-/* Opcional: Estilo Hover para estos botones */
-.text-center button.bg-slate-800:hover,
-.justify-center button.bg-slate-800:hover {
-    background-color: #3b7ed8 !important; /* Un azul ligeramente más oscuro al pasar el ratón */
-}
-
-/* Ajuste fino para el footer, si py-0 de Tailwind es demasiado poco */
-.footer-tight {
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-}
-
-/* ============================================
-   FIX DE MODALES SÓLIDAS Y COLORES ESPECÍFICOS (SOLUCIÓN DEFINITIVA)
-   ============================================ */
-
-/* 1. Fuerza el fondo y la sombra del contenedor de la modal */
-div.bg-white.p-4.rounded-md.shadow-md {
-    /* Fondo sólido y oscuro para contraste */
-    background-color: #1e293b !important;
-
-    /* Restaurar sombra */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
-}
-
-/* 2. FUERZA el color CLARO para la etiqueta que tiene text-metric-primary */
-div.bg-white.p-4.rounded-md.shadow-md .text-metric-primary {
-    color: #e8eef5 !important;
-}
-
-/* 3. FUERZA el color CLARO para el TÍTULO H2 (que no tiene clase de color) */
-div.bg-white.p-4.rounded-md.shadow-md h2 {
-    color: #e8eef5 !important;
-}
-
-/* 4. REAFIRMAR el color ROJO. Es crucial para que gane a cualquier otro !important. */
-.text-red-800 {
-    color: #b91c1c !important; /* Rojo 800 de Tailwind (hex value) */
-}
-
-/* Métricas secundarias */
-.text-metric-secondary {
-    color: #ffffff !important; /* púrpura visible sobre fondo oscuro */
-    font-weight: 700;
-}
-
-.text-metric-primary {
-    color: #ffffff !important; /*cambio color tipografia en inventario*/
-    font-weight: 700;
-}
-
-/* 5. FIX FINAL para STRONG (donde están los contadores rojos)
-   Esto asegura que la herencia no arruine el color rojo si la regla .text-red-800 falla. */
-div.bg-white.p-4.rounded-md.shadow-md strong.text-red-800 {
-    color: #b91c1c !important;
-}
-
-/*------------------MODAL SCROL---------------*/
-
-/* ---------------------------------------------------- */
-/* 1. ADAPTACIÓN DE ANCHO PARA PANTALLAS PEQUEÑAS (Móviles) */
-/* ---------------------------------------------------- */
-@media screen and (max-width: 640px) {
-    /* Buscamos todos los elementos que tengan la clase w-96 */
-    /* y forzamos su ancho a ser adaptable en móviles */
-    .w-96 {
-        /* Ocupa el 90% del ancho de la pantalla */
-        width: 90vw !important;
-
-        /* Aseguramos que nunca sea más grande que su ancho normal */
-        max-width: 384px !important;
-
-        /* Centramos el elemento si la vista lo permite */
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-}
-/* ---------------------------------------------------- */
-/* 2. GESTIÓN DE SCROLL VERTICAL DENTRO DE MODALES */
-/* ---------------------------------------------------- */
-
-/* Seleccionamos el div que contiene la lista de detalles */
-/* Asume que el contenedor principal es un w-96 (o el que estés usando para el modal) */
-.w-96 > h2 + .mb-4 {
-    /* Altura máxima del contenido: 100% de la ventana - lo que ocupan título y botones */
-    max-height: calc(100vh - 200px);
-
-    /* Activa el scroll vertical si el contenido excede la altura */
-    overflow-y: auto;
-
-    /* Oculta cualquier overflow horizontal residual, aunque ya corregimos w-96 */
-    overflow-x: hidden;
-
-    /* Añade un poco de espacio para la barra de scroll */
-    padding-right: 0.5rem;
-}
-
-/* Oculta el contenido hasta que Livewire esté listo */
+/* Ocultar elementos con x-cloak de Alpine.js antes de cargar */
 [x-cloak] {
     display: none !important;
 }
 
-/* Suaviza la transición de la página entera */
+/* Suaviza la transición de cambio de página */
 body {
-    view-transition-name: main-content; /* Función moderna de navegadores */
+    view-transition-name: main-content;
     animation: fadeIn 0.3s;
 }
 
@@ -413,7 +26,485 @@ body {
     }
 }
 
-/* Mata el punto de carga blanco de la pestaña */
+/* Mata el indicador de carga blanco molesto de Livewire en la pestaña */
 .livewire-loading-indicator {
     display: none !important;
+}
+
+/* Evita parpadeos de carga en elementos wire:loading */
+[wire\:loading] {
+    display: none;
+}
+[wire\:loading].show {
+    display: inline-block !important;
+    transition: opacity 0.3s;
+}
+
+/* ============================================
+   🎨 SISTEMA DE TRANSPARENCIAS Y BLOQUES (JETSTREAM)
+   ============================================ */
+
+/* 1. RESET: Forzar transparencia en contenedores estándar para lucir el fondo de la app */
+.bg-white,
+.dark .bg-gray-100,
+.bg-gray-50,
+.bg-gray-300,
+.shadow-md {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Ver sión alternativa para contenedores con sombra */
+/* 🛠️ EXCEPCIÓN: Forzar el reborde en las tarjetas de chat/usuarios */
+.user-chat-card {
+    /* Forzamos un borde sólido para que se vea el límite del cuadro */
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
+    border-radius: 12px;
+    backdrop-filter: blur(
+        4px
+    ); /* Opcional: para que se lea mejor sobre el fondo técnico */
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.05
+    ) !important; /* Un toque de blanco casi invisible */
+    transition: all 0.3s ease;
+}
+
+/* Ajuste para que el borde se invierta correctamente con tu filtro .dark */
+.dark .user-chat-card {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/*hasta aca */
+
+/* 2. ÁREAS DE CONTENIDO: Elimina fondos en las secciones que envuelven tablas o formularios */
+.max-w-7xl > div,
+.py-5,
+section {
+    background-color: transparent !important;
+}
+
+/* 3. SEPARACIÓN DE COLAPSABLES (Acordeones/Inventario) */
+/* Añade margen y bordes para que los bloques no se peguen entre sí */
+.border.border-white\/10,
+div[x-data] > div.border,
+.shadow.sm\:rounded-lg {
+    margin-bottom: 0.8rem !important; /* Espacio entre bloques */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 0.5rem !important;
+    background-color: rgba(
+        30,
+        41,
+        59,
+        0.4
+    ) !important; /* Fondo sutil para distinguir el bloque */
+}
+
+/* Espaciado interno para los encabezados de los colapsables */
+.flex.items-center.justify-between {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+/* ============================================
+   📑 TEXTOS Y TIPOGRAFÍA (INTELIGENTE POR MODOS)
+   ============================================ */
+
+/* Color de texto general para Modo Oscuro y menús */
+.text-gray-900,
+.text-gray-700,
+.text-gray-800,
+.text-gray-600 {
+    color: #ece9e9 !important;
+}
+
+/* 🎯 EXCEPCIÓN MODO CLARO: Forzar visibilidad cuando el fondo es blanco */
+html.light-mode .text-gray-600,
+html.light-mode .text-gray-700,
+html.light-mode nav[role="navigation"] p,
+html.light-mode nav[role="navigation"] span,
+html.light-mode nav[role="navigation"] a {
+    color: #000307 !important;
+}
+
+/* Forzar color oscuro SOLO en la paginación cuando hay fondo claro */
+nav[role="navigation"] .text-gray-600,
+nav[role="navigation"] .text-gray-700,
+nav[role="navigation"] p {
+    color: #1e293b !important; /* Un azul/negro oscuro para que se vea sobre el blanco */
+}
+
+/* Si estamos en modo oscuro explícito, forzamos texto blanco en paginación */
+html:not(.light-mode) nav[role="navigation"] p {
+    color: #ffffff !important;
+}
+
+/* Color rojo crítico para contadores o alertas */
+.text-red-800 {
+    color: #b91c1c !important;
+}
+
+/* ============================================
+   🔥 FORMULARIOS Y SELECTS (ESTILO GLASS)
+   ============================================ */
+
+label {
+    color: #e8eef5 !important;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    color: #ffffff !important;
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.35
+    ) !important; /* Efecto cristal oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 0.25rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Efecto al seleccionar un campo */
+input:focus,
+select:focus,
+textarea:focus {
+    background-color: rgba(0, 0, 0, 0.45) !important;
+    border-color: #4f9cff !important;
+    box-shadow: 0 0 8px rgba(79, 156, 255, 0.4);
+}
+
+/* Forzar estilo oscuro en las opciones de los menús desplegables nativos */
+select option {
+    background-color: #1f2937 !important;
+    color: #ffffff !important;
+}
+select option:checked {
+    background-color: #4f9cff !important;
+}
+
+/* ============================================
+   🎨 TABLAS (GLASS EFFECT PROFESIONAL)
+   ============================================ */
+
+table {
+    @apply w-full text-gray-100 rounded-lg overflow-hidden;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+thead tr {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+th {
+    @apply px-4 py-3 text-left font-semibold uppercase tracking-wider text-gray-200;
+    color: #ffffff !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.15s ease;
+}
+
+/* Zebra-striping (filas alternas) */
+tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+tbody tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+}
+
+td {
+    @apply px-4 py-3 text-sm text-gray-200;
+    color: #e8eef5 !important;
+}
+
+/* Espacio inferior para que la tabla no toque la paginación */
+.overflow-x-auto {
+    padding-bottom: 1.5rem !important;
+}
+
+/* ============================================
+   ⚠️ BOTONES Y MENÚS DESPLEGABLES (FIXES)
+   ============================================ */
+
+/* Reset general para botones de Jetstream */
+.btn-color-fix,
+.bg-indigo-600,
+.bg-gray-200 {
+    background-color: initial !important;
+}
+
+/* Botones Primarios (Submit / Guardar) */
+button[type="submit"],
+.inline-flex.items-center.px-4.py-2.bg-gray-800,
+button[type="button"].inline-flex.items-center.bg-gray-800 {
+    background-color: #4f9cff !important;
+    color: #ffffff !important;
+    border-radius: 0.25rem !important;
+    min-width: 140px;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #2563eb !important;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+}
+
+/* Botones específicos de Dependencias (Azul fuerte) */
+.text-center button.bg-slate-800,
+.justify-center button.bg-slate-800 {
+    background-color: #4f9cff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Botón blanco (Team Switcher) */
+button.bg-white,
+a.bg-white {
+    background-color: #ffffff !important;
+}
+button.bg-white:hover {
+    background-color: #f3f4f6 !important;
+}
+
+/* Menús desplegables de Usuario (Top Right) */
+.origin-top-right,
+div[role="listbox"],
+div[x-show].absolute {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+}
+
+.origin-top-right a,
+.origin-top-right div {
+    color: #e8eef5 !important;
+    background-color: transparent !important;
+}
+
+.origin-top-right a:hover {
+    background-color: rgba(79, 156, 255, 0.15) !important;
+    color: #4f9cff !important;
+}
+
+/* ============================================
+    ⚠️ MENÚS DESPLEGABLES DE USUARIO (TOP RIGHT)
+   ============================================ */
+
+/* 1. ESTILO BASE (Modo Oscuro / Glass) */
+.origin-top-right,
+div[role="listbox"],
+div[x-show].absolute {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    overflow: hidden; /* Asegura que el hover no se salga de las esquinas redondeadas */
+}
+
+.origin-top-right a,
+.origin-top-right button,
+.origin-top-right .block {
+    color: #e8eef5 !important;
+    background-color: transparent !important;
+    display: block !important;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+/* Hover Modo Oscuro */
+.origin-top-right a:hover,
+.origin-top-right button:hover {
+    background-color: rgba(79, 156, 255, 0.15) !important;
+    color: #4f9cff !important;
+}
+
+/* 2. 🎯 FIX PARA MODO CLARO (Solución al pintado total) */
+
+html.light-mode .origin-top-right,
+html.light-mode div[role="listbox"],
+html.light-mode div[x-show].absolute {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: none !important;
+}
+
+/* Texto en modo claro */
+html.light-mode .origin-top-right a,
+html.light-mode .origin-top-right button,
+html.light-mode .origin-top-right div,
+html.light-mode .block.px-4.py-2.text-sm {
+    color: #1e293b !important;
+}
+
+/* 🔥 FIX HOVER INDIVIDUAL: Solo se pinta la fila seleccionada */
+html.light-mode .origin-top-right a:hover,
+html.light-mode .origin-top-right button:hover {
+    background-color: #2563eb !important; /* Un gris azulado suave para no saturar */
+    color: #2563eb !important;
+}
+
+/* Si quieres mantener tu verde, usa esta línea en lugar de la anterior:
+   background-color: #51cf16 !important; color: #ffffff !important;
+*/
+
+/* Quitar el hover del div contenedor para evitar que se pinte todo el bloque */
+html.light-mode .origin-top-right div:hover {
+    background-color: transparent;
+}
+
+/* ============================================
+   🧩 MODALES Y MÉTRICAS (SOLUCIÓN SÓLIDA)
+   =========================================== */
+
+/* Contenedor de Modal */
+div.bg-white.p-4.rounded-md.shadow-md {
+    background-color: #1e293b !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Texto dentro de modales */
+div.bg-white.p-4.rounded-md.shadow-md h2,
+div.bg-white.p-4.rounded-md.shadow-md .text-metric-primary {
+    color: #e8eef5 !important;
+}
+
+.text-metric-secondary,
+.text-metric-primary {
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
+/* Asegurar que los contadores rojos dentro de modales se vean */
+div.bg-white.p-4.rounded-md.shadow-md strong.text-red-800 {
+    color: #b91c1c !important;
+}
+
+/* ============================================
+   📱 RESPONSIVIDAD Y SCROLL
+   ============================================ */
+
+/* Adaptación de modales w-96 en móviles */
+@media screen and (max-width: 640px) {
+    .w-96 {
+        width: 90vw !important;
+        max-width: 384px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* Scroll vertical en modales largos */
+.w-96 > h2 + .mb-4 {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+}
+
+/* Footer ultra-fino */
+.footer-tight {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+/* ============================================
+   🔢 PAGINACIÓN (SISTEMA UNIFICADO)
+   ============================================ */
+
+/* Forzado de visibilidad del contenedor */
+nav[role="navigation"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 50 !important;
+}
+
+/* Botones básicos (Números y Flechas) */
+nav[role="navigation"] .inline-flex.shadow-sm.rounded-md a,
+nav[role="navigation"]
+    .inline-flex.shadow-sm.rounded-md
+    span[aria-disabled="true"]
+    span {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    min-width: 38px;
+    display: inline-flex !important;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Número de página activa */
+nav[role="navigation"] span[aria-current="page"] span {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    border-color: #3b82f6 !important;
+}
+
+/* Hover en números */
+nav[role="navigation"] .inline-flex.shadow-sm.rounded-md a:hover {
+    background-color: #334155 !important;
+}
+
+/* Texto de contador "Showing X to Y..." */
+nav[role="navigation"] div div p {
+    color: #e8eef5 !important;
+}
+
+/* ============================================
+   ⚪ ESPECÍFICOS MODO CLARO (FORZADO FINAL)
+   ============================================ */
+
+html.light-mode .container-dinamico {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0;
+}
+
+/* Texto de paginación en Modo Claro */
+html.light-mode nav[role="navigation"] div p,
+html.light-mode nav[role="navigation"] div p span {
+    color: #1e293b !important;
+}
+
+/* Esta clase rescata el borde que el reset de .bg-white y .shadow-md elimina */
+.user-card-chat {
+    /* Forzamos un fondo con mínima opacidad para que no desaparezca del todo */
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    /* Forzamos el borde que el Reset oculta */
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(
+        8px
+    ); /* Esto hace que se vea premium sobre el fondo técnico */
+}
+
+/* En modo oscuro, por el filtro invert, necesitamos que el borde sea más claro */
+.dark .user-card-chat {
+    border-color: rgba(255, 255, 255, 0.3) !important;
 }

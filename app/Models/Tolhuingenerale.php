@@ -68,6 +68,6 @@ class Tolhuingenerale extends Model
     }
     public function auditLabel(): string
     {
-        return 'Tolhuin – ' . optional($this->dependencia_tolhuin)->nombre;
+        return 'Tolhuin – ' . ($this->dependencia_tolhuin->nombre ?? 'Sin dependencia');
     }
 }

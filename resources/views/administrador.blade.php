@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <style>
+  {{--   <style>
         /* Fondo general */
         body {
             background-image: url('{{ asset('foto/base.webp') }}');
@@ -8,7 +8,7 @@
             background-position: center;
             background-attachment: fixed;
         }
-    </style>
+    </style> --}}
 
     <h1 class="text-center text-xl font-bold text-white mb-4 mt-4">Administrador</h1>
 

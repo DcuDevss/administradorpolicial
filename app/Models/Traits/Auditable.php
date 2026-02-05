@@ -17,6 +17,11 @@ trait Auditable
         });
 
         static::updated(function ($model) {
+            // EVITAR DUPLICADO: Si el modelo fue creado en este mismo ciclo de vida, no auditar update inicial
+            if ($model->wasRecentlyCreated) {
+                return;
+            }
+
             AuditLogger::log(
                 static::auditAction('update'),
                 $model,
@@ -33,34 +38,16 @@ trait Auditable
         });
     }
 
-    /*  protected static function auditAction(string $event): string
-    {
-        return match ($event) {
-            'create' => 'Equipo Creado',
-            'update' => 'Equipo Actualizado',
-            'delete' => 'Equipo Eliminado',
-        };
-    } */
-
     protected static function auditAction(string $event): string
     {
         return $event; // create | update | delete
     }
 
-    /*  protected static function auditDescription(string $event, $model): string
-    {
-        return match ($event) {
-            'create' => 'Alta de ' . class_basename($model),
-            'update' => 'Edición de ' . class_basename($model),
-            'delete' => 'Eliminación de ' . class_basename($model),
-        };
-    } */
-
     protected static function auditDescription(string $event): string
     {
         return match ($event) {
             'create' => 'Alta',
-            'update' => 'Edición',
+            'update' => 'Edición', // Se habilita para evitar el "Update" en inglés
             'delete' => 'Eliminación',
             default  => ucfirst($event),
         };

@@ -4,35 +4,37 @@
     <div class="flex justify-start items-center mb-6">
         <div class="w-full">
             <input wire:model.live="search"
-                class="bg-gray-800 appearance-none border-2 border-gray-700 rounded w-full py-2 px-4 text-white leading-tight focus:outline-none focus:bg-gray-700 focus:border-blue-500"
+                class="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded w-full py-2 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:border-blue-500 transition-colors duration-200"
                 type="text" placeholder="Buscar usuario por nombre o email...">
         </div>
     </div>
 
 
-    {{-- *** 2. TABLA DE USUARIOS *** --}}
-    <div class="overflow-x-auto shadow-lg rounded-lg">
-        <table class="min-w-full divide-y divide-gray-700 text-center" id="dataTable">
-            <thead class="bg-black text-white">
+    {{-- *** 2. TABLA DE USUARIOS (DINÁMICA) *** --}}
+    <div class="overflow-x-auto shadow-lg rounded-lg border border-gray-200 dark:border-gray-700">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-center" id="dataTable">
+            <thead class="bg-gray-50 dark:bg-black text-gray-700 dark:text-white">
                 <tr>
-                    <th class="px-6 py-3 text-xs uppercase tracking-wider">Usuario</th>
-                    <th class="px-6 py-3 text-xs uppercase tracking-wider">Email</th>
-                    <th class="px-6 py-3 text-xs uppercase tracking-wider">Editar</th>
-                    <th class="px-6 py-3 text-xs uppercase tracking-wider">Eliminar</th>
+                    <th class="px-6 py-3 text-xs uppercase tracking-wider font-bold">Usuario</th>
+                    <th class="px-6 py-3 text-xs uppercase tracking-wider font-bold">Email</th>
+                    <th class="px-6 py-3 text-xs uppercase tracking-wider font-bold">Editar</th>
+                    <th class="px-6 py-3 text-xs uppercase tracking-wider font-bold">Eliminar</th>
                 </tr>
             </thead>
-            <tbody class="bg-gray-900 divide-y divide-gray-700 text-white">
+            <tbody
+                class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700 text-gray-800 dark:text-white">
                 @forelse ($users as $user)
-                    <tr>
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
                         <td class="px-6 py-4 whitespace-nowrap">{{ $user->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-300">{{ $user->email }}
+                        </td>
 
                         {{-- Columna Editar --}}
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{ route('users.edit', $user) }}" class="inline-block text-center">
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="w-6 h-6 text-blue-400 hover:text-blue-300" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
+                                    class="w-6 h-6 text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                 </svg>
@@ -40,19 +42,16 @@
                         </td>
 
                         {{-- Columna Eliminar --}}
-                        {{-- Columna Eliminar --}}
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{-- 1. Asignamos un ID único al formulario --}}
                             <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}"
                                 method="POST" class="inline-block text-center">
                                 @csrf
                                 @method('DELETE')
-                                {{-- 2. El botón ahora es de tipo 'button' y llama a la función JS --}}
                                 <button type="button" onclick="confirmDelete({{ $user->id }})"
-                                    class="p-0 bg-transparent border-none">
+                                    class="p-0 bg-transparent border-none focus:outline-none">
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="w-6 h-6 text-red-600 hover:text-red-500" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        class="w-6 h-6 text-red-600 hover:text-red-500 dark:text-red-500 dark:hover:text-red-400"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M4 7h16M7 3h10v2H7V3z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -66,7 +65,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="px-6 py-4 text-center text-gray-400">
+                        <td colspan="4"
+                            class="px-6 py-4 text-center text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900">
                             No se encontraron usuarios que coincidan con "{{ $search }}".
                         </td>
                     </tr>

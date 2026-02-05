@@ -71,8 +71,6 @@ class Riograndegenerale extends Model
 
     public function auditLabel(): string
     {
-        return $this->dependencia_riogrande
-            ? $this->dependencia_riogrande->nombre
-            : 'Río Grande – Sin dependencia';
+        return 'Río Grande – ' . ($this->dependencia_riogrande->nombre ?? 'Sin dependencia');
     }
 }

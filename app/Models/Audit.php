@@ -80,8 +80,9 @@ class Audit extends Model
 
     public function getEntityLabelAttribute(): string
     {
-        // 1️⃣ Si el modelo existe y define etiqueta → usarla
-        if ($this->auditable && method_exists($this->auditable, 'auditLabel')) {
+        // 1️⃣ Si el modelo existe, la relación está cargada y define etiqueta → usarla
+        // Agregamos relationLoaded para evitar LazyLoadingViolationException
+        if ($this->relationLoaded('auditable') && $this->auditable && method_exists($this->auditable, 'auditLabel')) {
             return $this->auditable->auditLabel();
         }
 

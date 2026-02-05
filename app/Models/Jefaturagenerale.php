@@ -48,8 +48,13 @@ class Jefaturagenerale extends Model
     {
         return $this->belongsTo('App\Models\Slotmemoria', 'slotmemoria_id', 'id');
     }
-        public function auditorias()
+    public function auditorias()
     {
         return $this->hasMany(AuditoriaInventarioJefatura::class);
+    }
+
+    public function auditLabel(): string
+    {
+        return 'Ushuaia – Jefatura: ' . ($this->jefatura->nombre ?? 'Sin oficina');
     }
 }

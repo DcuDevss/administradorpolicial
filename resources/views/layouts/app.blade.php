@@ -19,8 +19,12 @@
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/@fullcalendar/core/main.css" rel="stylesheet" />
+    <link href="https://unpkg.com/@fullcalendar/daygrid/main.css" rel="stylesheet" />
+    <link href="https://unpkg.com/@fullcalendar/timegrid/main.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -29,26 +33,126 @@
 
 
     <style>
-        /* ===========================================================
-            MODO CLARO PARA LARAVEL (POLICE CLEAN STYLE)
-            =========================================================== */
+        /* ================================
+   MODO OSCURO – FONDO + CAPAS
+   ================================ */
 
-        /* 1. Fondo General y Reseteo */
+        /* Base */
+        html:not(.light-mode) body {
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Fondo oscuro SIEMPRE atrás */
+        html:not(.light-mode) body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url('/foto/base.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -10;
+            pointer-events: none;
+            filter: brightness(0.85) contrast(1.05);
+        }
+
+        /* ================================
+   MODO CLARO – FONDO + CAPAS
+   ================================ */
+
+        /* Base */
         html.light-mode body {
-            background-color: #f1f5f9 !important;
-            background-image: none !important;
-            color: #1e293b !important;
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Fondo claro SIEMPRE atrás */
+        html.light-mode body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url('/foto/fondoclaro.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -10;
+            pointer-events: none;
+        }
+
+        /* Wrapper principal de la app */
+        #main-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Contenido general (tablas, cards, vistas) */
+        html.light-mode main,
+        html.light-mode main>div,
+        html.light-mode .max-w-7xl,
+        html:not(.light-mode) main,
+        html:not(.light-mode) main>div,
+        html:not(.light-mode) .max-w-7xl {
+            position: relative;
+            z-index: 20;
+        }
+
+        /* ================================
+   FIX DEFINITIVO CHAT (fixed)
+   ================================ */
+
+        /* Contenedor principal del chat */
+        html.light-mode .fixed.h-full.flex {
+            position: fixed !important;
+            z-index: 50 !important;
+            background-color: #ffffff !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+
+        /* Todo el contenido interno del chat */
+        html.light-mode .fixed.h-full.flex * {
+            z-index: 51 !important;
+        }
+
+        /* Evitar efecto vidrio en elementos fixed */
+        html.light-mode .fixed,
+        html.light-mode .fixed * {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
         }
 
         /* 2. Contenedores de Blade (Solo Divs, NO botones) */
-        html.light-mode div.bg-\[\#1e293b\]\/60,
+        /*    html.light-mode div.bg-\[\#1e293b\]\/60,
         html.light-mode div.bg-\[\#1e293b\]\/70,
         html.light-mode div.bg-slate-800,
         html.light-mode div.bg-white\/10 {
             background-color: #ffffff !important;
             color: #1e293b !important;
             border: 1px solid #e2e8f0 !important;
+        } */
+
+        /* Cards y contenedores – modo claro (camuflado institucional) */
+        html.light-mode div.bg-\[\#1e293b\]\/60,
+        html.light-mode div.bg-\[\#1e293b\]\/70,
+        html.light-mode div.bg-slate-800,
+        html.light-mode div.bg-white\/10 {
+            background-color: rgba(241, 245, 249, 0.92) !important;
+            color: #000000 !important;
+            border: 1px solid rgba(15, 23, 42, 0.12) !important;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08) !important;
         }
+
+
+
+
+
+
+
+
+        /* Hasta aca */
+
+
 
         /* 2.1 PROTECCIÓN DE BOTONES AZULES */
         html.light-mode .bg-blue-600,
@@ -109,9 +213,9 @@
         /* 4. FIX DE TEXTOS "FANTASMA" (Tipografías generales) */
         /* Todo el texto general de la web será negro en modo claro */
         html.light-mode h1,
-        html.light-mode h2,
+        /*  html.light-mode h2,
         html.light-mode h3,
-        html.light-mode h4,
+        html.light-mode h4,*/
         html.light-mode h5,
         html.light-mode p,
         html.light-mode label {
@@ -141,16 +245,30 @@
             color: #ffffff !important;
         }
 
-        /* 5. HEADER Y FOOTER */
+        /* 5. HEADER Y FOOTER - VERSIÓN COMPACTA Este es en modo claro*/
         html.light-mode header {
-            background-color: #ffffff !important;
-            border-bottom: 1px solid #1c71e0 !important;
+            background-color: rgba(241, 245, 249, 0.92) !important;
+            color: #000000 !important;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.15) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* 🎯 ESTO ES LO QUE ACHICA EL HEADER REALMENTE */
+        html.light-mode header .max-w-7xl {
+            padding-top: 0.5rem !important;
+            /* Reduce el espacio arriba */
+            padding-bottom: 0.5rem !important;
+            /* Reduce el espacio abajo */
         }
 
         html.light-mode footer {
-            background-color: #ffffff !important;
-            color: #64748b !important;
-            border-top: 1px solid #e2e8f0 !important;
+            background-color: #03084769 !important;
+            color: #1e293b !important;
+            border-top: 1px solid rgba(15, 23, 42, 0.12) !important;
+            padding-top: 0.25rem !important;
+            padding-bottom: 0.25rem !important;
         }
 
         /* 6. BOTÓN TEMA (Corregido) */
@@ -198,6 +316,9 @@
             color: #475569 !important;
         }
 
+
+
+
         /* 8. EXCEPCIÓN PARA TEXTOS SOBRE IMÁGENES O FOTOS OSCURAS */
         /* Esta regla busca textos que estén dentro de contenedores con fondo de imagen */
         html.light-mode .relative h1,
@@ -211,7 +332,10 @@
             /* Mantenemos blanco sobre las fotos */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
             /* Agregamos sombra para legibilidad */
+
         }
+
+
 
         /* 9. EXCEPCIÓN ESPECÍFICA PARA TUS CARDS DE "ÁREAS OPERATIVAS" */
         /* Si usas una clase específica para esas fotos, agrégala aquí */
@@ -282,8 +406,10 @@
 
         @if (isset($header))
             <header class="bg-[#1e293b]/70 backdrop-blur-md shadow border-b border-white/10 mt-16 transition-all">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{-- <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
+                </div> --}}
+                <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8"> {{ $header }}
                 </div>
             </header>
         @endif
@@ -297,15 +423,23 @@
         </main>
 
         <footer
-            class="text-center footer-tight bg-gray-800 font-semibold text-xs text-white left-0 w-full shadow-lg z-20 flex items-center justify-center space-x-2 py-3 transition-all">
-            <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo" class="h-8 w-auto" loading="lazy" decoding="async">
-            <p class="m-0">© 2024 Policía de Tierra del Fuego.</p>
+            class="text-center bg-gray-900/90 dark:bg-black/80 backdrop-blur-md font-medium text-[10px] md:text-xs text-gray-300 left-0 w-full z-20 flex items-center justify-center space-x-3 py-3 border-t border-white/5 transition-all">
+
+            {{-- Escudo con filtro para suavizar bordes --}}
+            <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo"
+                class="h-7 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300" loading="lazy"
+                decoding="async">
+
+            {{-- Texto con espaciado mejorado --}}
+            <p class="m-0 tracking-wider uppercase">
+                © {{ date('Y') }} <span class="text-white">Policía de Tierra del Fuego</span>
+            </p>
         </footer>
     </div>
 
-    <button onclick="toggleTheme()" id="theme-toggle-btn">
+    {{--  <button onclick="toggleTheme()" id="theme-toggle-btn">
         <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
-    </button>
+    </button> --}}
 
     @stack('modals')
     @livewireScripts
