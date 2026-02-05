@@ -54,6 +54,31 @@ body {
     box-shadow: none !important;
 }
 
+/* Ver sión alternativa para contenedores con sombra */
+/* 🛠️ EXCEPCIÓN: Forzar el reborde en las tarjetas de chat/usuarios */
+.user-chat-card {
+    /* Forzamos un borde sólido para que se vea el límite del cuadro */
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
+    border-radius: 12px;
+    backdrop-filter: blur(
+        4px
+    ); /* Opcional: para que se lea mejor sobre el fondo técnico */
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.05
+    ) !important; /* Un toque de blanco casi invisible */
+    transition: all 0.3s ease;
+}
+
+/* Ajuste para que el borde se invierta correctamente con tu filtro .dark */
+.dark .user-chat-card {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/*hasta aca */
+
 /* 2. ÁREAS DE CONTENIDO: Elimina fondos en las secciones que envuelven tablas o formularios */
 .max-w-7xl > div,
 .py-5,
@@ -465,4 +490,21 @@ html.light-mode .container-dinamico {
 html.light-mode nav[role="navigation"] div p,
 html.light-mode nav[role="navigation"] div p span {
     color: #1e293b !important;
+}
+
+/* Esta clase rescata el borde que el reset de .bg-white y .shadow-md elimina */
+.user-card-chat {
+    /* Forzamos un fondo con mínima opacidad para que no desaparezca del todo */
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    /* Forzamos el borde que el Reset oculta */
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(
+        8px
+    ); /* Esto hace que se vea premium sobre el fondo técnico */
+}
+
+/* En modo oscuro, por el filtro invert, necesitamos que el borde sea más claro */
+.dark .user-card-chat {
+    border-color: rgba(255, 255, 255, 0.3) !important;
 }
