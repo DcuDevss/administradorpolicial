@@ -12,7 +12,13 @@ class GeneralinformaticaObserver
      */
     public function created(Generalinformatica $generalinformatica): void
     {
-        //
+        // Si necesitas guardar el detalle inicial al crear, hazlo aquí
+        if ($generalinformatica->detalles_inventario) {
+            AuditoriaDetalleInventario::create([
+                'generalinformatica_id' => $generalinformatica->id,
+                'detalles_inventario' => $generalinformatica->detalles_inventario,
+            ]);
+        }
     }
 
     /**
@@ -20,7 +26,9 @@ class GeneralinformaticaObserver
      */
     public function updated(Generalinformatica $generalinformatica): void
     {
-        if ($generalinformatica->detalles_inventario) {
+        // Solo registrar si el campo detalles_inventario realmente cambió
+        // y no es un modelo recién creado para evitar duplicados.
+        if ($generalinformatica->wasChanged('detalles_inventario') && $generalinformatica->detalles_inventario) {
             AuditoriaDetalleInventario::create([
                 'generalinformatica_id' => $generalinformatica->id,
                 'detalles_inventario' => $generalinformatica->detalles_inventario,

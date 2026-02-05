@@ -58,8 +58,17 @@ class Recursoshumanosgenerale extends Model
     {
         return $this->belongsTo('App\Models\Sumario', 'sumario_id', 'id');
     }
-        public function auditorias()
+    public function auditorias()
     {
         return $this->hasMany(AuditoriaInventarioRecursos::class);
+    }
+
+    public function auditLabel(): string
+    {
+        if ($this->recurso_humano_id) return 'Ushuaia – RRHH: ' . ($this->recursohumano->nombre ?? '');
+        if ($this->bienestare_id) return 'Ushuaia – Bienestar: ' . ($this->bienestare->nombre ?? '');
+        if ($this->sumario_id) return 'Ushuaia – Sumarios: ' . ($this->sumario->nombre ?? '');
+
+        return 'Ushuaia – Recursos Humanos';
     }
 }

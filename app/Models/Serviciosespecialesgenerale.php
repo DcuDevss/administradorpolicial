@@ -49,4 +49,9 @@ class Serviciosespecialesgenerale extends Model
     {
         return $this->belongsTo('App\Models\Slotmemoria', 'slotmemoria_id', 'id');
     }
+
+    public function auditLabel(): string
+    {
+        return 'Ushuaia – Servicios Especiales: ' . ($this->serviciosespeciale->nombre ?? 'Sin oficina');
+    }
 }

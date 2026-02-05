@@ -105,20 +105,31 @@ class Generalinformatica extends Model
 
     public function auditLabel(): string
     {
-        $map = [
-            'dependenciaushuaia'     => 'Ushuaia',
-            'cientifica'             => 'Ushuaia',
-            'serviciosespeciale'     => 'Ushuaia',
-            'custodiagubernamentale' => 'Ushuaia',
-            'investigacione'         => 'Ushuaia',
-            'recursohumano'          => 'Ushuaia',
-            'jefatura'               => 'Ushuaia',
-            'administracion'         => 'Ushuaia',
+        // Mapeo de la clave foránea a la relación y la ciudad
+        $relationsMap = [
+            'dependencia_ushuaia_id'    => ['rel' => 'dependenciaushuaia', 'city' => 'Ushuaia'],
+            'cientifica_id'             => ['rel' => 'cientifica', 'city' => 'Ushuaia'],
+            'serviciosespeciale_id'     => ['rel' => 'serviciosespeciale', 'city' => 'Ushuaia'],
+            'custodiagubernamentale_id' => ['rel' => 'custodiagubernamentale', 'city' => 'Ushuaia'],
+            'investigacione_id'         => ['rel' => 'investigacione', 'city' => 'Ushuaia'],
+            'recurso_humano_id'         => ['rel' => 'recursohumano', 'city' => 'Ushuaia'],
+            'jefatura_id'               => ['rel' => 'jefatura', 'city' => 'Ushuaia'],
+            'administracion_id'         => ['rel' => 'administracion', 'city' => 'Ushuaia'],
         ];
 
-        foreach ($map as $relation => $city) {
-            if ($this->$relation) {
-                return $city . ' – ' . $this->$relation->nombre;
+        foreach ($relationsMap as $foreignKey => $data) {
+            // Verificamos si la clave foránea tiene un valor
+            if (!empty($this->$foreignKey)) {
+                $relationName = $data['rel'];
+
+                // Intentamos obtener el modelo relacionado de forma segura
+                $related = $this->relationLoaded($relationName)
+                    ? $this->$relationName
+                    : $this->$relationName()->first(); // Carga manual segura si no está cargada
+
+                if ($related) {
+                    return $data['city'] . ' – ' . $related->nombre;
+                }
             }
         }
 

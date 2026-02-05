@@ -106,10 +106,24 @@
     </div>
 
     <!-- Footer institucional -->
-    <footer
+    {{--    <footer
         class="text-center footer-tight bg-gray-800 font-semibold text-xs text-white fixed bottom-0 left-0 w-full shadow-lg z-20 flex items-center justify-center space-x-2">
         <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo Comunicaciones" class="h-8 w-auto" loading="lazy" decoding="async">
         <p class="m-0">© 2024 Policía de Tierra del Fuego, Antártida e Islas del Atlántico Sur.</p>
+    </footer> --}}
+
+    <footer
+        class="text-center bg-gray-900/90 dark:bg-black/80 backdrop-blur-md font-medium text-[10px] md:text-xs text-gray-300 left-0 w-full z-20 flex items-center justify-center space-x-3 py-3 border-t border-white/5 transition-all">
+
+        {{-- Escudo con filtro para suavizar bordes --}}
+        <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo"
+            class="h-7 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300" loading="lazy"
+            decoding="async">
+
+        {{-- Texto con espaciado mejorado --}}
+        <p class="m-0 tracking-wider uppercase">
+            © {{ date('Y') }} <span class="text-white">Policía de Tierra del Fuego</span>
+        </p>
     </footer>
 
     @livewireScripts
