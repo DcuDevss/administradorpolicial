@@ -45,7 +45,7 @@ class IndexComunicacionesSegunda extends Component
 
     public function render()
     {
-          
+
         $comunicaciones = Comunicacionessegunda::where(function ($query) {
             $query->where('nro_serie', 'like', "%{$this->search}%")
                 ->orWhere('fecha_service', 'like', "%{$this->search}%")
@@ -65,6 +65,11 @@ class IndexComunicacionesSegunda extends Component
         ->orWhereHas('vhfantena', function ($query) {
             $query->where('nombre', 'like', "%{$this->search}%");
         })
+        ->with([
+            'equipocomunicacion',
+            'marcaequipo',
+            'vhfantena',
+        ])
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
 

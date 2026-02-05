@@ -9,7 +9,7 @@ class HistorialTrabajoInvestigaciones extends Model
 {
     use Auditable;
     // Asegúrate de que el nombre de la tabla es correcto
-    protected $table = 'historial_comunicaciones_investigaciones';
+    protected $table = 'historial_comunicaciones_inves';
 
     protected $fillable = ['trabajos_investigaciones_id', 'detalle_inventario'];
 

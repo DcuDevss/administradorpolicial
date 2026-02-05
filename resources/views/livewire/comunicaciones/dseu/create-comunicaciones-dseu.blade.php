@@ -186,7 +186,7 @@
                     <div x-data="{ open: false }" class="shadow-lg">
                         <div @click="open = !open"
                             class="flex items-center justify-between bg-slate-800 border p-4 rounded-md transition">
-                            <p class="text-lg font-extrabold text-white">INVENTARIO D.E.S.U</p>
+                            <p class="text-lg font-extrabold text-white">INVENTARIO D.S.E.U</p>
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">

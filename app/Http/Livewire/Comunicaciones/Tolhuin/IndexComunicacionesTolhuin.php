@@ -77,6 +77,12 @@ class IndexComunicacionesTolhuin extends Component
         ->orWhereHas('vhfantena', function ($query) {
             $query->where('nombre', 'like', "%{$this->search}%");
         })
+        ->with([
+            'dependenciatolhuin',
+            'equipocomunicacion',
+            'marcaequipo',
+            'vhfantena',
+        ])
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
 

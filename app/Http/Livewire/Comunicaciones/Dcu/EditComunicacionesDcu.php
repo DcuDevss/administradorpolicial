@@ -44,7 +44,7 @@ class EditComunicacionesdcu extends Component
         $this->numero_serie = $comunicaciones->numero_serie;
         $this->fecha_service = $comunicaciones->fecha_service ? Carbon::parse($comunicaciones->fecha_service)->format('Y-m-d') : null;
         $this->fecha_inventario = $comunicaciones->fecha_inventario ? Carbon::parse($comunicaciones->fecha_inventario)->format('Y-m-d') : null;
-        /*         $this->detalle_inventario = $comunicaciones->detalle_inventario; */
+        $this->detalle_inventario = $comunicaciones->detalle_inventario;
     }
 
     public function edit()
