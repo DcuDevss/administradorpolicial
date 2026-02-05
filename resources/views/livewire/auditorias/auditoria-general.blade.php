@@ -54,7 +54,7 @@
             <input wire:model="hasta" type="date" class="bg-gray-50 border text-sm rounded p-2"> --}}
             </div>
 
-            <div class="overflow-x-auto shadow-xl rounded-lg border border-gray-700">
+            <<div class="overflow-x-auto shadow-xl rounded-lg border border-gray-700">
                 <table class="w-full text-sm text-left text-gray-300">
                     <thead class="bg-gray-900 text-gray-400 uppercase text-xs tracking-wider">
                         <tr>
@@ -79,17 +79,24 @@
                                 </td>
                                 <td class="px-6 py-4 text-center">
                                     <span
-                                        class="px-2 py-1 rounded-md bg-gray-800 text-blue-400 text-xs font-bold border border-blue-900/30">
+                                        class="px-2 py-1 rounded-md bg-gray-800 text-white text-xs font-bold border border-blue-900/30">
                                         {{ $a->action_label }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 italic text-gray-400">
                                     {{ $a->description ?? '—' }}
                                 </td>
-
+                                {{-- <td class="px-4 py-2">
+                        {{ $a->entity_label ?? '—' }}
+                    </td> --}}
+                                {{-- Columna Entidad sin la línea vertical --}}
                                 <td class="px-6 py-4 text-gray-200 font-medium">
                                     {{ $a->entity_label }}
                                 </td>
+
+                                {{-- <td class="px-4 py-2">
+                        {{ $a->ip_address ?? '—' }}
+                    </td> --}}
                             </tr>
                         @empty
                             <tr>
@@ -108,13 +115,13 @@
                         @endforelse
                     </tbody>
                 </table>
-            </div>
-
-            <!-- 📄 PAGINACIÓN -->
-            <div class="p-4">
-                {{ $audits->links() }}
-            </div>
-
         </div>
+
+        <!-- 📄 PAGINACIÓN -->
+        <div class="p-4">
+            {{ $audits->links() }}
+        </div>
+
+    </div>
     </div>
 </app-layout>
