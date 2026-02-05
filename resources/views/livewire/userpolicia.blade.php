@@ -17,7 +17,10 @@
                     <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                         {{ $user->name }}
                     </h5>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ $user->email }} </span>
+                    {{-- Cambiamos text-gray-500 por un color más fuerte y añadimos contraste para modo oscuro --}}
+                    <span class="text-sm font-bold text-gray-800 {{-- dark:text-gray-200 --}}">
+                        {{ $user->email }}
+                    </span>
 
                     <div class="flex mt-4 space-x-3 md:mt-6">
 
