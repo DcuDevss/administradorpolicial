@@ -274,13 +274,19 @@ class AuditoriaGeneral extends Component
                             \App\Models\Generalinformatica::class,
                             \App\Models\Investigacionesgenerale::class,
                             \App\Models\Jefaturagenerale::class,
-                            \App\Models\Serviciosespecialesgenerale::class
+                            \App\Models\Serviciosespecialesgenerale::class,
+                            \App\Models\Tolhuingenerale::class,
                         ];
                         if (str_contains($s, 'ushuaia') && in_array($type, $modelosUshuaia)) {
                             $query->orWhere('id', '>', 0);
                         }
 
                         if ((str_contains($s, 'rio grande') || str_contains($s, 'río grande')) && $type === \App\Models\Riograndegenerale::class) {
+                            $query->orWhere('id', '>', 0);
+                        }
+
+                        // MODIFICACIÓN: Agregado bloque para detectar la palabra "tolhuin"
+                        if (str_contains($s, 'tolhuin') && $type === \App\Models\Tolhuingenerale::class) {
                             $query->orWhere('id', '>', 0);
                         }
                     });
