@@ -8,126 +8,89 @@
 
     <title>@yield('title', 'Administrador Policial')</title>
 
+    <!-- Icono -->
     <link rel="icon" href="{{ asset('foto/favicon.png') }}">
 
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Estilos y scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 
+    <!-- Estilo de layout -->
     <style>
-        /* Configuración base del cuerpo con degradado institucional */
         body {
             background: linear-gradient(135deg, #0f172a, #1e293b);
             min-height: 100vh;
             color: #e2e8f0;
         }
 
-        /* Efecto de desenfoque (Glassmorphism) para el encabezado */
         .header-blur {
             backdrop-filter: blur(10px);
             background: rgba(30, 41, 59, 0.5);
         }
 
-        /* Efecto de desenfoque para el pie de página */
         .footer-blur {
             backdrop-filter: blur(5px);
             background: rgba(15, 23, 42, 0.6);
         }
 
-        /* Fuerza el color de texto blanco en todos los inputs para legibilidad */
+        /* 🔥 Fix para inputs del login (incluye password) */
         input {
-            color: #ffffff !important;
+            color: #f1f5f9 !important;
+
         }
 
-        /* Estilo para los textos de sugerencia dentro de los campos */
         input::placeholder {
             color: #94a3b8 !important;
+            /* placeholder gris medio */
         }
     </style>
 
     <style>
-        /* ============================================================
-           🔥 FIX ESPECÍFICO PARA LA PÁGINA DE LOGIN
-           ============================================================ */
-
-        /* Asegura que el texto que escribe el usuario sea BLANCO (Corregido de negro) */
+        /* Color visible para inputs en pantallas de login */
         .login-page input,
         .login-page input[type="password"],
         .login-page input[type="email"],
         .login-page input[type="text"] {
-            color: #ffffff !important;
+            color: #090505 !important;
+            /* blanco */
         }
 
-        /* Color de placeholder para que destaque sobre el fondo del input */
         .login-page input::placeholder {
             color: #cbd5e1 !important;
+            /* gris clarito visible */
         }
 
-        /* Evita que el autocompletado del navegador cambie el color del texto a negro */
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus {
-            -webkit-text-fill-color: #ffffff !important;
-            /* Mantiene un fondo oscuro sutil en el autocompletado */
-            -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.3) inset !important;
-            transition: background-color 5000s ease-in-out 0s;
-        }
-
-        /* Configuración de la imagen de fondo específica para la pantalla de acceso */
+        /* 🔥 Fondo del Login */
         body.login-page {
             background: url("{{ asset('foto/base.webp') }}") no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
             color: #e2e8f0;
         }
-
-        /* ============================================================
-   👤 COMPONENTES DE PERFIL (PROFILE GLASS)
-   ============================================================ */
-
-        /* Contenedor de las secciones de Perfil */
-        .profile-section-container {
-            background-color: rgba(30, 41, 59, 0.4) !important;
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        /* 🔥 Línea divisoria reforzada */
-        hr,
-        .border-t,
-        .border-b {
-            border-color: rgba(255, 255, 255, 0.2) !important;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Ajuste de textos en Profile para que no se pierdan */
-        .profile-section-container h3,
-        .profile-section-container p {
-            color: #e2e8f0 !important;
-        }
-
-        /* Modo Claro: Ajuste de la línea para fondo blanco */
-        html.light-mode hr,
-        html.light-mode .border-t {
-            border-color: rgba(0, 0, 0, 0.1) !important;
-        }
     </style>
+
+
+
+
+
+
 </head>
 
 <body class="font-sans antialiased login-page">
 
+
+    <!-- Barra de navegación -->
     @auth
         <div class="header-blur fixed top-0 w-full z-50 shadow-lg">
             @livewire('navigation-menu')
         </div>
     @endauth
 
+    <!-- Contenido principal -->
     <div class="@auth pt-20 pb-20 @else pt-10 pb-10 @endauth">
         @isset($header)
             <header class="header-blur shadow-md mb-6">
@@ -142,13 +105,22 @@
         </main>
     </div>
 
+    <!-- Footer institucional -->
+    {{--    <footer
+        class="text-center footer-tight bg-gray-800 font-semibold text-xs text-white fixed bottom-0 left-0 w-full shadow-lg z-20 flex items-center justify-center space-x-2">
+        <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo Comunicaciones" class="h-8 w-auto" loading="lazy" decoding="async">
+        <p class="m-0">© 2024 Policía de Tierra del Fuego, Antártida e Islas del Atlántico Sur.</p>
+    </footer> --}}
+
     <footer
         class="text-center bg-gray-900/90 dark:bg-black/80 backdrop-blur-md font-medium text-[10px] md:text-xs text-gray-300 left-0 w-full z-20 flex items-center justify-center space-x-3 py-3 border-t border-white/5 transition-all">
 
+        {{-- Escudo con filtro para suavizar bordes --}}
         <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo"
             class="h-7 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300" loading="lazy"
             decoding="async">
 
+        {{-- Texto con espaciado mejorado --}}
         <p class="m-0 tracking-wider uppercase">
             © {{ date('Y') }} <span class="text-white">Policía de Tierra del Fuego</span>
         </p>
