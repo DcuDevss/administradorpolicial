@@ -1,48 +1,35 @@
 <x-app-layout>
 
-    {{-- FONDO GENERAL IGUAL AL DE LA OTRA VISTA --}}
-    {{--  <style>
-        body {
-            background-image: url('{{ asset('foto/base.webp') }}');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-    </style> --}}
-
     {{-- TÍTULO --}}
-    <div class="text-center text-xl font-bold text-white mb-4 mt-4">
-        <h1>D.C.R.G</h1>
-    </div>
+    <h1 class="text-center text-xl font-bold text-white mb-4 mt-4 uppercase tracking-widest">
+        D.C.R.G
+    </h1>
 
     {{-- CONTENEDOR PRINCIPAL --}}
-    <div class="flex justify-center min-h-screen items-start pt-10">
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12 w-full max-w-5xl px-4">
+    <div class="flex justify-center items-start pt-10">
+        {{-- Usamos una variante de la grilla para que las 2 cards sean más grandes --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-5xl px-6">
 
-            {{-- CARD 1 --}}
-            <div class="h-96 w-full rounded-lg relative overflow-hidden shadow-lg">
-                <img src="{{ asset('foto/botondcu.jpg') }}"
-                    class="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-105">
+            {{-- CARD 1: COMUNICACIONES --}}
+            <div class="card-profesional !h-96"> {{-- !h-96 sobrescribe la altura por defecto para esta vista --}}
 
-                <a href="{{ route('createComunicacionesRiogrande') }}"
-                    class="absolute inset-0 flex items-center justify-center
-                          bg-black bg-opacity-40 hover:bg-opacity-60
-                          transition-all duration-300 text-white text-2xl font-bold">
-                    Comunicaciones
+                <img src="{{ asset('foto/botondcu.jpg') }}" alt="Comunicaciones" loading="lazy">
+
+                <a href="{{ route('createComunicacionesRiogrande') }}" class="card-overlay">
+                    <h2 class="card-titulo !text-2xl">Comunicaciones</h2>
                 </a>
+
             </div>
 
-            {{-- CARD 2 --}}
-            <div class="h-96 w-full rounded-lg relative overflow-hidden shadow-lg">
-                <img src="{{ asset('foto/informatica.jpg') }}"
-                    class="w-full h-full object-cover rounded-lg transition-transform duration-500 hover:scale-105">
+            {{-- CARD 2: INFORMÁTICA --}}
+            <div class="card-profesional !h-96">
 
-                <a href="{{ route('createRiograndeGeneral') }}"
-                    class="absolute inset-0 flex items-center justify-center
-                          bg-black bg-opacity-20 hover:bg-opacity-50
-                          transition-all duration-300 text-white text-2xl font-bold">
-                    Informática
+                <img src="{{ asset('foto/informatica.jpg') }}" alt="Informática" loading="lazy">
+
+                <a href="{{ route('createRiograndeGeneral') }}" class="card-overlay">
+                    <h2 class="card-titulo !text-2xl">Informática</h2>
                 </a>
+
             </div>
 
         </div>

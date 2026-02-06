@@ -336,87 +336,81 @@
         <div class="pt-4 pb-1 border-t border-gray-200">
             {{-- BLOQUE DE OPCIONES RESPONSIVAS: Envuelto en @auth para prevenir errores si no hay usuario logueado --}}
             @auth
-                <div class="flex items-center justify-between px-4"> {{-- Cambiado a justify-between para separar texto de botón --}}
-                    <div class="flex items-center">
-                        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                            <div class="shrink-0 mr-3">
-                                <img class="h-10 w-10 rounded-full object-cover"
-                                    src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                            </div>
-                        @endif
-
-                        <div>
-                            <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
-                            {{-- Cambiado a text-white --}}
-                            <div class="font-medium text-sm text-gray-400">{{ Auth::user()->email }}</div>
-                            {{-- Cambiado a text-gray-400 --}}
+                <div class="flex items-center justify-center px-4">
+                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                        <div class="shrink-0 mr-3">
+                            <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
+                                alt="{{ Auth::user()->name }}" />
                         </div>
+                    @endif
+
+                    <div>
+                        <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                        <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    </div>
+                </div>
+                {{-- BOTÓN DE MODO OSCURO PARA MÓVIL --}}
+                <button onclick="toggleTheme()"
+                    class="inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs uppercase tracking-widest transition duration-150 ease-in-out border border-white/10 bg-gray-700/50 hover:bg-gray-600 text-white focus:outline-none"
+                    id="nav-theme-toggle-mobile">
+                    <span id="theme-icon-mobile">🌙</span>
+                </button>
+            
+
+            <div class="mt-3 space-y-1">
+                <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                    {{ __('Profile') }}
+                </x-responsive-nav-link>
+
+                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                    <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
+                        {{ __('API Tokens') }}
+                    </x-responsive-nav-link>
+                @endif
+
+                <div class="border-t border-gray-200"></div>
+
+                <form method="POST" action="{{ route('logout') }}" x-data>
+                    @csrf
+
+                    <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+
+                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
+                    <div class="border-t border-gray-200"></div>
+
+                    <div class="block px-4 py-2 text-xs text-gray-400">
+                        {{ __('Manage Team') }}
                     </div>
 
-                    {{-- BOTÓN DE MODO OSCURO PARA MÓVIL --}}
-                    <button onclick="toggleTheme()"
-                        class="inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs uppercase tracking-widest transition duration-150 ease-in-out border border-white/10 bg-gray-700/50 hover:bg-gray-600 text-white focus:outline-none"
-                        id="nav-theme-toggle-mobile">
-                        <span id="theme-icon-mobile">🌙</span>
-                    </button>
-                </div>
-
-                <div class="mt-3 space-y-1">
-                    <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')" class="text-white">
-                        {{ __('Profile') }}
+                    <x-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}"
+                        :active="request()->routeIs('teams.show')">
+                        {{ __('Team Settings') }}
                     </x-responsive-nav-link>
 
-                    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                        <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')"
-                            class="text-white">
-                            {{ __('API Tokens') }}
+                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                        <x-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
+                            {{ __('Create New Team') }}
                         </x-responsive-nav-link>
-                    @endif
+                    @endcan
 
-                    <div class="border-t border-white/10"></div> {{-- Ajustado color de borde --}}
-
-                    <form method="POST" action="{{ route('logout') }}" x-data>
-                        @csrf
-
-                        <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();"
-                            class="text-white">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </form>
-
-                    @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                        <div class="border-t border-white/10"></div>
+                    @if (Auth::user()->allTeams()->count() > 1)
+                        <div class="border-t border-gray-200"></div>
 
                         <div class="block px-4 py-2 text-xs text-gray-400">
-                            {{ __('Manage Team') }}
+                            {{ __('Switch Teams') }}
                         </div>
 
-                        <x-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}"
-                            :active="request()->routeIs('teams.show')" class="text-white">
-                            {{ __('Team Settings') }}
-                        </x-responsive-nav-link>
-
-                        @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                            <x-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')" class="text-white">
-                                {{ __('Create New Team') }}
-                            </x-responsive-nav-link>
-                        @endcan
-
-                        @if (Auth::user()->allTeams()->count() > 1)
-                            <div class="border-t border-white/10"></div>
-
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Switch Teams') }}
-                            </div>
-
-                            @foreach (Auth::user()->allTeams() as $team)
-                                <x-switchable-team :team="$team" component="responsive-nav-link" />
-                            @endforeach
-                        @endif
+                        @foreach (Auth::user()->allTeams() as $team)
+                            <x-switchable-team :team="$team" component="responsive-nav-link" />
+                        @endforeach
                     @endif
-                </div>
-            @endauth
-            {{-- FIN BLOQUE DE OPCIONES RESPONSIVAS --}}
-        </div>
+                @endif
+            </div>
+        @endauth
+        {{-- FIN BLOQUE DE OPCIONES RESPONSIVAS --}}
+    </div>
     </div>
 </nav>

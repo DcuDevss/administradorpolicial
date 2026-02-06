@@ -1,3 +1,6 @@
+/* Importación del nuevo archivo */
+@import "./cards.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

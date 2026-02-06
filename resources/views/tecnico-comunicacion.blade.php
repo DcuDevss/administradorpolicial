@@ -1,22 +1,12 @@
 <x-app-layout>
 
-    {{-- FONDO GENERAL IGUAL A LAS OTRAS VISTAS --}}
-   {{--  <style>
-        body {
-            background-image: url('{{ asset('foto/base.webp') }}');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-    </style> --}}
-
     {{-- TÍTULO --}}
-    <div class="text-center text-xl font-bold text-white mb-4 mt-4">
+    <div class="text-center text-xl font-bold text-white mb-4 mt-4 uppercase tracking-widest">
         <h1>Técnico Comunicaciones</h1>
     </div>
 
-    {{-- GRID DE CARDS --}}
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-4">
+    {{-- GRID DE CARDS USANDO LA CLASE PERSONALIZADA --}}
+    <div class="contenedor-cards">
 
         @php
             $cards = [
@@ -68,18 +58,12 @@
         @endphp
 
         @foreach ($cards as $c)
-            <div
-                class="relative group h-32 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+            <div class="card-profesional">
 
-                <img src="{{ asset('foto/' . $c['img']) }}"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <img src="{{ asset('foto/' . $c['img']) }}" alt="{{ $c['title'] }}" loading="lazy">
 
-                <a href="{{ route($c['route']) }}"
-                    class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60
-                          transition-all duration-300 text-white text-lg font-extrabold text-center px-2">
-
-                    <h2 class="drop-shadow-lg">{{ $c['title'] }}</h2>
-
+                <a href="{{ route($c['route']) }}" class="card-overlay">
+                    <h2 class="card-titulo">{{ $c['title'] }}</h2>
                 </a>
 
             </div>
