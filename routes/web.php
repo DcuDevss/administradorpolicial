@@ -226,7 +226,7 @@ use App\Http\Livewire\Usuarios;
 use App\Models\AuditoriaDetalleInventario;
 
 use App\Http\Livewire\Auditorias\AuditoriaGeneral;
-
+use App\Http\Livewire\Comunicaciones\Totalequiposush\PdfEquipos;
 
 /*
 |--------------------------------------------------------------------------
@@ -682,3 +682,8 @@ Route::get('/historial-administracion-general/{administracionGeneraleId}', Histo
 
 Route::get('/historial-recursos-general/{recursosGeneraleId}', HistorialRecursosGeneral::class)
     ->name('historial-recursos-general');
+
+/*     rutas pdfs */
+/* pdf ushuaia */
+Route::get('/comunicaciones/ushuaia/pdf-equipos', PdfEquipos::class)
+    ->name('pdf-equipos');
