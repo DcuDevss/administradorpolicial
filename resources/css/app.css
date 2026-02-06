@@ -1,20 +1,24 @@
-/* Importación del nuevo archivo */
+/* ============================================================
+   📦 IMPORTACIONES Y NÚCLEO (TAILWIND)
+   ============================================================ */
+
+/* Importación de estilos específicos para componentes de tarjetas */
 @import "./cards.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================
+/* ============================================================
    🚀 RESETEOS GLOBALES Y COMPORTAMIENTO BASE
-   ============================================ */
+   ============================================================ */
 
-/* Ocultar elementos con x-cloak de Alpine.js antes de cargar */
+/* Ocultar elementos con x-cloak de Alpine.js antes de que cargue el JS */
 [x-cloak] {
     display: none !important;
 }
 
-/* Suaviza la transición de cambio de página */
+/* Animación de entrada suave al cambiar de vista o cargar página */
 body {
     view-transition-name: main-content;
     animation: fadeIn 0.3s;
@@ -29,12 +33,12 @@ body {
     }
 }
 
-/* Mata el indicador de carga blanco molesto de Livewire en la pestaña */
+/* Oculta el indicador de carga nativo de Livewire en el navegador */
 .livewire-loading-indicator {
     display: none !important;
 }
 
-/* Evita parpadeos de carga en elementos wire:loading */
+/* Manejo de estados de carga (wire:loading) para evitar parpadeos */
 [wire\:loading] {
     display: none;
 }
@@ -43,11 +47,11 @@ body {
     transition: opacity 0.3s;
 }
 
-/* ============================================
-   🎨 SISTEMA DE TRANSPARENCIAS Y BLOQUES (JETSTREAM)
-   ============================================ */
+/* ============================================================
+   🎨 SISTEMA DE TRANSPARENCIAS (JETSTREAM/BLADE)
+   ============================================================ */
 
-/* 1. RESET: Forzar transparencia en contenedores estándar para lucir el fondo de la app */
+/* 1. RESET: Forzado de transparencia en contenedores estándar para ver el fondo */
 .bg-white,
 .dark .bg-gray-100,
 .bg-gray-50,
@@ -57,19 +61,18 @@ body {
     box-shadow: none !important;
 }
 
-/* 2. ÁREAS DE CONTENIDO: Elimina fondos en las secciones que envuelven tablas o formularios */
+/* 2. ÁREAS DE CONTENIDO: Elimina fondos en secciones envolventes */
 .max-w-7xl > div,
 .py-5,
 section {
     background-color: transparent !important;
 }
 
-/* 3. SEPARACIÓN DE COLAPSABLES (Acordeones/Inventario) */
-/* Añade margen y bordes para que los bloques no se peguen entre sí */
+/* 3. SEPARACIÓN DE BLOQUES (Acordeones/Inventario) */
 .border.border-white\/10,
 div[x-data] > div.border,
 .shadow.sm\:rounded-lg {
-    margin-bottom: 0.8rem !important; /* Espacio entre bloques */
+    margin-bottom: 0.8rem !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     border-radius: 0.5rem !important;
     background-color: rgba(
@@ -77,20 +80,20 @@ div[x-data] > div.border,
         41,
         59,
         0.4
-    ) !important; /* Fondo sutil para distinguir el bloque */
+    ) !important; /* Fondo sutil para bloques */
 }
 
-/* Espaciado interno para los encabezados de los colapsables */
+/* Ajuste de relleno para encabezados de colapsables */
 .flex.items-center.justify-between {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
 }
 
-/* ============================================
-   📑 TEXTOS Y TIPOGRAFÍA (INTELIGENTE POR MODOS)
-   ============================================ */
+/* ============================================================
+   📑 TEXTOS Y TIPOGRAFÍA (CONTROL DE MODOS)
+   ============================================================ */
 
-/* Color de texto general para Modo Oscuro y menús */
+/* Color de texto base para el Modo Oscuro */
 .text-gray-900,
 .text-gray-700,
 .text-gray-800,
@@ -98,7 +101,7 @@ div[x-data] > div.border,
     color: #ece9e9 !important;
 }
 
-/* 🎯 EXCEPCIÓN MODO CLARO: Forzar visibilidad cuando el fondo es blanco */
+/* FIX MODO CLARO: Forzar visibilidad cuando el fondo es blanco */
 html.light-mode .text-gray-600,
 html.light-mode .text-gray-700,
 html.light-mode nav[role="navigation"] p,
@@ -107,52 +110,50 @@ html.light-mode nav[role="navigation"] a {
     color: #000307 !important;
 }
 
-/* Forzar color oscuro SOLO en la paginación cuando hay fondo claro */
+/* Color específico para paginación sobre fondos claros */
 nav[role="navigation"] .text-gray-600,
 nav[role="navigation"] .text-gray-700,
 nav[role="navigation"] p {
-    color: #1e293b !important; /* Un azul/negro oscuro para que se vea sobre el blanco */
+    color: #1e293b !important;
 }
 
-/* Si estamos en modo oscuro explícito, forzamos texto blanco en paginación */
+/* Restauración de texto blanco en paginación para modo oscuro */
 html:not(.light-mode) nav[role="navigation"] p {
     color: #ffffff !important;
 }
 
-/* Color rojo crítico para contadores o alertas */
+/* Color institucional para alertas y contadores críticos */
 .text-red-800 {
     color: #b91c1c !important;
 }
 
-/* ============================================
-   🔥 FORMULARIOS Y SELECTS (ESTILO GLASS)
-   ============================================ */
+/* ============================================================
+   🔥 FORMULARIOS Y SELECTS (EFECTO CRISTAL / GLASS)
+   ============================================================ */
 
+/* Estilo de etiquetas */
 label {
     color: #e8eef5 !important;
     font-weight: 600;
 }
 
+/* Estilo unificado para inputs, selects y áreas de texto */
 input,
 select,
 textarea {
     color: #ffffff !important;
-    background-color: rgba(
-        0,
-        0,
-        0,
-        0.35
-    ) !important; /* Efecto cristal oscuro */
+    background-color: rgba(0, 0, 0, 0.35) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     border-radius: 0.25rem;
 }
 
+/* Color de los textos de sugerencia (Placeholder) */
 input::placeholder,
 textarea::placeholder {
     color: rgba(255, 255, 255, 0.55) !important;
 }
 
-/* Efecto al seleccionar un campo */
+/* Efecto visual al hacer foco en un campo */
 input:focus,
 select:focus,
 textarea:focus {
@@ -161,7 +162,7 @@ textarea:focus {
     box-shadow: 0 0 8px rgba(79, 156, 255, 0.4);
 }
 
-/* Forzar estilo oscuro en las opciones de los menús desplegables nativos */
+/* Forzar que las opciones del desplegable se lean bien (fondo oscuro) */
 select option {
     background-color: #1f2937 !important;
     color: #ffffff !important;
@@ -170,9 +171,9 @@ select option:checked {
     background-color: #4f9cff !important;
 }
 
-/* ============================================
+/* ============================================================
    🎨 TABLAS (GLASS EFFECT PROFESIONAL)
-   ============================================ */
+   ============================================================ */
 
 table {
     @apply w-full text-gray-100 rounded-lg overflow-hidden;
@@ -197,7 +198,7 @@ tbody tr {
     transition: background 0.15s ease;
 }
 
-/* Zebra-striping (filas alternas) */
+/* Filas alternas para mejor lectura (Zebra-striping) */
 tbody tr:nth-child(even) {
     background: rgba(255, 255, 255, 0.05);
 }
@@ -214,23 +215,23 @@ td {
     color: #e8eef5 !important;
 }
 
-/* Espacio inferior para que la tabla no toque la paginación */
+/* Margen inferior para no pegar la tabla a la paginación */
 .overflow-x-auto {
     padding-bottom: 1.5rem !important;
 }
 
-/* ============================================
-   ⚠️ BOTONES Y MENÚS DESPLEGABLES (FIXES)
-   ============================================ */
+/* ============================================================
+   ⚠️ BOTONES Y ACCIONES (ESTILO INSTITUCIONAL)
+   ============================================================ */
 
-/* Reset general para botones de Jetstream */
+/* Limpieza de colores por defecto en botones de Jetstream */
 .btn-color-fix,
 .bg-indigo-600,
 .bg-gray-200 {
     background-color: initial !important;
 }
 
-/* Botones Primarios (Submit / Guardar) */
+/* Botones Principales (Guardar / Procesar) */
 button[type="submit"],
 .inline-flex.items-center.px-4.py-2.bg-gray-800,
 button[type="button"].inline-flex.items-center.bg-gray-800 {
@@ -247,14 +248,14 @@ button[type="submit"]:hover {
     box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
 }
 
-/* Botones específicos de Dependencias (Azul fuerte) */
+/* Botón de Dependencias / Slate (Unificado a azul institucional) */
 .text-center button.bg-slate-800,
 .justify-center button.bg-slate-800 {
     background-color: #4f9cff !important;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Botón blanco (Team Switcher) */
+/* Botones Blancos (Switcher de equipos u otros) */
 button.bg-white,
 a.bg-white {
     background-color: #ffffff !important;
@@ -263,7 +264,11 @@ button.bg-white:hover {
     background-color: #f3f4f6 !important;
 }
 
-/* Menús desplegables de Usuario (Top Right) */
+/* ============================================================
+   ⚠️ MENÚS DESPLEGABLES DE USUARIO (TOP RIGHT)
+   ============================================================ */
+
+/* 1. MODO OSCURO (Fondo oscuro transparente) */
 .origin-top-right,
 div[role="listbox"],
 div[x-show].absolute {
@@ -271,32 +276,7 @@ div[x-show].absolute {
     backdrop-filter: blur(8px) !important;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.5rem;
-}
-
-.origin-top-right a,
-.origin-top-right div {
-    color: #e8eef5 !important;
-    background-color: transparent !important;
-}
-
-.origin-top-right a:hover {
-    background-color: rgba(79, 156, 255, 0.15) !important;
-    color: #4f9cff !important;
-}
-
-/* ============================================
-    ⚠️ MENÚS DESPLEGABLES DE USUARIO (TOP RIGHT)
-   ============================================ */
-
-/* 1. ESTILO BASE (Modo Oscuro / Glass) */
-.origin-top-right,
-div[role="listbox"],
-div[x-show].absolute {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    backdrop-filter: blur(8px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.5rem;
-    overflow: hidden; /* Asegura que el hover no se salga de las esquinas redondeadas */
+    overflow: hidden;
 }
 
 .origin-top-right a,
@@ -311,15 +291,13 @@ div[x-show].absolute {
     transition: all 0.2s ease;
 }
 
-/* Hover Modo Oscuro */
 .origin-top-right a:hover,
 .origin-top-right button:hover {
     background-color: rgba(79, 156, 255, 0.15) !important;
     color: #4f9cff !important;
 }
 
-/* 2. 🎯 FIX PARA MODO CLARO (Solución al pintado total) */
-
+/* 2. FIX MODO CLARO (Fondo blanco sólido) */
 html.light-mode .origin-top-right,
 html.light-mode div[role="listbox"],
 html.light-mode div[x-show].absolute {
@@ -329,7 +307,6 @@ html.light-mode div[x-show].absolute {
     backdrop-filter: none !important;
 }
 
-/* Texto en modo claro */
 html.light-mode .origin-top-right a,
 html.light-mode .origin-top-right button,
 html.light-mode .origin-top-right div,
@@ -337,33 +314,28 @@ html.light-mode .block.px-4.py-2.text-sm {
     color: #1e293b !important;
 }
 
-/* 🔥 FIX HOVER INDIVIDUAL: Solo se pinta la fila seleccionada */
+/* Hover específico en modo claro para evitar pintar todo el bloque */
 html.light-mode .origin-top-right a:hover,
 html.light-mode .origin-top-right button:hover {
-    background-color: #2563eb !important; /* Un gris azulado suave para no saturar */
-    color: #2563eb !important;
+    background-color: #2563eb !important;
+    color: #ffffff !important;
 }
 
-/* Si quieres mantener tu verde, usa esta línea en lugar de la anterior:
-   background-color: #51cf16 !important; color: #ffffff !important;
-*/
-
-/* Quitar el hover del div contenedor para evitar que se pinte todo el bloque */
 html.light-mode .origin-top-right div:hover {
     background-color: transparent;
 }
 
-/* ============================================
-   🧩 MODALES Y MÉTRICAS (SOLUCIÓN SÓLIDA)
-   =========================================== */
+/* ============================================================
+   🧩 MODALES Y MÉTRICAS
+   ============================================================ */
 
-/* Contenedor de Modal */
+/* Fondo para modales informativos */
 div.bg-white.p-4.rounded-md.shadow-md {
     background-color: #1e293b !important;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Texto dentro de modales */
+/* Texto de encabezado y primario en métricas/modales */
 div.bg-white.p-4.rounded-md.shadow-md h2,
 div.bg-white.p-4.rounded-md.shadow-md .text-metric-primary {
     color: #e8eef5 !important;
@@ -375,16 +347,16 @@ div.bg-white.p-4.rounded-md.shadow-md .text-metric-primary {
     font-weight: 700;
 }
 
-/* Asegurar que los contadores rojos dentro de modales se vean */
+/* Contadores rojos dentro de modales */
 div.bg-white.p-4.rounded-md.shadow-md strong.text-red-800 {
     color: #b91c1c !important;
 }
 
-/* ============================================
+/* ============================================================
    📱 RESPONSIVIDAD Y SCROLL
-   ============================================ */
+   ============================================================ */
 
-/* Adaptación de modales w-96 en móviles */
+/* Ajuste de ancho de modales en pantallas pequeñas */
 @media screen and (max-width: 640px) {
     .w-96 {
         width: 90vw !important;
@@ -394,7 +366,7 @@ div.bg-white.p-4.rounded-md.shadow-md strong.text-red-800 {
     }
 }
 
-/* Scroll vertical en modales largos */
+/* Control de altura para modales con mucho contenido */
 .w-96 > h2 + .mb-4 {
     max-height: calc(100vh - 200px);
     overflow-y: auto;
@@ -402,17 +374,17 @@ div.bg-white.p-4.rounded-md.shadow-md strong.text-red-800 {
     padding-right: 0.5rem;
 }
 
-/* Footer ultra-fino */
+/* Estilo para footer minimalista */
 .footer-tight {
     padding-top: 2px !important;
     padding-bottom: 2px !important;
 }
 
-/* ============================================
-   🔢 PAGINACIÓN (SISTEMA UNIFICADO)
-   ============================================ */
+/* ============================================================
+   🔢 PAGINACIÓN (UNIFICACIÓN VISUAL)
+   ============================================================ */
 
-/* Forzado de visibilidad del contenedor */
+/* Asegurar que el contenedor sea siempre visible y esté en su capa */
 nav[role="navigation"] {
     display: block !important;
     visibility: visible !important;
@@ -421,7 +393,7 @@ nav[role="navigation"] {
     z-index: 50 !important;
 }
 
-/* Botones básicos (Números y Flechas) */
+/* Botones de navegación (Números y Flechas) */
 nav[role="navigation"] .inline-flex.shadow-sm.rounded-md a,
 nav[role="navigation"]
     .inline-flex.shadow-sm.rounded-md
@@ -438,61 +410,58 @@ nav[role="navigation"]
     outline: none !important;
 }
 
-/* Número de página activa */
+/* Estilo para la página actual */
 nav[role="navigation"] span[aria-current="page"] span {
     background-color: #2563eb !important;
     color: #ffffff !important;
     border-color: #3b82f6 !important;
 }
 
-/* Hover en números */
+/* Efecto hover sobre los números */
 nav[role="navigation"] .inline-flex.shadow-sm.rounded-md a:hover {
     background-color: #334155 !important;
 }
 
-/* Texto de contador "Showing X to Y..." */
+/* Texto descriptivo "Mostrando X de Y resultados" */
 nav[role="navigation"] div div p {
     color: #e8eef5 !important;
 }
 
-/* ============================================
-   ⚪ ESPECÍFICOS MODO CLARO (FORZADO FINAL)
-   ============================================ */
+/* ============================================================
+   ⚪ ESPECÍFICOS MODO CLARO (OVERRIDE FINAL)
+   ============================================================ */
 
 html.light-mode .container-dinamico {
     background-color: #ffffff !important;
     border: 1px solid #e2e8f0;
 }
 
-/* Texto de paginación en Modo Claro */
+/* Color de texto en contadores de paginación para modo claro */
 html.light-mode nav[role="navigation"] div p,
 html.light-mode nav[role="navigation"] div p span {
     color: #1e293b !important;
 }
 
-/* Unificamos en una sola clase corregida */
+/* ============================================================
+   💬 COMPONENTES DE CHAT (USER CARD)
+   ============================================================ */
+
 .user-card-chat {
-    /* Fondo y Blur */
     background-color: rgba(235, 229, 229, 0.1) !important;
     backdrop-filter: blur(8px);
     border-radius: 12px;
-
-    /* Borde: Usamos un color sólido que se invierta bien */
     border: 1px solid rgba(0, 0, 0, 0.2) !important;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4) !important;
-
-    /* ELIMINAMOS el color de aquí para que no afecte a todo el div */
     transition: all 0.3s ease;
 }
 
-/* Forzamos que los textos dentro de la card sean negros puros en modo claro */
-/* Al invertirse en modo oscuro, el #000 se volverá Blanco Puro */
+/* Texto dentro de las tarjetas del chat */
 .user-card-chat h5,
 .user-card-chat span {
     color: #e4e3e3 !important;
 }
 
-/* Ajuste para Modo Oscuro (debido a tu filtro invert) */
+/* Ajuste de borde para modo oscuro explícito */
 .dark .user-card-chat {
     border-color: rgba(255, 255, 255, 0.3) !important;
 }

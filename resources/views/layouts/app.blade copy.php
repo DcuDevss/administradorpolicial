@@ -19,7 +19,6 @@
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
     <link href="https://unpkg.com/@fullcalendar/core/main.css" rel="stylesheet" />
     <link href="https://unpkg.com/@fullcalendar/daygrid/main.css" rel="stylesheet" />
     <link href="https://unpkg.com/@fullcalendar/timegrid/main.css" rel="stylesheet" />
@@ -34,16 +33,17 @@
 
 
     <style>
-        /* ============================================================
-           MODO OSCURO – CONFIGURACIÓN DE FONDO (Base Institucional)
-           ============================================================ */
+        /* ================================
+   MODO OSCURO – FONDO + CAPAS
+   ================================ */
 
+        /* Base */
         html:not(.light-mode) body {
             position: relative;
             z-index: 0;
         }
 
-        /* Capa fija para la imagen de fondo oscura */
+        /* Fondo oscuro SIEMPRE atrás */
         html:not(.light-mode) body::before {
             content: "";
             position: fixed;
@@ -57,16 +57,17 @@
             filter: brightness(0.85) contrast(1.05);
         }
 
-        /* ============================================================
-           MODO CLARO – CONFIGURACIÓN DE FONDO
-           ============================================================ */
+        /* ================================
+   MODO CLARO – FONDO + CAPAS
+   ================================ */
 
+        /* Base */
         html.light-mode body {
             position: relative;
             z-index: 0;
         }
 
-        /* Capa fija para la imagen de fondo clara */
+        /* Fondo claro SIEMPRE atrás */
         html.light-mode body::before {
             content: "";
             position: fixed;
@@ -79,12 +80,13 @@
             pointer-events: none;
         }
 
-        /* ESTRUCTURA DE CAPAS: Asegura que el contenido flote sobre el fondo */
+        /* Wrapper principal de la app */
         #main-wrapper {
             position: relative;
             z-index: 10;
         }
 
+        /* Contenido general (tablas, cards, vistas) */
         html.light-mode main,
         html.light-mode main>div,
         html.light-mode .max-w-7xl,
@@ -95,10 +97,11 @@
             z-index: 20;
         }
 
-        /* ============================================================
-           FIX CHAT (Modo Claro): Evita transparencias ilegibles
-           ============================================================ */
+        /* ================================
+   FIX DEFINITIVO CHAT (fixed)
+   ================================ */
 
+        /* Contenedor principal del chat */
         html.light-mode .fixed.h-full.flex {
             position: fixed !important;
             z-index: 50 !important;
@@ -107,21 +110,29 @@
             -webkit-backdrop-filter: none !important;
         }
 
+        /* Todo el contenido interno del chat */
         html.light-mode .fixed.h-full.flex * {
             z-index: 51 !important;
         }
 
-        /* Elimina el efecto borroso que dificulta la lectura en blanco */
+        /* Evitar efecto vidrio en elementos fixed */
         html.light-mode .fixed,
         html.light-mode .fixed * {
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
         }
 
-        /* ============================================================
-           TARJETAS Y CONTENEDORES (Modo Claro)
-           ============================================================ */
+        /* 2. Contenedores de Blade (Solo Divs, NO botones) */
+        /*    html.light-mode div.bg-\[\#1e293b\]\/60,
+        html.light-mode div.bg-\[\#1e293b\]\/70,
+        html.light-mode div.bg-slate-800,
+        html.light-mode div.bg-white\/10 {
+            background-color: #ffffff !important;
+            color: #1e293b !important;
+            border: 1px solid #e2e8f0 !important;
+        } */
 
+        /* Cards y contenedores – modo claro (camuflado institucional) */
         html.light-mode div.bg-\[\#1e293b\]\/60,
         html.light-mode div.bg-\[\#1e293b\]\/70,
         html.light-mode div.bg-slate-800,
@@ -132,7 +143,18 @@
             box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08) !important;
         }
 
-        /* PROTECCIÓN DE BOTONES: Mantiene el azul institucional legible */
+
+
+
+
+
+
+
+        /* Hasta aca */
+
+
+
+        /* 2.1 PROTECCIÓN DE BOTONES AZULES */
         html.light-mode .bg-blue-600,
         html.light-mode .bg-blue-500,
         html.light-mode button.bg-\[\#1e293b\],
@@ -142,11 +164,7 @@
             border: none !important;
         }
 
-        /* ============================================================
-           FORMULARIOS: Selectores, Inputs y Checkboxes (Modo Claro)
-           ============================================================ */
-
-        /* Estilo para los menús desplegables (Selects) */
+        /* 3. FIX DE SELECTORES Y CAMPOS DE TEXTO */
         html.light-mode select,
         html.light-mode .form-select {
             background-color: #ffffff !important;
@@ -161,7 +179,6 @@
             border-radius: 0.375rem !important;
         }
 
-        /* Estilo para campos de texto (Inputs) */
         html.light-mode input[type="text"],
         html.light-mode input[type="email"],
         html.light-mode input[type="password"],
@@ -176,7 +193,7 @@
             border-radius: 0.375rem !important;
         }
 
-        /* Estilo para Checkboxes y Radios */
+        /* 3.1 RESTAURACIÓN DE CHECKBOXES */
         html.light-mode input[type="checkbox"],
         html.light-mode input[type="radio"] {
             appearance: checkbox !important;
@@ -193,32 +210,33 @@
             border-color: #2563eb !important;
         }
 
-        /* ============================================================
-           TIPOGRAFÍA: Fix de colores "Fantasma" (Modo Claro)
-           ============================================================ */
-
+        /* 4. FIX DE TEXTOS "FANTASMA" (Tipografías generales) */
+        /* Todo el texto general de la web será negro en modo claro */
         html.light-mode h1,
+        /*  html.light-mode h2,
+        html.light-mode h3,
+        html.light-mode h4,*/
         html.light-mode h5,
         html.light-mode p,
         html.light-mode label {
             color: #000000 !important;
         }
 
-        /* EXCEPCIÓN: Texto sobre fotos oscuras (Cards de comisarías) debe seguir siendo BLANCO */
+        /* 4.1 EXCEPCIÓN PARA IMÁGENES (ÁREAS OPERATIVAS / COMISARÍAS) */
+        /* Si el texto está dentro de un div con fondo oscuro (bg-black/40),
+   forzamos que sea BLANCO y quitamos cualquier sombra sucia */
         html.light-mode .bg-black\/40 h2,
         html.light-mode .bg-black\/40 p,
         html.light-mode .bg-black\/40 h1,
         html.light-mode [class*="bg-black/"] h2,
         html.light-mode [class*="bg-black/"] p,
-        html.light-mode div[style*="background-image"] h1,
-        html.light-mode div[style*="background-image"] p,
-        html.light-mode div[style*="background-image"] span {
+        html.light-mode {
             color: #ffffff !important;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8) !important;
+            text-shadow: none !important;
             filter: none !important;
         }
 
-        /* Forzado de texto blanco en botones de colores */
+        /* 4.2 PROTECCIÓN TEXTO EN BOTONES */
         html.light-mode a[class*="bg-blue-"],
         html.light-mode a[class*="bg-red-"],
         html.light-mode a[class*="bg-green-"],
@@ -227,10 +245,7 @@
             color: #ffffff !important;
         }
 
-        /* ============================================================
-           HEADER Y FOOTER: Optimización de espacios
-           ============================================================ */
-
+        /* 5. HEADER Y FOOTER - VERSIÓN COMPACTA Este es en modo claro*/
         html.light-mode header {
             background-color: rgba(241, 245, 249, 0.92) !important;
             color: #000000 !important;
@@ -240,10 +255,12 @@
             -webkit-backdrop-filter: blur(10px);
         }
 
-        /* Reducción de altura del Header */
+        /* 🎯 ESTO ES LO QUE ACHICA EL HEADER REALMENTE */
         html.light-mode header .max-w-7xl {
             padding-top: 0.5rem !important;
+            /* Reduce el espacio arriba */
             padding-bottom: 0.5rem !important;
+            /* Reduce el espacio abajo */
         }
 
         html.light-mode footer {
@@ -254,10 +271,7 @@
             padding-bottom: 0.25rem !important;
         }
 
-        /* ============================================================
-           BOTÓN FLOTANTE: Switcher de Tema (Sol/Luna)
-           ============================================================ */
-
+        /* 6. BOTÓN TEMA (Corregido) */
         #theme-toggle-btn {
             position: fixed;
             bottom: 30px;
@@ -285,23 +299,98 @@
             color: #000000 !important;
         }
 
-        /* PARCHE ADICIONAL: Asegura que clases de Tailwind grises no se pierdan en el blanco */
+        /* 7. PARCHE TEXTOS GRISES REBELDES */
+        html.light-mode .text-gray-900,
+        html.light-mode .text-gray-800,
+        html.light-mode .text-gray-700,
+        html.light-mode .text-gray-600,
+        html.light-mode .text-slate-900,
+        html.light-mode .text-slate-800,
+        html.light-mode .text-slate-700,
+        html.light-mode .text-slate-600 {
+            color: #1e293b !important;
+        }
+
+        html.light-mode .text-gray-500,
+        html.light-mode .text-slate-500 {
+            color: #475569 !important;
+        }
+
+
+
+
+        /* 8. EXCEPCIÓN PARA TEXTOS SOBRE IMÁGENES O FOTOS OSCURAS */
+        /* Esta regla busca textos que estén dentro de contenedores con fondo de imagen */
+        html.light-mode .relative h1,
+        html.light-mode .relative p,
+        html.light-mode .absolute h1,
+        html.light-mode .absolute p,
+        html.light-mode .relative span,
+        html.light-mode .bg-cover h1,
+        html.light-mode .bg-cover p {
+            color: #ffffff !important;
+            /* Mantenemos blanco sobre las fotos */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            /* Agregamos sombra para legibilidad */
+
+        }
+
+
+
+        /* 9. EXCEPCIÓN ESPECÍFICA PARA TUS CARDS DE "ÁREAS OPERATIVAS" */
+        /* Si usas una clase específica para esas fotos, agrégala aquí */
+        html.light-mode div[style*="background-image"] h1,
+        html.light-mode div[style*="background-image"] p,
+        html.light-mode div[style*="background-image"] span {
+            color: #ffffff !important;
+        }
+
+        /* 10. FIX ESPECÍFICO PARA BUSCADORES Y PLACEHOLDERS */
+        /* Esto hace que el texto "Buscar usuario..." sea visible en modo claro */
+        html.light-mode input::placeholder,
+        html.light-mode textarea::placeholder {
+            color: #64748b !important;
+            /* Un gris azulado oscuro legible */
+            opacity: 1 !important;
+        }
+
+        /* Si el input tiene un ID o clase específica como buscador */
+        html.light-mode input[type="search"],
+        html.light-mode input[type="text"] {
+            color: #1e293b !important;
+            /* Texto que escribes en negro/azul oscuro */
+            background-color: #ffffff !important;
+        }
+
+        /* FIX PARA BUSCADOR Y TEXTOS GRISES */
         html.light-mode .text-gray-900,
         html.light-mode .text-gray-800,
         html.light-mode .text-gray-700,
         html.light-mode .text-slate-900,
         html.light-mode .text-slate-800,
         html.light-mode .text-slate-700 {
-            color: #1e293b !important;
+            color: #0f172a !important;
+            /* Negro azulado para textos principales */
         }
 
-        /* ============================================================
-           PLACEHOLDERS: Visibilidad en buscadores
-           ============================================================ */
+        html.light-mode .text-gray-600,
+        html.light-mode .text-gray-500,
+        html.light-mode .text-slate-600,
+        html.light-mode .text-slate-500 {
+            color: #475569 !important;
+            /* Gris intermedio para nombres en buscadores o placeholders */
+        }
 
-        html.light-mode input::placeholder,
-        html.light-mode textarea::placeholder {
+        /* REGLA DE ORO PARA EL BUSCADOR (Específica) */
+        html.light-mode input[type="text"],
+        html.light-mode input[type="search"] {
+            color: #000000 !important;
+            /* Lo que escribes debe ser negro puro */
+        }
+
+        html.light-mode input::placeholder {
             color: #64748b !important;
+            /* El texto "Buscar..." ahora será visible */
             opacity: 1 !important;
         }
     </style>
@@ -317,8 +406,10 @@
 
         @if (isset($header))
             <header class="bg-[#1e293b]/70 backdrop-blur-md shadow border-b border-white/10 mt-16 transition-all">
-                <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
+                {{-- <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
+                </div> --}}
+                <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8"> {{ $header }}
                 </div>
             </header>
         @endif
@@ -333,15 +424,22 @@
 
         <footer
             class="text-center bg-gray-900/90 dark:bg-black/80 backdrop-blur-md font-medium text-[10px] md:text-xs text-gray-300 left-0 w-full z-20 flex items-center justify-center space-x-3 py-3 border-t border-white/5 transition-all">
+
+            {{-- Escudo con filtro para suavizar bordes --}}
             <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo"
                 class="h-7 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300" loading="lazy"
                 decoding="async">
 
+            {{-- Texto con espaciado mejorado --}}
             <p class="m-0 tracking-wider uppercase">
                 © {{ date('Y') }} <span class="text-white">Policía de Tierra del Fuego</span>
             </p>
         </footer>
     </div>
+
+    {{--  <button onclick="toggleTheme()" id="theme-toggle-btn">
+        <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
+    </button> --}}
 
     @stack('modals')
     @livewireScripts
@@ -366,16 +464,13 @@
     @endif
 
     <script>
-        /* ============================================================
-               LÓGICA DE CAMBIO DE TEMA (Dark/Light Mode)
-               ============================================================ */
+        // Tus funciones de toggleTheme y updateThemeUI...
         function toggleTheme() {
             const isLight = document.documentElement.classList.toggle('light-mode');
             localStorage.setItem('theme-police', isLight ? 'light' : 'dark');
             updateThemeUI(isLight);
         }
 
-        // Actualiza los iconos y textos del botón flotante
         function updateThemeUI(isLight) {
             const icon = document.getElementById('theme-icon');
             const text = document.getElementById('theme-text');
@@ -392,39 +487,51 @@
             const isLight = document.documentElement.classList.contains('light-mode');
             updateThemeUI(isLight);
         });
+    </script>
 
-        /* ============================================================
-           SISTEMA DE CONFIRMACIÓN GLOBAL (SweetAlert2)
-           Intercepta clics en botones de Guardar/Actualizar
-           ============================================================ */
+    {{-- Nuevo --}}
+
+    <script>
         document.addEventListener('click', function(event) {
+
             const btn = event.target.closest('button, a');
             if (!btn) return;
+
             if (btn.dataset.confirmed === "true") return;
 
-            const text = (btn.innerText || '').toLowerCase().replace(/[!?.¿¡]/g, '').trim();
+            const text = (btn.innerText || '')
+                .toLowerCase()
+                .replace(/[!?.¿¡]/g, '')
+                .trim();
 
-            // 1. Ignorar botones de navegación simple
+            // ❌ Ignorar acciones comunes
             if (['buscar', 'cerrar', 'volver', 'cancelar'].some(p => text.includes(p))) return;
 
-            // 2. Ignorar eliminar (usualmente tienen su propio modal de confirmación)
-            const esEliminar = text.includes('eliminar') || text.includes('borrar') || btn.classList.contains(
-                'bg-red-600');
+            // 🔴 Eliminar → NO manejamos acá
+            const esEliminar =
+                text.includes('eliminar') ||
+                text.includes('borrar') ||
+                btn.classList.contains('bg-red-600');
+
             if (esEliminar) return;
 
-            // 3. Detectar palabras clave de acción para confirmar
-            const esAccionPositiva = ['guardar', 'actualizar', 'crear', 'registrar', 'modificar', 'confirmar',
-                'asignar'
+            // 🟢 Acciones positivas
+            const esAccionPositiva = [
+                'guardar', 'actualizar', 'crear', 'registrar',
+                'modificar', 'confirmar', 'asignar'
             ].some(p => text.includes(p));
+
             if (!esAccionPositiva) return;
 
-            // 4. Solo actuar si es un botón de envío o tiene acción Livewire
+            // 🔹 Solo preguntar si el botón realmente va a guardar o enviar datos
             const form = btn.closest('form');
             const esBotonSubmit = btn.type === 'submit' || form || btn.hasAttribute('wire:click');
             if (!esBotonSubmit) return;
 
-            // FRENAR EL CLIC ORIGINAL PARA PREGUNTAR
+
+            // ⛔ Frenamos SOLO UNA VEZ
             event.preventDefault();
+
             const isLight = document.documentElement.classList.contains('light-mode');
 
             Swal.fire({
@@ -439,22 +546,32 @@
             }).then((result) => {
                 if (!result.isConfirmed) return;
 
-                // Marcar como confirmado para evitar bucle infinito
+                // 🔐 Marcamos confirmado
                 btn.dataset.confirmed = "true";
 
-                // Ejecutar envío según tipo de botón
+                // ✅ FORM NORMAL
                 const form = btn.closest('form');
                 if (form && !form.hasAttribute('wire:submit')) {
                     form.submit();
-                } else if (btn.getAttribute('wire:click')) {
-                    Livewire.dispatch(btn.getAttribute('wire:click'));
-                } else {
-                    btn.click(); // Re-disparar el clic
+                    return;
+                }
+
+                // ✅ LIVEWIRE
+                const wireClick = btn.getAttribute('wire:click');
+                if (wireClick) {
+                    Livewire.dispatch(wireClick);
                 }
             });
 
         }, true);
     </script>
+
+
+
+
+
+
+
 </body>
 
 </html>
