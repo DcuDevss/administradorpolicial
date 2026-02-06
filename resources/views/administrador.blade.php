@@ -1,6 +1,8 @@
 <x-app-layout>
-    <h1 class="text-center text-xl font-bold text-white mb-4 mt-4 uppercase tracking-widest">Administrador</h1>
+    {{-- <h1 class="text-center text-xl p-4 font-bold text-white mb-4 mt-4 uppercase tracking-widest">Administrador</h1> --}}
+    <h1 class="text-center p-4 text-xl font-bold text-white mb-4 mt-4 uppercase tracking-widest">Administrador</h1>
 
+    {{-- GRID DE CARDS USANDO LA CLASE PERSONALIZADA --}}
     <div class="contenedor-cards">
         @php
             $cards = [

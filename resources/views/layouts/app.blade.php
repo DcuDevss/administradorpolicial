@@ -304,6 +304,14 @@
             color: #64748b !important;
             opacity: 1 !important;
         }
+
+        /* PLACEHOLDERS: Visibilidad en MODO OSCURO */
+        html:not(.light-mode) input::placeholder,
+        html:not(.light-mode) textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
+            /* Blanco semitraslúcido */
+            opacity: 1 !important;
+        }
     </style>
 </head>
 
@@ -367,8 +375,8 @@
 
     <script>
         /* ============================================================
-               LÓGICA DE CAMBIO DE TEMA (Dark/Light Mode)
-               ============================================================ */
+                   LÓGICA DE CAMBIO DE TEMA (Dark/Light Mode)
+                   ============================================================ */
         function toggleTheme() {
             const isLight = document.documentElement.classList.toggle('light-mode');
             localStorage.setItem('theme-police', isLight ? 'light' : 'dark');

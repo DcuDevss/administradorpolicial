@@ -1,7 +1,7 @@
 <x-app-layout>
 
     {{-- TÍTULO --}}
-    <h1 class="text-center text-xl font-bold text-white mb-4 mt-4 uppercase tracking-widest">
+    <h1 class="text-center p-4 text-xl font-bold text-white mb-4 mt-4 uppercase tracking-widest">
         Técnico Informática
     </h1>
 
