@@ -471,3 +471,38 @@ html.light-mode nav[role="navigation"] div p span {
     border-color: rgba(255, 255, 255, 0.3) !important; /* Línea más visible */
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
 }
+
+/* ============================================================
+    💎 ESTILO PROFESIONAL PARA TARJETAS DE COMISARÍAS
+    ============================================================ */
+/* Apunta directamente a los contenedores con fondo negro de tu vista */
+.bg-black.flex.rounded-lg.flex-col {
+    background: linear-gradient(
+        145deg,
+        #0a0a0a,
+        #1a1a1a
+    ) !important; /* Degradado sutil */
+    border: 1px solid #333; /* Borde fino para definición */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4); /* Sombra profesional */
+    transition: transform 0.2s ease;
+}
+
+/* Fuerza el color de TODO el texto dentro de estos cuadros */
+.bg-black.flex.rounded-lg.flex-col,
+.bg-black.flex.rounded-lg.flex-col h2,
+.bg-black.flex.rounded-lg.flex-col p,
+.bg-black.flex.rounded-lg.flex-col strong {
+    color: #ffffff !important; /* Blanco puro garantizado */
+}
+
+/* Estilo para los valores numéricos (los strong) para que resalten */
+.bg-black.flex.rounded-lg.flex-col strong.text-red-800 {
+    color: #ff4d4d !important; /* Un rojo más brillante y legible sobre negro */
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+}
+
+/* Efecto hover opcional para mayor dinamismo */
+.bg-black.flex.rounded-lg.flex-col:hover {
+    transform: translateY(-2px);
+    border-color: #4f46e5; /* Color índigo como el icono */
+}

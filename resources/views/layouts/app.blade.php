@@ -218,6 +218,17 @@
             filter: none !important;
         }
 
+        /* FORZADO DE TEXTO BLANCO SOBRE FONDOS NEGROS O ELEMENTOS OSCUROS (Solución a imagen image_294207.png) */
+        .bg-black p,
+        .bg-black h1,
+        .bg-black h2,
+        .bg-black span,
+        .bg-slate-900 p,
+        .bg-slate-900 h1,
+        .bg-slate-900 h2 {
+            color: #ffffff !important;
+        }
+
         /* Forzado de texto blanco en botones de colores */
         html.light-mode a[class*="bg-blue-"],
         html.light-mode a[class*="bg-red-"],
@@ -375,8 +386,8 @@
 
     <script>
         /* ============================================================
-                   LÓGICA DE CAMBIO DE TEMA (Dark/Light Mode)
-                   ============================================================ */
+                                                   LÓGICA DE CAMBIO DE TEMA (Dark/Light Mode)
+                                                   ============================================================ */
         function toggleTheme() {
             const isLight = document.documentElement.classList.toggle('light-mode');
             localStorage.setItem('theme-police', isLight ? 'light' : 'dark');
