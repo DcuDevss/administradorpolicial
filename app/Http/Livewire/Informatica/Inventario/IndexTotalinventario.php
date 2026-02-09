@@ -95,6 +95,23 @@ class IndexTotalinventario extends Component
 
     public function render()
     {
+        $sumaTotalOtros = DB::table('generalinformaticas')
+            ->where('tipodispositivo_id', 1)
+            ->whereNotNull('dependencia_ushuaia_id')
+            ->count()
+            + DB::table('investigacionesgenerales')
+                ->where('tipodispositivo_id', 1)
+                ->count()
+            + DB::table('administraciongenerales')
+                ->where('tipodispositivo_id', 1)
+                ->count()
+            + DB::table('jefaturagenerales')
+                ->where('tipodispositivo_id', 1)
+                ->count()
+            + DB::table('recursoshumanosgenerales')
+                ->where('tipodispositivo_id', 1)
+                ->count();
+
         $sumaTotalPc = DB::table('generalinformaticas')
             ->where('tipodispositivo_id', 3)
             ->whereNotNull('dependencia_ushuaia_id')
@@ -456,7 +473,7 @@ class IndexTotalinventario extends Component
                 ->where('tipodispositivo_id', 23)
                 ->count();
 
-        return view('livewire.informatica.inventario.index-totalinventario',compact('sumaTotalPc','sumaTotalMonitor_pc','sumaTotalNotebook',
+        return view('livewire.informatica.inventario.index-totalinventario',compact('sumaTotalOtros', 'sumaTotalPc','sumaTotalMonitor_pc','sumaTotalNotebook',
         'sumaTotalNetbook','sumaTotalCelular','sumaTotalTablet','sumaTotalTelefono_fijo','sumaTotalTelefono_inalambrico',
         'sumaTotalImpresora_laser','sumaTotalImpresora_tinta','sumaTotalSwitch','sumaTotalRuter','sumaTotalUps','sumaTotalCamaras_video',
         'sumaTotalEstacion_trabajo','sumaTotalServidor','sumaTotalEstabilizador_tension','sumaTotalAuriculares',

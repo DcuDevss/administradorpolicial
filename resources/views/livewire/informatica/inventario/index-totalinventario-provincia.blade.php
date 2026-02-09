@@ -15,6 +15,11 @@
                     <p class="text-2xl font-bold">{{ $sumaTotalPc }}</p>
                 </div>
 
+                <div class="bg-gray-600 p-4 text-white rounded-lg">
+                    <p class="text-sm font-semibold">Otros</p>
+                    <p class="text-2xl font-bold">{{ $sumaTotalOtros }}</p>
+                </div>
+
                 <div class="bg-blue-400 p-4 text-white rounded-lg">
                     <p class="text-sm font-semibold">Monitores</p>
                     <p class="text-2xl font-bold">{{ $sumaTotalMonitor_pc }}</p>

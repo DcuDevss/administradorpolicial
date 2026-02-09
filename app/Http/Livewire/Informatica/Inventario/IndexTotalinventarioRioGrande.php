@@ -69,14 +69,6 @@ class IndexTotalinventarioRioGrande extends Component
         $this->slotmemoria_id = "";
         $this->dependencia_riogrande_id = "";
 
-        $this->jefatura_id = "";
-        $this->administracion_id = "";
-        $this->recurso_humano_id = "";
-        $this->destacamento_id = "";
-        $this->investigacione_id = "";
-        $this->serviciosespeciale_id = '';
-        $this->custodiagubernamentale_id = '';
-
         $this->CantidadRam      = Cantidadram::all();
         $this->TipodeOficina    = Tipodeoficina::all();
         $this->TipoDispositivo  = Tipodispositivo::all();
@@ -84,378 +76,126 @@ class IndexTotalinventarioRioGrande extends Component
 
         // 🔹 acá cargás las dependencias de Río Grande
         $this->Dependencia_RioGrande = DependenciaRiogrande::all();
-
-        $this->JEfatura          = Jefatura::all();
-        $this->ADministracion    = Administracion::all();
-        $this->INvestigacione    = Investigacione::all();
-        $this->Recurso_Humano    = RecursoHumano::all();
-        $this->DEstacamento      = Destacamento::all();
-        $this->SErviciosespeciale = Serviciosespeciale::all();
-        $this->CUstodiagubernamentale = Custodiagubernamentale::all();
     }
 
     public function render()
     {
+        $sumaTotalOtros = DB::table('riograndegenerales')
+            ->where('tipodispositivo_id', 1)
+            ->whereNotNull('dependencia_riogrande_id')
+            ->count();
+
+        $sumaTotalNoPosee = DB::table('riograndegenerales')
+            ->where('tipodispositivo_id', 2)
+            ->whereNotNull('dependencia_riogrande_id')
+            ->count();
+
         $sumaTotalPc = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 3)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count();
-            + DB::table('serviciosespecialesgenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count();
+            ->count();
 
         $sumaTotalMonitor_pc = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 4)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 4)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 4)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 4)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 4)
-                ->count();
+            ->count()            ;
 
         $sumaTotalNotebook = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 5)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 5)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 5)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 5)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 5)
-                ->count();
+            ->count()            ;
 
         $sumaTotalNetbook = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 6)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 6)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 6)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 6)
-                ->count();
+            ->count()            ;
 
         $sumaTotalCelular = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 7)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 7)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 7)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 7)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 7)
-                ->count();
+            ->count();            ;
 
         $sumaTotalTablet = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 8)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 8)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 8)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 8)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 8)
-                ->count();
+            ->count();            ;
 
         $sumaTotalTelefono_fijo = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 9)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 9)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 9)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 9)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 9)
-                ->count();
+            ->count();
 
         $sumaTotalTelefono_inalambrico = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 10)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 10)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 10)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 10)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 10)
-                ->count();
+            ->count();
 
         $sumaTotalImpresora_laser = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 11)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 11)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 11)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 11)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 11)
-                ->count();
+            ->count();
 
         $sumaTotalImpresora_tinta = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 12)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 12)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 12)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 12)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 12)
-                ->count();
+            ->count();
 
         $sumaTotalSwitch = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 13)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 13)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 13)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 13)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 13)
-                ->count();
+            ->count();
 
         $sumaTotalRuter = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 14)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 14)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 14)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 14)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 14)
-                ->count();
+            ->count();
 
         $sumaTotalUps = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 15)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 15)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 15)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 15)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 15)
-                ->count();
+            ->count();
 
         $sumaTotalCamaras_video = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 16)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 16)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 16)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 16)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 16)
-                ->count();
+            ->count();
 
         $sumaTotalEstacion_trabajo = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 17)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 17)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 17)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 17)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 17)
-                ->count();
+            ->count();
 
         $sumaTotalServidor = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 18)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 18)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 18)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 18)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 18)
-                ->count();
+            ->count();
 
         $sumaTotalEstabilizador_tension = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 19)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 19)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 19)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 19)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 19)
-                ->count();
+            ->count();
 
         $sumaTotalAuriculares = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 20)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 20)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 20)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 20)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 20)
-                ->count();
+            ->count();
 
         $sumaTotalCable_estructurado = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 21)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 21)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 21)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 21)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 21)
-                ->count();
+            ->count();
 
         $sumaTotalTv = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 22)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 22)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 22)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 22)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 22)
-                ->count();
+            ->count();
 
         $sumaTotalCentral_telefonica = DB::table('riograndegenerales')
             ->where('tipodispositivo_id', 23)
             ->whereNotNull('dependencia_riogrande_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 23)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 23)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 23)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 23)
-                ->count();
+            ->count();
 
-        return view('livewire.informatica.inventario.index-totalinventario-rio-grande',compact('sumaTotalPc','sumaTotalMonitor_pc','sumaTotalNotebook',
+        return view('livewire.informatica.inventario.index-totalinventario-rio-grande',compact('sumaTotalOtros', 'sumaTotalNoPosee', 'sumaTotalPc','sumaTotalMonitor_pc','sumaTotalNotebook',
         'sumaTotalNetbook','sumaTotalCelular','sumaTotalTablet','sumaTotalTelefono_fijo','sumaTotalTelefono_inalambrico',
         'sumaTotalImpresora_laser','sumaTotalImpresora_tinta','sumaTotalSwitch','sumaTotalRuter','sumaTotalUps','sumaTotalCamaras_video',
         'sumaTotalEstacion_trabajo','sumaTotalServidor','sumaTotalEstabilizador_tension','sumaTotalAuriculares',

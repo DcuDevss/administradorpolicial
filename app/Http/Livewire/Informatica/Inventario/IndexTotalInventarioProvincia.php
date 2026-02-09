@@ -14,6 +14,10 @@ class IndexTotalInventarioProvincia extends Component
             'generalinformaticas',        // Ushuaia
             'riograndegenerales',         // Río Grande
             'tolhuingenerales',           // Tolhuin
+            'administraciongenerales',
+            'jefaturagenerales',
+            'investigacionesgenerales',
+            'recursoshumanosgenerales'
         ];
 
         // Para evitar repetir código hacemos una función
@@ -28,6 +32,7 @@ class IndexTotalInventarioProvincia extends Component
         };
 
         // Ahora simplemente pedimos los totales
+        $sumaTotalOtros                    = $conteo(1);
         $sumaTotalPc                    = $conteo(3);
         $sumaTotalMonitor_pc            = $conteo(4);
         $sumaTotalNotebook              = $conteo(5);
@@ -51,6 +56,7 @@ class IndexTotalInventarioProvincia extends Component
         $sumaTotalCentralTelefonica     = $conteo(23);
 
         return view('livewire.informatica.inventario.index-totalinventario-provincia', compact(
+            'sumaTotalOtros',
             'sumaTotalPc',
             'sumaTotalMonitor_pc',
             'sumaTotalNotebook',
