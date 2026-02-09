@@ -226,6 +226,7 @@ use App\Http\Livewire\Usuarios;
 use App\Models\AuditoriaDetalleInventario;
 
 use App\Http\Livewire\Auditorias\AuditoriaGeneral;
+use App\Http\Livewire\Comunicaciones\Totalequiposrg\PdfEquiposRg;
 use App\Http\Livewire\Comunicaciones\Totalequiposush\PdfEquipos;
 
 /*
@@ -687,3 +688,6 @@ Route::get('/historial-recursos-general/{recursosGeneraleId}', HistorialRecursos
 /* pdf ushuaia */
 Route::get('/comunicaciones/ushuaia/pdf-equipos', PdfEquipos::class)
     ->name('pdf-equipos');
+/* pdf rg */
+Route::get('/comunicaciones/riogrande/pdf-equipos', PdfEquiposRg::class)
+    ->name('pdf-equipos-rg');
