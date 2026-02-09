@@ -386,8 +386,8 @@
 
     <script>
         /* ============================================================
-                                                   LÓGICA DE CAMBIO DE TEMA (Dark/Light Mode)
-                                                   ============================================================ */
+                                                       LÓGICA DE CAMBIO DE TEMA (Dark/Light Mode)
+                                                       ============================================================ */
         function toggleTheme() {
             const isLight = document.documentElement.classList.toggle('light-mode');
             localStorage.setItem('theme-police', isLight ? 'light' : 'dark');

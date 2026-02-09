@@ -1,15 +1,13 @@
-
-
 <div class="container mx-auto p-1">
 
     <div class="relative" x-data="{ open: false }">
         <button @click="open = !open"
             class="inline-flex items-center justify-center float-right mr-4 px-3 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition group">
-             Inventarios
+            Inventarios
             <!-- Icono de flecha hacia abajo para indicar que es un menú desplegable -->
             <svg x-bind:class="{ 'rotate-180': open }"
-                class="w-4 h-4 ml-1 -mr-1 transform transition-transform ease-in-out duration-200"
-                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                class="w-4 h-4 ml-1 -mr-1 transform transition-transform ease-in-out duration-200" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7">
                 </path>
             </svg>
@@ -42,9 +40,12 @@
                     <div>
                         <div>
                             <button wire:click="cambiarEstado({{ $notificacion->id }})">
-                                <div class="w-4 h-4 {{ $notificacion->activa ? 'font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white animate-pulse' : 'bg-red-500' }} rounded-full"></div>
+                                <div
+                                    class="w-4 h-4 {{ $notificacion->activa ? 'font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white animate-pulse' : 'bg-red-500' }} rounded-full">
+                                </div>
                             </button>
-                            <strong class="text-center {{ $notificacion->activa ? 'font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white animate-pulse' : 'text-red-500' }}">
+                            <strong
+                                class="text-center {{ $notificacion->activa ? 'font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white animate-pulse' : 'text-red-500' }}">
                                 {{ $notificacion->activa ? 'Activa' : 'Inactiva' }}
                             </strong>
                         </div>
@@ -54,11 +55,15 @@
 
                         @foreach ($notificacion->respuestas as $respuesta)
                             <div>
-                                <strong class="text-pink-400">Fecha del trabajo realizado: {{ $respuesta->created_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i:s') }}</strong> <br>
-                                <strong class="text-pink-400">Detalles de lo Realizado: {{ $respuesta->mensaje }}</strong> <br>
+                                <strong class="text-pink-400">Fecha del trabajo realizado:
+                                    {{ $respuesta->created_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i:s') }}</strong>
+                                <br>
+                                <strong class="text-pink-400">Detalles de lo Realizado:
+                                    {{ $respuesta->mensaje }}</strong> <br>
                             </div>
                         @endforeach
-                        <strong class="text-gray-300">----------------------------------------------------------------------------</strong>
+                        <strong
+                            class="text-gray-300">----------------------------------------------------------------------------</strong>
                     </div>
 
                     <div class="text-end">
