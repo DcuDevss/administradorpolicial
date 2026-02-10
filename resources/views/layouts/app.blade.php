@@ -342,7 +342,7 @@
             </header>
         @endif
 
-        <main class="mt-6 mb-16 px-4 sm:px-6 lg:px-8 flex-grow">
+        <main class="mt-16 mb-16 px-4 sm:px-6 lg:px-8 flex-grow">
             <div class="max-w-7xl mx-auto">
                 <div class="bg-[#1e293b]/60 rounded-xl p-6 shadow-xl border border-white/10 transition-all">
                     {{ $slot }}
@@ -386,8 +386,8 @@
 
     <script>
         /* ============================================================
-                                                       LÓGICA DE CAMBIO DE TEMA (Dark/Light Mode)
-                                                       ============================================================ */
+                                                           LÓGICA DE CAMBIO DE TEMA (Dark/Light Mode)
+                                                           ============================================================ */
         function toggleTheme() {
             const isLight = document.documentElement.classList.toggle('light-mode');
             localStorage.setItem('theme-police', isLight ? 'light' : 'dark');

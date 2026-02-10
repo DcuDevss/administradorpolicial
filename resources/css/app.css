@@ -506,3 +506,10 @@ html.light-mode nav[role="navigation"] div p span {
     transform: translateY(-2px);
     border-color: #4f46e5; /* Color índigo como el icono */
 }
+
+/* Agrega esto al final de tu app.css */
+main {
+    padding-top: 3rem; /* Equivale a mt-12 de Tailwind */
+    padding-bottom: 3rem;
+    min-height: 80vh; /* Asegura que el fondo cubra casi toda la pantalla */
+}
