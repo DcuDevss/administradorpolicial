@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Livewire\Comunicaciones\Totalequipostol;
+
+use Livewire\Component;
+use Illuminate\Support\Facades\DB;
+
+class PdfEquiposTol extends Component
+{
+    public $dependenciaId = '';
+    public $dependencias = [];
+    public $registros = [];
+
+    public function mount()
+    {
+        // OJO: ajustá el nombre real de la tabla de dependencias de Río Grande
+        // Ej: dependencias_riogrande, dependencia_riogrande, dependenciariogrande, etc.
+        $this->dependencias = DB::table('dependencia_tolhuins')
+            ->orderBy('nombre')
+            ->get(['id', 'nombre']);
+    }
+
+    public function updatedDependenciaId()
+    {
+        $this->cargar();
+    }
+
+    public function cargar()
+    {
+        if (!$this->dependenciaId) {
+            $this->registros = [];
+            return;
+        }
+
+        $this->registros = DB::table('comunicacionestolhuins as c')
+            ->leftJoin('equipocomunicacions as e', 'e.id', '=', 'c.equipocomunicacion_id')
+            ->leftJoin('dependencia_tolhuins as d', 'd.id', '=', 'c.dependencia_tolhuin_id')
+            ->where('c.dependencia_tolhuin_id', $this->dependenciaId)
+            ->select(
+                'd.nombre as dependencia',
+                'e.nombre as tipo_equipo',
+                'c.nro_serie',
+                'c.condicion_equipo_comunicacion',
+                'c.fecha_inventario'
+            )
+            ->orderBy('e.nombre')
+            ->get()
+            ->toArray();
+    }
+
+    public function render()
+    {
+        return view('livewire.comunicaciones.totalequipostol.pdf-equipos-tol');
+    }
+}
