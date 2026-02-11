@@ -7,7 +7,7 @@
 @import "./tables.css";
 @import "./ui-components.css";
 @import "./cards.css";
-/* @import "./mascarilla-test.css"; */
+@import "./mascarilla-test.css";
 
 /* ============================================================
    ?? NÚCLEO (TAILWIND) - DESPUÉS DE LOS IMPORTS

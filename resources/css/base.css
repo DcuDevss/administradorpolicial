@@ -1,7 +1,8 @@
+/* resources/css/base.css */
+
 /* ============================================================
-   ?? RESETEOS GLOBALES Y COMPORTAMIENTO BASE
+    ?? RESETEOS GLOBALES Y COMPORTAMIENTO BASE
    ============================================================ */
-/*Este archivo contiene los seteos globales, animaciones base, comportamiento de Livewire y el manejo de transparencias de Jetstream.*/
 
 /* Ocultar elementos con x-cloak de Alpine.js antes de que cargue el JS */
 [x-cloak] {
@@ -38,12 +39,11 @@ body {
 }
 
 /* ============================================================
-   ?? SISTEMA DE TRANSPARENCIAS (JETSTREAM/BLADE)
+    ?? SISTEMA DE TRANSPARENCIAS (JETSTREAM/BLADE)
    ============================================================ */
 
 /* 1. RESET: Forzado de transparencia en contenedores estándar para ver el fondo */
-.bg-white,
-.dark .bg-gray-100,
+.bg-gray-100,
 .bg-gray-50,
 .bg-gray-300,
 .shadow-md {
@@ -70,7 +70,7 @@ div[x-data] > div.border,
         41,
         59,
         0.4
-    ) !important; /* Fondo sutil para bloques */
+    ) !important; /* Fondo sutil para bloques oscuro */
 }
 
 /* Ajuste de relleno para encabezados de colapsables */
@@ -79,9 +79,8 @@ div[x-data] > div.border,
     padding-bottom: 1rem !important;
 }
 
-/* Agrega esto al final de tu app.css */
 main {
-    padding-top: 3rem; /* Equivale a mt-12 de Tailwind */
+    padding-top: 3rem;
     padding-bottom: 3rem;
-    min-height: 80vh; /* Asegura que el fondo cubra casi toda la pantalla */
+    min-height: 80vh;
 }
