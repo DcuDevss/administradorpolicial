@@ -1,7 +1,3 @@
-<script defer src="https://unpkg.com/@fullcalendar/core@6.1.20/index.global.min.js"></script>
-<script defer src="https://unpkg.com/@fullcalendar/daygrid@6.1.20/index.global.min.js"></script>
-<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-
 <script>
     /* 1. LÓGICA DE MASCARILLAS (TEMAS) */
     function cambiarMascarilla(nombreTema) {
@@ -13,7 +9,7 @@
         // Guardar preferencia
         localStorage.setItem('theme-police', nombreTema);
 
-        // Sincronizar color de fondo del HTML para evitar destellos (Solo Temas Oscuros)
+        // Sincronizar color de fondo del HTML para evitar destellos
         const bgColors = {
             'modern-blue': '#0a0e17',
             'tactical-emerald': '#040d0a',
@@ -25,20 +21,20 @@
         // Notificar a componentes que el tema cambió
         window.dispatchEvent(new Event('resize'));
 
-        // Forzar a que los elementos con clases condicionales se enteren del cambio
+        // Reflow optimizado para actualizar variables CSS
         document.querySelectorAll('[class*="text-"]').forEach(el => {
-            el.style.display = 'none';
-            el.offsetHeight; // force reflow
-            el.style.display = '';
+            el.offsetHeight;
         });
     }
 
     /* 2. SISTEMA DE CONFIRMACIÓN GLOBAL (SWEETALERT2) */
     document.addEventListener('click', function(event) {
         const btn = event.target.closest('button, a');
+
+        // Si no hay botón, ya está confirmado, o es una acción de Livewire de "solo lectura", ignorar.
         if (!btn || btn.dataset.confirmed === "true") return;
 
-        // Detectar si el botón implica una acción de escritura/cambio
+        // Detectar acciones críticas
         const text = (btn.innerText || '').toLowerCase().trim();
         const accionesCriticas = ['guardar', 'actualizar', 'crear', 'registrar', 'modificar', 'confirmar',
             'asignar', 'eliminar', 'borrar'
@@ -46,14 +42,16 @@
 
         if (!accionesCriticas.some(p => text.includes(p))) return;
 
+        // Verificar si es un botón de envío o tiene acción de Livewire
         const form = btn.closest('form');
         const esAccionProcesable = btn.type === 'submit' || form || btn.hasAttribute('wire:click');
 
         if (!esAccionProcesable) return;
 
         event.preventDefault();
+        event.stopImmediatePropagation(); // Evita que Livewire ejecute la acción antes de la confirmación
 
-        // Configuración fija para Modo Oscuro (SweetAlert2)
+        // Configuración SweetAlert2 adaptada a tus mascarillas
         Swal.fire({
             title: '¿Confirmar operación?',
             text: '¿Deseas procesar los cambios realizados?',
@@ -61,21 +59,44 @@
             showCancelButton: true,
             confirmButtonText: 'Sí, proceder',
             cancelButtonText: 'Cancelar',
-            background: '#1e293b', // Color oscuro fijo
-            color: '#ffffff', // Texto blanco fijo
-            confirmButtonColor: '#3b82f6'
+            background: 'var(--bg-card)', // Usa el color de tu mascarilla
+            color: 'var(--texto-principal)', // Usa el texto de tu mascarilla
+            confirmButtonColor: 'var(--color-acento)', // Usa el color de acento
+            customClass: {
+                popup: 'border border-[var(--borde)] shadow-2xl'
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 btn.dataset.confirmed = "true";
 
+                // Ejecución según el tipo de acción
                 if (form && !form.hasAttribute('wire:submit')) {
                     form.submit();
-                } else if (btn.getAttribute('wire:click')) {
-                    btn.click();
                 } else {
+                    // Simular click para que Livewire/Alpine procesen la acción original
                     btn.click();
                 }
             }
         });
     }, true);
+
+    /* 3. BLOQUEO ESPECÍFICO DE NOTIFICACIONES "SAVED" */
+    // Este observador asegura que si Livewire intenta inyectar el texto, se elimine de inmediato.
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === 1 && (node.innerText === 'Saved.' || node.hasAttribute(
+                        'x-show'))) {
+                    if (node.innerText.trim() === 'Saved.') {
+                        node.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 </script>

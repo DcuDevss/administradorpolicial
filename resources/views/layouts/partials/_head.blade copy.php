@@ -8,37 +8,27 @@
 
 <script>
     (function() {
-        // Obtenemos el tema guardado, por defecto 'dark' si no existe
+        // Obtenemos el tema guardado, si es 'light' lo ignoramos y ponemos 'dark'
         let theme = localStorage.getItem('theme-police') || 'dark';
-
-        // Si por error se guardó 'light', lo forzamos a 'dark' para mantener la estética institucional
         if (theme === 'light') {
             theme = 'dark';
             localStorage.setItem('theme-police', 'dark');
         }
 
-        // Aplicamos el atributo de datos para que el CSS de mascarillas cargue al instante
+        // Aplicamos el tema al atributo de datos
         document.documentElement.setAttribute('data-theme', theme);
 
-        // Definimos el color de fondo base antes de que cargue el CSS para evitar el "flash" blanco
-        const baseColors = {
-            'royal': '#1a1a2e',
-            'tactical-emerald': '#040d0a',
-            'modern-blue': '#0a0e17',
-            'dark': '#000000'
-        };
-        document.documentElement.style.backgroundColor = baseColors[theme] || baseColors['dark'];
-
-        // Forzamos modo oscuro de Tailwind
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
+        // Nos aseguramos de que NUNCA exista la clase light-mode
+        document.documentElement.classList.remove('light-mode');
     })();
 </script>
 
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+<link href="https://unpkg.com/@fullcalendar/core/main.css" rel="stylesheet" />
+<link href="https://unpkg.com/@fullcalendar/daygrid/main.css" rel="stylesheet" />
+<link href="https://unpkg.com/@fullcalendar/timegrid/main.css" rel="stylesheet" />
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
