@@ -215,12 +215,49 @@
                     @endauth
                     {{-- FIN BLOQUE DE CONFIGURACIÓN DE PERFIL --}}
                 </div>
-                <button onclick="toggleTheme()"
+                {{-- <button onclick="toggleTheme()"
                     class="inline-flex items-center justify-center px-2 py-2 ml-4 rounded-xl font-semibold text-xs uppercase tracking-widest transition duration-150 ease-in-out border border-white/10 bg-gray-700/50 hover:bg-gray-600 text-white focus:outline-none"
                     id="nav-theme-toggle">
-                    <span id="theme-icon">🌙</span>
-                    {{-- <span id="theme-text" class="hidden lg:inline">Modo Oscuro</span> --}}
-                </button>
+                    <span id="theme-icon">🌙</span> --}}
+                {{-- <span id="theme-text" class="hidden lg:inline">Modo Oscuro</span> --}}
+                {{-- </button> --}}
+                <div class="relative ml-4" x-data="{ open: false }">
+                    <button @click="open = !open" @click.away="open = false"
+                        class="inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs uppercase tracking-widest transition duration-150 ease-in-out border border-white/10 bg-gray-700/50 hover:bg-gray-600 text-white focus:outline-none">
+                        <span class="mr-1">🎨</span>
+                        {{-- <span class="hidden md:inline">Mascarillas</span> --}}
+                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-[#1e293b] border border-white/10 z-50">
+
+                        <button onclick="cambiarMascarilla('dark')"
+                            class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-gray-700 transition">
+                            <span class="w-3 h-3 rounded-full bg-slate-600 mr-3"></span> Original
+                        </button>
+
+                        <button onclick="cambiarMascarilla('royal')"
+                            class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-gray-700 transition">
+                            <span class="w-3 h-3 rounded-full bg-[#e94560] mr-3"></span> Royal
+                        </button>
+
+                        <button onclick="cambiarMascarilla('modern-blue')"
+                            class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-gray-700 transition">
+                            <span class="w-3 h-3 rounded-full bg-[#00d2ff] mr-3"></span> Modern Blue
+                        </button>
+
+                        <button onclick="cambiarMascarilla('tactical-emerald')"
+                            class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-gray-700 transition">
+                            <span class="w-3 h-3 rounded-full bg-[#00ff9d] mr-3"></span> Tactical Emerald
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div class="-mr-2 flex items-center md:hidden">
@@ -336,6 +373,48 @@
         <div class="pt-4 pb-1 border-t border-gray-200">
             {{-- BLOQUE DE OPCIONES RESPONSIVAS: Envuelto en @auth para prevenir errores si no hay usuario logueado --}}
             @auth
+                {{-- NUEVO: SELECTOR DE MASCARILLAS INTEGRADO --}}
+                <div class="px-4 mb-4">
+                    <div class="font-bold text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-3">
+                        Apariencia del Sistema
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        {{-- Original --}}
+                        <button onclick="cambiarMascarilla('dark')"
+                            class="flex items-center justify-start px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold uppercase text-white hover:bg-white/10 transition">
+                            <span
+                                class="w-2.5 h-2.5 rounded-full bg-slate-600 mr-2 shadow-[0_0_5px_rgba(71,85,105,0.5)]"></span>
+                            Original
+                        </button>
+
+                        {{-- Royal --}}
+                        <button onclick="cambiarMascarilla('royal')"
+                            class="flex items-center justify-start px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold uppercase text-white hover:bg-white/10 transition">
+                            <span
+                                class="w-2.5 h-2.5 rounded-full bg-[#e94560] mr-2 shadow-[0_0_5px_rgba(233,69,96,0.5)]"></span>
+                            Royal
+                        </button>
+
+                        {{-- Modern --}}
+                        <button onclick="cambiarMascarilla('modern-blue')"
+                            class="flex items-center justify-start px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold uppercase text-white hover:bg-white/10 transition">
+                            <span
+                                class="w-2.5 h-2.5 rounded-full bg-[#00d2ff] mr-2 shadow-[0_0_5px_rgba(0,210,255,0.5)]"></span>
+                            Modern
+                        </button>
+
+                        {{-- Tactical --}}
+                        <button onclick="cambiarMascarilla('tactical-emerald')"
+                            class="flex items-center justify-start px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold uppercase text-white hover:bg-white/10 transition">
+                            <span
+                                class="w-2.5 h-2.5 rounded-full bg-[#00ff9d] mr-2 shadow-[0_0_5px_rgba(0,255,157,0.5)]"></span>
+                            Tactical
+                        </button>
+                    </div>
+                </div>
+
+                <div class="border-t border-white/10 my-2"></div>
+
                 <div class="flex items-center justify-between px-4"> {{-- Cambiado a justify-between para separar texto de botón --}}
                     <div class="flex items-center">
                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -354,11 +433,12 @@
                     </div>
 
                     {{-- BOTÓN DE MODO OSCURO PARA MÓVIL --}}
-                    <button onclick="toggleTheme()"
-                        class="inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs uppercase tracking-widest transition duration-150 ease-in-out border border-white/10 bg-gray-700/50 hover:bg-gray-600 text-white focus:outline-none"
-                        id="nav-theme-toggle-mobile">
-                        <span id="theme-icon-mobile">🌙</span>
-                    </button>
+                    {{-- <button onclick="toggleTheme()"
+                    class="inline-flex items-center justify-center px-3 py-2 rounded-xl font-semibold text-xs uppercase tracking-widest transition duration-150 ease-in-out border border-white/10 bg-gray-700/50 hover:bg-gray-600 text-white focus:outline-none"
+                    id="nav-theme-toggle-mobile">
+                    <span id="theme-icon-mobile">🌙</span>
+                </button> --}}
+
                 </div>
 
                 <div class="mt-3 space-y-1">
@@ -418,5 +498,4 @@
             @endauth
             {{-- FIN BLOQUE DE OPCIONES RESPONSIVAS --}}
         </div>
-    </div>
 </nav>

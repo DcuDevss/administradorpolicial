@@ -206,3 +206,15 @@ nav[role="navigation"] svg,
 nav[role="navigation"] span.relative.inline-flex.items-center.text-gray-700 {
     color: var(--texto-principal) !important;
 }
+
+/* Estilo para el mini círculo de color en el selector */
+.rounded-full {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+/* Asegurar que el desplegable de mascarillas tenga prioridad visual */
+div[x-show="open"] {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}

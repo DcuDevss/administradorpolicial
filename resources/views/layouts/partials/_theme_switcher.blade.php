@@ -1,4 +1,4 @@
-<div
+{{-- <div
     style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; gap: 10px; background: rgba(0,0,0,0.6); padding: 12px; border-radius: 50px; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1);">
 
     <button onclick="cambiarMascarilla('dark')"
@@ -21,3 +21,4 @@
         Tactical
     </button>
 </div>
+ --}}
