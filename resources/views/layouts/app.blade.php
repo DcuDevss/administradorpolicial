@@ -7,10 +7,35 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @livewireStyles
+
+    <style>
+        body {
+            position: relative;
+            background-image: url("{{ asset('foto/fondoclaro.png') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            /* ← ajustá este valor */
+            z-index: 0;
+        }
+
+        #main-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+
 </head>
 
-<body
-    class="antialiased font-sans text-[var(--texto-principal)] bg-[var(--bg-principal)] transition-colors duration-500">
+<body class="antialiased font-sans text-[var(--texto-principal)]">
+
 
     <div id="main-wrapper" class="min-h-screen flex flex-col transition-all duration-300">
 

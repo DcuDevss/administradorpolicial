@@ -27,7 +27,8 @@
             'modern-blue': '#0a0e17',
             'dark': '#000000'
         };
-        document.documentElement.style.backgroundColor = baseColors[theme] || baseColors['dark'];
+        document.documentElement.style.backgroundColor = "transparent";
+
 
         // Forzamos modo oscuro de Tailwind
         document.documentElement.classList.add('dark');

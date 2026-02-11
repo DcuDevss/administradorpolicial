@@ -1,6 +1,6 @@
 <footer class="py-6 border-t border-white/10 bg-[var(--bg-principal)]/80 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center space-y-3">
-        <img src="{{ asset('foto/escudo.png') }}" alt="Escudo Policial"
+        <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo Policial"
             class="h-14 w-auto opacity-90 hover:opacity-100 transition-all duration-500"
             style="display: block !important;">
 
