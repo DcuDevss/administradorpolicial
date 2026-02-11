@@ -1,10 +1,12 @@
-/*Control exhaustivo de colores de texto y tipografías para ambos modos.*/
+/* resources/css/typography.css */
+
+/* Control exhaustivo de colores de texto y tipografías para el sistema unificado oscuro. */
 
 /* ============================================================
-   ?? TEXTOS Y TIPOGRAFÍA (CONTROL DE MODOS)
+    ?? TEXTOS Y TIPOGRAFÍA (CONTROL UNIFICADO)
    ============================================================ */
 
-/* Color de texto base para el Modo Oscuro */
+/* Color de texto base para el sistema (Overrides de Tailwind) */
 .text-gray-900,
 .text-gray-700,
 .text-gray-800,
@@ -12,28 +14,16 @@
     color: #ece9e9 !important;
 }
 
-/* FIX MODO CLARO: Forzar visibilidad cuando el fondo es blanco */
-html.light-mode .text-gray-600,
-html.light-mode .text-gray-700,
-html.light-mode nav[role="navigation"] p,
-html.light-mode nav[role="navigation"] span,
-html.light-mode nav[role="navigation"] a {
-    color: #000307 !important;
-}
-
-/* Color específico para paginación sobre fondos claros */
+/* Control de visibilidad para paginación y elementos de navegación */
 nav[role="navigation"] .text-gray-600,
 nav[role="navigation"] .text-gray-700,
-nav[role="navigation"] p {
-    color: #1e293b !important;
-}
-
-/* Restauración de texto blanco en paginación para modo oscuro */
-html:not(.light-mode) nav[role="navigation"] p {
+nav[role="navigation"] p,
+nav[role="navigation"] span,
+nav[role="navigation"] a {
     color: #ffffff !important;
 }
 
 /* Color institucional para alertas y contadores críticos */
 .text-red-800 {
-    color: #b91c1c !important;
+    color: #ff4d4d !important; /* Rojo optimizado para fondos oscuros */
 }

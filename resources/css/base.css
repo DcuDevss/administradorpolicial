@@ -1,5 +1,7 @@
 /* resources/css/base.css */
 
+/* resources/css/base.css */
+
 /* ============================================================
     ?? RESETEOS GLOBALES Y COMPORTAMIENTO BASE
    ============================================================ */
@@ -82,5 +84,21 @@ div[x-data] > div.border,
 main {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    min-height: 80vh;
+}
+
+/* 1. RESET: Evitar que afecte a componentes con lógica de scroll propia como el chat */
+.bg-gray-100,
+.bg-gray-50,
+.shadow-md {
+    /* Quitamos el !important de aquí para que los componentes específicos puedan definir su fondo */
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* 2. ÁREAS DE CONTENIDO: Ajuste de padding que podría estar desplazando el chat */
+main {
+    padding-top: 1.5rem; /* Reducimos el padding superior para que el chat no baje tanto */
+    padding-bottom: 1.5rem;
     min-height: 80vh;
 }

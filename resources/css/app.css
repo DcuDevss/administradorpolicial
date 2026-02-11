@@ -19,14 +19,23 @@
 /* ============================================================
    ?? DICCIONARIO DE MASCARILLAS (Variables Globales)
    ============================================================ */
+/* resources/css/app.css */
+
 :root {
-    /* Tema Dark (Original) */
-    --bg-principal: #0f172a;
-    --bg-card: rgba(30, 41, 59, 0.7);
-    --bg-tabla-header: #1e293b;
-    --color-acento: #3b82f6;
-    --texto-principal: #ffffff;
-    --texto-secundario: #94a3b8;
-    --borde: rgba(255, 255, 255, 0.1);
-    --animacion-entrada: slideIn 0.4s ease-out;
+    /* Tema Dark Institucional - Optimizado para visibilidad */
+    --bg-principal: #000000; /* Un poco más oscuro para que el contenido resalte */
+    --bg-card: rgba(
+        30,
+        41,
+        59,
+        0.5
+    ); /* Ajustada la opacidad para el efecto Glass */
+    --bg-tabla-header: #1e293b; /* Slate sólido para cabeceras */
+    --color-acento: #4f9cff; /* Azul más brillante para botones y foco */
+    --texto-principal: #ece9e9; /* Blanco roto para evitar fatiga visual */
+    --texto-secundario: #94a3b8; /* Gris azulado para etiquetas */
+    --borde: rgba(255, 255, 255, 0.15); /* Borde un poco más visible */
+
+    /* Animaciones */
+    --animacion-entrada: fadeIn 0.3s ease-in-out;
 }
