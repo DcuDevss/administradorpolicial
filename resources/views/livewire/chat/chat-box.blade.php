@@ -24,47 +24,37 @@ Echo.private('users.{{ Auth()->user()->id }}')
         if (el) el.scrollTop = el.scrollHeight;
     });
 "
-    class="w-full h-full overflow-hidden">
+    class="chat-isolated w-full h-full overflow-hidden">
 
     <style>
         /* ────────────────────────────────────────────────
-           ANULAR ESTILOS GLOBALES QUE ROMPEN EL CHAT
+           🔒 AISLAMIENTO SOLO DEL CHAT (NO TOCA EL BODY)
            ──────────────────────────────────────────────── */
-        body {
-            overflow: hidden !important;
-            height: 100vh !important;
-            margin: 0 !important;
+
+        .chat-isolated {
+            position: relative;
+            z-index: 50;
+            isolation: isolate;
+            /* 🔥 crea contexto propio */
         }
 
-        main {
-            /* Elimina paddings y márgenes del layout principal */
-            padding: 0 !important;
-            margin: 0 !important;
-            min-height: auto !important;
-            height: 100% !important;
-        }
-
-        footer.text-center.bg-gray-900\/90,
-        footer.backdrop-blur-md,
-        footer.footer-tight,
-        footer {
-            display: none !important;
-        }
-
-        /* ────────────────────────────────────────────────
-           CONTENEDOR PRINCIPAL → ocupa toda la pantalla
-           (ajusta el offset según altura real de navbar + header)
-           ──────────────────────────────────────────────── */
         .chat-fullscreen-wrapper {
-            height: calc(100vh - var(--navbar-offset, 64px));
+            position: fixed;
+            top: 64px;
+            /* altura real de tu navbar */
+            left: 0;
+            right: 0;
+            bottom: 0;
+
             display: flex;
             flex-direction: column;
-            background: white;
+
+            z-index: 20;
         }
 
-        /* Selector más específico para tu contenedor Livewire */
-        .border-b.flex.flex-col.grow,
-        .chat-fullscreen-wrapper>div.flex-col {
+        /* Selector específico para Livewire */
+        .chat-isolated .border-b.flex.flex-col.grow,
+        .chat-isolated .chat-fullscreen-wrapper>div.flex-col {
             flex: 1 1 auto;
             display: flex;
             flex-direction: column;
@@ -72,23 +62,34 @@ Echo.private('users.{{ Auth()->user()->id }}')
             height: 100%;
         }
 
-        /* Área de mensajes: crece y hace scroll */
-        #conversation {
+        /* Área de mensajes */
+        .chat-isolated #conversation {
             flex: 1 1 auto;
             overflow-y: auto;
             overflow-x: hidden;
             padding: 0.625rem;
-            /* = p-2.5 original */
             -webkit-overflow-scrolling: touch;
+            background: #ffffff;
         }
 
-        /* Mejor experiencia en móviles */
+        /* Header del chat */
+        .chat-isolated header {
+            background: #e5e7eb !important;
+        }
+
+        /* Área enviar mensaje */
+        .chat-isolated .shrink-0.z-10 {
+            background: #1e293b !important;
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            .chat-fullscreen-wrapper {
+            .chat-isolated .chat-fullscreen-wrapper {
                 height: calc(100vh - var(--navbar-offset-mobile, 56px));
             }
         }
     </style>
+
 
     <!-- Contenedor principal con clase descriptiva -->
     <div class="chat-fullscreen-wrapper border-b flex flex-col grow">

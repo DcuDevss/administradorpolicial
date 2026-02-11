@@ -25,6 +25,7 @@
             'royal': '#1a1a2e',
             'tactical-emerald': '#040d0a',
             'modern-blue': '#0a0e17',
+            'cyber-command': '#050810', // 👈 agregado
             'dark': '#000000'
         };
         document.documentElement.style.backgroundColor = "transparent";

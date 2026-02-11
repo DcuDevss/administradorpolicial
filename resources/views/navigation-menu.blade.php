@@ -242,10 +242,24 @@
                             <span class="w-3 h-3 rounded-full bg-slate-600 mr-3"></span> Original
                         </button>
 
+                        <!-- Botón Original Institucional (Policía Tierra del Fuego) -->
+                        <button onclick="cambiarMascarilla('original')"
+                            class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-blue-900 transition">
+                            <span class="w-3 h-3 rounded-full bg-blue-800 border border-yellow-500 mr-3"></span>
+                            Original TDF
+                        </button>
+
                         <button onclick="cambiarMascarilla('royal')"
                             class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-gray-700 transition">
                             <span class="w-3 h-3 rounded-full bg-[#e94560] mr-3"></span> Royal
                         </button>
+
+                        <button onclick="cambiarMascarilla('cyber-command')"
+                            class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-gray-700 transition">
+                            <span class="w-3 h-3 rounded-full bg-[#00f5ff] mr-3 shadow-[0_0_8px_#00f5ff]"></span>
+                            Cyber Command
+                        </button>
+
 
                         <button onclick="cambiarMascarilla('modern-blue')"
                             class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-gray-700 transition">

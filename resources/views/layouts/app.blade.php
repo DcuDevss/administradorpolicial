@@ -62,7 +62,11 @@
             </div>
         </main>
 
-        @include('layouts.partials._footer')
+        {{--  @include('layouts.partials._footer') --}}
+        @if (!request()->routeIs('chat*'))
+            @include('layouts.partials._footer')
+        @endif
+
 
     </div>
 

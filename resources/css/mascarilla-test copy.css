@@ -1,0 +1,92 @@
+/* resources/css/mascarilla-test.css */
+
+/* ============================================================
+    🎭 MASCARILLA: ROYAL
+   ============================================================ */
+[data-theme="royal"] {
+    --bg-principal: #1a1a2e;
+    --bg-card: #16213e;
+    --color-acento: #e94560;
+    --texto-principal: #e2e2e2;
+}
+
+/* ============================================================
+    🎭 MASCARILLA: TACTICAL EMERALD
+   ============================================================ */
+[data-theme="tactical-emerald"] {
+    --bg-principal: #040d0a;
+    --bg-card: #0a1a15;
+    --bg-tabla-header: #102a22;
+    --color-acento: #00ff9d; /* Verde neón táctico */
+    --texto-principal: #d1d5db;
+    --borde: #00ff9d33;
+    --animacion-entrada: slideRight 0.5s ease-out;
+}
+
+/* Estilos específicos para Tactical Emerald */
+html[data-theme="tactical-emerald"] .bg-black.flex.rounded-lg.flex-col {
+    border-left: 4px solid var(--color-acento) !important;
+    border-radius: 0px 12px 12px 0px !important;
+    background: linear-gradient(135deg, #0a1a15 0%, #050f0c 100%) !important;
+    box-shadow: 10px 0 20px rgba(0, 255, 157, 0.05) !important;
+}
+
+html[data-theme="tactical-emerald"] th {
+    font-family: "Courier New", Courier, monospace;
+    letter-spacing: 2px;
+}
+
+/* ============================================================
+    🎭 MASCARILLA: MODERN BLUE
+   ============================================================ */
+[data-theme="modern-blue"] {
+    --bg-principal: #0a0e17;
+    --bg-card: #162033;
+    --bg-tabla-header: #00d2ff20;
+    --color-acento: #00d2ff;
+    --texto-principal: #e0e6ed;
+    --texto-secundario: #00d2ff;
+    --borde: #00d2ff40;
+    --animacion-entrada: glitchAppear 0.3s steps(2);
+}
+
+/* html[data-theme="modern-blue"] body {
+    background-color: #0a0e17 !important;
+    background-image: none !important;
+} */
+
+html[data-theme="modern-blue"] .bg-black.flex.rounded-lg.flex-col {
+    background: #162033 !important;
+    border: 1px solid #00d2ff !important;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3) !important;
+}
+
+html[data-theme="modern-blue"] h2,
+html[data-theme="modern-blue"] p {
+    color: #00d2ff !important;
+}
+
+/* ============================================================
+    ?? ANIMACIONES
+   ============================================================ */
+@keyframes slideRight {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes glitchAppear {
+    0% {
+        clip-path: inset(50% 0 30% 0);
+        opacity: 0;
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+}
