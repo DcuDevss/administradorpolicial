@@ -1,0 +1,206 @@
+/*Botones, menús desplegables (Navbar), tarjetas de chat, modales y overrides finales.*/
+
+/* ============================================================
+   ?? BOTONES Y ACCIONES (ESTILO INSTITUCIONAL)
+   ============================================================ */
+
+/* Limpieza de colores por defecto en botones de Jetstream */
+.btn-color-fix,
+.bg-indigo-600,
+.bg-gray-200 {
+    background-color: initial !important;
+}
+
+/* Botones Principales (Guardar / Procesar) */
+button[type="submit"],
+.inline-flex.items-center.px-4.py-2.bg-gray-800,
+button[type="button"].inline-flex.items-center.bg-gray-800 {
+    background-color: #4f9cff !important;
+    color: #ffffff !important;
+    border-radius: 0.25rem !important;
+    min-width: 140px;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #2563eb !important;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+}
+
+/* Botón de Dependencias / Slate (Unificado a azul institucional) */
+.text-center button.bg-slate-800,
+.justify-center button.bg-slate-800 {
+    background-color: #4f9cff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Botones Blancos (Switcher de equipos u otros) */
+button.bg-white,
+a.bg-white {
+    background-color: #ffffff !important;
+}
+button.bg-white:hover {
+    background-color: #f3f4f6 !important;
+}
+
+/* ============================================================
+   ?? MENÚS DESPLEGABLES DE USUARIO (TOP RIGHT)
+   ============================================================ */
+
+/* 1. MODO OSCURO (Fondo oscuro transparente) */
+.origin-top-right,
+div[role="listbox"],
+div[x-show].absolute {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.origin-top-right a,
+.origin-top-right button,
+.origin-top-right .block {
+    color: #e8eef5 !important;
+    background-color: transparent !important;
+    display: block !important;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.origin-top-right a:hover,
+.origin-top-right button:hover {
+    background-color: rgba(79, 156, 255, 0.15) !important;
+    color: #4f9cff !important;
+}
+
+/* 2. FIX MODO CLARO (Fondo blanco sólido) */
+html.light-mode .origin-top-right,
+html.light-mode div[role="listbox"],
+html.light-mode div[x-show].absolute {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: none !important;
+}
+
+html.light-mode .origin-top-right a,
+html.light-mode .origin-top-right button,
+html.light-mode .origin-top-right div,
+html.light-mode .block.px-4.py-2.text-sm {
+    color: #1e293b !important;
+}
+
+/* Hover específico en modo claro para evitar pintar todo el bloque */
+html.light-mode .origin-top-right a:hover,
+html.light-mode .origin-top-right button:hover {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+}
+
+html.light-mode .origin-top-right div:hover {
+    background-color: transparent;
+}
+
+/* ============================================================
+   ?? MODALES Y MÉTRICAS
+   ============================================================ */
+
+/* Fondo para modales informativos */
+div.bg-white.p-4.rounded-md.shadow-md {
+    background-color: #1e293b !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Texto de encabezado y primario en métricas/modales */
+div.bg-white.p-4.rounded-md.shadow-md h2,
+div.bg-white.p-4.rounded-md.shadow-md .text-metric-primary {
+    color: #e8eef5 !important;
+}
+
+.text-metric-secondary,
+.text-metric-primary {
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
+/* Contadores rojos dentro de modales */
+div.bg-white.p-4.rounded-md.shadow-md strong.text-red-800 {
+    color: #b91c1c !important;
+}
+
+/* ============================================================
+   ?? RESPONSIVIDAD Y SCROLL
+   ============================================================ */
+
+/* Ajuste de ancho de modales en pantallas peque?as */
+@media screen and (max-width: 640px) {
+    .w-96 {
+        width: 90vw !important;
+        max-width: 384px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* Control de altura para modales con mucho contenido */
+.w-96 > h2 + .mb-4 {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+}
+
+/* Estilo para footer minimalista */
+.footer-tight {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+/* ============================================================
+   ? ESPECÍFICOS MODO CLARO (OVERRIDE FINAL)
+   ============================================================ */
+
+html.light-mode .container-dinamico {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0;
+}
+
+/* Color de texto en contadores de paginación para modo claro */
+html.light-mode nav[role="navigation"] div p,
+html.light-mode nav[role="navigation"] div p span {
+    color: #1e293b !important;
+}
+
+/* ============================================================
+   ?? COMPONENTES DE CHAT (USER CARD)
+   ============================================================ */
+
+.user-card-chat {
+    background-color: rgba(235, 229, 229, 0.1) !important;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4) !important;
+    transition: all 0.3s ease;
+}
+
+/* Texto dentro de las tarjetas del chat */
+.user-card-chat h5,
+.user-card-chat span {
+    color: #e4e3e3 !important;
+}
+
+/* Ajuste de borde para modo oscuro explícito */
+.dark .user-card-chat {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Parche para el componente de borde de Jetstream */
+.py-8 .border-t.border-gray-200 {
+    border-color: rgba(255, 255, 255, 0.3) !important; /* Línea más visible */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+}

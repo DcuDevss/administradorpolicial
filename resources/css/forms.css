@@ -1,0 +1,45 @@
+/*Todo lo relacionado a input, select, textarea y sus estados.  Incluye también estilos para validación, focus, hover y estados deshabilitados.*/
+
+/* ============================================================
+   ?? FORMULARIOS Y SELECTS (EFECTO CRISTAL / GLASS)
+   ============================================================ */
+
+/* Estilo de etiquetas */
+label {
+    color: #e8eef5 !important;
+    font-weight: 600;
+}
+
+/* Estilo unificado para inputs, selects y áreas de texto */
+input,
+select,
+textarea {
+    color: #ffffff !important;
+    background-color: rgba(0, 0, 0, 0.35) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 0.25rem;
+}
+
+/* Color de los textos de sugerencia (Placeholder) */
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Efecto visual al hacer foco en un campo */
+input:focus,
+select:focus,
+textarea:focus {
+    background-color: rgba(0, 0, 0, 0.45) !important;
+    border-color: #4f9cff !important;
+    box-shadow: 0 0 8px rgba(79, 156, 255, 0.4);
+}
+
+/* Forzar que las opciones del desplegable se lean bien (fondo oscuro) */
+select option {
+    background-color: #1f2937 !important;
+    color: #ffffff !important;
+}
+select option:checked {
+    background-color: #4f9cff !important;
+}
