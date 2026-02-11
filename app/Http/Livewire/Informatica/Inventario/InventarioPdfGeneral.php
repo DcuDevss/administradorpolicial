@@ -87,7 +87,7 @@ class InventarioPdfGeneral extends Component
                 'd.nombre as lugar',
                 'tipodispositivos.nombre as tipo',
                 't1.marca',
-                't1.detalles_inventario as detalles'
+                't1.detalles_inventario'
             )
             ->get()
 
