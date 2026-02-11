@@ -9,8 +9,10 @@
 /* Limpieza de colores por defecto en botones de Jetstream */
 .btn-color-fix,
 .bg-indigo-600,
-.bg-gray-200 {
-    background-color: initial !important;
+.bg-gray-200,
+.bg-white {
+    /* Añadido .bg-white aquí para limpiar fondos de botones del navbar */
+    background-color: transparent !important;
 }
 
 /* Botones Principales (Guardar / Procesar) */
