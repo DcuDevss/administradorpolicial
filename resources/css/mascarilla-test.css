@@ -1,271 +1,60 @@
 /* ============================================================
-    🎨 MASCARILLA: CLARA / BLANCA
+   🎨 OVERLAY GENERAL
    ============================================================ */
-
-/* Blanco y detalles suaves */
-html[data-theme="clara"] {
-    --bg-principal: #ffffff; /* fondo principal */
-    --bg-card: rgba(245, 245, 245, 0.9); /* tarjetas blancas suaves */
-    --bg-tabla-header: #f0f0f0; /* header de tabla claro */
-    --color-acento: #c8102e; /* rojo institucional */
-    --texto-principal: #e9e2e2; /* texto negro/gris oscuro */
-    --texto-secundario: #c8102e; /* rojo de la cruz del escudo */
-    --borde: rgba(200, 16, 46, 0.2); /* borde tenue */
-    --animacion-entrada: slideRight 0.5s ease-out;
-}
-
-/* Overlay suave blanco */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 0;
-    background: var(
-        --overlay-color,
-        rgba(0, 0, 0, 0)
-    ); /* default transparente */
+    background: var(--overlay-color, rgba(0, 0, 0, 0));
     pointer-events: none;
     transition: background 0.3s ease;
 }
 
-/* Cards claras */
-html[data-theme="clara"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper) {
-    background: var(--bg-card);
-    border: 1px solid var(--borde);
-    box-shadow:
-        0 0 15px rgba(200, 16, 46, 0.1),
-        inset 0 0 10px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="clara"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper):hover {
-    box-shadow:
-        0 0 25px rgba(200, 16, 46, 0.2),
-        inset 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Botones claros */
-html[data-theme="clara"] button[type="submit"],
-html[data-theme="clara"] .inline-flex.items-center {
-    background: linear-gradient(135deg, #ffffff, #f0f0f0) !important;
-    border: 1px solid #c8102e !important;
-    color: #c8102e !important;
-    font-weight: 700;
-    letter-spacing: 1px;
-    box-shadow: 0 0 12px rgba(200, 16, 46, 0.3);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="clara"] button:hover {
-    box-shadow: 0 0 20px rgba(200, 16, 46, 0.5);
-}
-
-/* Tablas claras con fondo azul y letras negras */
-html[data-theme="clara"] th {
-    background: #cfe2f3 !important; /* azul muy suave para header */
-    color: #000000 !important; /* letras negras */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 11px;
-}
-
-html[data-theme="clara"] td {
-    background: #e6f0fa !important; /* azul clarito para filas */
-    color: #000000 !important; /* letras negras */
-}
-
-/* Títulos con glow rojo suave */
-html[data-theme="clara"] h1,
-html[data-theme="clara"] h2 {
-    color: var(--color-acento) !important;
-    text-shadow: 0 0 6px rgba(200, 16, 46, 0.4);
-}
-
-/* Chat protegido en versión clara */
-html[data-theme="clara"] .chat-fullscreen-wrapper {
-    background: #f5f5f5 !important;
-    box-shadow: none !important;
-}
-
 /* ============================================================
-   🎭 MASCARILLA: ORIGINAL TDF (TDF)
+   🎨 VARIABLES DE CADA TEMA
    ============================================================ */
-[data-theme="original"] {
-    --bg-principal: #001d3d; /* azul oscuro del escudo */
-    --bg-card: rgba(0, 29, 61, 0.85); /* azul card */
-    --bg-tabla-header: #00264d; /* azul más profundo */
-    --color-acento: #ffd700; /* dorado del borde del escudo */
-    --texto-principal: #ffffff; /* blanco detalles */
-    --texto-secundario: #c8102e; /* rojo de la cruz del escudo */
-    --borde: rgba(255, 215, 0, 0.3);
-    --animacion-entrada: slideRight 0.5s ease-out;
+html[data-theme="clara"] {
+    --bg-principal: #ffffff;
+    --bg-card: rgba(245, 245, 245, 0.9);
+    --bg-tabla-header: #f0f0f0;
+    --color-acento: #c8102e;
+    --texto-principal: #000000;
+    --texto-secundario: #c8102e;
+    --borde: rgba(200, 16, 46, 0.2);
+    --overlay-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Overlay institucional azul-dorado */
-html[data-theme="original"] body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(rgba(0, 29, 61, 0.9), rgba(0, 51, 102, 0.85));
+html[data-theme="original"] {
+    --bg-principal: #00385b; /* Azul institucional extraído de la imagen */
+    --bg-card: rgba(0, 56, 91, 0.85); /* Azul institucional semitransparente */
+    --bg-tabla-header: #002a45; /* Azul oscuro para headers */
+    --color-acento: #92d050; /* Verde institucional del degradado */
+    --texto-principal: #ffffff;
+    --texto-secundario: #ffd700; /* Dorado del escudo */
+    --borde: rgba(146, 208, 80, 0.3); /* Borde verde institucional */
+    --overlay-color: linear-gradient(
+        135deg,
+        rgba(0, 56, 91, 0.95),
+        rgba(146, 208, 80, 0.4)
+    ); /* Simulación del degradado oficial */
 }
 
-/* Cards institucionales */
-html[data-theme="original"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper) {
-    background: var(--bg-card);
-    border: 1px solid var(--borde);
-    box-shadow:
-        0 0 15px rgba(255, 215, 0, 0.2),
-        inset 0 0 10px rgba(200, 16, 46, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="original"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper):hover {
-    box-shadow:
-        0 0 25px rgba(255, 215, 0, 0.4),
-        inset 0 0 15px rgba(200, 16, 46, 0.2);
-}
-
-/* Botones institucionales */
-html[data-theme="original"] button[type="submit"],
-html[data-theme="original"] .inline-flex.items-center {
-    background: linear-gradient(135deg, #ffd700, #c8102e) !important;
-    border: none !important;
-    color: #001d3d !important;
-    font-weight: 700;
-    letter-spacing: 1px;
-    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="original"] button:hover {
-    box-shadow: 0 0 25px rgba(200, 16, 46, 0.6);
-}
-
-/* Tablas */
-html[data-theme="original"] th {
-    background: var(--bg-tabla-header) !important;
-    color: var(--color-acento) !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 11px;
-}
-
-html[data-theme="original"] td {
-    color: var(--texto-principal) !important;
-}
-
-/* Títulos con glow dorado */
-html[data-theme="original"] h1,
-html[data-theme="original"] h2 {
-    color: var(--color-acento) !important;
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-}
-
-/* Chat protegido */
-html[data-theme="original"] .chat-fullscreen-wrapper {
-    background: #001933 !important;
-    box-shadow: none !important;
-}
-
-/* ============================================================
-   🎭 MASCARILLA: ROYAL (IMPERIAL EDITION)
-   ============================================================ */
-
-[data-theme="royal"] {
+html[data-theme="royal"] {
     --bg-principal: #140b14;
     --bg-card: rgba(40, 16, 32, 0.85);
     --bg-tabla-header: #2a0f22;
-    --color-acento: #d4af37; /* dorado */
+    --color-acento: #d4af37;
     --texto-principal: #f5e9f0;
     --texto-secundario: #e94560;
     --borde: rgba(212, 175, 55, 0.3);
+    --overlay-color: linear-gradient(
+        rgba(20, 8, 15, 0.9),
+        rgba(40, 10, 25, 0.85)
+    );
 }
 
-/* Overlay más cálido */
-html[data-theme="royal"] body::before {
-    background: linear-gradient(rgba(20, 8, 15, 0.9), rgba(40, 10, 25, 0.85));
-}
-
-/* Cards elegantes */
-html[data-theme="royal"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper) {
-    background: var(--bg-card);
-    border: 1px solid var(--borde);
-    box-shadow:
-        0 0 15px rgba(212, 175, 55, 0.2),
-        inset 0 0 10px rgba(233, 69, 96, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="royal"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper):hover {
-    box-shadow:
-        0 0 25px rgba(212, 175, 55, 0.4),
-        inset 0 0 15px rgba(233, 69, 96, 0.2);
-}
-
-/* Botones estilo imperial */
-html[data-theme="royal"] button[type="submit"],
-html[data-theme="royal"] .inline-flex.items-center {
-    background: linear-gradient(135deg, #d4af37, #e94560) !important;
-    border: none !important;
-    color: #1a0d12 !important;
-    font-weight: 700;
-    letter-spacing: 1px;
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="royal"] button:hover {
-    box-shadow: 0 0 25px rgba(233, 69, 96, 0.6);
-}
-
-/* Tablas */
-html[data-theme="royal"] th {
-    background: #2a0f22 !important;
-    color: var(--color-acento) !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 11px;
-}
-
-html[data-theme="royal"] td {
-    color: var(--texto-principal) !important;
-}
-
-/* Títulos con glow dorado */
-html[data-theme="royal"] h1,
-html[data-theme="royal"] h2 {
-    color: var(--color-acento) !important;
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
-}
-
-/* ============================================================
-   🎭 MASCARILLA: TACTICAL EMERALD
-   ============================================================ */
-[data-theme="tactical-emerald"] {
+html[data-theme="tactical-emerald"] {
     --bg-principal: #040d0a;
     --bg-card: rgba(10, 26, 21, 0.85);
     --bg-tabla-header: #102a22;
@@ -273,175 +62,28 @@ html[data-theme="royal"] h2 {
     --texto-principal: #d1d5db;
     --texto-secundario: #00ff9d;
     --borde: rgba(0, 255, 157, 0.3);
-    --animacion-entrada: slideRight 0.5s ease-out;
+    --overlay-color: linear-gradient(
+        rgba(4, 13, 10, 0.9),
+        rgba(10, 26, 21, 0.85)
+    );
 }
 
-/* Overlay suave verde neón */
-html[data-theme="tactical-emerald"] body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(rgba(4, 13, 10, 0.9), rgba(10, 26, 21, 0.85));
+html[data-theme="modern-intitucional"] {
+    --bg-principal: #003855; /* Azul profundo solicitado */
+    --bg-card: rgba(0, 56, 85, 0.85);
+    --bg-tabla-header: #002a40;
+    --color-acento: #92d050; /* Verde lima solicitado */
+    --texto-principal: #ffd770; /* Tono amarillento solicitado */
+    --texto-secundario: #92d050;
+    --borde: rgba(146, 208, 80, 0.3);
+    --overlay-color: linear-gradient(
+        135deg,
+        rgba(0, 56, 85, 0.95),
+        rgba(146, 208, 80, 0.4)
+    ); /* Gradiente adaptado a modern-blue */
 }
 
-/* Cards con estilo elegante */
-html[data-theme="tactical-emerald"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper) {
-    background: var(--bg-card);
-    border: 1px solid var(--borde);
-    box-shadow:
-        0 0 15px rgba(0, 255, 157, 0.2),
-        inset 0 0 10px rgba(0, 255, 157, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="tactical-emerald"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper):hover {
-    box-shadow:
-        0 0 25px rgba(0, 255, 157, 0.4),
-        inset 0 0 15px rgba(0, 255, 157, 0.2);
-}
-
-/* Botones estilo neón imperial */
-html[data-theme="tactical-emerald"] button[type="submit"],
-html[data-theme="tactical-emerald"] .inline-flex.items-center {
-    background: linear-gradient(135deg, #00ff9d, #00cc7f) !important;
-    border: none !important;
-    color: #00110a !important;
-    font-weight: 700;
-    letter-spacing: 1px;
-    box-shadow: 0 0 12px rgba(0, 255, 157, 0.5);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="tactical-emerald"] button:hover {
-    box-shadow: 0 0 25px rgba(0, 255, 157, 0.6);
-}
-
-/* Tablas */
-html[data-theme="tactical-emerald"] th {
-    background: var(--bg-tabla-header) !important;
-    color: var(--color-acento) !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 11px;
-}
-
-html[data-theme="tactical-emerald"] td {
-    color: var(--texto-principal) !important;
-}
-
-/* Títulos con glow verde */
-html[data-theme="tactical-emerald"] h1,
-html[data-theme="tactical-emerald"] h2 {
-    color: var(--color-acento) !important;
-    text-shadow: 0 0 8px rgba(0, 255, 157, 0.6);
-}
-
-/* Chat protegido */
-html[data-theme="tactical-emerald"] .chat-fullscreen-wrapper {
-    background: #030c08 !important;
-    box-shadow: none !important;
-}
-
-/* ============================================================
-   🎭 MASCARILLA: MODERN BLUE
-   ============================================================ */
-[data-theme="modern-blue"] {
-    --bg-principal: #0a0e17;
-    --bg-card: rgba(22, 32, 51, 0.85);
-    --bg-tabla-header: #00d2ff20;
-    --color-acento: #00d2ff;
-    --texto-principal: #e0e6ed;
-    --texto-secundario: #00d2ff;
-    --borde: rgba(0, 210, 255, 0.3);
-    --animacion-entrada: glitchAppear 0.3s steps(2);
-}
-
-/* Overlay suave azul */
-html[data-theme="modern-blue"] body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(rgba(10, 14, 23, 0.9), rgba(22, 32, 51, 0.85));
-}
-
-/* Cards con estilo elegante */
-html[data-theme="modern-blue"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper) {
-    background: var(--bg-card);
-    border: 1px solid var(--borde);
-    box-shadow:
-        0 0 15px rgba(0, 210, 255, 0.2),
-        inset 0 0 10px rgba(0, 210, 255, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="modern-blue"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper):hover {
-    box-shadow:
-        0 0 25px rgba(0, 210, 255, 0.4),
-        inset 0 0 15px rgba(0, 210, 255, 0.2);
-}
-
-/* Botones estilo neón azul */
-html[data-theme="modern-blue"] button[type="submit"],
-html[data-theme="modern-blue"] .inline-flex.items-center {
-    background: linear-gradient(135deg, #00d2ff, #0066ff) !important;
-    border: none !important;
-    color: #001018 !important;
-    font-weight: 700;
-    letter-spacing: 1px;
-    box-shadow: 0 0 12px rgba(0, 210, 255, 0.5);
-    transition: box-shadow 0.3s ease;
-}
-
-html[data-theme="modern-blue"] button:hover {
-    box-shadow: 0 0 25px rgba(0, 210, 255, 0.6);
-}
-
-/* Tablas */
-html[data-theme="modern-blue"] th {
-    background: var(--bg-tabla-header) !important;
-    color: var(--color-acento) !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 11px;
-}
-
-html[data-theme="modern-blue"] td {
-    color: var(--texto-principal) !important;
-}
-
-/* Títulos con glow azul */
-html[data-theme="modern-blue"] h1,
-html[data-theme="modern-blue"] h2 {
-    color: var(--color-acento) !important;
-    text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
-}
-
-/* Chat protegido */
-html[data-theme="modern-blue"] .chat-fullscreen-wrapper {
-    background: #080d17 !important;
-    box-shadow: none !important;
-}
-
-/* ============================================================
-   🎭 MASCARILLA: CYBER COMMAND (PRO EQUILIBRADO)
-   ============================================================ */
-[data-theme="cyber-command"] {
+html[data-theme="cyber-command"] {
     --bg-principal: #050810;
     --bg-card: rgba(10, 18, 35, 0.85);
     --bg-tabla-header: #0d1b2a;
@@ -449,85 +91,94 @@ html[data-theme="modern-blue"] .chat-fullscreen-wrapper {
     --texto-principal: #e6faff;
     --texto-secundario: #5adfff;
     --borde: rgba(0, 245, 255, 0.25);
+    --overlay-color: linear-gradient(
+        rgba(0, 10, 20, 0.9),
+        rgba(0, 20, 40, 0.85)
+    );
 }
 
-/* Overlay dinámico */
-html[data-theme="cyber-command"] body::before {
-    background: linear-gradient(rgba(0, 10, 20, 0.9), rgba(0, 20, 40, 0.85));
-}
-
-/* Cards estilo neon (SIN ZOOM) */
-html[data-theme="cyber-command"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper) {
-    position: relative;
+/* ============================================================
+   🎨 CARDS
+   ============================================================ */
+#main-wrapper > main > div > div:not(.chat-fullscreen-wrapper) {
     background: var(--bg-card);
     border: 1px solid var(--borde);
     box-shadow:
-        0 0 18px rgba(0, 245, 255, 0.25),
-        inset 0 0 18px rgba(0, 245, 255, 0.08);
+        0 0 15px var(--color-acento, rgba(0, 0, 0, 0.2)),
+        inset 0 0 10px rgba(0, 0, 0, 0.05);
     transition: box-shadow 0.3s ease;
 }
 
-/* Hover SIN scale */
-html[data-theme="cyber-command"]
-    #main-wrapper
-    > main
-    > div
-    > div:not(.chat-fullscreen-wrapper):hover {
+#main-wrapper > main > div > div:not(.chat-fullscreen-wrapper):hover {
     box-shadow:
-        0 0 30px rgba(0, 245, 255, 0.45),
-        inset 0 0 25px rgba(0, 245, 255, 0.12);
+        0 0 25px var(--color-acento, rgba(0, 0, 0, 0.4)),
+        inset 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Títulos glow */
-html[data-theme="cyber-command"] h1,
-html[data-theme="cyber-command"] h2 {
-    color: var(--color-acento) !important;
-    text-shadow: 0 0 8px rgba(0, 245, 255, 0.8);
-}
-
-/* Botones neon SIN zoom */
-html[data-theme="cyber-command"] button[type="submit"],
-html[data-theme="cyber-command"] .inline-flex.items-center {
-    background: linear-gradient(135deg, #00f5ff, #0066ff) !important;
-    border: none !important;
-    color: #001018 !important;
+/* ============================================================
+   🎨 BOTONES (CORREGIDO: Ahora usan variables dinámicas)
+   ============================================================ */
+button[type="submit"],
+.inline-flex.items-center {
+    /* Se utiliza el color de acento y fondo principal de cada tema */
+    background: linear-gradient(
+        135deg,
+        var(--bg-principal),
+        var(--color-acento)
+    ) !important;
+    border: 1px solid var(--color-acento) !important;
+    color: #ffffff !important; /* Blanco para asegurar contraste */
     font-weight: 700;
     letter-spacing: 1px;
-    box-shadow: 0 0 14px rgba(0, 245, 255, 0.6);
-    transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 12px var(--color-acento);
+    transition: all 0.3s ease;
 }
 
-html[data-theme="cyber-command"] button:hover {
-    box-shadow: 0 0 28px rgba(0, 245, 255, 0.9);
+button:hover {
+    box-shadow: 0 0 25px var(--color-acento);
+    filter: brightness(1.1);
 }
 
-/* Tablas */
-html[data-theme="cyber-command"] th {
-    background: #0d1b2a !important;
+/* ============================================================
+   🎨 TABLAS
+   ============================================================ */
+th {
+    background: var(--bg-tabla-header) !important;
     color: var(--color-acento) !important;
-    letter-spacing: 2px;
     text-transform: uppercase;
+    letter-spacing: 2px;
     font-size: 11px;
 }
 
-html[data-theme="cyber-command"] td {
+td {
     color: var(--texto-principal) !important;
 }
 
-/* Chat protegido */
-html[data-theme="cyber-command"] .chat-fullscreen-wrapper {
-    background: #040b15 !important;
+/* ============================================================
+   🎨 TÍTULOS
+   ============================================================ */
+h1,
+h2,
+h3,
+.text-xl,
+.text-2xl {
+    color: var(--color-acento) !important;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 8px var(--color-acento);
+}
+
+/* ============================================================
+   🎨 CHAT PROTEGIDO
+   ============================================================ */
+.chat-fullscreen-wrapper {
+    background: var(--bg-card) !important;
     box-shadow: none !important;
 }
 
 /* ============================================================
    🎬 ANIMACIONES BASE
    ============================================================ */
-
 /* @keyframes slideRight {
     from {
         transform: translateX(-30px);
@@ -548,9 +199,4 @@ html[data-theme="cyber-command"] .chat-fullscreen-wrapper {
         clip-path: inset(0 0 0 0);
         opacity: 1;
     }
-} */
-
-/* Clase para animar las cards al aparecer */
-/* .card-animate {
-    animation: slideRight 0.5s ease-out forwards;
 } */

@@ -269,9 +269,9 @@
                         </button>
 
 
-                        <button onclick="cambiarMascarilla('modern-blue')"
+                        <button onclick="cambiarMascarilla('modern-intitucional')"
                             class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-gray-700 transition">
-                            <span class="w-3 h-3 rounded-full bg-[#00d2ff] mr-3"></span> Modern Blue
+                            <span class="w-3 h-3 rounded-full bg-[#09ff0062] mr-3"></span> Modern Institucional
                         </button>
 
                         <button onclick="cambiarMascarilla('tactical-emerald')"
@@ -418,10 +418,10 @@
                         </button>
 
                         {{-- Modern --}}
-                        <button onclick="cambiarMascarilla('modern-blue')"
+                        <button onclick="cambiarMascarilla('modern-intitucional')"
                             class="flex items-center justify-start px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold uppercase text-white hover:bg-white/10 transition">
                             <span
-                                class="w-2.5 h-2.5 rounded-full bg-[#00d2ff] mr-2 shadow-[0_0_5px_rgba(0,210,255,0.5)]"></span>
+                                class="w-2.5 h-2.5 rounded-full bg-[#09ff0062] mr-2 shadow-[0_0_5px_rgba(0,210,255,0.5)]"></span>
                             Modern
                         </button>
 

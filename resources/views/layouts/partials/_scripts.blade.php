@@ -35,7 +35,7 @@
                 return 'linear-gradient(rgba(20,8,15,0.9), rgba(40,10,25,0.85))';
             case 'tactical-emerald':
                 return 'linear-gradient(rgba(4,13,10,0.9), rgba(10,26,21,0.85))';
-            case 'modern-blue':
+            case 'modern-intitucional':
                 return 'linear-gradient(rgba(10,14,23,0.9), rgba(22,32,51,0.85))';
             case 'cyber-command':
                 return 'linear-gradient(rgba(0,10,20,0.9), rgba(0,20,40,0.85))';
