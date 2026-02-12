@@ -10,7 +10,7 @@ class InventarioPdfTolhuin extends Component
 {
     public $dependencias = [];
 
-    public int $dependenciaSeleccionada = 0;
+    public int $dependenciaSeleccionada = 0; // 0 = todas
 
     public $registros = [];
 
@@ -19,21 +19,18 @@ class InventarioPdfTolhuin extends Component
         $this->dependencias = DependenciaTolhuin::orderBy('nombre')
             ->pluck('nombre', 'id')
             ->toArray();
+
+        // 🔹 cargar todas al iniciar
+        $this->updatedDependenciaSeleccionada();
     }
 
     public function updatedDependenciaSeleccionada()
     {
-        if (!$this->dependenciaSeleccionada) {
-            $this->registros = [];
-            return;
-        }
-
-        $dep = (int) $this->dependenciaSeleccionada;
-
-        // último registro por equipo
         $sub = DB::table('tolhuingenerales')
             ->selectRaw('MAX(id) as id')
-            ->where('dependencia_tolhuin_id', $dep)
+            ->when($this->dependenciaSeleccionada, function ($q) {
+                $q->where('dependencia_tolhuin_id', $this->dependenciaSeleccionada);
+            })
             ->groupBy(DB::raw('COALESCE(codigo_qr, id)'));
 
         $this->registros = DB::table('tolhuingenerales as t1')

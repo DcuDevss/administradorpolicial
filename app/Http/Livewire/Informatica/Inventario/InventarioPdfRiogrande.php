@@ -19,21 +19,17 @@ class InventarioPdfRioGrande extends Component
         $this->dependencias = DependenciaRiogrande::orderBy('nombre')
             ->pluck('nombre', 'id')
             ->toArray();
+
+        $this->updatedDependenciaSeleccionada();
     }
 
     public function updatedDependenciaSeleccionada()
     {
-        if (!$this->dependenciaSeleccionada) {
-            $this->registros = [];
-            return;
-        }
-
-        $dep = (int) $this->dependenciaSeleccionada;
-
-        // último registro por equipo
         $sub = DB::table('riograndegenerales')
             ->selectRaw('MAX(id) as id')
-            ->where('dependencia_riogrande_id', $dep)
+            ->when($this->dependenciaSeleccionada, function ($q) {
+                $q->where('dependencia_riogrande_id', $this->dependenciaSeleccionada);
+            })
             ->groupBy(DB::raw('COALESCE(codigo_qr, id)'));
 
         $this->registros = DB::table('riograndegenerales as t1')

@@ -10,8 +10,7 @@ class InventarioPdfUshuaia extends Component
 {
     public $dependencias = [];
 
-    // forzamos int (evita bugs raros con where)
-    public int $dependenciaSeleccionada = 0;
+    public int $dependenciaSeleccionada = 0; // 0 = todas
 
     public $registros = [];
 
@@ -20,27 +19,21 @@ class InventarioPdfUshuaia extends Component
         $this->dependencias = DependenciaUshuaia::orderBy('nombre')
             ->pluck('nombre', 'id')
             ->toArray();
+
+        // 🔹 cargar todo al entrar
+        $this->updatedDependenciaSeleccionada();
     }
 
     public function updatedDependenciaSeleccionada()
     {
-        if (!$this->dependenciaSeleccionada) {
-            $this->registros = [];
-            return;
-        }
-
-        $dep = (int) $this->dependenciaSeleccionada;
-
-        /*
-        ─────────────────────────────
-        Subquery:
-        - último registro por equipo
-        - COALESCE evita perder los NULL
-        ─────────────────────────────
-        */
         $sub = DB::table('generalinformaticas')
             ->selectRaw('MAX(id) as id')
-            ->where('dependencia_ushuaia_id', $dep)
+            ->when($this->dependenciaSeleccionada, function ($q) {
+                $q->where(
+                    'dependencia_ushuaia_id',
+                    $this->dependenciaSeleccionada
+                );
+            })
             ->groupBy(DB::raw('COALESCE(codigo_qr, id)'));
 
         $this->registros = DB::table('generalinformaticas as t1')
