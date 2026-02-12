@@ -142,17 +142,7 @@
         </main>
     </div>
 
-    <footer
-        class="text-center bg-gray-900/90 dark:bg-black/80 backdrop-blur-md font-medium text-[10px] md:text-xs text-gray-300 left-0 w-full z-20 flex items-center justify-center space-x-3 py-3 border-t border-white/5 transition-all">
-
-        <img src="{{ asset('foto/Escudo comunicaciones 50x50.webp') }}" alt="Escudo"
-            class="h-7 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300" loading="lazy"
-            decoding="async">
-
-        <p class="m-0 tracking-wider uppercase">
-            © {{ date('Y') }} <span class="text-white">Policía de Tierra del Fuego</span>
-        </p>
-    </footer>
+    @include('layouts.partials._footer')
 
     @livewireScripts
     @stack('scripts')
