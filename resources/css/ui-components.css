@@ -22,10 +22,18 @@ button[type="button"].inline-flex.items-center.bg-gray-800 {
     background-color: #4f9cff !important;
     color: #ffffff !important;
     border-radius: 0.25rem !important;
-    min-width: 140px;
+    /* min-width: 140px; */
+    min-width: auto;
     justify-content: center;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
+
+/* Ajuste específico para que el contenedor de botones permita el salto de línea */
+/* .hidden.md\:flex.md\:items-center {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+} */
 
 button[type="submit"]:hover {
     background-color: #2563eb !important;
