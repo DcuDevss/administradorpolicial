@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark">
 
 <head>
     <meta charset="utf-8">
@@ -17,135 +17,134 @@
     @livewireStyles
 
     <style>
-        /* Configuración base del cuerpo con degradado institucional */
-        body {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            min-height: 100vh;
-            color: #e2e8f0;
-        }
-
-        /* Efecto de desenfoque (Glassmorphism) para el encabezado */
-        .header-blur {
-            backdrop-filter: blur(10px);
-            background: rgba(30, 41, 59, 0.5);
-        }
-
-        /* Efecto de desenfoque para el pie de página */
-        .footer-blur {
-            backdrop-filter: blur(5px);
-            background: rgba(15, 23, 42, 0.6);
-        }
-
-        /* Fuerza el color de texto blanco en todos los inputs para legibilidad */
-        input {
-            color: #ffffff !important;
-        }
-
-        /* Estilo para los textos de sugerencia dentro de los campos */
-        input::placeholder {
-            color: #94a3b8 !important;
-        }
-    </style>
-
-    <style>
         /* ============================================================
-           🔥 FIX ESPECÍFICO PARA LA PÁGINA DE LOGIN
+           🎨 CONFIGURACIÓN TEMA DARK GUEST
            ============================================================ */
-
-        /* Asegura que el texto que escribe el usuario sea BLANCO (Corregido de negro) */
-        .login-page input,
-        .login-page input[type="password"],
-        .login-page input[type="email"],
-        .login-page input[type="text"] {
-            color: #ffffff !important;
-        }
-
-        /* Color de placeholder para que destaque sobre el fondo del input */
-        .login-page input::placeholder {
-            color: #cbd5e1 !important;
-        }
-
-        /* Evita que el autocompletado del navegador cambie el color del texto a negro */
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus {
-            -webkit-text-fill-color: #ffffff !important;
-            /* Mantiene un fondo oscuro sutil en el autocompletado */
-            -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.3) inset !important;
-            transition: background-color 5000s ease-in-out 0s;
-        }
-
-        /* Configuración de la imagen de fondo específica para la pantalla de acceso */
         body.login-page {
-            background: url("{{ asset('foto/base.webp') }}") no-repeat center center fixed;
-            background-size: cover;
+            background-color: var(--bg-principal, #000000) !important;
+            color: var(--texto-principal, #ece9e9);
             min-height: 100vh;
-            color: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        /* ============================================================
-   👤 COMPONENTES DE PERFIL (PROFILE GLASS)
-   ============================================================ */
+        .login-bg-overlay {
+            position: fixed;
+            inset: 0;
+            /* Se reduce la opacidad: de 0.85 a 0.4 y de 0.4 a 0.2 */
+            background: linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.4) 0%,
+                    rgba(30, 41, 59, 0.2) 100%),
+                url("{{ asset('foto/base.webp') }}") no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+        }
 
-        /* Contenedor de las secciones de Perfil */
-        .profile-section-container {
-            background-color: rgba(30, 41, 59, 0.4) !important;
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            padding: 1.5rem;
+        /* Selector superior ultra compacto */
+        .guest-theme-selector {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--borde, rgba(255, 255, 255, 0.15));
+            border-radius: 9999px;
+            /* Estilo píldora */
+            padding: 4px 12px;
+            display: inline-flex;
+            gap: 8px;
             margin-bottom: 2rem;
         }
 
-        /* 🔥 Línea divisoria reforzada */
-        hr,
-        .border-t,
-        .border-b {
-            border-color: rgba(255, 255, 255, 0.2) !important;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
+        .btn-mode-mini {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        /* Ajuste de textos en Profile para que no se pierdan */
-        .profile-section-container h3,
-        .profile-section-container p {
-            color: #e2e8f0 !important;
+        .btn-mode-mini:hover {
+            transform: scale(1.2);
+            border-color: #ffffff;
+            box-shadow: 0 0 10px currentColor;
         }
 
-        /* Modo Claro: Ajuste de la línea para fondo blanco */
-        html.light-mode hr,
-        html.light-mode .border-t {
-            border-color: rgba(0, 0, 0, 0.1) !important;
+        /* Tooltip simple para los botones */
+        .btn-mode-mini::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s;
+            color: #94a3b8;
+        }
+
+        .btn-mode-mini:hover::after {
+            opacity: 1;
+        }
+
+        /* Fix para inputs */
+        .login-page input {
+            background: rgba(15, 23, 42, 0.8) !important;
+            border: 1px solid var(--borde) !important;
+            color: #ffffff !important;
         }
     </style>
 </head>
 
 <body class="font-sans antialiased login-page">
+    <div class="login-bg-overlay"></div>
 
-    @auth
-        <div class="header-blur fixed top-0 w-full z-50 shadow-lg">
-            @livewire('navigation-menu')
+    {{-- Contenedor principal centrado verticalmente --}}
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center py-6">
+
+        {{-- SELECTOR DE MASCARILLAS MINI: Margen reducido de mb-8 a mb-4 --}}
+        <div class="guest-theme-selector animate-fade-in mb-4">
+            <button onclick="cambiarMascarilla('dark')" class="btn-mode-mini bg-slate-800" data-label="Dark"
+                style="color: #4f9cff;"></button>
+
+            <button onclick="cambiarMascarilla('original')" class="btn-mode-mini bg-blue-800 border-yellow-500"
+                data-label="TDF" style="color: #ffd700;"></button>
+
+            <button onclick="cambiarMascarilla('tactical-emerald')" class="btn-mode-mini bg-[#00ff9d]"
+                data-label="Tactical" style="color: #00ff9d;"></button>
+
+            <button onclick="cambiarMascarilla('cyber-command')" class="btn-mode-mini bg-[#00f5ff]" data-label="Cyber"
+                style="color: #00f5ff;"></button>
+
+            <button onclick="cambiarMascarilla('royal')" class="btn-mode-mini bg-[#e94560]" data-label="Royal"
+                style="color: #e94560;"></button>
         </div>
-    @endauth
 
-    <div class="@auth pt-20 pb-20 @else pt-10 pb-10 @endauth">
-        @isset($header)
-            <header class="header-blur shadow-md mb-6">
-                <div class="max-w-7xl mx-auto py-6 px-6">
-                    {{ $header }}
-                </div>
-            </header>
-        @endisset
-
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <main class="w-full {{-- sm:max-w-2xl px-6 --}}">
             {{ $slot }}
         </main>
     </div>
 
-    @include('layouts.partials._footer')
+    {{-- Footer --}}
+    <div class="mt-10">
+        @include('layouts.partials._footer')
+    </div>
 
     @livewireScripts
     @stack('scripts')
+
+    <script>
+        function cambiarMascarilla(tema) {
+            document.documentElement.setAttribute('data-theme', tema);
+            localStorage.setItem('theme', tema);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        });
+    </script>
 </body>
 
 </html>
