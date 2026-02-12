@@ -12,12 +12,12 @@
         document.body.style.setProperty('--overlay-color', getOverlayColor(nombreTema));
 
         // Animar cards al cambiar de tema
-        const cards = document.querySelectorAll('.card-profesional');
+        /* const cards = document.querySelectorAll('.card-profesional');
         cards.forEach(card => {
             card.classList.remove('card-animate'); // reinicia animación
             void card.offsetWidth; // fuerza reflow para que se aplique de nuevo
             card.classList.add('card-animate'); // aplica animación
-        });
+        }); */
 
 
         // Notificar a componentes que el tema cambió

@@ -528,7 +528,7 @@ html[data-theme="cyber-command"] .chat-fullscreen-wrapper {
    🎬 ANIMACIONES BASE
    ============================================================ */
 
-@keyframes slideRight {
+/* @keyframes slideRight {
     from {
         transform: translateX(-30px);
         opacity: 0;
@@ -548,9 +548,9 @@ html[data-theme="cyber-command"] .chat-fullscreen-wrapper {
         clip-path: inset(0 0 0 0);
         opacity: 1;
     }
-}
+} */
 
 /* Clase para animar las cards al aparecer */
-.card-animate {
+/* .card-animate {
     animation: slideRight 0.5s ease-out forwards;
-}
+} */
