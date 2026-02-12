@@ -9,7 +9,7 @@
 <script>
     (function() {
         // Obtenemos el tema guardado, por defecto 'dark' si no existe
-        let theme = localStorage.getItem('theme-police') || 'dark';
+        let theme = localStorage.getItem('theme-police') || 'original';
 
         // Si por error se guardó 'light', lo forzamos a 'dark' para mantener la estética institucional
         if (theme === 'light') {
@@ -44,4 +44,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">

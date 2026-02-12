@@ -1,30 +1,27 @@
 <script>
+    /**
+     * 1. GESTIÓN DE MASCARILLAS (TEMAS)
+     * Aplica el tema visual y el degradado de fondo correspondiente.
+     */
     function cambiarMascarilla(nombreTema) {
         const html = document.documentElement;
 
-        // Aplicar tema
+        // Aplicar atributo de tema
         html.setAttribute('data-theme', nombreTema);
 
-        // Guardar preferencia
+        // Guardar en almacenamiento local
         localStorage.setItem('theme-police', nombreTema);
 
-        // Cambiar overlay dinámico
+        // Actualizar la variable CSS del overlay
         document.body.style.setProperty('--overlay-color', getOverlayColor(nombreTema));
 
-        // Animar cards al cambiar de tema
-        /* const cards = document.querySelectorAll('.card-profesional');
-        cards.forEach(card => {
-            card.classList.remove('card-animate'); // reinicia animación
-            void card.offsetWidth; // fuerza reflow para que se aplique de nuevo
-            card.classList.add('card-animate'); // aplica animación
-        }); */
-
-
-        // Notificar a componentes que el tema cambió
+        // Notificar a otros componentes (útil para gráficos o layouts)
         window.dispatchEvent(new Event('resize'));
     }
 
-    // Función que devuelve overlay según tema
+    /**
+     * Define los degradados de fondo según el tema seleccionado.
+     */
     function getOverlayColor(nombreTema) {
         switch (nombreTema) {
             case 'original':
@@ -44,34 +41,30 @@
         }
     }
 
-
-
-    /* 2. SISTEMA DE CONFIRMACIÓN GLOBAL (SWEETALERT2) */
+    /**
+     * 2. SISTEMA DE CONFIRMACIÓN GLOBAL
+     * Intercepta clics en botones de acción para pedir confirmación con SweetAlert2.
+     */
     document.addEventListener('click', function(event) {
         const btn = event.target.closest('button, a');
-
-        // Si no hay botón, ya está confirmado, o es una acción de solo lectura, ignorar
         if (!btn || btn.dataset.confirmed === "true") return;
 
-        // Detectar acciones críticas
-        const text = (btn.innerText || '').toLowerCase().trim();
-        const accionesCriticas = ['guardar', 'actualizar', 'crear', 'registrar', 'modificar', 'confirmar',
-            'asignar', 'eliminar', 'borrar'
+        const text = (btn.innerText || '').toLowerCase().replace(/[!?.¿¡]/g, '').trim();
+
+        // Ignorar botones de navegación o cierre
+        if (['buscar', 'cerrar', 'volver', 'cancelar', 'logout', 'salir'].some(p => text.includes(p))) return;
+
+        // Solo actuar en botones de "escritura" o "borrado"
+        const acciones = ['guardar', 'actualizar', 'crear', 'registrar', 'modificar', 'confirmar', 'asignar',
+            'eliminar', 'borrar'
         ];
+        if (!acciones.some(p => text.includes(p))) return;
 
-        if (!accionesCriticas.some(p => text.includes(p))) return;
-
-        // Verificar si es un botón de envío o tiene acción de Livewire
         const form = btn.closest('form');
-        const esAccionProcesable = btn.type === 'submit' || form || btn.hasAttribute('wire:click');
-        if (!esAccionProcesable) return;
+        const wireClick = btn.getAttribute('wire:click');
+        if (!form && !wireClick && btn.type !== 'submit') return;
 
         event.preventDefault();
-        event.stopImmediatePropagation(); // evita que Livewire ejecute la acción antes de la confirmación
-
-        // Evita reentradas rápidas
-        if (btn.dataset.confirmedTemp) return;
-        btn.dataset.confirmedTemp = "true";
 
         Swal.fire({
             title: '¿Confirmar operación?',
@@ -82,48 +75,92 @@
             cancelButtonText: 'Cancelar',
             background: 'var(--bg-card)',
             color: 'var(--texto-principal)',
-            confirmButtonColor: 'var(--color-acento)',
-            customClass: {
-                popup: 'border border-[var(--borde)] shadow-2xl'
-            }
+            confirmButtonColor: 'var(--color-acento)'
         }).then((result) => {
             if (result.isConfirmed) {
                 btn.dataset.confirmed = "true";
-
-                // Ejecutar acción según tipo
-                if (form && !form.hasAttribute('wire:submit')) {
+                if (wireClick) {
+                    if (window.Livewire) btn.click();
+                } else if (form) {
                     form.submit();
+                } else {
+                    btn.click();
                 }
-                // Para Livewire solo eliminamos el flag temporal; Livewire captura normalmente
             }
-            // Limpiar flag temporal
-            setTimeout(() => delete btn.dataset.confirmedTemp, 500);
         });
     }, true);
 
+    /**
+     * 3. SISTEMA DE NOTIFICACIONES TOAST UNIVERSAL
+     * Configuración de alertas que no bloquean la pantalla y usan los colores del tema.
+     */
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        background: 'var(--bg-card)',
+        color: 'var(--texto-principal)',
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
 
-    /* 3. BLOQUEO ESPECÍFICO DE NOTIFICACIONES "SAVED" */
-    // Este observador asegura que si Livewire intenta inyectar el texto, se elimine de inmediato.
+    // Escuchar notificaciones desde Livewire (v3)
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('notificacion', (event) => {
+            const data = Array.isArray(event) ? event[0] : event;
+            Toast.fire({
+                icon: data.type || 'success',
+                title: data.message
+            });
+        });
+    });
+
+    /**
+     * 4. OBSERVADOR PARA OCULTAR "SAVED."
+     * Evita que el mensaje por defecto de Jetstream ensucie la UI.
+     */
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             mutation.addedNodes.forEach((node) => {
-                if (node.nodeType === 1 && (node.innerText === 'Saved.' || node.hasAttribute(
-                        'x-show'))) {
-                    if (node.innerText.trim() === 'Saved.') {
-                        node.style.display = 'none';
+                if (node.nodeType === 1) {
+                    const text = node.innerText?.trim();
+                    if (text === 'Saved.' || node.hasAttribute('x-show')) {
+                        if (text === 'Saved.') node.style.display = 'none';
                     }
                 }
             });
         });
     });
-
     observer.observe(document.body, {
         childList: true,
         subtree: true
     });
 
+    /**
+     * 5. INICIALIZACIÓN AL CARGAR EL DOCUMENTO
+     */
     document.addEventListener('DOMContentLoaded', () => {
+        // Cargar tema preferido
         const temaGuardado = localStorage.getItem('theme-police') || 'original';
         cambiarMascarilla(temaGuardado);
+
+        // Capturar mensajes de éxito/error de sesiones tradicionales de Laravel
+        @if (session()->has('success') || session()->has('flash.banner'))
+            Toast.fire({
+                icon: 'success',
+                title: "{{ session('success') ?? session('flash.banner') }}"
+            });
+        @endif
+
+        @if (session()->has('error'))
+            Toast.fire({
+                icon: 'error',
+                title: "{{ session('error') }}"
+            });
+        @endif
     });
 </script>

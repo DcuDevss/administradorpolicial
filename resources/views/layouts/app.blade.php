@@ -39,6 +39,22 @@
             position: relative;
             z-index: 1;
         }
+
+        /* Estilo universal para los Toasts (Alertas) */
+        .swal2-popup.swal2-toast {
+            border: 1px solid var(--borde) !important;
+            box-shadow: 0 0 15px var(--borde) !important;
+            border-radius: 12px !important;
+            background: var(--bg-card) !important;
+            color: var(--texto-principal) !important;
+        }
+
+        /* Ajuste para tema claro */
+        html[data-theme="clara"] .swal2-popup.swal2-toast {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+            border-left: 5px solid var(--color-acento) !important;
+            border: none !important;
+        }
     </style>
 
 
