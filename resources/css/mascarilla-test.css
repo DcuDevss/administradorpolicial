@@ -15,14 +15,14 @@ body::before {
    🎨 VARIABLES DE CADA TEMA
    ============================================================ */
 html[data-theme="clara"] {
-    --bg-principal: #53575c; /* Gris azulado muy claro (fondo de pantalla) */
-    --bg-card: #f3ecec; /* Blanco puro para las tarjetas */
-    --bg-tabla-header: #4b75b891; /* Slate oscuro (azul petróleo) para cabeceras */
-    --color-acento: #ffffff; /* Azul brillante (tipo Windows/Azure) para botones */
-    --texto-principal: #6d6a6a; /* Negro azulado para máxima lectura */
-    --texto-secundario: #475569; /* Gris para etiquetas */
-    --borde: #cbd5e1; /* Borde gris suave */
-    --overlay-color: rgba(255, 255, 255, 0.5);
+    --bg-principal: #0f0e0e; /* Negro (fondo de pantalla) */
+    --bg-card: #fffbfb; /* Blanco puro para las tarjetas */
+    --bg-tabla-header: #f2f4f854; /* Gris para cabeceras */
+    --color-acento: #f0f0f7d8; /* blanco brillante (tipo Windows/Azure) para botones */
+    --texto-principal: #fd0000; /* Rojo para máxima lectura */
+    --texto-secundario: #5a5a5a; /* Gris para etiquetas */
+    --borde: #595a5a; /* Borde gris suave */
+    --overlay-color: rgba(253, 249, 249, 0.5);
 }
 
 html[data-theme="original"] {
