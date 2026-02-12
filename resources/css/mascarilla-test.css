@@ -19,7 +19,7 @@ html[data-theme="clara"] {
     --bg-card: #f3ecec; /* Blanco puro para las tarjetas */
     --bg-tabla-header: #4b75b891; /* Slate oscuro (azul petróleo) para cabeceras */
     --color-acento: #ffffff; /* Azul brillante (tipo Windows/Azure) para botones */
-    --texto-principal: #ffffff; /* Negro azulado para máxima lectura */
+    --texto-principal: #6d6a6a; /* Negro azulado para máxima lectura */
     --texto-secundario: #475569; /* Gris para etiquetas */
     --borde: #cbd5e1; /* Borde gris suave */
     --overlay-color: rgba(255, 255, 255, 0.5);
