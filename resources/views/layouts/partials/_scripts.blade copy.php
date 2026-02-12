@@ -41,7 +41,7 @@
     document.addEventListener('click', function(event) {
         const btn = event.target.closest('button, a');
 
-        // Si no hay botón, ya está confirmado, o es una acción de solo lectura, ignorar
+        // Si no hay botón, ya está confirmado, o es una acción de Livewire de "solo lectura", ignorar.
         if (!btn || btn.dataset.confirmed === "true") return;
 
         // Detectar acciones críticas
@@ -55,15 +55,13 @@
         // Verificar si es un botón de envío o tiene acción de Livewire
         const form = btn.closest('form');
         const esAccionProcesable = btn.type === 'submit' || form || btn.hasAttribute('wire:click');
+
         if (!esAccionProcesable) return;
 
         event.preventDefault();
-        event.stopImmediatePropagation(); // evita que Livewire ejecute la acción antes de la confirmación
+        event.stopImmediatePropagation(); // Evita que Livewire ejecute la acción antes de la confirmación
 
-        // Evita reentradas rápidas
-        if (btn.dataset.confirmedTemp) return;
-        btn.dataset.confirmedTemp = "true";
-
+        // Configuración SweetAlert2 adaptada a tus mascarillas
         Swal.fire({
             title: '¿Confirmar operación?',
             text: '¿Deseas procesar los cambios realizados?',
@@ -71,9 +69,9 @@
             showCancelButton: true,
             confirmButtonText: 'Sí, proceder',
             cancelButtonText: 'Cancelar',
-            background: 'var(--bg-card)',
-            color: 'var(--texto-principal)',
-            confirmButtonColor: 'var(--color-acento)',
+            background: 'var(--bg-card)', // Usa el color de tu mascarilla
+            color: 'var(--texto-principal)', // Usa el texto de tu mascarilla
+            confirmButtonColor: 'var(--color-acento)', // Usa el color de acento
             customClass: {
                 popup: 'border border-[var(--borde)] shadow-2xl'
             }
@@ -81,17 +79,16 @@
             if (result.isConfirmed) {
                 btn.dataset.confirmed = "true";
 
-                // Ejecutar acción según tipo
+                // Ejecución según el tipo de acción
                 if (form && !form.hasAttribute('wire:submit')) {
                     form.submit();
+                } else {
+                    // Simular click para que Livewire/Alpine procesen la acción original
+                    btn.click();
                 }
-                // Para Livewire solo eliminamos el flag temporal; Livewire captura normalmente
             }
-            // Limpiar flag temporal
-            setTimeout(() => delete btn.dataset.confirmedTemp, 500);
         });
     }, true);
-
 
     /* 3. BLOQUEO ESPECÍFICO DE NOTIFICACIONES "SAVED" */
     // Este observador asegura que si Livewire intenta inyectar el texto, se elimine de inmediato.
@@ -111,10 +108,5 @@
     observer.observe(document.body, {
         childList: true,
         subtree: true
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const temaGuardado = localStorage.getItem('theme-police') || 'original';
-        cambiarMascarilla(temaGuardado);
     });
 </script>

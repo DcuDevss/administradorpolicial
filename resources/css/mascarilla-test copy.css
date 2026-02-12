@@ -37,37 +37,55 @@ html[data-theme="tactical-emerald"] th {
 }
 
 /* ============================================================
-    🎭 MASCARILLA: MODERN BLUE
+    🎭 MASCARILLA: POLICE BLUE (versión modernizada)
    ============================================================ */
-[data-theme="modern-blue"] {
-    --bg-principal: #0a0e17;
-    --bg-card: #162033;
-    --bg-tabla-header: #00d2ff20;
-    --color-acento: #00d2ff;
-    --texto-principal: #e0e6ed;
-    --texto-secundario: #00d2ff;
-    --borde: #00d2ff40;
-    --animacion-entrada: glitchAppear 0.3s steps(2);
+[data-theme="police-blue"] {
+    --bg-principal: #001d3d; /* azul oscuro institucional */
+    --bg-card: #00264d; /* azul card más profundo */
+    --bg-tabla-header: #003366; /* header tablas azul intenso */
+    --color-acento: #ffd700; /* dorado oficial */
+    --texto-principal: #ffffff; /* blanco para texto */
+    --texto-secundario: #c8102e; /* rojo institucional */
+    --borde: rgba(255, 215, 0, 0.3); /* borde dorado tenue */
+    --animacion-entrada: slideRight 0.5s ease-out;
 }
 
-/* html[data-theme="modern-blue"] body {
-    background-color: #0a0e17 !important;
-    background-image: none !important;
-} */
-
-html[data-theme="modern-blue"] .bg-black.flex.rounded-lg.flex-col {
-    background: #162033 !important;
-    border: 1px solid #00d2ff !important;
-    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3) !important;
+/* Cards institucionales */
+html[data-theme="police-blue"] .bg-black.flex.rounded-lg.flex-col {
+    background: #00264d !important;
+    border: 1px solid #ffd700 !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3) !important;
 }
 
-html[data-theme="modern-blue"] h2,
-html[data-theme="modern-blue"] p {
-    color: #00d2ff !important;
+/* Textos */
+html[data-theme="police-blue"] h2,
+html[data-theme="police-blue"] p {
+    color: #ffd700 !important;
+}
+
+/* Tablas y headers */
+html[data-theme="police-blue"] th {
+    background: #003366 !important;
+    color: #ffd700 !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+}
+
+html[data-theme="police-blue"] td {
+    color: #ffffff !important;
+}
+
+/* Overlay */
+html[data-theme="police-blue"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(0, 29, 61, 0.9), rgba(0, 51, 102, 0.85));
 }
 
 /* ============================================================
-    ?? ANIMACIONES
+    ANIMACIONES
    ============================================================ */
 @keyframes slideRight {
     from {
@@ -76,17 +94,6 @@ html[data-theme="modern-blue"] p {
     }
     to {
         transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes glitchAppear {
-    0% {
-        clip-path: inset(50% 0 30% 0);
-        opacity: 0;
-    }
-    100% {
-        clip-path: inset(0 0 0 0);
         opacity: 1;
     }
 }

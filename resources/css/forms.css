@@ -3,7 +3,7 @@
 /* Todo lo relacionado a input, select, textarea y sus estados. Incluye también estilos para validación, focus, hover y estados deshabilitados. */
 
 /* ============================================================
-    ?? FORMULARIOS Y SELECTS (EFECTO CRISTAL / GLASS)
+   FORMULARIOS Y SELECTS (EFECTO CRISTAL / GLASS)
    ============================================================ */
 
 /* Estilo de etiquetas */
@@ -57,7 +57,7 @@ select option:checked {
 }
 
 /* ============================================================
-    ?? VALIDACIÓN Y ESTADOS (RESCATE)
+ VALIDACIÓN Y ESTADOS (RESCATE)
    ============================================================ */
 
 /* Estilo para mensajes de error de Jetstream */

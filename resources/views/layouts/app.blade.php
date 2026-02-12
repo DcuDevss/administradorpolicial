@@ -9,28 +9,38 @@
     @livewireStyles
 
     <style>
+        /* Fondo por defecto: tu imagen clara */
+        html,
         body {
-            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
             background-image: url("{{ asset('foto/fondoclaro.png') }}");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            transition: background 0.3s ease;
         }
 
+        /* Overlay dinámico según tema */
         body::before {
             content: "";
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.55);
-            /* ← ajustá este valor */
             z-index: 0;
+            background: var(--overlay-color, rgba(0, 0, 0, 0));
+            /* default transparente */
+            pointer-events: none;
+            transition: background 0.3s ease;
         }
 
+        /* Main wrapper sobre el overlay */
         #main-wrapper {
             position: relative;
             z-index: 1;
         }
     </style>
+
 
 </head>
 

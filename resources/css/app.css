@@ -1,5 +1,5 @@
 /* ============================================================
-   ?? IMPORTACIONES (DEBEN IR ARRIBA DE TODO)
+   IMPORTACIONES (DEBEN IR ARRIBA DE TODO)
    ============================================================ */
 @import "./base.css";
 @import "./typography.css";
@@ -10,14 +10,14 @@
 @import "./mascarilla-test.css";
 
 /* ============================================================
-   ?? NÚCLEO (TAILWIND) - DESPUÉS DE LOS IMPORTS
+   NÚCLEO (TAILWIND) - DESPUÉS DE LOS IMPORTS
    ============================================================ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ============================================================
-   ?? DICCIONARIO DE MASCARILLAS (Variables Globales)
+   DICCIONARIO DE MASCARILLAS (Variables Globales)
    ============================================================ */
 /* resources/css/app.css */
 
@@ -38,7 +38,7 @@
 
     /* Animaciones */
     --animacion-entrada: fadeIn 0.3s ease-in-out;
-    
+
 }
 
 
