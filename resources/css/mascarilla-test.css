@@ -549,3 +549,8 @@ html[data-theme="cyber-command"] .chat-fullscreen-wrapper {
         opacity: 1;
     }
 }
+
+/* Clase para animar las cards al aparecer */
+.card-animate {
+    animation: slideRight 0.5s ease-out forwards;
+}
