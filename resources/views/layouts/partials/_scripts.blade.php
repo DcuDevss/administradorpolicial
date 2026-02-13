@@ -36,8 +36,6 @@
                 return 'linear-gradient(rgba(10,14,23,0.9), rgba(22,32,51,0.85))';
             case 'cyber-command':
                 return 'linear-gradient(rgba(0,10,20,0.9), rgba(0,20,40,0.85))';
-            default:
-                return 'rgba(0,0,0,0)';
             case 'dark':
                 return 'linear-gradient(rgba(0,0,0,0.9), rgba(30,41,59,0.85))';
             default:

@@ -9,7 +9,7 @@
 <script>
     (function() {
         // Obtenemos el tema guardado, por defecto 'dark' si no existe
-        let theme = localStorage.getItem('theme-police') || 'original';
+        let theme = localStorage.getItem('theme-police') || 'dark';
 
         // Si por error se guardó 'light', lo forzamos a 'dark' para mantener la estética institucional
         if (theme === 'light') {
