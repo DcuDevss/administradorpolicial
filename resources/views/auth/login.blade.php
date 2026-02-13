@@ -54,12 +54,12 @@
                     <span class="ml-2 text-white">Recordar sesión</span>
                 </label>
 
-                @if (Route::has('password.request'))
+                {{--  @if (Route::has('password.request'))
                     <a class="underline text-white hover:text-gray-300 transition"
                         href="{{ route('password.request') }}">
                         ¿Olvidaste tu contraseña?
                     </a>
-                @endif
+                @endif --}}
             </div>
 
             <!-- Botón -->
