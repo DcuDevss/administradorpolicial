@@ -1,0 +1,42 @@
+/* ============================================================
+   IMPORTACIONES (DEBEN IR ARRIBA DE TODO)
+   ============================================================ */
+@import "./base.css";
+@import "./typography.css";
+@import "./forms.css";
+@import "./tables.css";
+@import "./ui-components.css";
+@import "./cards.css";
+@import "./mascarilla-test.css";
+/* @import "./responsive-ajustes.css"; */
+
+/* ============================================================
+   NÚCLEO (TAILWIND) - DESPUÉS DE LOS IMPORTS
+   ============================================================ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DICCIONARIO DE MASCARILLAS (Variables Globales)
+   ============================================================ */
+/* resources/css/app.css */
+
+:root {
+
+    --bg-principal: #000000; /* Un poco más oscuro para que el contenido resalte */
+    --bg-card: rgba(
+        30,
+        41,
+        59,
+        0.5
+    ); /* Ajustada la opacidad para el efecto Glass */
+    --bg-tabla-header: #1e293b; /* Slate sólido para cabeceras */
+    --color-acento: #4f9cff; /* Azul más brillante para botones y foco */
+    --texto-principal: #ece9e9; /* Blanco roto para evitar fatiga visual */
+    --texto-secundario: #94a3b8; /* Gris azulado para etiquetas */
+    --borde: rgba(255, 255, 255, 0.15); /* Borde un poco más visible */
+
+    /* Animaciones */
+    --animacion-entrada: fadeIn 0.3s ease-in-out;
+}

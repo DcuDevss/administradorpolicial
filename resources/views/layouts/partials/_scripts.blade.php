@@ -38,6 +38,10 @@
                 return 'linear-gradient(rgba(0,10,20,0.9), rgba(0,20,40,0.85))';
             default:
                 return 'rgba(0,0,0,0)';
+            case 'dark':
+                return 'linear-gradient(rgba(0,0,0,0.9), rgba(30,41,59,0.85))';
+            default:
+                return 'rgba(0,0,0,0)';
         }
     }
 
@@ -145,7 +149,7 @@
      */
     document.addEventListener('DOMContentLoaded', () => {
         // Cargar tema preferido
-        const temaGuardado = localStorage.getItem('theme-police') || 'original';
+        const temaGuardado = localStorage.getItem('theme-police') || 'dark';
         cambiarMascarilla(temaGuardado);
 
         // Capturar mensajes de éxito/error de sesiones tradicionales de Laravel

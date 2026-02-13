@@ -25,6 +25,21 @@ html[data-theme="clara"] {
     --overlay-color: rgba(253, 249, 249, 0.5);
 }
 
+html[data-theme="dark"] {
+    --bg-principal: #000000; /* Fondo negro puro */
+    --bg-card: rgba(30, 41, 59, 0.85); /* Fondo semitransparente tipo glass */
+    --bg-tabla-header: #1e293b; /* Slate oscuro para headers */
+    --color-acento: #4f9cff; /* Azul brillante para botones/foco */
+    --texto-principal: #ece9e9; /* Blanco roto para lectura cómoda */
+    --texto-secundario: #94a3b8; /* Gris azulado para etiquetas */
+    --borde: rgba(255, 255, 255, 0.15); /* Borde suave */
+    --overlay-color: linear-gradient(
+        rgba(0, 0, 0, 0.9),
+        rgba(30, 41, 59, 0.85)
+    ); /* Overlay estilo glass/oscuro */
+    --animacion-entrada: fadeIn 0.3s ease-in-out;
+}
+
 html[data-theme="original"] {
     --bg-principal: #00385b; /* Azul institucional extraído de la imagen */
     --bg-card: rgba(0, 56, 91, 0.85); /* Azul institucional semitransparente */

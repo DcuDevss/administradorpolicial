@@ -242,6 +242,7 @@
                             <span class="w-3 h-3 rounded-full bg-slate-600 mr-3"></span> Original
                         </button>
 
+
                         <!-- Botón Original Institucional (Policía Tierra del Fuego) -->
                         <button onclick="cambiarMascarilla('original')"
                             class="flex items-center w-full px-4 py-2 text-sm text-white hover:bg-blue-900 transition">
