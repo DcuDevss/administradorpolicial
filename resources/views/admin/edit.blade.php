@@ -8,12 +8,35 @@
                 </h2>
             </x-slot>
 
-            @if (session('info'))
+            {{--   @if (session('info'))
                 <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
                     <p class="font-bold">Mensaje!!</p>
                     <p class="text-sm">{{ session('info') }}</p>
                 </div>
+            @endif --}}
+
+            @if (session('info'))
+                <div class="mb-6 rounded-lg px-4 py-3 border-l-4 shadow-sm"
+                    style="
+            background: var(--bg-card);
+            border-left: 4px solid var(--color-acento);
+            border-top: 1px solid var(--borde);
+            border-right: 1px solid var(--borde);
+            border-bottom: 1px solid var(--borde);
+            color: var(--texto-principal);
+         "
+                    role="alert">
+
+                    <p class="text-sm font-semibold mb-1" style="color: var(--color-acento);">
+                        ✔ Operación realizada
+                    </p>
+
+                    <p class="text-sm opacity-90">
+                        {{ session('info') }}
+                    </p>
+                </div>
             @endif
+
 
             <div class="mb-4">
                 <form action="{{ route('users.update', $user) }}" method="post">
@@ -41,24 +64,34 @@
                         </div>
                     @endforeach
 
-                    <!-- NUEVA CONTRASEÑA -->
-                    <div class="mt-6">
-                        <label class="block text-sm font-semibold tracking-wide mb-2"
-                            style="color: var(--color-acento);">
-                            Actualizar contraseña
-                        </label>
+                    <!-- SECCIÓN CONTRASEÑA -->
+                    <div class="mt-6 pt-4 border-t" style="border-color: var(--borde);">
 
-                        <input type="password" name="password" placeholder="Dejar vacío para no modificar"
-                            class="w-full max-w-sm px-3 py-2 text-sm rounded-lg border transition duration-200
-               focus:outline-none focus:ring-2 focus:ring-offset-1"
-                            style="border: 1px solid var(--borde); background: var(--bg-card);">
+                        <h3 class="text-xs uppercase tracking-widest mb-3" style="color: var(--texto-secundario);">
+                            Seguridad de Acceso
+                        </h3>
+
+                        <div class="max-w-xs">
+                            <label class="block text-xs font-semibold mb-1" style="color: var(--texto-principal);">
+                                Nueva contraseña
+                            </label>
+
+                            <input type="password" name="password" placeholder="Opcional"
+                                class="w-full px-3 py-1.5 text-sm rounded border focus:outline-none focus:ring-1"
+                                style="border: 1px solid var(--borde); background: var(--bg-card);">
+
+                            <p class="text-[11px] mt-1 opacity-70" style="color: var(--texto-secundario);">
+                                Dejar en blanco si no desea modificarla.
+                            </p>
+                        </div>
+
                     </div>
 
 
                     <!-- BOTÓN -->
                     <div>
                         <button
-                            class="bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded"
+                            class="bg-purple-500 mt-6 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded"
                             type="submit">
                             Actualizar Usuario
                         </button>
