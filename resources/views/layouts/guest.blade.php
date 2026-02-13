@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="original">
 
 <head>
     <meta charset="utf-8">
@@ -32,7 +32,7 @@
         .login-bg-overlay {
             position: fixed;
             inset: 0;
-            /* Se reduce la opacidad: de 0.85 a 0.4 y de 0.4 a 0.2 */
+
             background: linear-gradient(135deg,
                     rgba(0, 0, 0, 0.4) 0%,
                     rgba(30, 41, 59, 0.2) 100%),
@@ -47,7 +47,7 @@
             backdrop-filter: blur(8px);
             border: 1px solid var(--borde, rgba(255, 255, 255, 0.15));
             border-radius: 9999px;
-            /* Estilo píldora */
+
             padding: 4px 12px;
             display: inline-flex;
             gap: 8px;
