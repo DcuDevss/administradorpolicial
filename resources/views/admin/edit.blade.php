@@ -43,7 +43,7 @@
 
                     <!-- NUEVA CONTRASEÑA -->
                     <div class="mb-4 mt-4">
-                        <label class="block font-bold mb-2">Nueva Contraseña</label>
+                        <label class="block font-bold mb-2">Actualizar Contraseña</label>
                         <input type="password" name="password" class="w-full border rounded px-3 py-2">
                     </div>
 
