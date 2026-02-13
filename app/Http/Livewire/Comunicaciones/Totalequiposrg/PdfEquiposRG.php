@@ -7,17 +7,19 @@ use Illuminate\Support\Facades\DB;
 
 class PdfEquiposRg extends Component
 {
-    public $dependenciaId = '';
+    public int $dependenciaId = 0; // 0 = todas
     public $dependencias = [];
     public $registros = [];
 
     public function mount()
     {
-        // OJO: ajustá el nombre real de la tabla de dependencias de Río Grande
-        // Ej: dependencias_riogrande, dependencia_riogrande, dependenciariogrande, etc.
         $this->dependencias = DB::table('dependencia_riograndes')
             ->orderBy('nombre')
-            ->get(['id', 'nombre']);
+            ->get(['id','nombre'])
+            ->toArray();
+
+        // cargar todo al entrar
+        $this->cargar();
     }
 
     public function updatedDependenciaId()
@@ -27,15 +29,15 @@ class PdfEquiposRg extends Component
 
     public function cargar()
     {
-        if (!$this->dependenciaId) {
-            $this->registros = [];
-            return;
-        }
-
         $this->registros = DB::table('comunicacionesrgs as c')
             ->leftJoin('equipocomunicacions as e', 'e.id', '=', 'c.equipocomunicacion_id')
             ->leftJoin('dependencia_riograndes as d', 'd.id', '=', 'c.dependencia_riogrande_id')
-            ->where('c.dependencia_riogrande_id', $this->dependenciaId)
+
+            // 🔑 filtra solo si hay dependencia
+            ->when($this->dependenciaId, function ($q) {
+                $q->where('c.dependencia_riogrande_id', $this->dependenciaId);
+            })
+
             ->select(
                 'd.nombre as dependencia',
                 'e.nombre as tipo_equipo',

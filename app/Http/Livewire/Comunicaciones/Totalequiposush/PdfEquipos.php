@@ -7,13 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class PdfEquipos extends Component
 {
-    public $dependenciaTabla = ''; // ej: comunicacionesprimeras
+    // 0 = todas
+    public $dependenciaTabla = 0;
+
     public $dependencias = [];
     public $registros = [];
 
     public function mount()
     {
-        // Mapa: "valor del select" => ["tabla", "label visible"]
         $this->dependencias = [
             'comunicacionesprimeras' => 'Comunicaciones Primera',
             'comunicacionessegundas' => 'Comunicaciones Segunda',
@@ -34,6 +35,9 @@ class PdfEquipos extends Component
             'comunicacionesrecursos' => 'Recursos',
             'comunicacionesjefaturas' => 'Jefaturas',
         ];
+
+        // cargar todas al iniciar
+        $this->cargar();
     }
 
     public function updatedDependenciaTabla()
@@ -43,11 +47,47 @@ class PdfEquipos extends Component
 
     public function cargar()
     {
-        if (!$this->dependenciaTabla || !array_key_exists($this->dependenciaTabla, $this->dependencias)) {
-            $this->registros = [];
+        /*
+        ─────────────────────────────
+        TODAS (UNION ALL)
+        ─────────────────────────────
+        */
+        if (!$this->dependenciaTabla) {
+
+            $queries = [];
+
+            foreach ($this->dependencias as $tabla => $label) {
+                $queries[] = DB::table($tabla)
+                    ->leftJoin('equipocomunicacions', 'equipocomunicacions.id', '=', $tabla.'.equipocomunicacion_id')
+                    ->select(
+                        DB::raw("'{$label}' as dependencia"),
+                        'equipocomunicacions.nombre as tipo_equipo',
+                        $tabla.'.nro_serie',
+                        $tabla.'.condicion_equipo_comunicacion',
+                        $tabla.'.fecha_inventario'
+                    );
+            }
+
+            $query = array_shift($queries);
+
+            foreach ($queries as $q) {
+                $query->unionAll($q);
+            }
+
+            $this->registros = DB::query()
+                ->fromSub($query, 't')
+                ->orderBy('tipo_equipo')
+                ->get()
+                ->toArray();
+
             return;
         }
 
+        /*
+        ─────────────────────────────
+        UNA SOLA
+        ─────────────────────────────
+        */
         $tabla = $this->dependenciaTabla;
 
         $this->registros = DB::table($tabla)

@@ -56,6 +56,14 @@
                     <p class="text-sm font-semibold">Sin datos:</p>
                     <p class="text-2xl font-bold">{{ $sumaSinDatos }}</p>
                 </div>
+                <div class="bg-purple-400 p-4 text-white rounded-lg">
+                    <p class="text-sm font-semibold">Comando Balizas</p>
+                    <p class="text-2xl font-bold">{{ $sumaComandoBaliza }}</p>
+                </div>
+                <div class="bg-green-400 p-4 text-white rounded-lg">
+                    <p class="text-sm font-semibold">Ptt</p>
+                    <p class="text-2xl font-bold">{{ $sumaPtt }}</p>
+                </div>
             </div>
         </div>
     </div>

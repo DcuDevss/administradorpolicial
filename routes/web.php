@@ -226,9 +226,11 @@ use App\Http\Livewire\Usuarios;
 use App\Models\AuditoriaDetalleInventario;
 
 use App\Http\Livewire\Auditorias\AuditoriaGeneral;
+use App\Http\Livewire\Comunicaciones\Totalequiposprovincial\PdfEquiposProvincial;
 use App\Http\Livewire\Comunicaciones\Totalequiposrg\PdfEquiposRg;
 use App\Http\Livewire\Comunicaciones\Totalequipostol\PdfEquiposTol;
 use App\Http\Livewire\Comunicaciones\Totalequiposush\PdfEquipos;
+use App\Http\Livewire\Comunicaciones\Totalequiposprov\PdfEquiposProv;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfUshuaia;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfAdministracion;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfGeneral;
@@ -703,6 +705,9 @@ Route::get('/comunicaciones/totalequiposrg/pdf-equipos', PdfEquiposRg::class)
     /* pdf tolhuin */
 Route::get('/comunicaciones/totalequipostol/pdf-equipos', PdfEquiposTol::class)
     ->name('pdf-equipos-tol');
+    /* pdf provincial */
+Route::get('/comunicaciones/totalequiposprov/pdf-equipos', PdfEquiposProv::class)
+    ->name('pdf-equipos-prov');
 /* pdf ushuaia informatica */
 Route::get('/informatica/inventario/inventario-pdf-ushuaia',InventarioPdfUshuaia::class)->name('inventario-pdf-ushuaia');
 /* pdf administracion informatica */
