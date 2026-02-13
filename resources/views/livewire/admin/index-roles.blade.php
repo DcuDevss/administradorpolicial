@@ -53,6 +53,8 @@
                                 @method('delete')
                                 @csrf
 
+                                
+
                                 <div class="text-center">
                                     {{-- 2. Cambiamos 'type="submit"' por 'type="button"' y llamamos a confirmDelete --}}
                                     <button

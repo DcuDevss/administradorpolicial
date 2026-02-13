@@ -1,13 +1,11 @@
 <x-app-layout>
     <div class="py-5 bg-white dark:bg-gray-100 mt-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
             <x-slot name="header">
                 <h2 class="font-semibold text-xl text-red-500 leading-tight">
                     {{ __('EDITAR ROLES: ') }}
                 </h2>
             </x-slot>
-
             @if (session('info'))
                 <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
                     <p class="font-bold">Mensaje!!</p>
@@ -16,21 +14,18 @@
             @endif
 
             <div class="mb-4">
+                <label class="block text-blue-800 font-bold mb-2" for="inline-full-name">
+                    Nombre
+                </label>
+                <input
+                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    id="inline-full-name" type="text" value="{{ $user->name }}">
+            </div>
+
+            <div class="mb-4">
                 <form action="{{ route('users.update', $user) }}" method="post">
                     @method('put')
                     @csrf
-
-                    <!-- NOMBRE -->
-                    <div class="mb-4">
-                        <label class="block text-blue-800 font-bold mb-2" for="name">
-                            Nombre
-                        </label>
-                        <input name="name" id="name"
-                            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            type="text" value="{{ $user->name }}">
-                    </div>
-
-                    <!-- ROLES -->
                     @foreach ($roles as $role)
                         <div>
                             <label>
@@ -41,24 +36,20 @@
                         </div>
                     @endforeach
 
-                    <!-- NUEVA CONTRASEÑA -->
-                    <div class="mb-4 mt-4">
+                    <div class="mb-4">
                         <label class="block font-bold mb-2">Nueva Contraseña</label>
                         <input type="password" name="password" class="w-full border rounded px-3 py-2">
                     </div>
 
-                    <!-- BOTÓN -->
-                    <div>
+                    <div class="">
                         <button
-                            class="bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded"
+                            class="bg-purple-500  hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded"
                             type="submit">
-                            Actualizar Usuario
+                            Actualizar Roles
                         </button>
                     </div>
-
                 </form>
             </div>
-
         </div>
     </div>
 </x-app-layout>
