@@ -42,10 +42,18 @@
                     @endforeach
 
                     <!-- NUEVA CONTRASEÑA -->
-                    <div class="mb-4 mt-4">
-                        <label class="block font-bold mb-2">Actualizar Contraseña</label>
-                        <input type="password" name="password" class="w-full border rounded px-3 py-2">
+                    <div class="mt-6">
+                        <label class="block text-sm font-semibold tracking-wide mb-2"
+                            style="color: var(--color-acento);">
+                            Actualizar contraseña
+                        </label>
+
+                        <input type="password" name="password" placeholder="Dejar vacío para no modificar"
+                            class="w-full max-w-sm px-3 py-2 text-sm rounded-lg border transition duration-200
+               focus:outline-none focus:ring-2 focus:ring-offset-1"
+                            style="border: 1px solid var(--borde); background: var(--bg-card);">
                     </div>
+
 
                     <!-- BOTÓN -->
                     <div>
