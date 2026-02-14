@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+{{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> --}}
+{{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ session('theme', 'original') }}"> --}}
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ session('theme', 'original') }}">
+
+
 
 <head>
     @include('layouts.partials._head')

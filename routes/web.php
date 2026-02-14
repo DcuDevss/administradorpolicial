@@ -682,3 +682,7 @@ Route::get('/historial-administracion-general/{administracionGeneraleId}', Histo
 
 Route::get('/historial-recursos-general/{recursosGeneraleId}', HistorialRecursosGeneral::class)
     ->name('historial-recursos-general');
+
+
+
+
