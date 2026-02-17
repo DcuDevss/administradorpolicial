@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="header mb-5">
             <h2 class="font-semibold text-xl text-red-500 leading-tight">
-                {{ __('Historial de Modificaciones Recursoso Humanos') }}
+                {{ __('Historial de Modificaciones Recursos Humanos') }}
             </h2>
         </div>
 

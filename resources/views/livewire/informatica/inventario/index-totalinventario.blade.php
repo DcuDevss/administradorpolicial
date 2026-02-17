@@ -15,6 +15,46 @@
                         <p class="text-sm font-semibold">Computadoras en dependencias policiales Ushuaia</p>
                         <p class="text-2xl font-bold">{{ $sumaTotalPc }}</p>
                     </div>
+
+                    <div class="bg-gray-600 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">Otros</p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalOtros }}</p>
+                    </div>
+                    <div class="bg-green-600 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">Celular</p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalCelular }}</p>
+                    </div>
+
+                    <div class="bg-cyan-600 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">Tablet</p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalTablet }}</p>
+                    </div>
+
+                    <div class="bg-amber-700 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">UPS</p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalUps }}</p>
+                    </div>
+
+                    <div class="bg-orange-700 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">Estabilizador</p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalEstabilizador_tension }}</p>
+                    </div>
+
+                    <div class="bg-pink-600 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">Auriculares</p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalAuriculares }}</p>
+                    </div>
+
+                    <div class="bg-teal-600 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">Cable estructurado</p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalCable_estructurado }}</p>
+                    </div>
+
+                    <div class="bg-slate-700 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">TV</p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalTv }}</p>
+                    </div>
+
                     <div class="bg-green-500 p-4 text-white rounded-lg">
                         <p class="text-sm font-semibold">Impresoras a Tinta: </p>
                         <p class="text-2xl font-bold">{{ $sumaTotalImpresora_tinta }}</p>
@@ -47,6 +87,10 @@
                     <div class="bg-red-500 p-4 text-white rounded-lg">
                         <p class="text-sm font-semibold">Cantidad Notbooks: </p>
                         <p class="text-2xl font-bold">{{ $sumaTotalNotebook }}</p>
+                    </div>
+                    <div class="bg-slate-600 p-4 text-white rounded-lg">
+                        <p class="text-sm font-semibold">Netbook</p>
+                        <p class="text-2xl font-bold">{{ $sumaTotalNetbook }}</p>
                     </div>
                     <div class="bg-violet-500 p-4 text-white rounded-lg">
                         <p class="text-sm font-semibold">Central telefonicas: </p>

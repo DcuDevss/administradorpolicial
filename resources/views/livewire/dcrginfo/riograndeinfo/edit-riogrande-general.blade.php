@@ -290,7 +290,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="flex gap-3 mt-6">
                         <button
                             type="button"
@@ -307,7 +306,6 @@
                             Cancelar
                         </button>
                     </div>
-
                 </div>
             </div>
         </form>

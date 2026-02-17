@@ -7,7 +7,7 @@ use App\Models\HistorialTrabajoDseu;
 
 class ComunicacionesdseuObserver
 {
-    public function created(ComunicacionesDseu $historialTrabajoDseu):void
+    public function created(Comunicacionesdseu $historialTrabajoDseu):void
     {
         //
     }

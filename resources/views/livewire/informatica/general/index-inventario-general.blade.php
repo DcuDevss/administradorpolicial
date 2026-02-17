@@ -249,7 +249,12 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
+    </div>
+    <div class="mt-4">
+       <a href="{{ route('inventario-pdf-ushuaia') }}"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow mt-4">
+            Generar PDF Informática
+        </a>
     </div>

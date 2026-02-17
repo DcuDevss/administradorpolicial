@@ -1,3 +1,21 @@
+<style>
+.btn-pdf-custom {
+    background-color: #4f46e5 !important; /* indigo-600 */
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+}
+
+.btn-pdf-custom:hover {
+    background-color: #4338ca !important; /* indigo-700 */
+    box-shadow: 0 4px 6px rgba(0,0,0,.25);
+    transform: translateY(-1px);
+}
+</style>
 <div class="py-5 bg-slate-800 dark:bg-slate-800">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
@@ -63,5 +81,11 @@
             </div>
         </div>
 
+    </div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4 flex justify-end">
+        <a href="{{ route('pdf-equipos-rg') }}"
+        class="btn-pdf-custom">
+            Generar PDF de Equipos
+        </a>
     </div>
 </div>

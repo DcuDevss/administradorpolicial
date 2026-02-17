@@ -47,9 +47,6 @@
                                     </div>
 
 
-
-
-
                                     <div class="mt-2">
                                         <label for="marca"
                                             class="block text-sm font-medium text-gray-700">Marca:</label>

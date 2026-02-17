@@ -6,28 +6,17 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Livewire\Component;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\GeneralInformatica;
-use App\Models\Investigacionesgenerale;
-use App\Models\ComisariaPrimera;
 use App\Models\Cantidadram;
-use App\Models\DependenciaUshuaia;
-use App\Models\Administraciongenerale;
 use App\Models\Tipodeoficina;
 use App\Models\Tipodispositivo;
 use App\Models\Slotmemoria;
 use App\Models\Administracion;
-use App\Models\Custodiagubernamentalgenerale;
 use App\Models\Custodiagubernamentale;
 use App\Models\Jefatura;
 use App\Models\Destacamento;
 use App\Models\RecursoHumano;
 use App\Models\Investigacione;
-use App\Models\Bienestare;
-use App\Models\Sumario;
-use App\Models\Jefaturagenerale;
-use App\Models\Recursoshumanosgenerale;
 use App\Models\Serviciosespeciale;
-use App\Models\Serviciosespecialesgenerale;
 use Intervention\Image\Facades\Image;
 use Livewire\WithFileUploads;
 use Exception;
@@ -58,7 +47,7 @@ class IndexTotalinventarioTolhuin extends Component
 
     public $codigo_qr, $generalinformatica, $administraciongenerale_id, $investigacionesgenerale_id, $custodiagubernamentalgenerale_id, $dependencia_tolhuin_id, $comisariaprimera_id, $tipodispositivo_id, $tipodeoficina_id, $cantidadram_id, $slotmemoria_id,
         $serviciosespeciale_id, $investigacione_id, $administracion_id, $custodiagubernamentale_id, $recurso_humano_id, $destacamento_id, $jefatura_id, $comisariaprimera, $marca, $modelo, $procesador,  $sistema_operativo,  $fecha_service, $tipo_service,
-        $fecha_inventario, $activo, $detalles_inventario, $tipo_ram, $tipo_disco, $cant_almacenamiento, $tipo_mouse, $tipo_teclado, $admin, $inve, $recursos, $jefa, $servicios, $custodia;
+        $fecha_inventario, $activo, $detalles_inventario, $tipo_ram, $tipo_disco, $cant_almacenamiento, $tipo_mouse, $tipo_teclado, $admin, $inve, $recursos, $jefa, $servicios, $custodia, $Dependencia_Tolhuin;
 
     public function mount()
     {
@@ -82,379 +71,123 @@ class IndexTotalinventarioTolhuin extends Component
         $this->SlotMemoria      = Slotmemoria::all();
 
         // 🔹 acá cargás las dependencias de Río Grande
-        $this->Dependencia_RioGrande = DependenciaTolhuin::all();
+        $this->Dependencia_Tolhuin = DependenciaTolhuin::all();
 
-        $this->JEfatura          = Jefatura::all();
-        $this->ADministracion    = Administracion::all();
-        $this->INvestigacione    = Investigacione::all();
-        $this->Recurso_Humano    = RecursoHumano::all();
-        $this->DEstacamento      = Destacamento::all();
-        $this->SErviciosespeciale = Serviciosespeciale::all();
-        $this->CUstodiagubernamentale = Custodiagubernamentale::all();
     }
 
     public function render()
     {
+        $sumaTotalOtros = DB::table('tolhuingenerales')
+            ->where('tipodispositivo_id', 1)
+            ->whereNotNull('dependencia_tolhuin_id')
+            ->count();
+
         $sumaTotalPc = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 3)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count();
-            + DB::table('serviciosespecialesgenerales')
-                ->where('tipodispositivo_id', 3)
-                ->count();
+            ->count();
 
         $sumaTotalMonitor_pc = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 4)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 4)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 4)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 4)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 4)
-                ->count();
+            ->count();
 
         $sumaTotalNotebook = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 5)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 5)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 5)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 5)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 5)
-                ->count();
+            ->count();
 
         $sumaTotalNetbook = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 6)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 6)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 6)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 6)
-                ->count();
+            ->count();
 
         $sumaTotalCelular = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 7)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 7)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 7)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 7)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 7)
-                ->count();
+            ->count();
 
         $sumaTotalTablet = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 8)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 8)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 8)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 8)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 8)
-                ->count();
+            ->count();
 
         $sumaTotalTelefono_fijo = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 9)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 9)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 9)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 9)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 9)
-                ->count();
+            ->count();
 
         $sumaTotalTelefono_inalambrico = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 10)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 10)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 10)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 10)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 10)
-                ->count();
+            ->count();
 
         $sumaTotalImpresora_laser = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 11)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 11)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 11)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 11)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 11)
-                ->count();
+            ->count();
 
         $sumaTotalImpresora_tinta = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 12)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 12)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 12)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 12)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 12)
-                ->count();
+            ->count();
 
         $sumaTotalSwitch = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 13)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 13)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 13)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 13)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 13)
-                ->count();
+            ->count();
 
         $sumaTotalRuter = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 14)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 14)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 14)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 14)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 14)
-                ->count();
+            ->count();
 
         $sumaTotalUps = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 15)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 15)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 15)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 15)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 15)
-                ->count();
+            ->count();
 
         $sumaTotalCamaras_video = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 16)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 16)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 16)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 16)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 16)
-                ->count();
+            ->count();
 
         $sumaTotalEstacion_trabajo = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 17)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 17)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 17)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 17)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 17)
-                ->count();
+            ->count();
 
         $sumaTotalServidor = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 18)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 18)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 18)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 18)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 18)
-                ->count();
+            ->count();
 
         $sumaTotalEstabilizador_tension = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 19)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 19)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 19)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 19)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 19)
-                ->count();
+            ->count();
 
         $sumaTotalAuriculares = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 20)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 20)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 20)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 20)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 20)
-                ->count();
+            ->count();
 
         $sumaTotalCable_estructurado = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 21)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 21)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 21)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 21)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 21)
-                ->count();
+            ->count();
 
         $sumaTotalTv = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 22)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 22)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 22)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 22)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 22)
-                ->count();
+            ->count();
 
         $sumaTotalCentral_telefonica = DB::table('tolhuingenerales')
             ->where('tipodispositivo_id', 23)
             ->whereNotNull('dependencia_tolhuin_id')
-            ->count()
-            + DB::table('investigacionesgenerales')
-                ->where('tipodispositivo_id', 23)
-                ->count()
-            + DB::table('administraciongenerales')
-                ->where('tipodispositivo_id', 23)
-                ->count()
-            + DB::table('jefaturagenerales')
-                ->where('tipodispositivo_id', 23)
-                ->count()
-            + DB::table('recursoshumanosgenerales')
-                ->where('tipodispositivo_id', 23)
-                ->count();
+            ->count();
 
-        return view('livewire.informatica.inventario.index-totalinventario-tolhuin',compact('sumaTotalPc','sumaTotalMonitor_pc','sumaTotalNotebook',
+        return view('livewire.informatica.inventario.index-totalinventario-tolhuin',compact('sumaTotalPc','sumaTotalOtros','sumaTotalMonitor_pc','sumaTotalNotebook',
         'sumaTotalNetbook','sumaTotalCelular','sumaTotalTablet','sumaTotalTelefono_fijo','sumaTotalTelefono_inalambrico',
         'sumaTotalImpresora_laser','sumaTotalImpresora_tinta','sumaTotalSwitch','sumaTotalRuter','sumaTotalUps','sumaTotalCamaras_video',
         'sumaTotalEstacion_trabajo','sumaTotalServidor','sumaTotalEstabilizador_tension','sumaTotalAuriculares',

@@ -39,6 +39,7 @@ class SumarEquiposProv extends Component
             'comunicacionesdesus',
             'comunicacionesdto365s',
             'comunicacionesfamilia1s',
+            'comunicacionesfamilia2s',
             'comunicacionesinvestigacions',
             'comunicacionesnarcos',
             'comunicacionesrecursos',
@@ -82,6 +83,8 @@ class SumarEquiposProv extends Component
 
     public function contarProvincial()
     {
+        $this->totalOtros   = $this->total(3);
+        $this->totalSinDatos   = $this->total(3);
         $this->totalEquipoBase   = $this->total(3);
         $this->totalHt           = $this->total(4);
         $this->totalRepetidora   = $this->total(5);

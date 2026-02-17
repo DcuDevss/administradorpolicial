@@ -7,7 +7,7 @@ use App\Models\HistorialTrabajoDcu;
 
 class ComunicacionesdcuObserver
 {
-    public function created(ComunicacionesDcu $historialTrabajoDcu):void
+    public function created(Comunicacionesdcu $historialTrabajoDcu):void
     {
         //
     }
