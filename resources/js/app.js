@@ -1,12 +1,15 @@
-import './bootstrap';
+import "./bootstrap";
 
-import Alpine from 'alpinejs';
-import focus from '@alpinejs/focus';
+import Alpine from "alpinejs";
+import focus from "@alpinejs/focus";
 window.Alpine = Alpine;
 
 Alpine.plugin(focus);
 
 Alpine.start();
 
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 window.Swal = Swal;
+
+import Chart from "chart.js/auto";
+window.Chart = Chart;

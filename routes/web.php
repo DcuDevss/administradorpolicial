@@ -240,6 +240,8 @@ use App\Http\Livewire\Informatica\Inventario\InventarioPdfRecursos;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfRioGrande;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfTolhuin;
 
+use App\Http\Livewire\CentroSituacionOperativa;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -315,6 +317,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/userpolicia', Userpolicia::class)->name('userpolicia');
     Route::view('/administrador', 'administrador')->name('panel-administrador'); //correccion de login para que envie directo
+
+    // NUEVA RUTA: Centro de Situación Operativa
+    Route::get('/situacion-operativa', CentroSituacionOperativa::class)
+        ->name('situacion-operativa');
 });
 
 Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
@@ -702,25 +708,25 @@ Route::get('/comunicaciones/totalequiposush/pdf-equipos', PdfEquipos::class)
 /* pdf rg */
 Route::get('/comunicaciones/totalequiposrg/pdf-equipos', PdfEquiposRg::class)
     ->name('pdf-equipos-rg');
-    /* pdf tolhuin */
+/* pdf tolhuin */
 Route::get('/comunicaciones/totalequipostol/pdf-equipos', PdfEquiposTol::class)
     ->name('pdf-equipos-tol');
-    /* pdf provincial */
+/* pdf provincial */
 Route::get('/comunicaciones/totalequiposprov/pdf-equipos', PdfEquiposProv::class)
     ->name('pdf-equipos-prov');
 /* pdf ushuaia informatica */
-Route::get('/informatica/inventario/inventario-pdf-ushuaia',InventarioPdfUshuaia::class)->name('inventario-pdf-ushuaia');
+Route::get('/informatica/inventario/inventario-pdf-ushuaia', InventarioPdfUshuaia::class)->name('inventario-pdf-ushuaia');
 /* pdf administracion informatica */
-Route::get('/informatica/inventario/inventario-pdf-administracion',InventarioPdfAdministracion::class)->name('inventario-pdf-administracion');
+Route::get('/informatica/inventario/inventario-pdf-administracion', InventarioPdfAdministracion::class)->name('inventario-pdf-administracion');
 /* pdf investigaciones informatica */
-Route::get('/informatica/inventario/inventario-pdf-investigaciones',InventarioPdfInvestigaciones::class)->name('inventario-pdf-investigaciones');
+Route::get('/informatica/inventario/inventario-pdf-investigaciones', InventarioPdfInvestigaciones::class)->name('inventario-pdf-investigaciones');
 /* pdf jefatura informatica */
-Route::get('/informatica/inventario/inventario-pdf-jefatura',InventarioPdfJefatura::class)->name('inventario-pdf-jefatura');
+Route::get('/informatica/inventario/inventario-pdf-jefatura', InventarioPdfJefatura::class)->name('inventario-pdf-jefatura');
 /* pdf recursos humanos informatica */
-Route::get('/informatica/inventario/inventario-pdf-recurso',InventarioPdfRecursos::class)->name('inventario-pdf-recurso');
+Route::get('/informatica/inventario/inventario-pdf-recurso', InventarioPdfRecursos::class)->name('inventario-pdf-recurso');
 /* pdf rio grande informatica */
-Route::get('/informatica/inventario/inventario-pdf-riogrande',InventarioPdfRioGrande::class)->name('inventario-pdf-riogrande');
+Route::get('/informatica/inventario/inventario-pdf-riogrande', InventarioPdfRioGrande::class)->name('inventario-pdf-riogrande');
 /* pdf tolhuin informatica */
-Route::get('/informatica/inventario/inventario-pdf-tolhuin',InventarioPdfTolhuin::class)->name('inventario-pdf-tolhuin');
+Route::get('/informatica/inventario/inventario-pdf-tolhuin', InventarioPdfTolhuin::class)->name('inventario-pdf-tolhuin');
 /* pdf general informatica */
-Route::get('/informatica/inventario/inventario-pdf-general',InventarioPdfGeneral::class)->name('inventario-pdf-general');
+Route::get('/informatica/inventario/inventario-pdf-general', InventarioPdfGeneral::class)->name('inventario-pdf-general');
