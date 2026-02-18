@@ -283,13 +283,29 @@ class CreateInvestigacionesGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
-        /*$cientificaPc = Investigacionesgenerale::where('investigacione_id', 13)
+        $cientificaPc = Investigacionesgenerale::where('investigacione_id', 13)
         //->where('tipodeoficina_id', 10)
         ->where('tipodispositivo_id', 3)
-        ->count();*/
+        ->count();
         $detalprontuarioPc = Investigacionesgenerale::where('investigacione_id', 14)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
+            ->count();
+        $notebook = Investigacionesgenerale::
+            where('tipodispositivo_id', 5)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
+        $netbook = Investigacionesgenerale::
+            where('tipodispositivo_id', 6)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
+        $celular = Investigacionesgenerale::
+            where('tipodispositivo_id', 7)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
+        $tablet = Investigacionesgenerale::
+            where('tipodispositivo_id', 8)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
             ->count();
         $impresoraLaser = Investigacionesgenerale::
             //->where('tipodeoficina_id', 10)
@@ -311,14 +327,44 @@ class CreateInvestigacionesGeneral extends Component
             where('tipodispositivo_id', 14)
             ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
             ->count();
+        $ups = Investigacionesgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 15)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
         $camaras = Investigacionesgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 16)
             ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
             ->count();
+        $Estacion_trabajo = Investigacionesgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 17)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
         $servidor = Investigacionesgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 18)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
+        $Estabilizador = Investigacionesgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 19)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
+        $Auriculares = Investigacionesgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 20)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
+        $Cable_estructurado = Investigacionesgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 21)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
+        $Tv = Investigacionesgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 22)
             ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
             ->count();
         $centralTelefonica = Investigacionesgenerale::
@@ -329,6 +375,7 @@ class CreateInvestigacionesGeneral extends Component
         $telefonoFijo = Investigacionesgenerale::
             //->where('tipodeoficina_id', 10)
             where('investigacione_id', 9)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
             ->count();
         $SuboficialesPc = Investigacionesgenerale::
             //->where('tipodeoficina_id', 12)
@@ -351,56 +398,94 @@ class CreateInvestigacionesGeneral extends Component
         $cientificaPc = Investigacionesgenerale::where('investigacione_id', 13)
             //->where('recurso_humano_id',4)
             ->where('tipodispositivo_id', 3)
-            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8])
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
+        $notebookCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            ->where('tipodispositivo_id', 5)
+            ->whereIn('cientifica_id', [2, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
+        $netbookCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            ->where('tipodispositivo_id', 6)
+            ->whereIn('cientifica_id', [2, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
+        $celularCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            ->where('tipodispositivo_id', 7)
+            ->whereIn('cientifica_id', [2, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
+        $tabletCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            ->where('tipodispositivo_id', 8)
+            ->whereIn('cientifica_id', [2, 3, 4, 5, 6, 7, 8, 9])
             ->count();
         $impresoraLaserCientifica = Investigacionesgenerale::where('investigacione_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
-            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8])
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
             ->count();
         $impresoraChorroCientifica = Investigacionesgenerale::where('investigacione_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 12)
-            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8])
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
             ->count();
         $switchCientifica = Investigacionesgenerale::where('investigacione_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 13)
-            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8])
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
             ->count();
         $ruterCientifica = Investigacionesgenerale::where('investigacione_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8])
             ->count();
+        $upsCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
         $camarasCientifica = Investigacionesgenerale::where('investigacione_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
-            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8])
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
             ->count();
         $servidorCientifica = Investigacionesgenerale::where('investigacione_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
             ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8])
             ->count();
+        $EstabilizadorCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
+        $AuricularesCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
+        $Cable_EstructuradoCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
+        $TvCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
         $centralTelefonicaCientifica = Investigacionesgenerale::where('investigacione_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 23)
-            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8])
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
             ->count();
         $telefonoFijoCientifica = Investigacionesgenerale::where('investigacione_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 9)
-            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8])
+            ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
             ->count();
 
-        /* $sumaTotalPc = DB::table('generalinformaticas')
+         $sumaTotalPc = DB::table('investigacionesgenerales')
             ->where('tipodispositivo_id', 3)
-            ->count() + DB::table('investigacionesgenerales')
-            ->where('tipodispositivo_id', 3)
-            ->count() + DB::table('administraciongenerales')
-            ->where('tipodispositivo_id', 3)sumaTotalPc
-            ->count();*/
+            ->count();
+
         return view('livewire.informatica.investigaciones.create-investigaciones-general', compact(
             'directorPc',
             'segundoJefePc',
@@ -413,21 +498,39 @@ class CreateInvestigacionesGeneral extends Component
             'delitoscomplejosPc',
             'narcocriminalidadPc',
             'detalprontuarioPc',
+            'notebook',
+            'netbook',
+            'celular',
+            'tablet',
             'impresoraLaser',
             'impresoraChorro',
             'switch',
             'ruter',
+            'ups',
             'camaras',
+            'Estacion_trabajo',
+            'Auriculares',
+            'Cable_estructurado',
+            'Tv',
             'servidor',
             'centralTelefonica',
             'telefonoFijo',
             'cientificaPc',
+            'notebookCientifica',
+            'netbookCientifica',
+            'celularCientifica',
+            'tabletCientifica',
             'impresoraLaserCientifica',
             'impresoraChorroCientifica',
             'switchCientifica',
             'ruterCientifica',
+            'upsCientifica',
             'camarasCientifica',
             'servidorCientifica',
+            'EstabilizadorCientifica',
+            'AuricularesCientifica',
+            'Cable_EstructuradoCientifica',
+            'TvCientifica',
             'centralTelefonicaCientifica',
             'telefonoFijoCientifica'
         ));
