@@ -56,9 +56,7 @@ class CreateInventarioGeneral extends Component
     //public $ButtonName;
 
 
-    public $codigo_qr, $generalinformatica, $administraciongenerale_id, $investigacionesgenerale_id, $custodiagubernamentalgenerale_id, $dependencia_ushuaia_id, $comisariaprimera_id, $tipodispositivo_id, $tipodeoficina_id, $cantidadram_id, $slotmemoria_id,
-        $cientifica_id, $serviciosespeciale_id, $investigacione_id, $administracion_id, $custodiagubernamentale_id, $recurso_humano_id, $destacamento_id, $jefatura_id, $comisariaprimera, $marca, $modelo, $procesador,  $sistema_operativo,  $fecha_service, $tipo_service,
-        $softwares_instalados, $fecha_inventario, $activo, $detalles_inventario, $tipo_ram, $tipo_disco, $cant_almacenamiento, $tipo_mouse, $tipo_teclado, $admin, $inve, $recursos, $jefa, $servicios, $custodia;
+    public $codigo_qr, $generalinformatica, $administraciongenerale_id, $investigacionesgenerale_id, $custodiagubernamentalgenerale_id, $dependencia_ushuaia_id, $comisariaprimera_id, $tipodispositivo_id, $tipodeoficina_id, $cantidadram_id, $slotmemoria_id, $cientifica_id, $serviciosespeciale_id, $investigacione_id, $administracion_id,$custodiagubernamentale_id, $recurso_humano_id, $destacamento_id, $jefatura_id, $comisariaprimera, $marca, $modelo, $procesador,  $sistema_operativo,  $fecha_service, $tipo_service, $softwares_instalados, $fecha_inventario, $activo, $detalles_inventario, $tipo_ram, $tipo_disco, $cant_almacenamiento, $tipo_mouse, $tipo_teclado, $admin, $inve, $recursos, $jefa, $servicios, $custodia, $monitor, $notebook, $netbook, $tablet, $celular, $ups, $Estacion_trabajo, $Estabilizador, $Auriculares, $Cable_estructurado, $Tv, $monitor2da, $notebook2da, $tablet2da, $celular2da, $ups2da, $Estacion_trabajo2da, $Estabilizador2da, $Auriculares2da, $Cable_estructurado2da, $Tv2da, $monitor3da, $notebook3da, $netbook3da, $tablet3da, $celular3da, $ups3da, $Estabilizador3da, $Estacion_trabajo3da, $Auriculares3da, $Cable_estructurado3da, $Tv3da, $monitor4da, $notebook4da, $netbook4da, $tablet4da, $celular4da, $ups4da, $Estabilizador4da, $Estacion_trabajo4da, $Auriculares4da, $Cable_estructurado4da, $Tv4da, $monitor5da, $notebook5da, $netbook5da, $tablet5da, $celular5da, $ups5da, $Estabilizador5da, $Estacion_trabajo5da, $Auriculares5da, $Cable_estructurado5da, $Tv5da, $monitorCustodia, $notebookCustodia, $netbookCustodia, $tabletCustodia, $celularCustodia, $upsCustodia, $EstabilizadorCustodia, $Estacion_trabajoCustodia, $AuricularesCustodia, $Cable_estructuradoCustodia, $TvCustodia, $monitorFlia1, $notebookFlia1, $netbookFlia1, $tabletFlia1, $celularFlia1, $upsFlia1, $EstabilizadorFlia1, $Estacion_trabajoFlia1, $AuricularesFlia1, $Cable_estructuradoFlia1, $TvFlia1, $monitorFlia2, $notebookFlia2, $netbookFlia2, $tabletFlia2, $celularFlia2, $upsFlia2, $EstabilizadorFlia2, $Estacion_trabajoFlia2, $AuricularesFlia2, $Cable_estructuradoFlia2, $TvFlia2, $monitorServicios, $notebookServicios, $netbookServicios, $tabletServicios, $celularServicios, $upsServicios, $EstabilizadorServicios, $Estacion_trabajoServicios, $AuricularesServicios, $Cable_estructuradoServicios, $TvServicios;
     //$monitor,$tipo_impresora,
     //public $comisariasegunda;
     //public $button1,$button2;
@@ -277,7 +275,7 @@ class CreateInventarioGeneral extends Component
 
     public function render()
     {
-        //otras dependencias RG
+        //comisaria primera
         $Otras = Generalinformatica::where('dependencia_ushuaia_id', 1)
             ->where('tipodispositivo_id', 3)
             ->count();
@@ -320,6 +318,26 @@ class CreateInventarioGeneral extends Component
             ->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser = Generalinformatica::where('dependencia_ushuaia_id', 3)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -336,13 +354,37 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras = Generalinformatica::where('dependencia_ushuaia_id', 3)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $Estacion_trabajo = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor = Generalinformatica::where('dependencia_ushuaia_id', 3)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $Estabilizador = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $Auriculares = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructurado = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $Tv = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica = Generalinformatica::where('dependencia_ushuaia_id', 3)
             //->where('tipodeoficina_id', 10)
@@ -407,6 +449,26 @@ class CreateInventarioGeneral extends Component
             ->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor2da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook2da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook2da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular2da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet2da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -423,13 +485,37 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $Estacion_trabajo2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $Estabilizador2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $Auriculares2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructurado2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $Tv2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica2da = Generalinformatica::where('dependencia_ushuaia_id', 4)
             //->where('tipodeoficina_id', 10)
@@ -525,6 +611,26 @@ class CreateInventarioGeneral extends Component
             ->where('destacamento_id', 4)
             ->where('tipodispositivo_id', 12)
             ->count();
+        $monitor3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser3da = Generalinformatica::where('dependencia_ushuaia_id', 5)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -542,13 +648,37 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras3da = Generalinformatica::where('dependencia_ushuaia_id', 5)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $Estacion_trabajo3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor3da = Generalinformatica::where('dependencia_ushuaia_id', 5)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $Estabilizador3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $Auriculares3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructurado3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $Tv3da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica3da = Generalinformatica::where('dependencia_ushuaia_id', 5)
             //->where('tipodeoficina_id', 10)
@@ -614,6 +744,26 @@ class CreateInventarioGeneral extends Component
             ->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor4da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook4da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook4da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular4da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet4da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser4da = Generalinformatica::where('dependencia_ushuaia_id', 6)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -630,13 +780,37 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups4da = Generalinformatica::where('dependencia_ushuaia_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras4da = Generalinformatica::where('dependencia_ushuaia_id', 6)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $Estacion_trabajo4da = Generalinformatica::where('dependencia_ushuaia_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor4da = Generalinformatica::where('dependencia_ushuaia_id', 6)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $Estabilizador4da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $Auriculares4da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructurado4da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $Tv4da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica4da = Generalinformatica::where('dependencia_ushuaia_id', 6)
             //->where('tipodeoficina_id', 10)
@@ -701,6 +875,26 @@ class CreateInventarioGeneral extends Component
             ->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor5da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook5da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook5da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular5da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet5da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser5da = Generalinformatica::where('dependencia_ushuaia_id', 7)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -717,13 +911,37 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups5da = Generalinformatica::where('dependencia_ushuaia_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras5da = Generalinformatica::where('dependencia_ushuaia_id', 7)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $Estacion_trabajo5da = Generalinformatica::where('dependencia_ushuaia_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor5da = Generalinformatica::where('dependencia_ushuaia_id', 7)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $Estabilizador5da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $Auriculares5da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructurado5da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $Tv5da = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica5da = Generalinformatica::where('dependencia_ushuaia_id', 7)
             //->where('tipodeoficina_id', 10)
@@ -789,6 +1007,26 @@ class CreateInventarioGeneral extends Component
             ->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 8)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -805,13 +1043,37 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 8)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $Estacion_trabajoFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 8)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $EstabilizadorFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $AuricularesFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructuradoFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $TvFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicaFlia1 = Generalinformatica::where('dependencia_ushuaia_id', 8)
             //->where('tipodeoficina_id', 10)
@@ -873,6 +1135,26 @@ class CreateInventarioGeneral extends Component
             ->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 9)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -889,13 +1171,37 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 9)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
-        $servidorFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 9)
+        $Estacion_trabajoFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
+        $servidorFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $EstabilizadorFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $AuricularesFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructuradoFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $TvFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicaFlia2 = Generalinformatica::where('dependencia_ushuaia_id', 9)
             //->where('tipodeoficina_id', 10)
@@ -958,6 +1264,26 @@ class CreateInventarioGeneral extends Component
             ->where('serviciosespeciale_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorServicios = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookServicios = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookServicios = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularServicios = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletServicios = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserServicios = Generalinformatica::where('dependencia_ushuaia_id', 10)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -974,13 +1300,37 @@ class CreateInventarioGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsServicios = Generalinformatica::where('dependencia_ushuaia_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasServicios = Generalinformatica::where('dependencia_ushuaia_id', 10)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $Estacion_trabajoServicios = Generalinformatica::where('dependencia_ushuaia_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorServicios = Generalinformatica::where('dependencia_ushuaia_id', 10)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $EstabilizadorServicios = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $AuricularesServicios = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructuradoServicios = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $TvServicios = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicaServicios = Generalinformatica::where('dependencia_ushuaia_id', 10)
             //->where('tipodeoficina_id', 10)
@@ -1047,6 +1397,26 @@ class CreateInventarioGeneral extends Component
             ->where('custodiagubernamentale_id', 14)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorCustodia = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookCustodia = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookCustodia = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularCustodia = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletCustodia = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserCustodia = Generalinformatica::where('dependencia_ushuaia_id', 12)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -1059,11 +1429,33 @@ class CreateInventarioGeneral extends Component
         $ruterCustodia = Generalinformatica::where('dependencia_ushuaia_id', 12)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsCustodia = Generalinformatica::where('dependencia_ushuaia_id', 12)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasCustodia = Generalinformatica::where('dependencia_ushuaia_id', 12)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $Estacion_trabajoCustodia = Generalinformatica::where('dependencia_ushuaia_id', 12)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorCustodia = Generalinformatica::where('dependencia_ushuaia_id', 12)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $EstabilizadorCustodia = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $AuricularesCustodia = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructuradoCustodia = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $TvCustodia = Generalinformatica::where('dependencia_ushuaia_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicaCustodia = Generalinformatica::where('dependencia_ushuaia_id', 12)
             ->where('tipodispositivo_id', 23)
@@ -1096,12 +1488,23 @@ class CreateInventarioGeneral extends Component
             'Pcdedia',
             'Pcadministrativa',
             'Pcautomotores',
+            'celular',
+            'tablet',
+            'monitor',
+            'notebook',
+            'netbook',
             'impresoraChorro',
             'impresoraLaser',
             'switch',
             'ruter',
+            'ups',
             'camaras',
+            'Estacion_trabajo',
             'servidor',
+            'Estabilizador',
+            'Auriculares',
+            'Cable_estructurado',
+            'Tv',
             'centralTelefonica',
             'telefonoFijo',
             'telefonoInalambrico',
@@ -1121,11 +1524,22 @@ class CreateInventarioGeneral extends Component
             'Pcdedia2da',
             'Pcadministrativa2da',
             'Pcautomotores2da',
+            'celular2da',
+            'tablet2da',
+            'monitor2da',
+            'notebook2da',
+            'netbook2da',
             'impresoraChorro2da',
             'impresoraLaser2da',
             'switch2da',
             'ruter2da',
+            'ups2da',
             'camaras2da',
+            'Estacion_trabajo2da',
+            'Estabilizador2da',
+            'Auriculares2da',
+            'Cable_estructurado2da',
+            'Tv2da',
             'servidor2da',
             'centralTelefonica2da',
             'telefonoFijo2da',
@@ -1146,6 +1560,11 @@ class CreateInventarioGeneral extends Component
             'Pcadministrativa3da',
             'Pcautomotores3da',
             'PcDTO365',
+            'celular3da',
+            'tablet3da',
+            'monitor2da',
+            'notebook3da',
+            'netbook3da',
             'ImpresorasDTO365',
             'PcDTO350',
             'ImpresorasDTO350',
@@ -1156,7 +1575,13 @@ class CreateInventarioGeneral extends Component
             'switch3da',
             'camaras3da',
             'ruter3da',
+            'ups3da',
             'camaras3da',
+            'Estacion_trabajo3da',
+            'Estabilizador3da',
+            'Auriculares3da',
+            'Cable_estructurado3da',
+            'Tv3da',
             'servidor3da',
             'centralTelefonica3da',
             'telefonoFijo3da',
@@ -1176,11 +1601,22 @@ class CreateInventarioGeneral extends Component
             'Pcdedia4da',
             'Pcadministrativa4da',
             'Pcautomotores4da',
+            'celular4da',
+            'tablet4da',
+            'monitor4da',
+            'notebook4da',
+            'netbook4da',
             'impresoraChorro4da',
             'impresoraLaser4da',
             'switch4da',
             'ruter4da',
+            'ups4da',
             'camaras4da',
+            'Estacion_trabajo4da',
+            'Estabilizador4da',
+            'Auriculares4da',
+            'Cable_estructurado4da',
+            'Tv4da',
             'servidor4da',
             'centralTelefonica4da',
             'telefonoFijo4da',
@@ -1200,11 +1636,22 @@ class CreateInventarioGeneral extends Component
             'Pcdedia5da',
             'Pcadministrativa5da',
             'Pcautomotores5da',
+            'celular5da',
+            'tablet5da',
+            'monitor5da',
+            'notebook5da',
+            'netbook5da',
             'impresoraChorro5da',
             'impresoraLaser5da',
             'switch5da',
             'ruter5da',
+            'ups5da',
             'camaras5da',
+            'Estacion_trabajo5da',
+            'Estabilizador5da',
+            'Auriculares5da',
+            'Cable_estructurado5da',
+            'Tv5da',
             'servidor5da',
             'centralTelefonica5da',
             'telefonoFijo5da',
@@ -1224,11 +1671,22 @@ class CreateInventarioGeneral extends Component
             'PcdediaFlia1',
             'PcadministrativaFlia1',
             'PcautomotoresFlia1',
+            'celularFlia1',
+            'tabletFlia1',
+            'monitorFlia1',
+            'notebookFlia1',
+            'netbookFlia1',
             'impresoraChorroFlia1',
             'impresoraLaserFlia1',
             'switchFlia1',
             'ruterFlia1',
+            'upsFlia1',
             'camarasFlia1',
+            'Estacion_trabajoFlia1',
+            'EstabilizadorFlia1',
+            'AuricularesFlia1',
+            'Cable_estructuradoFlia1',
+            'TvFlia1',
             'servidorFlia1',
             'centralTelefonicaFlia1',
             'telefonoFijoFlia1',
@@ -1247,11 +1705,22 @@ class CreateInventarioGeneral extends Component
             'PcdediaFlia2',
             'PcadministrativaFlia2',
             'PcautomotoresFlia2',
+            'celularFlia2',
+            'tabletFlia2',
+            'monitorFlia2',
+            'notebookFlia2',
+            'netbookFlia2',
             'impresoraChorroFlia2',
             'impresoraLaserFlia2',
             'switchFlia2',
             'ruterFlia2',
+            'upsFlia2',
             'camarasFlia2',
+            'Estacion_trabajoFlia2',
+            'EstabilizadorFlia2',
+            'AuricularesFlia2',
+            'Cable_estructuradoFlia2',
+            'TvFlia2',
             'servidorFlia2',
             'centralTelefonicaFlia2',
             'telefonoFijoFlia2',
@@ -1268,11 +1737,22 @@ class CreateInventarioGeneral extends Component
             'PcBusquedaRescate',
             'PcSeccionExplosivos',
             'PcAdministrativa',
+            'celularServicios',
+            'tabletServicios',
+            'monitorServicios',
+            'notebookServicios',
+            'netbookServicios',
             'impresoraChorroServicios',
             'impresoraLaserServicios',
             'switchServicios',
             'ruterServicios',
+            'upsServicios',
             'camarasServicios',
+            'Estacion_trabajoServicios',
+            'EstabilizadorServicios',
+            'AuricularesServicios',
+            'Cable_estructuradoServicios',
+            'TvServicios',
             'servidorServicios',
             'centralTelefonicaServicios',
             'telefonoFijoServicios',
@@ -1292,11 +1772,22 @@ class CreateInventarioGeneral extends Component
             'PcLegislatura',
             'PcCadic',
             'PcCasaGobierno',
+            'celularCustodia',
+            'tabletCustodia',
+            'monitorCustodia',
+            'notebookCustodia',
+            'netbookCustodia',
             'impresoraChorroCustodia',
             'impresoraLaserCustodia',
             'switchCustodia',
             'ruterCustodia',
+            'upsCustodia',
             'camarasCustodia',
+            'Estacion_trabajoCustodia',
+            'EstabilizadorCustodia',
+            'AuricularesCustodia',
+            'Cable_estructuradoCustodia',
+            'TvCustodia',
             'servidorCustodia',
             'centralTelefonicaCustodia',
             'telefonoFijoCustodia',

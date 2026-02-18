@@ -413,9 +413,6 @@
                                                                 Oficial
                                                                 sumariante: <strong
                                                                     class="text-red-800">{{ $Pcsumariante }}</strong></p>
-
-
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina de
                                                                 SubOficiales
                                                                 <strong class="text-red-800">{{ $SuboficialesPc }}</strong>
@@ -429,9 +426,6 @@
                                                                 Sevicios Externos: <strong
                                                                     class="text-red-800">{{ $ServiciosExternosPc }}</strong>
                                                             </p>
-
-
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">Pc Oficina de
                                                                 Servico de Guardia: <strong
                                                                     class="text-red-800">{{ $Pcguardia }}</strong></p>
@@ -447,7 +441,21 @@
                                                                 de
                                                                 automotores: <strong
                                                                     class="text-red-800">{{ $Pcautomotores }}</strong></p>
-
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Monitor de Pc:
+                                                                <strong class="text-red-800">{{ $monitor }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Notebook:
+                                                                <strong class="text-red-800">{{ $notebook }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Netbook:
+                                                                <strong class="text-red-800">{{ $netbook }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Celular:
+                                                                <strong class="text-red-800">{{ $celular }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Tablet:
+                                                                <strong class="text-red-800">{{ $tablet }}</strong>
+                                                            </p>
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">Impresoras a
                                                                 Chorro:
                                                                 <strong class="text-red-800">{{ $impresoraChorro }}</strong>
@@ -466,8 +474,26 @@
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">Ruter/s:
                                                                 <strong class="text-red-800">{{ $ruter }}</strong>
                                                             </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Ups/s:
+                                                                <strong class="text-red-800">{{ $ups }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Estacion de Trabajo:
+                                                                <strong class="text-red-800">{{ $Estacion_trabajo }}</strong>
+                                                            </p>
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">Sevidor/es:
                                                                 <strong class="text-red-800">{{ $servidor }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Estabilizador/es:
+                                                                <strong class="text-red-800">{{ $Estabilizador }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Auricular/es:
+                                                                <strong class="text-red-800">{{ $Auriculares }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Cable/es estructurado/s:
+                                                                <strong class="text-red-800">{{ $Cable_estructurado }}</strong>
+                                                            </p>
+                                                            <p class="text-metric-primary font-bold mb-2 text-xl">Tv/es:
+                                                                <strong class="text-red-800">{{ $Tv }}</strong>
                                                             </p>
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">Central
                                                                 telefonica:
@@ -1428,10 +1454,12 @@
                                                             <!-- Código por defecto si no se cumple ningún caso -->
                                                     @endswitch
                                                 </div>
-
                                                 <button
+                                                    type="button"
                                                     class="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-md text-gray-800 font-semibold"
-                                                    wire:click="closeModal">Cerrar</button>
+                                                    @click="showModal = false; $wire.closeModal()">
+                                                    Cerrar
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

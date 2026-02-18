@@ -64,6 +64,9 @@
                 ['img' => 'botondcu.jpg', 'title' => 'D.C.U', 'route' => 'createComunicacionesDcu'],
                 ['img' => 'polrg.jpeg', 'title' => 'D.C.R.G', 'route' => 'createComunicacionesRiogrande'],
                 ['img' => 'ht.jpg', 'title' => 'Inventario General Ushuaia', 'route' => 'TotalEquiposComunicacion'],
+                ['img' => 'ht.jpg', 'title' => 'Inventario General Rio Grande', 'route' => 'TotalEquiposComunicacionRg'],
+                ['img' => 'ht.jpg', 'title' => 'Inventario General Tolhuin', 'route' => 'TotalEquiposComunicacionTol'],
+                ['img' => 'ht.jpg', 'title' => 'Inventario General Provincial', 'route' => 'TotalEquiposComunicacionProv'],
             ];
         @endphp
 

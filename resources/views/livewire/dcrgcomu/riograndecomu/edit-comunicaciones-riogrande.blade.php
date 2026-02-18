@@ -181,7 +181,7 @@
 
                                 <div class="mt-1">
                                     <label class="block text-gray-700 text-sm font-bold mb-1"
-                                        for="detalle_inventario">Detalle de la Modificacion</label>
+                                        for="detalle_inventario">Modificaciones Realizadas</label>
                                     <textarea
                                         class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         wire:model="detalle_inventario"value="{{ $comunicaciones->detalle_inventario }}"
