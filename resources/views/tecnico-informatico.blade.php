@@ -1,18 +1,12 @@
 <x-app-layout>
 
- {{--    <style>
-        /* Fondo general */
-        body {
-            background-image: url('{{ asset('foto/base.webp') }}');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-    </style> --}}
+    {{-- TÍTULO --}}
+    <h1 class="text-center p-4 text-xl font-bold text-white mb-4 mt-4 uppercase tracking-widest">
+        Técnico Informática
+    </h1>
 
-    <h1 class="text-center text-xl font-bold text-white mb-4 mt-4">Técnico Informática</h1>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+    {{-- GRID DE CARDS UTILIZANDO LA CLASE CONTENEDORA --}}
+    <div class="contenedor-cards">
 
         {{-- Configuración de tarjetas --}}
         @php
@@ -36,24 +30,24 @@
                 ['img' => 'estadistica.jpg', 'title' => 'Estadísticas', 'route' => 'estadistica'],
                 ['img' => 'reparador.jpg', 'title' => 'Trabajos Generales', 'route' => 'createTrabajosInformatica'],
 
-                // --- SECCIONES DE INVENTARIO GENERAL CORREGIDAS ---
+                // --- SECCIONES DE INVENTARIO GENERAL ---
                 [
-                    'img' => 'banderatdf.jpg', // Imagen de la provincia (TDF)
+                    'img' => 'banderatdf.jpg',
                     'title' => 'Inventario general Provincial',
                     'route' => 'TotalInventarioProvincia',
                 ],
                 [
-                    'img' => 'ushuaiafoto.jpg', // Imagen de Ushuaia
+                    'img' => 'ushuaiafoto.jpg',
                     'title' => 'Inventario general Ushuaia',
                     'route' => 'TotalInventarioInformatica',
                 ],
                 [
-                    'img' => 'rgfoto.jpg', // Imagen de Río Grande
+                    'img' => 'rgfoto.jpg',
                     'title' => 'Inventario general Río Grande',
                     'route' => 'TotalInventarioInformaticaRioGrande',
                 ],
                 [
-                    'img' => 'tolhuinfoto.jpg', // Imagen de Tolhuin
+                    'img' => 'tolhuinfoto.jpg',
                     'title' => 'Inventario general Tolhuin',
                     'route' => 'TotalInventarioInformaticaTolhuin',
                 ],
@@ -62,24 +56,19 @@
 
         {{-- Render dinámico de tarjetas --}}
         @foreach ($cards as $card)
-            <div
-                class="relative group rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+            <div class="card-profesional">
 
-                <img src="{{ asset('foto/' . $card['img']) }}"
-                    class="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500">
+                <img src="{{ asset('foto/' . $card['img']) }}" alt="{{ $card['title'] }}" loading="lazy">
 
-                <a href="{{ route($card['route']) }}"
-                    class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all flex items-center justify-center">
-
-                    <h2 class="text-white text-lg font-extrabold tracking-wide drop-shadow-lg text-center px-2">
+                <a href="{{ route($card['route']) }}" class="card-overlay">
+                    <h2 class="card-titulo">
                         {{ $card['title'] }}
                     </h2>
                 </a>
+
             </div>
         @endforeach
 
     </div>
-
-    {{-- TODO TU CÓDIGO COMENTADO QUEDA COMO ESTABA --}}
 
 </x-app-layout>

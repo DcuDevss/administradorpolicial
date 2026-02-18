@@ -314,7 +314,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/chat/{query}', Chat::class)->name('chat');
 
     Route::get('/userpolicia', Userpolicia::class)->name('userpolicia');
-    /*  Route::view('/administrador', 'administrador')->name('panel-administrador'); */ //correccion de login para que envie directo
+    Route::view('/administrador', 'administrador')->name('panel-administrador'); //correccion de login para que envie directo
 });
 
 Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
@@ -324,7 +324,7 @@ Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
 Route::view('/tecnico-informatico', 'tecnico-informatico')->name('tecnico-informatico');
 Route::view('/tecnico-comunicacion', 'tecnico-comunicacion')->name('tecnico-comunicacion');
 Route::view('/tecnico-riogrande', 'tecnico-riogrande')->name('tecnico-riogrande');
-Route::view('/administrador', 'administrador')->name('panel-administrador');
+/* Route::view('/administrador', 'administrador')->name('panel-administrador'); */
 //Route::get('/generate-order', GenerateOrder::class)->name('generate.order');
 
 

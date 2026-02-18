@@ -1,0 +1,103 @@
+/* resources/css/base.css */
+
+/* ============================================================
+RESETEOS GLOBALES Y COMPORTAMIENTO BASE
+   ============================================================ */
+
+/* Ocultar elementos con x-cloak de Alpine.js antes de que cargue el JS */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Animación de entrada suave al cambiar de vista o cargar página */
+body {
+    view-transition-name: main-content;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Oculta el indicador de carga nativo de Livewire en el navegador */
+.livewire-loading-indicator {
+    display: none !important;
+}
+
+/* Manejo de estados de carga (wire:loading) para evitar parpadeos */
+[wire\:loading] {
+    display: none;
+}
+[wire\:loading].show {
+    display: inline-block !important;
+    transition: opacity 0.3s;
+}
+
+/* ============================================================
+ SISTEMA DE TRANSPARENCIAS (JETSTREAM/BLADE)
+   ============================================================ */
+
+/* 1. RESET: Forzado de transparencia en contenedores estándar para ver el fondo */
+.bg-gray-100,
+.bg-gray-50,
+.bg-gray-300,
+.shadow-md {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 2. ÁREAS DE CONTENIDO: Elimina fondos en secciones envolventes */
+.max-w-7xl > div,
+.py-5,
+section {
+    background-color: transparent !important;
+}
+
+/* 3. SEPARACIÓN DE BLOQUES (Acordeones/Inventario) */
+.border.border-white\/10,
+div[x-data] > div.border,
+.shadow.sm\:rounded-lg {
+    margin-bottom: 0.8rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 0.5rem !important;
+    background-color: rgba(
+        30,
+        41,
+        59,
+        0.4
+    ) !important; /* Fondo sutil para bloques oscuro */
+}
+
+/* Ajuste de relleno para encabezados de colapsables */
+.flex.items-center.justify-between {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+main {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    min-height: 80vh;
+}
+
+/* 1. RESET: Evitar que afecte a componentes con lógica de scroll propia como el chat */
+.bg-gray-100,
+.bg-gray-50,
+.shadow-md {
+    /* Quitamos el !important de aquí para que los componentes específicos puedan definir su fondo */
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* 2. ÁREAS DE CONTENIDO: Ajuste de padding que podría estar desplazando el chat */
+main {
+    padding-top: 1.5rem; /* Reducimos el padding superior para que el chat no baje tanto */
+    padding-bottom: 1.5rem;
+    min-height: 80vh;
+}
+

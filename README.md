@@ -1,3 +1,92 @@
+# Administrador Policial
+
+## Descripción general
+
+Administrador Policial es un sistema interno de gestión para una fuerza policial.  
+Permite administrar:
+
+- Inventario de equipos informáticos y de comunicaciones.
+- Dependencias y comisarías en distintas localidades.
+- Turnos y calendario de trabajo.
+- Notificaciones internas, chat y auditorías de cambios.
+
+Está pensado para uso interno, con distintos paneles según el rol del usuario
+(administradores, técnicos, usuarios de comisarías, recursos humanos, etc.).
+
+## Tecnologías principales
+
+- PHP 8.1+
+- Laravel 10
+- Livewire 3 (componentes interactivos)
+- Blade (vistas)
+- MySQL (base de datos)
+- Laravel Fortify / Jetstream / Sanctum (autenticación)
+- Spatie Laravel Permission (roles y permisos)
+- DomPDF (PDFs), QrCode, Pusher, Guzzle (otras integraciones)
+
+## Estructura básica
+
+- `app/Models` — Modelos Eloquent (tablas de base de datos).
+- `app/Http/Livewire` — Componentes Livewire organizados por módulos.
+- `app/Http/Controllers` — Controladores HTTP tradicionales (si se usan).
+- `resources/views` — Vistas Blade (layouts, dashboards, formularios, etc.).
+- `routes/web.php` — Rutas web y asignación de middlewares por rol.
+- `database/migrations` — Migraciones de tablas.
+- `database/seeders` — Seeders como `RolesSeeder`, `UserSeeder`, etc.
+
+## Módulos principales (índice funcional)
+
+- **Autenticación y usuarios**
+  - Inicio de sesión, registro y verificación.
+  - Gestión de usuarios y perfiles.
+  - Asignación de roles y permisos (Admin, técnicos, usuarios de comisarías, RRHH, etc.).
+
+- **Inventario informático**
+  - Alta, baja y modificación de equipos por dependencia.
+  - Historial de cambios y auditorías.
+
+- **Comunicaciones**
+  - Gestión de equipamiento y trabajos de comunicaciones por comisaría/dependencia.
+  - Historial de intervenciones (instalaciones, reparaciones, movimientos).
+
+- **Turnos**
+  - Calendario de turnos.
+  - Asignación y visualización de turnos por usuario/dependencia.
+
+- **Notificaciones y chat**
+  - Notificaciones internas entre dependencias y técnicos.
+  - Mensajería/chat entre usuarios.
+
+- **Auditorías**
+  - Registro de cambios relevantes (por ejemplo en inventarios).
+
+## Puesta en marcha rápida
+
+1. Clonar el repositorio.
+2. Copiar `.env.example` a `.env` y configurar base de datos, `APP_URL`, etc.
+3. Instalar dependencias:
+   ```bash
+   composer install
+   npm install && npm run build   # opcional según el flujo de frontend
+   ```
+4. Generar key de la aplicación:
+   ```bash
+   php artisan key:generate
+   ```
+5. Ejecutar migraciones y seeders:
+   ```bash
+   php artisan migrate --seed
+   ```
+6. Levantar el servidor de desarrollo:
+   ```bash
+   php artisan serve
+   ```
+
+## Más información
+
+Este proyecto está construido sobre Laravel, por lo que toda la documentación
+oficial del framework sigue siendo válida para extender o modificar la aplicación.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

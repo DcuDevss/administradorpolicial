@@ -3,7 +3,6 @@
     conversationElement: null,
     markAsRead: null,
 }" x-init="conversationElement = document.getElementById('conversation');
-
 height = conversationElement?.scrollHeight || 0;
 $nextTick(() => {
     if (conversationElement) conversationElement.scrollTop = height;
@@ -20,44 +19,80 @@ Echo.private('users.{{ Auth()->user()->id }}')
         }
     });"
     @scroll-bottom.window="
-        $nextTick(() => {
-            const el = document.getElementById('conversation');
-            if (el) el.scrollTop = el.scrollHeight;
-        });
-    "
-    class="w-full overflow-hidden">
+    $nextTick(() => {
+        const el = document.getElementById('conversation');
+        if (el) el.scrollTop = el.scrollHeight;
+    });
+"
+    class="chat-isolated w-full h-full overflow-hidden">
 
-    {{-- CSS para anular el footer global y ajustar alturas sin romper nada --}}
     <style>
-        /* 1. Para ocultar el footer del global*/
-        footer.text-center.bg-gray-900\/90,
-        footer.backdrop-blur-md,
-        footer.footer-tight {
-            display: none !important;
+        /* ────────────────────────────────────────────────
+           🔒 AISLAMIENTO SOLO DEL CHAT (NO TOCA EL BODY)
+           ──────────────────────────────────────────────── */
+
+        .chat-isolated {
+            position: relative;
+            z-index: 50;
+            isolation: isolate;
+            /* 🔥 crea contexto propio */
         }
 
-        /* 2. Forzamos que el cuerpo de la página no tenga scroll, solo el chat */
-        body {
-            overflow: hidden !important;
-        }
+        .chat-fullscreen-wrapper {
+            position: fixed;
+            top: 64px;
+            /* altura real de tu navbar */
+            left: 0;
+            right: 0;
+            bottom: 0;
 
-        /* 3. Ajuste de altura para que el chat use todo el espacio disponible */
-        .chat-wrapper {
-            /* Restamos el alto del navbar azul (aprox 64px) */
-            height: calc(100vh - 64px);
             display: flex;
             flex-direction: column;
-            background-color: white;
+
+            z-index: 20;
         }
 
-        /* Aseguramos que el contenedor de Livewire ocupe el alto total */
-        .border-b.flex.flex-col.grow {
-            height: 100% !important;
+        /* Selector específico para Livewire */
+        .chat-isolated .border-b.flex.flex-col.grow,
+        .chat-isolated .chat-fullscreen-wrapper>div.flex-col {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            height: 100%;
+        }
+
+        /* Área de mensajes */
+        .chat-isolated #conversation {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0.625rem;
+            -webkit-overflow-scrolling: touch;
+            background: #ffffff;
+        }
+
+        /* Header del chat */
+        .chat-isolated header {
+            background: #e5e7eb !important;
+        }
+
+        /* Área enviar mensaje */
+        .chat-isolated .shrink-0.z-10 {
+            background: #1e293b !important;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .chat-isolated .chat-fullscreen-wrapper {
+                height: calc(100vh - var(--navbar-offset-mobile, 56px));
+            }
         }
     </style>
 
-    {{-- Ajustamos el alto del contenedor principal para que termine antes del borde de la pantalla --}}
-    <div class="border-b flex flex-col grow h-[calc(100vh-75px)] md:h-[calc(100vh-65px)] bg-white">
+
+    <!-- Contenedor principal con clase descriptiva -->
+    <div class="chat-fullscreen-wrapper border-b flex flex-col grow">
 
         {{-- header --}}
         <header class="w-full sticky inset-x-0 flex pb-[5px] pt-[5px] top-0 z-10 bg-gray-300 border-b shrink-0">

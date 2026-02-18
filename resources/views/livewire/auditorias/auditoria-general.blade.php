@@ -54,7 +54,7 @@
             <input wire:model="hasta" type="date" class="bg-gray-50 border text-sm rounded p-2"> --}}
             </div>
 
-            <<div class="overflow-x-auto shadow-xl rounded-lg border border-gray-700">
+            <div class="overflow-x-auto shadow-xl rounded-lg border border-gray-700">
                 <table class="w-full text-sm text-left text-gray-300">
                     <thead class="bg-gray-900 text-gray-400 uppercase text-xs tracking-wider">
                         <tr>
@@ -115,13 +115,13 @@
                         @endforelse
                     </tbody>
                 </table>
-        </div>
+            </div>
 
-        <!-- 📄 PAGINACIÓN -->
-        <div class="p-4">
-            {{ $audits->links() }}
-        </div>
+            <!-- 📄 PAGINACIÓN -->
+            <div class="p-4">
+                {{ $audits->links() }}
+            </div>
 
-    </div>
+        </div>
     </div>
 </app-layout>

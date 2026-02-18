@@ -1,0 +1,75 @@
+/* resources/css/forms.css */
+
+/* Todo lo relacionado a input, select, textarea y sus estados. Incluye también estilos para validación, focus, hover y estados deshabilitados. */
+
+/* ============================================================
+   FORMULARIOS Y SELECTS (EFECTO CRISTAL / GLASS)
+   ============================================================ */
+
+/* Estilo de etiquetas */
+label {
+    color: #e8eef5 !important;
+    font-weight: 600;
+}
+
+/* Estilo unificado para inputs, selects y áreas de texto */
+input,
+select,
+textarea,
+.form-input,
+.form-select {
+    color: #ffffff !important;
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.45
+    ) !important; /* Un poco más oscuro para contraste */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 0.375rem !important; /* Alineado con Jetstream */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Color de los textos de sugerencia (Placeholder) */
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Efecto visual al hacer foco en un campo */
+input:focus,
+select:focus,
+textarea:focus {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    border-color: #4f9cff !important;
+    box-shadow: 0 0 10px rgba(79, 156, 255, 0.3) !important;
+    outline: none !important;
+}
+
+/* Forzar que las opciones del desplegable se lean bien (fondo oscuro sólido) */
+select option {
+    background-color: #111827 !important; /* Negro azulado sólido */
+    color: #ffffff !important;
+}
+
+select option:checked {
+    background-color: #2563eb !important;
+}
+
+/* ============================================================
+ VALIDACIÓN Y ESTADOS (RESCATE)
+   ============================================================ */
+
+/* Estilo para mensajes de error de Jetstream */
+.text-red-600,
+.mt-2.text-sm.text-red-600 {
+    color: #ff4d4d !important;
+    font-weight: 500;
+}
+
+/* Input con error */
+input.border-red-300,
+textarea.border-red-300 {
+    border-color: #ef4444 !important;
+    background-color: rgba(127, 29, 29, 0.2) !important;
+}
