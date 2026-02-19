@@ -64,7 +64,7 @@ class CreateInvestigacionesGeneral extends Component
     //$monitor,$tipo_impresora,
 
     protected $rules = [
-        //'tipodeoficina_id' => 'nullable',
+        'tipodeoficina_id' => 'nullable',
         'tipodispositivo_id' => 'nullable',
         'cantidadram_id' => 'nullable',
         'slotmemoria_id' => 'nullable',
@@ -100,14 +100,14 @@ class CreateInvestigacionesGeneral extends Component
     public function mount()
     {
         $this->cantidadram_id = "";
-        //$this->tipodeoficina_id = "";
+        $this->tipodeoficina_id = "";
         $this->tipodispositivo_id = "";
         $this->slotmemoria_id = "";
         // $this->dependencia_ushuaia_id = "";
 
         //$this->jefatura_id = "";
         $this->cientifica_id = "";
-        //$this->administracion_id = "";
+        $this->administracion_id = "";
         //$this->recurso_humano_id = "";
         //$this->destacamento_id = "";
         $this->investigacione_id = "";
@@ -137,7 +137,7 @@ class CreateInvestigacionesGeneral extends Component
         //try {
 
         $this->investigaciones = new Investigacionesgenerale();
-        // $this->tipodeoficina_id === null || $this->tipodeoficina_id === '' ? $this->admin->tipodeoficina_id = null : $this->admin->tipodeoficina_id = $this->tipodeoficina_id;
+        $this->tipodeoficina_id === null || $this->tipodeoficina_id === '' ? $this->admin->tipodeoficina_id = null : $this->admin->tipodeoficina_id = $this->tipodeoficina_id;
         $this->cantidadram_id === null || $this->cantidadram_id === '' ? $this->investigaciones->cantidadram_id = null : $this->investigaciones->cantidadram_id = $this->cantidadram_id;
         $this->slotmemoria_id === null || $this->slotmemoria_id === '' ? $this->investigaciones->slotmemoria_id = null : $this->investigaciones->slotmemoria_id = $this->slotmemoria_id;
         $this->tipodispositivo_id === null || $this->tipodispositivo_id === '' ? $this->investigaciones->tipodispositivo_id = null : $this->investigaciones->tipodispositivo_id = $this->tipodispositivo_id;
@@ -291,6 +291,10 @@ class CreateInvestigacionesGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor = Investigacionesgenerale::
+            where('tipodispositivo_id', 4)
+            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
+            ->count();
         $notebook = Investigacionesgenerale::
             where('tipodispositivo_id', 5)
             ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
@@ -377,21 +381,6 @@ class CreateInvestigacionesGeneral extends Component
             where('investigacione_id', 9)
             ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
             ->count();
-        $SuboficialesPc = Investigacionesgenerale::
-            //->where('tipodeoficina_id', 12)
-            where('tipodispositivo_id', 3)
-            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
-            ->count();
-        $ServiciosExternosPc = Investigacionesgenerale::
-            //->where('tipodeoficina_id', 13)
-            where('tipodispositivo_id', 3)
-            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
-            ->count();
-        $JefeTurnoPc = Investigacionesgenerale::
-            //->where('tipodeoficina_id', 14)
-            where('tipodispositivo_id', 3)
-            ->whereIn('investigacione_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
-            ->count();
 
 
         //-------- sumario-------------//
@@ -399,6 +388,10 @@ class CreateInvestigacionesGeneral extends Component
             //->where('recurso_humano_id',4)
             ->where('tipodispositivo_id', 3)
             ->whereIn('cientifica_id', [1, 3, 4, 5, 6, 7, 8, 9])
+            ->count();
+        $monitorCientifica = Investigacionesgenerale::where('investigacione_id', 13)
+            ->where('tipodispositivo_id', 4)
+            ->whereIn('cientifica_id', [2, 3, 4, 5, 6, 7, 8, 9])
             ->count();
         $notebookCientifica = Investigacionesgenerale::where('investigacione_id', 13)
             ->where('tipodispositivo_id', 5)
@@ -498,6 +491,7 @@ class CreateInvestigacionesGeneral extends Component
             'delitoscomplejosPc',
             'narcocriminalidadPc',
             'detalprontuarioPc',
+            'monitor',
             'notebook',
             'netbook',
             'celular',
@@ -513,9 +507,11 @@ class CreateInvestigacionesGeneral extends Component
             'Cable_estructurado',
             'Tv',
             'servidor',
+            'Estabilizador',
             'centralTelefonica',
             'telefonoFijo',
             'cientificaPc',
+            'monitorCientifica',
             'notebookCientifica',
             'netbookCientifica',
             'celularCientifica',
@@ -532,7 +528,8 @@ class CreateInvestigacionesGeneral extends Component
             'Cable_EstructuradoCientifica',
             'TvCientifica',
             'centralTelefonicaCientifica',
-            'telefonoFijoCientifica'
+            'telefonoFijoCientifica',
+            'sumaTotalPc'
         ));
     }
 }
