@@ -293,59 +293,115 @@ class CreateRecursosGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 4)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $notebook = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 5)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $netbook = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 6)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $celular = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 7)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $tablet = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 8)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
         $impresoraLaser = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 11)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
         $impresoraChorro = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 12)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
         $switch = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 13)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
         $ruter = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 14)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $ups = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 15)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
         $camaras = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 16)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $estacion = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 17)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
         $servidor = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 18)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $estabilizador = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 19)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
         $centralTelefonica = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 23)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
-        $telefonoFijo = Recursoshumanosgenerale::
+        $auriculares = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 20)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $cable = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 21)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $tv = Recursoshumanosgenerale::
+            //->where('tipodeoficina_id', 10)
+            where('tipodispositivo_id', 22)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+            ->count();
+        $telefonofijo = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 10)
             where('tipodispositivo_id', 9)
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
         $SuboficialesPc = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 12)
             where('tipodispositivo_id', 3)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
         $ServiciosExternosPc = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 13)
             where('tipodispositivo_id', 3)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
         $JefeTurnoPc = Recursoshumanosgenerale::
             //->where('tipodeoficina_id', 14)
             where('tipodispositivo_id', 3)
-            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->whereIn('recurso_humano_id', [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
             ->count();
 
 
@@ -353,6 +409,31 @@ class CreateRecursosGeneral extends Component
         $sumariosPc = Recursoshumanosgenerale::where('recurso_humano_id', 15)
             //->where('recurso_humano_id',4)
             ->where('tipodispositivo_id', 3)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
+        $monitorSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
+        $notebookSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
+        $netbookSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
+        $celularSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
+        $tabletSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
             ->whereIn('sumario_id', [2, 3, 4])
             ->count();
         $impresoraLaserSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
@@ -375,6 +456,11 @@ class CreateRecursosGeneral extends Component
             ->where('tipodispositivo_id', 14)
             ->whereIn('sumario_id', [2, 3, 4])
             ->count();
+        $upsSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
         $camarasSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
@@ -383,6 +469,26 @@ class CreateRecursosGeneral extends Component
         $servidorSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
+        $estabilizadorSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
+        $auricularesSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
+        $cableSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->whereIn('sumario_id', [2, 3, 4])
+            ->count();
+        $tvSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->whereIn('sumario_id', [2, 3, 4])
             ->count();
         $centralTelefonicaSumario = Recursoshumanosgenerale::where('recurso_humano_id', 15)
@@ -400,50 +506,97 @@ class CreateRecursosGeneral extends Component
         //---------bienestar-------------//
         $bienestarPc = Recursoshumanosgenerale::where('recurso_humano_id', 16)
             ->where('tipodispositivo_id', 3)
-            ->whereIn('bienestare_id', [2, 3, 4])
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
+        $monitorBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
+        $notebookBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
+        $netbookBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
+        $celularBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
+        $tabletBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
             ->count();
         $impresoraLaserBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
-            ->whereIn('bienestare_id', [2, 3, 4])
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
             ->count();
         $impresoraChorroBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 12)
-            ->whereIn('bienestare_id', [2, 3, 4])
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
             ->count();
         $switchBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 13)
-            ->whereIn('bienestare_id', [2, 3, 4])
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
             ->count();
         $ruterBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
-            ->whereIn('bienestare_id', [2, 3, 4])
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
+        $upsBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
             ->count();
         $camarasBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
-            ->whereIn('bienestare_id', [2, 3, 4])
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
             ->count();
         $servidorBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
             ->where('tipodispositivo_id', 18)
-            ->whereIn('bienestare_id', [2, 3, 4])
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
             ->count();
-
+        $estabilizadorBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
+        $auricularesBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
+        $cableBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
+        $tvBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
+            ->count();
         $centralTelefonicaBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 23)
-            ->whereIn('bienestare_id', [2, 3, 4])
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
             ->count();
         $telefonoFijoBienestar = Recursoshumanosgenerale::where('recurso_humano_id', 16)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 9)
-            ->whereIn('bienestare_id', [2, 3, 4])
+            ->whereIn('bienestare_id', [2, 3, 4, 5, 6, 7])
             ->count();
-
-
 
 
         return view('livewire.informatica.recursos.create-recursos-general', compact(
@@ -457,32 +610,66 @@ class CreateRecursosGeneral extends Component
             'asignacionesPc',
             'guardiaPc',
             'secretariaPc',
+            'monitor',
+            'notebook',
+            'netbook',
+            'celular',
+            'tablet',
+            'ups',
+            'estacion',
             'switch',
             'ruter',
+            'estabilizador',
+            'auriculares',
+            'cable',
+            'tv',
             'servidor',
             'camaras',
             'centralTelefonica',
-            'telefonoFijo',
+            'telefonofijo',
             'impresoraLaser',
             'impresoraChorro',
             'servidorPc',
             'retirosPc',
             'sumariosPc',
+            'SuboficialesPc',
+            'ServiciosExternosPc',
+            'JefeTurnoPc',
+            'monitorSumario',
+            'notebookSumario',
+            'netbookSumario',
+            'tabletSumario',
+            'celularSumario',
             'impresoraLaserSumario',
             'impresoraChorroSumario',
             'switchSumario',
             'ruterSumario',
+            'upsSumario',
             'camarasSumario',
+            'estabilizadorSumario',
+            'auricularesSumario',
+            'cableSumario',
+            'tvSumario',
             'servidorSumario',
             'centralTelefonicaSumario',
             'telefonoFijoSumario',
             'bienestarPc',
+            'monitorBienestar',
+            'notebookBienestar',
+            'netbookBienestar',
+            'celularBienestar',
+            'tabletBienestar',
             'impresoraLaserBienestar',
             'impresoraChorroBienestar',
             'switchBienestar',
             'ruterBienestar',
+            'upsBienestar',
             'camarasBienestar',
+            'estabilizadorBienestar',
             'servidorBienestar',
+            'auricularesBienestar',
+            'cableBienestar',
+            'tvBienestar',
             'centralTelefonicaBienestar',
             'telefonoFijoBienestar'
         ));

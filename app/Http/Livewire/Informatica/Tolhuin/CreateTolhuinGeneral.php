@@ -316,6 +316,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -332,13 +352,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacion = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizador = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auriculares = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cable = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tv = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica = Tolhuingenerale::where('dependencia_tolhuin_id', 3)
             //->where('tipodeoficina_id', 10)
@@ -400,6 +444,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorgnero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookgenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbooggenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celulargenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletgenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLasergenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -416,13 +480,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsgenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasgenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estaciongenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
+        $estabilizador = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
         $servidorgenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $auricularesgenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablegenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvgenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicagenero = Tolhuingenerale::where('dependencia_tolhuin_id', 4)
             //->where('tipodeoficina_id', 10)
@@ -476,6 +564,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorcient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookcient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookcient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularcient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletcient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLasercient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -492,13 +600,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upscient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarascient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacioncient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorcient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizarcient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularescient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablecient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvcient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicacient = Tolhuingenerale::where('dependencia_tolhuin_id', 5)
             //->where('tipodeoficina_id', 10)
@@ -544,6 +676,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitordireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookdireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookdireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celulardireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletdireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserdireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -560,13 +712,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsdireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasdireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estaciondireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidordireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadordireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesdireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cabledireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvdireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicadireccion = Tolhuingenerale::where('dependencia_tolhuin_id', 6)
             //->where('tipodeoficina_id', 10)
@@ -612,6 +788,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -628,13 +824,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacioninves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cableinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvinves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicainves = Tolhuingenerale::where('dependencia_tolhuin_id', 7)
             //->where('tipodeoficina_id', 10)
@@ -686,6 +906,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitornarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebooknarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbooknarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularnarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletnarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLasernarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -702,13 +942,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsnarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasnarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionnarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidornarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadornarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesnarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablenarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvnarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicanarco = Tolhuingenerale::where('dependencia_tolhuin_id', 8)
             //->where('tipodeoficina_id', 10)
@@ -759,6 +1023,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorcomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookcomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookcomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularcomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletcomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLasercomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -775,13 +1059,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upscomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarascomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacioncomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorcomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorcomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularescomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablecomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvcomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicacomp = Tolhuingenerale::where('dependencia_tolhuin_id', 9)
             //->where('tipodeoficina_id', 10)
@@ -832,6 +1140,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -848,13 +1176,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablerural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvrural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicarural = Tolhuingenerale::where('dependencia_tolhuin_id', 10)
             //->where('tipodeoficina_id', 10)
@@ -885,6 +1237,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitortepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebooktepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbooktepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celulartepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablettepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLasertepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -901,13 +1273,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upstepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarastepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estaciontepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidortepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadortepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularestepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cabletepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvtepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicatepi = Tolhuingenerale::where('dependencia_tolhuin_id', 11)
             //->where('tipodeoficina_id', 10)
@@ -937,6 +1333,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitormichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookmichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookmichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularmichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletmichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLasermichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -953,13 +1369,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsmichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasmichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionmichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidormichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadormichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesmichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablemichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvmichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicamichi = Tolhuingenerale::where('dependencia_tolhuin_id', 12)
             //->where('tipodeoficina_id', 10)
@@ -989,6 +1429,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorlago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebooklago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbooklago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularlago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletlago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserlago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -1005,13 +1465,37 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upslago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaraslago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionlago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorlago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorlago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auriculareslago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablelago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvlago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicalago = Tolhuingenerale::where('dependencia_tolhuin_id', 13)
             //->where('tipodeoficina_id', 10)
@@ -1041,6 +1525,26 @@ class CreateTolhuinGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 11)
@@ -1057,6 +1561,10 @@ class CreateTolhuinGeneral extends Component
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 16)
@@ -1064,6 +1572,22 @@ class CreateTolhuinGeneral extends Component
         $servidorruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
             //->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cableruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
+            //->where('tipodeoficina_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicaruta = Tolhuingenerale::where('dependencia_tolhuin_id', 14)
             //->where('tipodeoficina_id', 10)
@@ -1102,6 +1626,17 @@ class CreateTolhuinGeneral extends Component
             'Pcdedia',
             'Pcadministrativa',
             'Pcautomotores',
+            'monitor',
+            'notebook',
+            'netbook',
+            'celular',
+            'tablet',
+            'ups',
+            'estacion',
+            'estabilizador',
+            'auriculares',
+            'cable',
+            'tv',
             'impresoraChorro',
             'impresoraLaser',
             'switch',
@@ -1125,6 +1660,17 @@ class CreateTolhuinGeneral extends Component
             'Pcdediagenero',
             'Pcadministrativagenero',
             'Pcautomotoresgenero',
+            'monitorgnero',
+            'notebookgenero',
+            'netbooggenero',
+            'celulargenero',
+            'tabletgenero',
+            'upsgenero',
+            'estaciongenero',
+            'estaciongenero',
+            'auricularesgenero',
+            'cablegenero',
+            'tvgenero',
             'impresoraChorrogenero',
             'impresoraLasergenero',
             'switchgenero',
@@ -1145,6 +1691,17 @@ class CreateTolhuinGeneral extends Component
             'JefeTurnoPccient',
             'Pcguardiacient',
             'Pcadministrativacient',
+            'monitorcient',
+            'notebookcient',
+            'netbookcient',
+            'celularcient',
+            'tabletcient',
+            'upscient',
+            'estacioncient',
+            'estabilizarcient',
+            'auricularescient',
+            'cablecient',
+            'tvcient',
             'impresoraChorrocient',
             'impresoraLasercient',
             'switchcient',
@@ -1158,10 +1715,23 @@ class CreateTolhuinGeneral extends Component
             'direccionotros',
             'direccionPc',
             'Pcjefedireccion',
+            'Pcsubjefedireccion',
             'Pcofserviciodireccion',
+            'Pcguardiadireccion',
             'SuboficialesPcdireccion',
             'JefeTurnoPcdireccion',
             'Pcadministrativadireccion',
+            'monitordireccion',
+            'notebookdireccion',
+            'netbookdireccion',
+            'celulardireccion',
+            'tabletdireccion',
+            'upsdireccion',
+            'estaciondireccion',
+            'estabilizadordireccion',
+            'auricularesdireccion',
+            'cabledireccion',
+            'tvdireccion',
             'impresoraChorrodireccion',
             'impresoraLaserdireccion',
             'switchdireccion',
@@ -1181,6 +1751,17 @@ class CreateTolhuinGeneral extends Component
             'JefeTurnoPcinves',
             'Pcguardiainves',
             'Pcadministrativainves',
+            'monitorinves',
+            'notebookinves',
+            'netbookinves',
+            'celularinves',
+            'tabletinves',
+            'upsinves',
+            'estacioninves',
+            'estabilizadorinves',
+            'auricularesinves',
+            'cableinves',
+            'tvinves',
             'impresoraChorroinves',
             'impresoraLaserinves',
             'switchinves',
@@ -1200,6 +1781,17 @@ class CreateTolhuinGeneral extends Component
             'SuboficialesPcnarco',
             'JefeTurnoPcnarco',
             'Pcguardianarco',
+            'monitornarco',
+            'notebooknarco',
+            'netbooknarco',
+            'celularnarco',
+            'tabletnarco',
+            'upsnarco',
+            'estacionnarco',
+            'estabilizadornarco',
+            'auricularesnarco',
+            'cablenarco',
+            'tvnarco',
             'Pcadministrativanarco',
             'impresoraChorronarco',
             'impresoraLasernarco',
@@ -1222,6 +1814,17 @@ class CreateTolhuinGeneral extends Component
             'JefeTurnoPccomp',
             'Pcguardiacomp',
             'Pcadministrativacomp',
+            'monitorcomp',
+            'notebookcomp',
+            'netbookcomp',
+            'celularcomp',
+            'tabletcomp',
+            'upscomp',
+            'estacioncomp',
+            'estabilizadorcomp',
+            'auricularescomp',
+            'cablecomp',
+            'tvcomp',
             'impresoraChorrocomp',
             'impresoraLasercomp',
             'switchcomp',
@@ -1243,6 +1846,17 @@ class CreateTolhuinGeneral extends Component
             'JefeTurnoPcrural',
             'Pcguardiarural',
             'Pcadministrativarural',
+            'monitorrural',
+            'notebookrural',
+            'netbookrural',
+            'celularrural',
+            'tabletrural',
+            'upsrural',
+            'estacionrural',
+            'estabilizadorrural',
+            'auricularesrural',
+            'cablerural',
+            'tvrural',
             'impresoraChorrorural',
             'impresoraLaserrural',
             'switchrural',
@@ -1257,6 +1871,19 @@ class CreateTolhuinGeneral extends Component
             'tepiotros',
             'tepiPc',
             'Pcguardiatepi',
+            'SuboficialesPctepi',
+            'JefeTurnoPctepi',
+            'monitortepi',
+            'notebooktepi',
+            'netbooktepi',
+            'celulartepi',
+            'tablettepi',
+            'upstepi',
+            'estaciontepi',
+            'estabilizadortepi',
+            'auricularestepi',
+            'cabletepi',
+            'tvtepi',
             'impresoraChorrotepi',
             'impresoraLasertepi',
             'switchtepi',
@@ -1271,6 +1898,19 @@ class CreateTolhuinGeneral extends Component
             'michiotros',
             'michiPc',
             'Pcguardiamichi',
+            'SuboficialesPcmichi',
+            'JefeTurnoPcmichi',
+            'monitormichi',
+            'notebookmichi',
+            'netbookmichi',
+            'celularmichi',
+            'tabletmichi',
+            'upsmichi',
+            'estacionmichi',
+            'estabilizadormichi',
+            'auricularesmichi',
+            'cablemichi',
+            'tvmichi',
             'impresoraChorromichi',
             'impresoraLasermichi',
             'switchmichi',
@@ -1285,8 +1925,21 @@ class CreateTolhuinGeneral extends Component
             'lagootros',
             'lagoPc',
             'Pcguardialago',
+            'SuboficialesPclago',
+            'JefeTurnoPclago',
             'impresoraChorrolago',
             'impresoraLaserlago',
+            'monitorlago',
+            'notebooklago',
+            'netbooklago',
+            'celularlago',
+            'tabletlago',
+            'upslago',
+            'estacionlago',
+            'estabilizadorlago',
+            'auriculareslago',
+            'cablelago',
+            'tvlago',
             'switchlago',
             'ruterlago',
             'camaraslago',
@@ -1298,6 +1951,18 @@ class CreateTolhuinGeneral extends Component
             'rutaotros',
             'rutaPc',
             'Pcguardiaruta',
+            'SuboficialesPcruta',
+            'JefeTurnoPcruta',
+            'monitorruta',
+            'notebookruta',
+            'netbookruta',
+            'celularruta',
+            'tabletruta',
+            'upsruta',
+            'estabilizadorruta',
+            'auricularesruta',
+            'cableruta',
+            'tvruta',
             'impresoraChorroruta',
             'impresoraLaserruta',
             'switchruta',
