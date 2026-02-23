@@ -23,7 +23,7 @@
         <form enctype="multipart/form-data">
             <div class="col-xs-12">
 
-           {{-- @if (session()->has('message'))
+           {{-- @if (session()->has('messaage'))
             <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
                 <strong class="font-bold">Éxitooo!</strong>
                 <span class="block sm:inline">{{ session('message') }}</span>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Informatica\Recursos;
 
-
+use App\Models\AuditoriaInventarioRecursos;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Livewire\Component;
 use App\Models\Cientifica;
@@ -124,7 +124,7 @@ class EditRecursosGeneral extends Component
         $this->recursos->cantidadram_id = $this->cantidadram_id ?: null;
         $this->recursos->slotmemoria_id = $this->slotmemoria_id ?: null;
         $this->recursos->bienestare_id = $this->bienestare_id ?: null;
-        $this->recursos->tipodispositivo_id = $this->tipodispositivo_id_id ?: null;
+        $this->recursos->tipodispositivo_id = $this->tipodispositivo_id ?: null;
        // $this->recursos->custodiagubernamentale_id = $this->custodiagubernamentale_id ?: null;
        // $this->general->cientifica_id = $this->cientifica_id ?: null;
 
@@ -141,6 +141,13 @@ class EditRecursosGeneral extends Component
         $this->recursos->tipo_mouse= $this->tipo_mouse ?: null;
         $this->recursos->tipo_teclado= $this->tipo_teclado ?: null;
         $this->recursos->softwares_instalados= $this->softwares_instalados ?: null;
+        AuditoriaInventarioRecursos::create([
+        'recursoshumanosgenerale_id' => $this->recursos->id,
+        'detalles_inventario'   => $this->detalles_inventario,
+        'user_id'               => auth()->id(),
+        'ip_address'            => request()->ip(),
+        'user_agent'            => request()->userAgent(),
+        ]);
         $this->recursos->save();
         $this->generateQRCode();
 

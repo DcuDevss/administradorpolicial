@@ -92,18 +92,29 @@
                                 @foreach ($comunicaciones as $comu)
                                     <tr>
                                         <td class="text-center py-6 font-bold">{{ $comu->id ?? 'No Econtrado' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->equipocomunicacion->nombre ?? 'No Econtrado' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->marcaequipo->nombre ?? 'No Econtrado'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->vhfantena->nombre ?? 'No Econtrado'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? 'No Econtrado'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->nro_serie ?? 'No Econtrado'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->lugar_colocacion ?? 'No Econtrado' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->condicion_equipo_comunicacion ?? 'No Econtrado'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? 'No Econtrado'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? 'No Econtrado'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? 'No Econtrado'}}</td>
                                         <td class="text-center py-6 font-bold">
-                                            <div class="whitespace-normal break-words">{{ $comu->detalle_inventario ?? 'No Econtrado' }}
+                                            {{ $comu->equipocomunicacion->nombre ?? 'No Econtrado' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->marcaequipo->nombre ?? 'No Econtrado' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->vhfantena->nombre ?? 'No Econtrado' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? 'No Econtrado' }}
+                                        </td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->nro_serie ?? 'No Econtrado' }}
+                                        </td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->lugar_colocacion ?? 'No Econtrado' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->condicion_equipo_comunicacion ?? 'No Econtrado' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->fecha_service ?? 'No Econtrado' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->tipo_service ?? 'No Econtrado' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->fecha_inventario ?? 'No Econtrado' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            <div class="whitespace-normal break-words">
+                                                {{ $comu->detalle_inventario ?? 'No Econtrado' }}
                                             </div>
                                         </td>
                                         <td class="text-center py-2 flex flex-col space-y-2">
@@ -111,7 +122,7 @@
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Editar
                                             </a>
-                                            <a  href="{{ route('historial-trabajo-automotore', $comu->id) }}"
+                                            <a href="{{ route('historial-trabajo-automotore', $comu->id) }}"
                                                 class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Modificaciones
                                             </a>

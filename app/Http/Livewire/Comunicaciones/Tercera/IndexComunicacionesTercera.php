@@ -65,6 +65,11 @@ class IndexComunicacionesTercera extends Component
         ->orWhereHas('vhfantena', function ($query) {
             $query->where('nombre', 'like', "%{$this->search}%");
         })
+        ->with([
+            'equipocomunicacion',
+            'marcaequipo',
+            'vhfantena',
+        ])
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
 

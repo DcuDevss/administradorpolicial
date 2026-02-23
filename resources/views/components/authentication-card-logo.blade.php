@@ -1,6 +1,4 @@
 <a href="/">
-    <!-- welcome.blade.php -->
-
-<img src="{{ asset('foto/ComunicacioneNuevoSinFondo.png') }}" alt="Imagen">
-
-</a>
+    <a href="/">
+        <img src="{{ asset('foto/ComunicacioneNuevoSinFondo.webp') }}" alt="Imagen" class="w-40 mx-auto" loading="lazy" decoding="async">
+    </a>

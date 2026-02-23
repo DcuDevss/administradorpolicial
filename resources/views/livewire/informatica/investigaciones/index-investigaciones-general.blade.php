@@ -1,4 +1,4 @@
-<div class="bg-slate-800 text-slate-800 tracking-wider leading-normal m-4">
+<div class="bg-slate-800 text-metric-primary tracking-wider leading-normal m-4">
     {{--  <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto  px-2"> --}}
     <div class="max-w mx-auto sm:px-6 lg:px-8 ">
         <section class=" bg-white text-gray-600 rounded-md px-1">
@@ -35,12 +35,12 @@
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
 
                                         Investigaciones
-                                    </th>
+                                    </th>{{--
                                     <th class="p-1   text-center text-xs text-blue-800">
 
                                         Oficinias Cientifica
-                                    </th>
-                                     {{--<th class="p-1   text-center text-xs text-blue-800">
+                                    </th> --}}
+                                    {{-- <th class="p-1   text-center text-xs text-blue-800">
 
                                         Jefatura
                                     </th>
@@ -65,7 +65,7 @@
                                     <th class="p-1   text-center text-xs text-blue-800">
                                        Destacamentos
 
-                                    </th>--}}
+                                    </th> --}}
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de dispositivos
@@ -83,7 +83,7 @@
                                         Procesador
 
                                     </th>
-                                      <th class="p-1   text-center text-xs text-blue-800">
+                                    <th class="p-1   text-center text-xs text-blue-800">
                                         Sistema operativo
 
                                     </th>
@@ -115,7 +115,7 @@
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de teclado
 
-                                    </th>--}}
+                                    </th> --}}
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha de servis
 
@@ -154,32 +154,43 @@
                                 @foreach ($investigacion as $comu)
                                     <tr>
                                         <td class="text-center py-6 font-bold">{{ $comu->id }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->investigacione->nombre ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->cientifica->nombre ?? '----' }}</td>
-                                        {{--<td class="text-center py-6 font-bold">{{ $comu->tipodeoficina->nombre ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->investigacione->nombre ?? '----' }}</td>
+                                      {{--   <td class="text-center py-6 font-bold">{{ $comu->cientifica->nombre ?? '----' }}
+                                        </td> --}}
+                                        {{-- <td class="text-center py-6 font-bold">{{ $comu->tipodeoficina->nombre ?? '----' }}</td>
                                        <td class="text-center py-6 font-bold">{{ $comu->jefatura->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->investigacione->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->administracion->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->recursohumano->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->serviciosespeciale->nombre ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->destacamento->nombre ?? '----' }}</td>--}}
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipodispositivo->nombre ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->marca ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->procesador ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->sistema_operativo ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_ram ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->cantidadram->cantidad ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->slotmemoria->cantidad ?? '----' }}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_disco ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->cant_almacenamiento ?? '----'}}</td>
-                                       {{-- <td class="text-center py-6 font-bold">{{ $comu->tipo_mouse}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->destacamento->nombre ?? '----' }}</td> --}}
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->tipodispositivo->nombre ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->marca ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->modelo ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->procesador ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->sistema_operativo ?? '----' }}
+                                        </td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_ram ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->cantidadram->cantidad ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->slotmemoria->cantidad ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_disco ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->cant_almacenamiento ?? '----' }}</td>
+                                        {{-- <td class="text-center py-6 font-bold">{{ $comu->tipo_mouse}}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->tipo_teclado}}</td> --}}
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? '----'}}</td>
-                                        <td class="text-center py-6 font-bold">{{ $comu->softwares_instalados ?? '----'}}</td> {{-- --}}
-                                        <td class="text-center py-6 font-bold">{{ $comu->detalles_inventario ?? '----'}}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? '----' }}
+                                        </td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? '----' }}</td>
+                                        <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? '----' }}
+                                        </td>
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->softwares_instalados ?? '----' }}</td> {{-- --}}
+                                        <td class="text-center py-6 font-bold">
+                                            {{ $comu->detalles_inventario ?? '----' }}</td>
                                         <td class="border px-4 py-2">
                                             @if ($comu->codigo_qr)
                                                 <div x-data="{ open: false }">
@@ -216,10 +227,14 @@
                                             @endif
                                         </td>
 
-                                        <td class="text-center py-2 mr-1">
+                                        <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editInvestigacionesGeneral', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Editar
+                                            </a>
+                                            <a href="{{ route('historial-investigaciones-general', $comu->id) }}"
+                                                class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
+                                                Modificaciones
                                             </a>
 
                                         </td>
@@ -237,4 +252,9 @@
             </div>
         </section>
     </div>
-
+    <div class="mt-4">
+       <a href="{{ route('inventario-pdf-investigaciones') }}"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow mt-4">
+            Generar PDF Informática
+        </a>
+    </div>

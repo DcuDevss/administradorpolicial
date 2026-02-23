@@ -4,14 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+
+#[ObservedBy(\App\Observers\ComunicacionesCientificaObserver::class)]
+
 
 class Comunicacionescientifica extends Model
 {
     use HasFactory;
+    use Auditable;
     protected $fillable = [
-        'codigo_qr','equipocomunicacion_id', 'marcaequipo_id',  'lugar_colocacion', 'modelo',
-        'nro_serie', 'condicion_equipo_comunicacion', 'condicion_fuente','condicion_baliza',
-        'fecha_inventario', 'fecha_service', 'tipo_service','detalle_inventario','vhfantena_id',
+        'codigo_qr',
+        'equipocomunicacion_id',
+        'marcaequipo_id',
+        'lugar_colocacion',
+        'modelo',
+        'nro_serie',
+        'condicion_equipo_comunicacion',
+        'condicion_fuente',
+        'condicion_baliza',
+        'fecha_inventario',
+        'fecha_service',
+        'tipo_service',
+        'detalle_inventario',
+        'vhfantena_id',
     ];
     public function marcaequipo()
     {
@@ -29,5 +46,4 @@ class Comunicacionescientifica extends Model
     {
         return $this->hasMany(HistorialTrabajoCientifica::class);
     }
-
 }

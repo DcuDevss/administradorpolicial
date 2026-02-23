@@ -5,16 +5,33 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Models\Traits\Auditable;
 
 
 class ComisariaPrimera extends Model
 {
-    use HasFactory;
+    use HasFactory, Auditable;
 
     protected $fillable = [
-        'tipodispositivo_id', 'tipodeoficina_id', 'cantidadram_id', 'modelo', 'marca', 'procesador','monitor',
-        'sistema_operativo','fecha_inventario', 'activo', 'detalles_inventario','codigo_qr','slotmemoria_id','tipo_ram',
-        'tipo_disco','cant_almacenamiento','tipo_mouse','tipo_teclado','tipo_impresora'
+        'tipodispositivo_id',
+        'tipodeoficina_id',
+        'cantidadram_id',
+        'modelo',
+        'marca',
+        'procesador',
+        'monitor',
+        'sistema_operativo',
+        'fecha_inventario',
+        'activo',
+        'detalles_inventario',
+        'codigo_qr',
+        'slotmemoria_id',
+        'tipo_ram',
+        'tipo_disco',
+        'cant_almacenamiento',
+        'tipo_mouse',
+        'tipo_teclado',
+        'tipo_impresora'
     ];
 
     public function tipodispositivo()

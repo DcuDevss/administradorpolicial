@@ -4,67 +4,65 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
 
 class Marcaequipo extends Model
 {
     use HasFactory;
+    use Auditable;
     protected $fillable = ['nombre'];
 
     //Relación uno a muchos
-    public function comunicacionesprimera(){
+    public function comunicacionesprimera()
+    {
 
         return $this->hasMany(Marcaequipo::class, 'marcaequipo_id');
-
     }
 
-    public function comunicacionessegunda(){
+    public function comunicacionessegunda()
+    {
 
         return $this->hasMany(Marcaequipo::class, 'marcaequipo_id');
-
     }
 
-    public function comunicacionestercera(){
+    public function comunicacionestercera()
+    {
 
         return $this->hasMany(Marcaequipo::class, 'marcaequipo_id');
-
     }
-    public function comunicacionescuarta(){
+    public function comunicacionescuarta()
+    {
 
         return $this->hasMany(Marcaequipo::class, 'marcaequipo_id');
-
     }
 
-    public function comunicacionesquinta(){
+    public function comunicacionesquinta()
+    {
 
         return $this->hasMany(Marcaequipo::class, 'marcaequipo_id');
-
     }
 
-    public function comunicacionesfamilia1(){
+    public function comunicacionesfamilia1()
+    {
 
         return $this->hasMany(Marcaequipo::class, 'marcaequipo_id');
-
     }
 
-    public function comunicacionesfamilia2(){
+    public function comunicacionesfamilia2()
+    {
 
         return $this->hasMany(Marcaequipo::class, 'marcaequipo_id');
-
     }
 
-    public function comunicacionesdesu(){
+    public function comunicacionesdesu()
+    {
 
         return $this->hasMany(Marcaequipo::class, 'marcaequipo_id');
-
     }
 
-    public function comunicacionescientifica(){
+    public function comunicacionescientifica()
+    {
 
         return $this->hasMany(Marcaequipo::class, 'marcaequipo_id');
-
     }
-
-
-
-
 }

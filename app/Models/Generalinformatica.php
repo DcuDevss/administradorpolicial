@@ -4,15 +4,44 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+
+#[ObservedBy(\App\Observers\GeneralinformaticaObserver::class)]
 
 class Generalinformatica extends Model
 {
     use HasFactory;
-       //'investigacione_id','administracion_id','jefatura_id','destacamento_id','recurso_humano_id','serviciosespeciale_id',
-    protected $fillable = ['dependencia_ushuaia_id','cientifica_id','serviciosespeciale_id','custodiagubernamentale_id','software_instalados',
-        'tipodispositivo_id', 'tipodeoficina_id', 'cantidadram_id', 'modelo', 'marca', 'procesador','monitor',
-        'sistema_operativo','fecha_inventario', 'activo', 'detalles_inventario','codigo_qr','slotmemoria_id','tipo_ram',
-        'tipo_disco','cant_almacenamiento','tipo_mouse','tipo_teclado','tipo_impresora','fecha_service','tipo_service'
+    use Auditable;
+    //'investigacione_id','administracion_id','jefatura_id','destacamento_id','recurso_humano_id','serviciosespeciale_id',
+    protected $fillable = [
+        'dependencia_ushuaia_id',
+        'cientifica_id',
+        'investigacione_id',
+        'serviciosespeciale_id',
+        'custodiagubernamentale_id',
+        'software_instalados',
+        'tipodispositivo_id',
+        'tipodeoficina_id',
+        'cantidadram_id',
+        'modelo',
+        'marca',
+        'procesador',
+        'monitor',
+        'sistema_operativo',
+        'fecha_inventario',
+        'activo',
+        'detalles_inventario',
+        'codigo_qr',
+        'slotmemoria_id',
+        'tipo_ram',
+        'tipo_disco',
+        'cant_almacenamiento',
+        'tipo_mouse',
+        'tipo_teclado',
+        'tipo_impresora',
+        'fecha_service',
+        'tipo_service'
     ];
 
     public function cientifica()
@@ -70,5 +99,40 @@ class Generalinformatica extends Model
     public function auditorias()
     {
         return $this->hasMany(AuditoriaDetalleInventario::class);
+    }
+
+
+
+    public function auditLabel(): string
+    {
+        // Mapeo de la clave foránea a la relación y la ciudad
+        $relationsMap = [
+            'dependencia_ushuaia_id'    => ['rel' => 'dependenciaushuaia', 'city' => 'Ushuaia'],
+            'cientifica_id'             => ['rel' => 'cientifica', 'city' => 'Ushuaia'],
+            'serviciosespeciale_id'     => ['rel' => 'serviciosespeciale', 'city' => 'Ushuaia'],
+            'custodiagubernamentale_id' => ['rel' => 'custodiagubernamentale', 'city' => 'Ushuaia'],
+            'investigacione_id'         => ['rel' => 'investigacione', 'city' => 'Ushuaia'],
+            'recurso_humano_id'         => ['rel' => 'recursohumano', 'city' => 'Ushuaia'],
+            'jefatura_id'               => ['rel' => 'jefatura', 'city' => 'Ushuaia'],
+            'administracion_id'         => ['rel' => 'administracion', 'city' => 'Ushuaia'],
+        ];
+
+        foreach ($relationsMap as $foreignKey => $data) {
+            // Verificamos si la clave foránea tiene un valor
+            if (!empty($this->$foreignKey)) {
+                $relationName = $data['rel'];
+
+                // Intentamos obtener el modelo relacionado de forma segura
+                $related = $this->relationLoaded($relationName)
+                    ? $this->$relationName
+                    : $this->$relationName()->first(); // Carga manual segura si no está cargada
+
+                if ($related) {
+                    return $data['city'] . ' – ' . $related->nombre;
+                }
+            }
+        }
+
+        return 'Ushuaia – Sin dependencia';
     }
 }

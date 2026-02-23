@@ -51,11 +51,11 @@ class CreateServiciosespecialesGeneral extends Component
     public $Recurso_Humano = [];
     public $DEstacamento = [];
     public $SErviciosespeciale = [];
-    public $CUstodiagubernamentale=[];
+    public $CUstodiagubernamentale = [];
 
-    public $codigo_qr, $generalinformatica,$administraciongenerale_id,$investigacionesgenerale_id,$custodiagubernamentalgenerale_id, $dependencia_ushuaia_id, $comisariaprimera_id, $tipodispositivo_id, $tipodeoficina_id, $cantidadram_id, $slotmemoria_id,
-        $serviciosespeciale_id,$investigacione_id,$administracion_id,$custodiagubernamentale_id,$recurso_humano_id,$destacamento_id,$jefatura_id,$comisariaprimera, $marca, $modelo, $procesador,  $sistema_operativo,  $fecha_service, $tipo_service,
-        $fecha_inventario, $activo, $detalles_inventario, $tipo_ram, $tipo_disco, $cant_almacenamiento, $tipo_mouse, $tipo_teclado,$admin,$inve,$recursos,$jefa,$servicios,$custodia;
+    public $codigo_qr, $generalinformatica, $administraciongenerale_id, $investigacionesgenerale_id, $custodiagubernamentalgenerale_id, $dependencia_ushuaia_id, $comisariaprimera_id, $tipodispositivo_id, $tipodeoficina_id, $cantidadram_id, $slotmemoria_id,
+        $serviciosespeciale_id, $investigacione_id, $administracion_id, $custodiagubernamentale_id, $recurso_humano_id, $destacamento_id, $jefatura_id, $comisariaprimera, $marca, $modelo, $procesador,  $sistema_operativo,  $fecha_service, $tipo_service,
+        $fecha_inventario, $activo, $detalles_inventario, $tipo_ram, $tipo_disco, $cant_almacenamiento, $tipo_mouse, $tipo_teclado, $admin, $inve, $recursos, $jefa, $servicios, $custodia;
     //$monitor,$tipo_impresora,
 
     protected $rules = [
@@ -71,7 +71,7 @@ class CreateServiciosespecialesGeneral extends Component
         'investigacione_id' => 'nullable',
         'recurso_humano_id' => 'nullable',
         'serviciosespeciale_id' => 'nullable',
-        'custodiagubernamentale_id'=>'nullable',
+        'custodiagubernamentale_id' => 'nullable',
 
 
         'marca' => 'nullable',
@@ -103,8 +103,8 @@ class CreateServiciosespecialesGeneral extends Component
         $this->recurso_humano_id = "";
         $this->destacamento_id = "";
         $this->investigacione_id = "";
-        $this->serviciosespeciale_id ='';
-        $this->custodiagubernamentale_id='';
+        $this->serviciosespeciale_id = '';
+        $this->custodiagubernamentale_id = '';
 
         $this->CantidadRam = Cantidadram::all();
         $this->TipodeOficina = Tipodeoficina::all(); // Cargar los datos de tipo de oficina
@@ -119,7 +119,6 @@ class CreateServiciosespecialesGeneral extends Component
         $this->DEstacamento = Destacamento::all();
         $this->SErviciosespeciale = Serviciosespeciale::all();
         $this->CUstodiagubernamentale = Custodiagubernamentale::all();
-
     }
 
     public function guardarserviciosespeciales()
@@ -129,7 +128,7 @@ class CreateServiciosespecialesGeneral extends Component
         try {
 
             $this->servicios = new Serviciosespecialesgenerale();
-           // $this->tipodeoficina_id === null || $this->tipodeoficina_id === '' ? $this->admin->tipodeoficina_id = null : $this->admin->tipodeoficina_id = $this->tipodeoficina_id;
+            // $this->tipodeoficina_id === null || $this->tipodeoficina_id === '' ? $this->admin->tipodeoficina_id = null : $this->admin->tipodeoficina_id = $this->tipodeoficina_id;
             $this->cantidadram_id === null || $this->cantidadram_id === '' ? $this->servicios->cantidadram_id = null : $this->servicios->cantidadram_id = $this->cantidadram_id;
             $this->slotmemoria_id === null || $this->slotmemoria_id === '' ? $this->servicios->slotmemoria_id = null : $this->servicios->slotmemoria_id = $this->slotmemoria_id;
             $this->tipodispositivo_id === null || $this->tipodispositivo_id === '' ? $this->servicios->tipodispositivo_id = null : $this->servicios->tipodispositivo_id = $this->tipodispositivo_id;
@@ -148,7 +147,7 @@ class CreateServiciosespecialesGeneral extends Component
             $this->servicios->fecha_service = $this->fecha_service;
             $this->servicios->tipo_service = $this->tipo_service;
             $this->servicios->detalles_inventario = $this->detalles_inventario;
-            $this->servicios->activo = $this->activo;
+            $this->servicios->activo = $this->activo = $this->activo ? 1 : 0;
             $this->servicios->save();
 
 
@@ -182,7 +181,7 @@ class CreateServiciosespecialesGeneral extends Component
             DB::commit();
             //$this->clearForm();
 
-       } catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return $e->getMessage();
         }

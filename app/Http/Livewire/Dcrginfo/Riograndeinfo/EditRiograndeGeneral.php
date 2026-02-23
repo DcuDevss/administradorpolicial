@@ -18,6 +18,9 @@ use App\Models\Tipodeoficina;
 use App\Models\Tipodispositivo;
 use App\Models\Slotmemoria;
 use App\Models\Riogrande;
+use App\Models\AuditoriaDetalleInventario;
+use App\Models\AuditoriaInventarioInvestigaciones;
+use App\Models\AuditoriaInventarioRiogrande;
 use App\Models\Custodiagubernamentalgenerale;
 use App\Models\Custodiagubernamentale;
 use App\Models\Jefatura;
@@ -131,7 +134,7 @@ class EditRiograndeGeneral extends Component
         $this->fecha_service = $riogrande->fecha_service ? Carbon::parse($riogrande->fecha_service)->format('Y-m-d') : '';
         $this->tipo_service = $riogrande->tipo_service ?? '';
         $this->softwares_instalados = $riogrande->softwares_instalados ?? '';
-       // $this->detalles_inventario = $riogrande->detalles_inventario ?? '';
+        $this->detalles_inventario = $riogrande->detalles_inventario ?? '';
         $this->activo = $riogrande->activo ?? '';
     }
 
@@ -143,6 +146,7 @@ class EditRiograndeGeneral extends Component
 
         $this->riogrande->dependencia_riogrande_id = $this->dependencia_riogrande_id ?: null;
         $this->riogrande->tipodeoficina_id = $this->tipodeoficina_id ?: null;
+        $this->riogrande->tipodispositivo_id      = $this->tipodispositivo_id ?: null;
         $this->riogrande->cantidadram_id = $this->cantidadram_id ?: null;
         $this->riogrande->slotmemoria_id = $this->slotmemoria_id ?: null;
         $this->riogrande->riogrande_id = $this->riogrande_id ?: null;
@@ -161,7 +165,14 @@ class EditRiograndeGeneral extends Component
         $this->riogrande->tipo_mouse= $this->tipo_mouse ?: null;
         $this->riogrande->tipo_teclado= $this->tipo_teclado ?: null;
         $this->riogrande->softwares_instalados= $this->softwares_instalados ?: null;
-
+/*         AuditoriaInventarioRiogrande::create([
+            'riograndegenerale_id' => $this->riogrande->id,
+            'detalles_inventario'   => $this->detalles_inventario,
+            'user_id'               => auth()->id(),
+            'ip_address'            => request()->ip(),
+            'user_agent'            => request()->userAgent(),
+        ]);
+ */
         $this->riogrande->save();
 
         // Generar el código QR después de guardar los cambios

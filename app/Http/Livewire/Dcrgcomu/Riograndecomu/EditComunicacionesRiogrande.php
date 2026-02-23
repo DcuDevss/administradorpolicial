@@ -72,14 +72,10 @@ public function mount(Comunicacionesrg $comunicaciones)
     $this->modelo = $comunicaciones->modelo;
     $this->nro_serie = $comunicaciones->nro_serie;
     $this->condicion_equipo_comunicacion = $comunicaciones->condicion_equipo_comunicacion;
-   // $this->vhfantena_id = $comunicaciones->vhfantena_id;
-    //$this->comunicacionesprimera->condicion_baliza = $this->condicion_baliza;
     $this->fecha_service = $comunicaciones->fecha_service ? Carbon::parse($comunicaciones->fecha_service)->format('Y-m-d') : null;
     $this->fecha_inventario = $comunicaciones->fecha_inventario ? Carbon::parse($comunicaciones->fecha_inventario)->format('Y-m-d') : null;
-   // $this->fecha_service = $comunicaciones->fecha_service;
     $this->tipo_service = $comunicaciones->tipo_service;
-   // $this->fecha_inventario = $comunicaciones->fecha_inventario;
-    //$this->detalle_inventario = $comunicaciones->detalle_inventario;
+    $this->detalle_inventario = $comunicaciones->detalle_inventario;
 
 
 }

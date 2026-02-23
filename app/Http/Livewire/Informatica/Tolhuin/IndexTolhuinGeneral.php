@@ -93,6 +93,13 @@ class IndexTolhuinGeneral extends Component
         ->orWhereHas('slotmemoria', function ($query) {
             $query->where('cantidad', 'like', "%{$this->search}%");
         })
+        ->with([
+            'dependencia_tolhuin',
+            'tipodispositivo',
+            'tipodeoficina',
+            'cantidadram',
+            'slotmemoria',
+        ])
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
 

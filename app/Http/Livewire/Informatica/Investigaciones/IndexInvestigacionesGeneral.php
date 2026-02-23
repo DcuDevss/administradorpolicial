@@ -87,9 +87,12 @@ class IndexInvestigacionesGeneral extends Component
         ->orWhereHas('slotmemoria', function ($query) {
             $query->where('cantidad', 'like', "%{$this->search}%");
         })
-        ->orWhereHas('cientifica', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
+        ->with([
+            'investigacione',
+            'tipodispositivo',
+            'cantidadram',
+            'slotmemoria',
+        ])
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
 

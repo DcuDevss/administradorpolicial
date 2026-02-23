@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
+
 
 class Handler extends ExceptionHandler
 {
@@ -23,6 +26,14 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
+            $this->reportable(function (QueryException $e) {
+        Log::error('SQL_FAIL', [
+            'sql' => $e->getSql(),
+            'bindings' => $e->getBindings(),
+            'message' => $e->getMessage(),
+            'url' => request()->fullUrl(),
+        ]);
+    });
         $this->reportable(function (Throwable $e) {
             //
         });

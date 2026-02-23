@@ -4,14 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+
+#[ObservedBy(\App\Observers\ComunicacionesrgObserver::class)]
 
 class Comunicacionesrg extends Model
 {
     use HasFactory;
+    use Auditable;
     protected $fillable = [
-        'codigo_qr','equipocomunicacion_id', 'dependencia_riogrande_id', 'marcaequipo_id',  'lugar_colocacion', 'modelo',
-        'nro_serie', 'condicion_equipo_comunicacion', 'condicion_fuente','condicion_baliza',
-        'fecha_inventario', 'fecha_service', 'tipo_service','detalle_inventario','vhfantena_id',
+        'codigo_qr',
+        'equipocomunicacion_id',
+        'dependencia_riogrande_id',
+        'marcaequipo_id',
+        'lugar_colocacion',
+        'modelo',
+        'nro_serie',
+        'condicion_equipo_comunicacion',
+        'condicion_fuente',
+        'condicion_baliza',
+        'fecha_inventario',
+        'fecha_service',
+        'tipo_service',
+        'detalle_inventario',
+        'vhfantena_id',
     ];
     public function dependenciarg()
     {
@@ -32,5 +49,11 @@ class Comunicacionesrg extends Model
     public function historialDetalles()
     {
         return $this->hasMany(HistorialTrabajoRiogrande::class);
+    }
+
+    // 🔍 Cómo se muestra esta entidad en la auditoría
+    public function auditLabel(): string
+    {
+        return 'D.C.R.G – ' . optional($this->dependenciarg)->nombre;
     }
 }

@@ -1,7 +1,19 @@
+/* ============================================================
+   IMPORTACIONES (DEBEN IR ARRIBA DE TODO)
+   ============================================================ */
+@import "./base.css";
+@import "./typography.css";
+@import "./forms.css";
+@import "./tables.css";
+@import "./ui-components.css";
+@import "./cards.css";
+@import "./mascarilla-test.css";
+/* @import "./responsive-ajustes.css"; */
+
+/* ============================================================
+   NÚCLEO (TAILWIND) - DESPUÉS DE LOS IMPORTS
+   ============================================================ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-[x-cloak] {
-    display: none;
-}

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
 
 class EstadoComunicacion extends Model
 {
     use HasFactory;
+    use Auditable;
 
     //protected $table = 'estado_comunicacion';
 
@@ -21,5 +23,5 @@ class EstadoComunicacion extends Model
     //public function estadoequipo()
     //{
     //    return $this->belongsTo(EstadoEquipo::class, 'estado_equipo_id');
-   // }
+    // }
 }

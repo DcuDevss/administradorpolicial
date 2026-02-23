@@ -24,6 +24,8 @@ use App\Models\Jefatura;
 use App\Models\Destacamento;
 use App\Models\RecursoHumano;
 use App\Models\Investigacione;
+use App\Models\AuditoriaDetalleInventario;
+use App\Models\AuditoriaInventarioInvestigaciones;
 use App\Models\Jefaturagenerale;
 use App\Models\Recursoshumanosgenerale;
 use App\Models\Serviciosespeciale;
@@ -154,10 +156,18 @@ class EditInvestigacionesGeneral extends Component
     $this->investigaciones->tipo_mouse= $this->tipo_mouse ?: null;
     $this->investigaciones->tipo_teclado= $this->tipo_teclado ?: null;
     $this->investigaciones->softwares_instalados= $this->softwares_instalados ?: null;
+    AuditoriaInventarioInvestigaciones::create([
+        'investigacionegenerale_id' => $this->investigaciones->id,
+        'detalles_inventario'   => $this->detalles_inventario,
+        'user_id'               => auth()->id(),
+        'ip_address'            => request()->ip(),
+        'user_agent'            => request()->userAgent(),
+    ]);
+
 
     $this->investigaciones->save();
 
-    // Generar el código QR después de guardar los cambios
+    // Generar el código QR después de guardar los cambioos
     $this->generateQRCode();
 
     session()->flash('message', 'Datos actualizados correctamente.');

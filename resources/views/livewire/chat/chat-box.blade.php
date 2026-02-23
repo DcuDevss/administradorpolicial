@@ -1,224 +1,224 @@
-<div
- x-data="{
-    height:0,
-    conversationElement:document.getElementById('conversation'),
-    markAsRead:null
-}"
- x-init="
-        height= conversationElement.scrollHeight;
-        $nextTick(()=>conversationElement.scrollTop= height);
+<div x-data="{
+    height: 0,
+    conversationElement: null,
+    markAsRead: null,
+}" x-init="conversationElement = document.getElementById('conversation');
+height = conversationElement?.scrollHeight || 0;
+$nextTick(() => {
+    if (conversationElement) conversationElement.scrollTop = height;
+});
 
+Echo.private('users.{{ Auth()->user()->id }}')
+    .notification((notification) => {
+        if (
+            (notification['type'] === 'App\\\\Notifications\\\\MessageRead' ||
+                notification['type'] === 'App\\\\Notifications\\\\MessageSent') &&
+            notification['conversation_id'] == {{ $this->selectedConversation->id }}
+        ) {
+            markAsRead = true;
+        }
+    });"
+    @scroll-bottom.window="
+    $nextTick(() => {
+        const el = document.getElementById('conversation');
+        if (el) el.scrollTop = el.scrollHeight;
+    });
+"
+    class="chat-isolated w-full h-full overflow-hidden">
 
-        Echo.private('users.{{Auth()->User()->id}}')
-        .notification((notification)=>{
-            if(notification['type']== 'App\\Notifications\\MessageRead' && notification['conversation_id']== {{$this->selectedConversation->id}})
-            {
+    <style>
+        /* ────────────────────────────────────────────────
+           🔒 AISLAMIENTO SOLO DEL CHAT (NO TOCA EL BODY)
+           ──────────────────────────────────────────────── */
 
-                markAsRead=true;
+        .chat-isolated {
+            position: relative;
+            z-index: 50;
+            isolation: isolate;
+            /* 🔥 crea contexto propio */
+        }
+
+        .chat-fullscreen-wrapper {
+            position: fixed;
+            top: 64px;
+            /* altura real de tu navbar */
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            z-index: 20;
+        }
+
+        /* Selector específico para Livewire */
+        .chat-isolated .border-b.flex.flex-col.grow,
+        .chat-isolated .chat-fullscreen-wrapper>div.flex-col {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            height: 100%;
+        }
+
+        /* Área de mensajes */
+        .chat-isolated #conversation {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0.625rem;
+            -webkit-overflow-scrolling: touch;
+            background: #ffffff;
+        }
+
+        /* Header del chat */
+        .chat-isolated header {
+            background: #e5e7eb !important;
+        }
+
+        /* Área enviar mensaje */
+        .chat-isolated .shrink-0.z-10 {
+            background: #1e293b !important;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .chat-isolated .chat-fullscreen-wrapper {
+                height: calc(100vh - var(--navbar-offset-mobile, 56px));
             }
-        });
- "
-
- @scroll-bottom.window="
- $nextTick(()=>
- conversationElement.scrollTop= conversationElement.scrollHeight
- );
- "
-class="w-full overflow-hidden">
-    <div class="border-b flex flex-col overflow-y-scroll grow h-full">
-    {{-- header --}}
-    <header class="w-full sticky inset-x-0 flex pb-[5px] pt-[5px] top-0 z-10 bg-gray-300 border-b " >
-
-        <div class="flex w-full items-center px-2 lg:px-4 gap-2 md:gap-5">
-
-            <a class="shrink-0 lg:hidden" href="#">
-
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
-                  </svg>
-            </a>
-
-            {{-- avatar --}}
-
-            <div class="shrink-0">
-                <x-avatar class="h-9 w-9 lg:w-11 lg:h-11" />
-            </div>
-
-            <h6 class="font-bold truncate"> {{$selectedConversation->getReceiver()->email}} </h6>
-
-        </div>
-    </header>
-
-    {{-- body --}}
-    <main
-     @scroll="
-      scropTop = $el.scrollTop;
-
-      if(scropTop <= 0){
-
-        window.livewire.emit('loadMore');
-
-      }
-
-     "
-
-     @update-chat-height.window="
-
-         newHeight= $el.scrollHeight;
-
-         oldHeight= height;
-         $el.scrollTop= newHeight- oldHeight;
-
-         height=newHeight;
-
-     "
-    id="conversation"  class="flex flex-col gap-3 p-2.5 overflow-y-auto  flex-grow overscroll-contain overflow-x-hidden w-full my-auto">
-
-        @if ($loadedMessages)
-
-        @php
-            $previousMessage= null;
-        @endphp
-
-
-        @foreach ($loadedMessages as $key=> $message)
-
-        {{-- keep track of the previous message --}}
-
-        @if ($key>0)
-
-        @php
-            $previousMessage= $loadedMessages->get($key-1)
-        @endphp
-
-        @endif
-
-
-        <div
-        wire:key="{{time().$key}}"
-        @class([
-            'max-w-[85%] md:max-w-[78%] flex w-auto gap-2 relative mt-2',
-            'ml-auto'=>$message->sender_id=== auth()->id(),
-                ]) >
-
-        {{-- avatar --}}
-
-        <div @class([
-                    'shrink-0',
-                    'invisible'=>$previousMessage?->sender_id==$message->sender_id,
-                    'hidden'=>$message->sender_id === auth()->id()
-                        ])>
-
-            <x-avatar />
-        </div>
-            {{-- messsage body --}}
-
-            <div @class(['flex flex-wrap text-[15px]  rounded-xl p-2.5 flex flex-col text-black bg-[#f6f6f8fb]',
-                         'rounded-bl-none border  border-gray-200/40 '=>!($message->sender_id=== auth()->id()),
-                         'rounded-br-none bg-blue-500/80 text-white'=>$message->sender_id=== auth()->id()
-               ])>
-
-
-
-            <p class="whitespace-normal truncate text-sm md:text-base tracking-wide lg:tracking-normal">
-              {{$message->body}}
-            </p>
-
-
-            <div class="ml-auto flex gap-2">
-
-                <p @class([
-                    'text-xs ',
-                    'text-gray-500'=>!($message->sender_id=== auth()->id()),
-                    'text-white'=>$message->sender_id=== auth()->id(),
-
-                        ]) >
-
-
-                    {{$message->created_at->format('g:i a')}}
-
-                </p>
-
-
-                {{-- message status , only show if message belongs auth --}}
-
-                @if ($message->sender_id=== auth()->id())
-
-                    <div x-data="{markAsRead:@json($message->isRead())}">
-
-                        {{-- double ticks --}}
-
-                        <span x-cloak x-show="markAsRead" @class('text-gray-200')>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-all" viewBox="0 0 16 16">
-                                <path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l7-7zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0z"/>
-                                <path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708z"/>
-                            </svg>
-                        </span>
-
-                        {{-- single ticks --}}
-                        <span x-show="!markAsRead" @class('text-gray-200')>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
-                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                            </svg>
-                        </span>
-
-
-                    </div>
-                @endif
-
-
-            </div>
-
-            </div>
-
-        </div>
-
-        @endforeach
-        @endif
-
-    </main>
-
-    {{-- send message  --}}
-
-    <footer class="shrink-0 z-10 bg-slate-800 inset-x-0">
-
-        <div class=" p-2 border-t">
-
-            <form
-             x-data="{body:@entangle('body').defer}"
-             @submit.prevent="$wire.sendMessage"
-             method="POST" autocapitalize="off">
-                @csrf
-
-                <input type="hidden" autocomplete="false" style="display:none">
-
-                <div class="grid grid-cols-12">
-                     <input
-                            x-model="body"
-                            type="text"
-                            autocomplete="off"
-                            autofocus
-                            placeholder="Ingrese su mensaje..."
-                            maxlength="1700"
-                            class="col-span-10 bg-gray-100 border-0 outline-0 focus:border-0 focus:ring-0 hover:ring-0 rounded-lg  focus:outline-none"
-                     >
-
-                     <button x-bind:disabled="!body.trim()"  class="col-span-1 ml-3 bg-purple-900 rounded-md text-white" type='submit'>Enviar</button>
-
+        }
+    </style>
+
+
+    <!-- Contenedor principal con clase descriptiva -->
+    <div class="chat-fullscreen-wrapper border-b flex flex-col grow">
+
+        {{-- header --}}
+        <header class="w-full sticky inset-x-0 flex pb-[5px] pt-[5px] top-0 z-10 bg-gray-300 border-b shrink-0">
+            <div class="flex w-full items-center px-2 lg:px-4 gap-2 md:gap-5">
+                <a class="shrink-0 lg:hidden" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+                    </svg>
+                </a>
+
+                {{-- avatar --}}
+                <div class="shrink-0">
+                    <x-avatar class="h-9 w-9 lg:w-11 lg:h-11" />
                 </div>
 
+                <h6 class="font-bold truncate">
+                    {{ $selectedConversation->getReceiver()->email }}
+                </h6>
+            </div>
+        </header>
+
+        {{-- body --}}
+        <main id="conversation"
+            class="flex flex-col gap-3 p-2.5 overflow-y-auto flex-grow overscroll-contain overflow-x-hidden w-full my-auto bg-white"
+            @scroll="
+                const scrollTop = $el.scrollTop;
+                if (scrollTop <= 0) {
+                    window.Livewire.emit('loadMore');
+                }
+            "
+            @update-chat-height.window="
+                const newHeight = $el.scrollHeight;
+                const oldHeight = height;
+                $el.scrollTop = newHeight - oldHeight;
+                height = newHeight;
+            ">
+            @if ($loadedMessages)
+                @php $previousMessage = null; @endphp
+
+                @foreach ($loadedMessages as $key => $message)
+                    @if ($key > 0)
+                        @php $previousMessage = $loadedMessages->get($key - 1); @endphp
+                    @endif
+
+                    <div wire:key="msg-{{ $message->id }}" @class([
+                        'max-w-[85%] md:max-w-[78%] flex w-auto gap-2 relative mt-2',
+                        'ml-auto' => $message->sender_id === auth()->id(),
+                    ])>
+                        {{-- avatar --}}
+                        <div @class([
+                            'shrink-0',
+                            'invisible' => $previousMessage?->sender_id == $message->sender_id,
+                            'hidden' => $message->sender_id === auth()->id(),
+                        ])>
+                            <x-avatar />
+                        </div>
+
+                        {{-- message body --}}
+                        <div @class([
+                            'flex flex-wrap text-[15px] rounded-xl p-2.5 flex flex-col',
+                            'text-black bg-[#f6f6f8fb] rounded-bl-none border border-gray-200/40' => !(
+                                $message->sender_id === auth()->id()
+                            ),
+                            'rounded-br-none bg-blue-500/80 text-white' =>
+                                $message->sender_id === auth()->id(),
+                        ])>
+                            <p class="whitespace-normal truncate text-sm md:text-base tracking-wide lg:tracking-normal">
+                                {{ $message->body }}
+                            </p>
+
+                            <div class="ml-auto flex gap-2">
+                                <p @class([
+                                    'text-xs',
+                                    'text-gray-500' => !($message->sender_id === auth()->id()),
+                                    'text-white' => $message->sender_id === auth()->id(),
+                                ])>
+                                    {{ $message->created_at->format('g:i a') }}
+                                </p>
+
+                                {{-- status (solo si es del auth) --}}
+                                @if ($message->sender_id === auth()->id())
+                                    <div x-data="{ markAsRead: @json($message->isRead()) }">
+                                        {{-- double ticks --}}
+                                        <span x-cloak x-show="markAsRead" class="text-gray-200">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-check2-all" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l7-7zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0z" />
+                                                <path
+                                                    d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708z" />
+                                            </svg>
+                                        </span>
+
+                                        {{-- single ticks --}}
+                                        <span x-show="!markAsRead" class="text-gray-200">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </main>
+
+        {{-- send message --}}
+        <div class="shrink-0 z-10 bg-slate-800 p-2 border-t">
+            <form wire:submit.prevent="sendMessage" autocapitalize="off">
+                <div class="grid grid-cols-12 items-center">
+                    <input wire:model.defer="body" type="text" autocomplete="off" autofocus
+                        placeholder="Ingrese su mensaje..." maxlength="1700"
+                        class="col-span-10 bg-gray-100 border-0 outline-0 focus:border-0 focus:ring-0 hover:ring-0 rounded-lg focus:outline-none text-black p-2">
+
+                    <button class="col-span-2 ml-3 bg-purple-900 rounded-md text-white font-bold py-2" type="submit"
+                        wire:loading.attr="disabled" wire:target="sendMessage">
+                        Enviar
+                    </button>
+                </div>
             </form>
-
-           {{--  @error('body')
-
-            <p> {{$message}} </p>
-
-            @enderror--}}
-
         </div>
-
-    </footer>
-
-</div>
-
+    </div>
 </div>

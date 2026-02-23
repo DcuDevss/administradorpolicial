@@ -89,6 +89,12 @@ class IndexJefaturaGeneral extends Component
         ->orWhereHas('slotmemoria', function ($query) {
             $query->where('cantidad', 'like', "%{$this->search}%");
         })
+        ->with([
+            'jefatura',
+            'tipodispositivo',
+            'cantidadram',
+            'slotmemoria',
+        ])
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
 

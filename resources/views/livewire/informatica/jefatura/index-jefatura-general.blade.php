@@ -215,12 +215,15 @@
                                             @endif
                                         </td>
 
-                                        <td class="text-center py-2 mr-1">
+                                        <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editJefaturaGeneral', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Editar
                                             </a>
-
+                                            <a href="{{ route('historial-jefatura-general', $comu->id) }}"
+                                                class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
+                                                Modificaciones
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -235,4 +238,10 @@
 
             </div>
         </section>
+    </div>
+    <div class="mt-4">
+       <a href="{{ route('inventario-pdf-jefatura') }}"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow mt-4">
+            Generar PDF Informática
+        </a>
     </div>

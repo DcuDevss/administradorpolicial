@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Conversation;
+use Illuminate\Support\Facades\Cache;
+use App\Models\Message;
 
 class NotificacionChat extends Component
 {
@@ -12,7 +14,7 @@ class NotificacionChat extends Component
 
     protected $listeners = ['refresh' => '$refresh'];
 
-   /* public function deleteByUser($id)
+    /* public function deleteByUser($id)
     {
         $userId = auth()->id();
         $conversation = Conversation::find(decrypt($id));
@@ -40,7 +42,7 @@ class NotificacionChat extends Component
 
         return redirect(route('chatlist'));
     }*/
-
+    /*
     public function unreadMessagesCount($conversation)
     {
         return $conversation->messages()
@@ -59,4 +61,58 @@ class NotificacionChat extends Component
         'totalUnreadMessagesCount' => $totalUnreadMessagesCount,
     ]);
 }
+}
+ */
+
+    // C:\xampp\htdocs\administradorpolicial\app\Http\Livewire\NotificacionChat.php
+
+    // ... (Resto del componente)
+
+    public function unreadMessagesCount($conversation)
+    {
+        return $conversation->messages()
+            ->where('receiver_id', auth()->id())
+            ->whereNull('read_at')
+            ->count();
+    }
+
+
+    public function render()
+    {
+        $user = auth()->user();
+
+        if (!$user) {
+            return view('livewire.notificacion-chat', [
+                'conversations' => collect(),
+                'totalUnreadMessagesCount' => 0,
+            ]);
+        }
+
+        $conversations = $user->conversations()
+            ->with(['lastMessage' => function ($q) {
+                $q->select(
+                    'messages.id',
+                    'messages.conversation_id',
+                    'messages.sender_id',
+                    'messages.body',
+                    'messages.created_at'
+                );
+            }])
+            ->latest('updated_at')
+            ->get();
+
+        $totalUnreadMessagesCount = Cache::remember(
+            "unread_total_{$user->id}",
+            now()->addSeconds(10),
+            fn () => Message::whereNull('read_at')
+                ->where('receiver_id', $user->id)
+                ->count()
+        );
+
+        return view('livewire.notificacion-chat', [
+            'conversations' => $conversations,
+            'totalUnreadMessagesCount' => $totalUnreadMessagesCount,
+        ]);
+    }
+
 }

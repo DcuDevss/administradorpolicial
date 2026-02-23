@@ -1,0 +1,54 @@
+/* resources/css/tables.css */
+
+/* Limpieza de los contenedores blancos de Jetstream que envuelven la tabla */
+.py-12 > .max-w-7xl > .bg-white,
+.overflow-hidden.shadow-xl.sm\:rounded-lg:has(table),
+.min-w-full.align-middle.inline-block {
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Tabla con Efecto Glass Reforzado */
+table {
+    width: 100% !important;
+    background: rgba(15, 23, 42, 0.6) !important; /* Fondo oscuro translúcido */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    margin-bottom: 1.5rem; /* Espacio para que no choque con el paginado */
+}
+
+/* Encabezado Táctico */
+thead {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+th {
+    color: #ffffff !important;
+    text-transform: uppercase !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.1em !important;
+    padding: 1rem !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Cuerpo de la tabla y celdas */
+tbody tr {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+td {
+    color: #e2e8f0 !important;
+    padding: 0.75rem 1rem !important;
+}

@@ -16,7 +16,8 @@ class SumarEquipos extends Component
     public $sumaAntena;
     public $sumaOtros;
     public $sumaSinDatos;
-
+    public $sumaPtt;
+    public $sumaComandoBaliza;
     public function mount()
     {
         $this->contarEquipos();
@@ -38,6 +39,7 @@ class SumarEquipos extends Component
                             + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 3)->count()
                             + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 3)->count()
                             + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 3)->count()
+                            + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 3)->count()
                             + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 3)->count()
                             + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 3)->count()
                             + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 3)->count()
@@ -57,6 +59,7 @@ class SumarEquipos extends Component
                     + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 4)->count()
                     + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 4)->count()
                     + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 4)->count()
+                    + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 4)->count()
                     + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 4)->count()
                     + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 4)->count()
                     + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 4)->count()
@@ -72,10 +75,11 @@ class SumarEquipos extends Component
                             + DB::table('comunicacionesautomotores')->where('equipocomunicacion_id', 5)->count()
                             + DB::table('comunicacionescientificas')->where('equipocomunicacion_id', 5)->count()
                             + DB::table('comunicacionescomplejos')->where('equipocomunicacion_id', 5)->count()
-                            + DB::table('comunicacionescustodias')->where('equipocomunicacion_id', )->count()
+                            + DB::table('comunicacionescustodias')->where('equipocomunicacion_id', 5)->count()
                             + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 5)->count()
                             + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 5)->count()
                             + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 5)->count()
+                            + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 5)->count()
                             + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 5)->count()
                             + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 5)->count()
                             + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 5)->count()
@@ -95,6 +99,7 @@ class SumarEquipos extends Component
                             + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 6)->count()
                             + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 6)->count()
                             + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 6)->count()
+                            + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 6)->count()
                             + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 6)->count()
                             + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 6)->count()
                             + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 6)->count()
@@ -114,6 +119,7 @@ class SumarEquipos extends Component
                         + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 7)->count()
                         + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 7)->count()
                         + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 7)->count()
+                        + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 7)->count()
                         + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 7)->count()
                         + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 7)->count()
                         + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 7)->count()
@@ -133,6 +139,7 @@ class SumarEquipos extends Component
                         + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 8)->count()
                         + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 8)->count()
                         + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 8)->count()
+                        + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 8)->count()
                         + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 8)->count()
                         + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 8)->count()
                         + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 8)->count()
@@ -152,6 +159,7 @@ class SumarEquipos extends Component
                     + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 1)->count()
                     + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 1)->count()
                     + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 1)->count()
+                    + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 1)->count()
                     + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 1)->count()
                     + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 1)->count()
                     + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 1)->count()
@@ -171,10 +179,51 @@ class SumarEquipos extends Component
                     + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 2)->count()
                     + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 2)->count()
                     + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 2)->count()
+                    + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 2)->count()
                     + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 2)->count()
                     + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 2)->count()
                     + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 2)->count()
                     + DB::table('comunicacionesjefaturas')->where('equipocomunicacion_id', 2)->count();
+
+        // Sumar Ptt
+        $this->sumaPtt = DB::table('comunicacionesprimeras')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionessegundas')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesterceras')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionescuartas')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesquintas')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesadministracions')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesautomotores')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionescientificas')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionescomplejos')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionescustodias')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 9)->count()
+                    + DB::table('comunicacionesjefaturas')->where('equipocomunicacion_id', 9)->count();
+
+        // Sumar Comando Baliza
+        $this->sumaComandoBaliza = DB::table('comunicacionesprimeras')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionessegundas')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesterceras')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionescuartas')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesquintas')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesadministracions')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesautomotores')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionescientificas')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionescomplejos')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionescustodias')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesdesus')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesdto365s')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesfamilia1s')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesfamilia2s')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesinvestigacions')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesnarcos')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesrecursos')->where('equipocomunicacion_id', 10)->count()
+                    + DB::table('comunicacionesjefaturas')->where('equipocomunicacion_id', 10)->count();
     }
 
 

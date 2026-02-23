@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Helpers\AuditLogger;
+
 
 class RegisterController extends Controller
 {
@@ -35,7 +37,18 @@ class RegisterController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+
+
         ]);
+
+        // 🔍 AUDITORÍA
+        AuditLogger::log(
+            'user.create',
+            $user,
+            "Usuario creado {$user->name}"
+        );
+
+
 
 
 

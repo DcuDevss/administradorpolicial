@@ -75,7 +75,7 @@ class CreateComunicacionesPrimera extends Component
         $this->vhfantena_id = "";
         $this->estado_equipo_id = "";
 
-        $this->estados = EstadoEquipo::all(); // Carga todos los estados disponibles
+        /* $this->estados = EstadoEquipo::all(); */ // Carga todos los estados disponibles
         $this->MarcaEquipo = Marcaequipo::all();
         $this->VhfAntena = Vhfantena::all();
         $this->EquipoComunicacion = Equipocomunicacion::all(); // Cargar los datos
@@ -116,12 +116,12 @@ class CreateComunicacionesPrimera extends Component
             $this->comunicacionesprimera->detalle_inventario = ($this->detalle_inventario === null || $this->detalle_inventario === '') ? null : $this->detalle_inventario;
             $this->comunicacionesprimera->save();
 
-                  // Asocia el estado del equipo seleccionado a la comunicación en la tabla intermedia
+            // Asocia el estado del equipo seleccionado a la comunicación en la tabla intermedia
             if ($this->estado_equipo_id) {
                 $this->comunicacionesprimera->estados()->attach($this->estado_equipo_id);
             }
 
-           
+
             session()->flash('message', 'Datos guardados correctamente.');
 
 

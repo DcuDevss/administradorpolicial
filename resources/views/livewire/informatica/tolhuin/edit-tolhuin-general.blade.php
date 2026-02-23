@@ -259,10 +259,10 @@
 
                                 <div class="mt-2">
                                     <label class="block text-white text-sm font-bold mb-1"
-                                        for="detalles_servicios">Detalle de Modificacion</label>
+                                        for="detalles_inventario">Detalle de Modificacion</label>
                                     <textarea
                                         class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                                        wire:model="detalles_inventario" placeholder="Ingrese la Modificacion Realizada"value="{{ $tolhuin->detalles_inventario }}"></textarea>
+                                        wire:model="detalles_inventario" placeholder="Ingrese la Modificacion Realizada"></textarea>
                                     @error('detalles_inventario')
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
@@ -290,25 +290,21 @@
 
                     </div>
                     <!-- ... resto del código ... -->
-                    <div x-data="{ open: false }" class="shadow-lg">
-                        <div @click="open = !open"
-                            class="flex items-center justify-between bg-slate-400 border p-4 rounded-md transition">
-                            <p class="text-lg font-extrabold text-white">ESTADISTICA</p>
-                            <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
-                        </div>
-                        <div x-show.transition.in.duration.800ms="open" class="border p-4">
-                            <!-- Contenido del acordeón aquí -->
-
-                        </div>
-                    </div>
-                    <div x-data="{ mensaje: '' }">
-                        <div class="mt-6">
-                            <button @click="mensaje = '¡Cambios guardados correctamente!'"
-                                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                                Guardar cambios
-                            </button>
-                        </div>
-                        <p x-show.transition.duration.500ms="mensaje" class="mt-2 px-4 py-2  text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto" x-text="mensaje"></p>
+                    <div class="flex gap-3 mt-6">
+                        <button
+                            type="button"
+                            wire:click="edit"
+                            wire:loading.attr="disabled"
+                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            <span wire:loading.remove>Guardar cambios</span>
+                            <span wire:loading>Guardando...</span>
+                        </button>
+                        <button
+                            type="button"
+                            onclick="history.back()"
+                            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                            Cancelar
+                        </button>
                     </div>
                 </div>
             </div>

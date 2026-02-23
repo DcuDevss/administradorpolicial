@@ -1,0 +1,101 @@
+<div>
+
+    {{-- estilos compartidos --}}
+    <x-inventario.pdf-styles />
+
+    {{-- SELECT --}}
+    <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Dependencia</label>
+
+        <select class="w-full form-control" wire:model="dependenciaSeleccionada">
+            <option value="0">Todas las dependencias</option>
+
+            @foreach($dependencias as $id => $nombre)
+                <option value="{{ $id }}">{{ $nombre }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    {{-- BOTÓN --}}
+    <div class="mb-4">
+        <button
+            type="button"
+            class="btn-pdf"
+            onclick="descargarPdfEquiposUshuaia()"
+            @disabled(empty($registros))
+        >
+            Generar PDF
+        </button>
+    </div>
+
+
+    {{-- CONTENIDO PDF --}}
+    <div id="pdf-content">
+
+        <div style="display:flex; justify-content:flex-end; margin-bottom:8mm;">
+            <div style="font-size:12px;">
+                <strong>Fecha:</strong> {{ now()->format('d/m/Y H:i') }}
+            </div>
+        </div>
+
+        <h2 style="text-align:center;margin-bottom:4mm;">
+            Inventario Equipos de Informática
+        </h2>
+
+        @php
+            $depNombre = $dependenciaSeleccionada
+                ? ($dependencias[$dependenciaSeleccionada] ?? '-')
+                : 'Todas las dependencias';
+        @endphp
+
+        <div style="text-align:center; margin-bottom:4mm;">
+            <strong>Dependencia: {{ $depNombre }} Ushuaia</strong>
+        </div>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo equipo</th>
+                    <th>Marca</th>
+                    <th>Detalles</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @forelse($registros as $r)
+                    <tr>
+                        <td>{{ $r->tipo ?? '-' }}</td>
+                        <td>{{ $r->marca ?? '-' }}</td>
+                        <td>{{ $r->detalles_inventario ?? '-' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="3" style="text-align:center;">Sin datos</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+
+    {{-- SCRIPT --}}
+    <div wire:ignore>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <script>
+            window.descargarPdfEquiposUshuaia = function () {
+                const el = document.getElementById('pdf-content');
+                if (!el) return;
+
+                html2pdf().set({
+                    margin: [25, 15, 20, 15],
+                    filename: `inventario_ushuaia_${Date.now()}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 1.4, backgroundColor: '#ffffff' },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                }).from(el).save();
+            }
+        </script>
+    </div>
+
+</div>

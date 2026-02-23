@@ -213,57 +213,62 @@
                                         <div>
                                             <h1 class="text-red-800 text-lg font-bold mb-2">Total de equipos "Ht":
                                                 {{ $HtCount }}</h1>
-                                            <p class="text-purple-800 font-bold mb-2">Ht Otros:
+                                            <p class="text-metric-secondary font-bold mb-2">Ht Otros:
                                                 {{ $marcaotros }} </p>
-                                            <p class="text-purple-800 font-bold mb-2">Ht Motorola:
+                                            <p class="text-metric-secondary font-bold mb-2">Ht Motorola:
                                                 {{ $marcaMotorola }} </p>
-                                            <p class="text-purple-800 font-bold mb-2">Ht Kenwood: {{ $marcaKenwood }}
+                                            <p class="text-metric-secondary font-bold mb-2">Ht Kenwood:
+                                                {{ $marcaKenwood }}
                                             </p>
-                                            <p class="text-purple-800 font-bold mb-2">Ht Yaesu: {{ $marcaYaesu }}
+                                            <p class="text-metric-secondary font-bold mb-2">Ht Yaesu:
+                                                {{ $marcaYaesu }}
                                             </p>
-                                            <p class="text-purple-800 font-bold mb-2">Ht Hytera: {{ $marcaHytera }}
+                                            <p class="text-metric-secondary font-bold mb-2">Ht Hytera:
+                                                {{ $marcaHytera }}
                                             </p>
                                         </div>
                                         <div>
                                             <h1 class="text-red-800 font-extrabold mb-2">Total de "Equipos Base":
                                                 {{ $BaseCount }}</h1>
-                                            <p class="text-purple-800 font-bold mb-2">Equipo Base Otros:
+                                            <p class="text-metric-secondary font-bold mb-2">Equipo Base Otros:
                                                 {{ $baseotros }} </p>
-                                            <p class="text-purple-800 font-bold mb-2">Equipo Base Motorola:
+                                            <p class="text-metric-secondary font-bold mb-2">Equipo Base Motorola:
                                                 {{ $baseMotorola }}</p>
-                                            <p class="text-purple-800 font-bold mb-2">Equipo Base Kenwood:
+                                            <p class="text-metric-secondary font-bold mb-2">Equipo Base Kenwood:
                                                 {{ $baseKenwood }}</p>
-                                            <p class="text-purple-800 font-bold mb-2">Equipo Base Yaesu:
+                                            <p class="text-metric-secondary font-bold mb-2">Equipo Base Yaesu:
                                                 {{ $baseYaesu }}</p>
-                                            <p class="text-purple-800 font-bold mb-2">Equipo Base Hytera:
+                                            <p class="text-metric-secondary font-bold mb-2">Equipo Base Hytera:
                                                 {{ $baseHytera }}</p>
                                         </div>
                                         <div>
                                             <h1 class="text-red-800 font-extrabold mb-2">Total de "Antenas":
                                                 {{ $AntenaCount }}</h1>
-                                            <p class="text-purple-800 font-bold mb-2">Antena "Otros":
+                                            <p class="text-metric-secondary font-bold mb-2">Antena "Otros":
                                                 {{ $Otros }}</p>
-                                            <p class="text-purple-800 font-bold mb-2">Antena Dipolo 2:
+                                            <p class="text-metric-secondary font-bold mb-2">Antena Dipolo 2:
                                                 {{ $dipolo2 }}</p>
-                                            <p class="text-purple-800 font-bold mb-2">Antena Dipolo 4:
+                                            <p class="text-metric-secondary font-bold mb-2">Antena Dipolo 4:
                                                 {{ $dipolo4 }}</p>
-                                            <p class="text-purple-800 font-bold mb-2">Antena Dipolo 8:
+                                            <p class="text-metric-secondary font-bold mb-2">Antena Dipolo 8:
                                                 {{ $dipolo8 }}</p>
-                                            <p class="text-purple-800 font-bold mb-2">Antena Dipolo Yagi:
+                                            <p class="text-metric-secondary font-bold mb-2">Antena Dipolo Yagi:
                                                 {{ $yagi }}</p>
-                                            <p class="text-purple-800 font-bold mb-2">Antena Dipolo Latigo:
+                                            <p class="text-metric-secondary font-bold mb-2">Antena Dipolo Latigo:
                                                 {{ $latigo }}</p>
                                         </div>
 
 
                                         <div>
-                                            <p class="text-slate-800 font-extrabold mb-2">Total de "Repetidoras":
+                                            <p class="text-red-800 font-extrabold mb-2">Total de "Repetidoras":
                                                 {{ $RepetidoraCount }}</p>
-                                            <p class="text-slate-800 font-extrabold mb-2">Total de "Fuentes de Poder":
+                                            <p class="text-metric-primary font-extrabold mb-2">Total de "Fuentes de
+                                                Poder":
                                                 {{ $FuenteCount }}</p>
-                                            <p class="text-slate-800 font-extrabold mb-2">Total de "Balizas":
+                                            <p class="text-metric-primary font-extrabold mb-2">Total de "Balizas":
                                                 {{ $BalizaCount }}</p>
-                                            <p class="text-slate-800 font-extrabold mb-2">Total de "Otros" equipos:
+                                            <p class="text-metric-primary font-extrabold mb-2">Total de "Otros"
+                                                equipos:
                                                 {{ $OtrosCount }}</p>
                                         </div>
                                     </div>

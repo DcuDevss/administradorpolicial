@@ -17,7 +17,7 @@ class CrearNotificacion extends Component
     public $mensaje;
     public $tecnico_id;
     public $activa = false;
-   // public $mensajeTecnico;
+    // public $mensajeTecnico;
 
 
     public function enviarNotificacion()
@@ -26,11 +26,11 @@ class CrearNotificacion extends Component
         $this->validate([
             'mensaje' => 'required',
             'tecnico_id' => 'required|exists:users,id',
-            'activa'=>'required',
+            'activa' => 'required',
         ]);
 
         // Guardar la notificación en la base de datos
-        $notificacion=Notificacion::create([
+        $notificacion = Notificacion::create([
             'mensaje' => $this->mensaje,
             'activa' => $this->activa,
             'user_comisaria_id' => auth()->id(), //
@@ -38,15 +38,15 @@ class CrearNotificacion extends Component
 
         ]);
 
-       // event(new OrderEvent($notificacion));
+        // event(new OrderEvent($notificacion));
 
         $this->make_order_notification($notificacion);
-       // $this->make_order_notification_comunicaciones($notificacion);
+        // $this->make_order_notification_comunicaciones($notificacion);
         session()->flash('success', 'Notificación enviada correctamente.');
         return redirect()->route('dashboard'); // Redirigir a la página principal después de enviar la notificación
     }
 
-   /*public function make_order_notification($notificacion){
+    /*public function make_order_notification($notificacion){
         // Verifica si el usuario actual tiene el rol 'tecnicoinformatico'
         if (auth()->user()->hasRole('tecnicoinformatico')) {
             // Envía la notificación a los usuarios con rol 'tecnicoinformatico'
@@ -66,16 +66,17 @@ class CrearNotificacion extends Component
 
 
 
-    public function make_order_notification($notificacion){
-       // event(new OrderEvent($notificacion));
+    public function make_order_notification($notificacion)
+    {
+        // event(new OrderEvent($notificacion));
 
-          User::role('tecnicoinformatico')//->except($notification->user_id)
-          ->each(function(User $user) use ($notificacion){
-             $user->notify(new OrderNotification($notificacion));
-          });
+        User::role('tecnicoinformatico') //->except($notification->user_id)
+            ->each(function (User $user) use ($notificacion) {
+                $user->notify(new OrderNotification($notificacion));
+            });
     }
 
-   /* public function make_order_notification_comunicaciones($notificacion){
+    /* public function make_order_notification_comunicaciones($notificacion){
         // event(new OrderEvent($notificacion));
 
            User::role('tecnicocomunicacion')//->except($notification->user_id)
@@ -92,18 +93,18 @@ class CrearNotificacion extends Component
     public function render()
     {
         // Obtener todos los técnicos disponibles
-       // $tecnicos = User::role('tecnico')->get();
-      // $tecnicos = User::role(['tecnicoinformatico', 'tecnicocomunicacion'])->get();
+        // $tecnicos = User::role('tecnico')->get();
+        // $tecnicos = User::role(['tecnicoinformatico', 'tecnicocomunicacion'])->get();
 
-      //$notificaciones= Notificacion::all();
+        //$notificaciones= Notificacion::all();
 
-      $notificaciones = Notificacion::where('tecnico_id', auth()->id())->get();
+        $notificaciones = Notificacion::where('tecnico_id', auth()->id())->get();
 
-       $tecnicos = User::whereIn('id', [2, 4])
-       ->role(['tecnicoinformatico', 'tecnicocomunicacion'])
-       ->get();
+        $tecnicos = User::whereIn('id', [2, 4])
+            ->role(['tecnicoinformatico', 'tecnicocomunicacion'])
+            ->get();
 
-       $primeraPc = Generalinformatica::where('dependencia_ushuaia_id', 3)
+        $primeraPc = Generalinformatica::where('dependencia_ushuaia_id', 3)
             ->where('tipodispositivo_id', 3)
             ->count();
 
@@ -447,11 +448,25 @@ class CrearNotificacion extends Component
 
 
 
-        return view('livewire.crear-notificacion', compact('tecnicos','primeraPc','notificaciones',
-        'segundaPc','terceraPc','cuartaPc','quintaPc','flia1Pc','flia2Pc','serviciosPc','custodiaPc',
-        'impresoraLaser','impresoraChorro','switch','ruter','camaras',
-        'servidor',
-        'centralTelefonica',
+        return view('livewire.crear-notificacion', compact(
+            'tecnicos',
+            'primeraPc',
+            'notificaciones',
+            'segundaPc',
+            'terceraPc',
+            'cuartaPc',
+            'quintaPc',
+            'flia1Pc',
+            'flia2Pc',
+            'serviciosPc',
+            'custodiaPc',
+            'impresoraLaser',
+            'impresoraChorro',
+            'switch',
+            'ruter',
+            'camaras',
+            'servidor',
+            'centralTelefonica',
 
 
             'impresoraChorro2da',
@@ -539,7 +554,7 @@ class CrearNotificacion extends Component
 
 
 
-    ));
+        ));
     }
 
 
@@ -547,7 +562,7 @@ class CrearNotificacion extends Component
 
 
 
-   /* public function enviarNotificacion()
+    /* public function enviarNotificacion()
 {
     $this->validate([
         'mensaje' => 'required',
@@ -570,9 +585,4 @@ class CrearNotificacion extends Component
     session()->flash('success', 'Notificación enviada correctamente.');
     return redirect()->route('dashboard');
 }*/
-
-
-
-
 }
-

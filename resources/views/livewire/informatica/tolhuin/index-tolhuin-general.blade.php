@@ -225,8 +225,8 @@
                                             </a>
                                             <a href="{{ route('historial-tolhuin-general', $comu->id) }}"
                                                 class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
-                                                Modificaciones</a>
-
+                                                Modificaciones
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -242,4 +242,9 @@
             </div>
         </section>
     </div>
-
+    <div class="mt-4">
+       <a href="{{ route('inventario-pdf-tolhuin') }}"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-md shadow mt-4">
+            Generar PDF Informática
+        </a>
+    </div>

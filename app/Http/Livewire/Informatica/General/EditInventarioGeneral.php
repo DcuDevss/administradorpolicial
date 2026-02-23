@@ -14,6 +14,7 @@ use App\Models\Slotmemoria;
 use App\Models\Custodiagubernamentale;
 use App\Models\Destacamento;
 use App\Models\Serviciosespeciale;
+use App\Models\AuditoriaDetalleInventario;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 use Livewire\WithFileUploads;
@@ -21,6 +22,7 @@ use Exception;
 use Throwable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class EditInventarioGeneral extends Component
 {
@@ -109,7 +111,7 @@ class EditInventarioGeneral extends Component
         $this->fecha_service = $general->fecha_service ? Carbon::parse($general->fecha_service)->format('Y-m-d') : '';
         $this->tipo_service = $general->tipo_service ?? '';
         $this->softwares_instalados = $general->softwares_instalados ?? '';
-        //$this->detalles_inventario = $general->detalles_inventario ?? '';
+        $this->detalles_inventario = $general->detalles_inventario ?? '';
         $this->activo = $general->activo ?? '';
     }
 
@@ -154,39 +156,47 @@ class EditInventarioGeneral extends Component
     }*/
 
     public function edit()
-{
-    $this->validate();
+    {
+        $this->validate();
 
-    $this->general->dependencia_ushuaia_id = $this->dependencia_ushuaia_id ?: null;
-    $this->general->tipodispositivo_id = $this->tipodispositivo_id ?: null;
-    $this->general->cantidadram_id = $this->cantidadram_id ?: null;
-    $this->general->slotmemoria_id = $this->slotmemoria_id ?: null;
-    $this->general->destacamento_id = $this->destacamento_id ?: null;
-    $this->general->serviciosespeciale_id = $this->serviciosespeciale_id ?: null;
-    $this->general->custodiagubernamentale_id = $this->custodiagubernamentale_id ?: null;
-   // $this->general->cientifica_id = $this->cientifica_id ?: null;
+        $this->general->dependencia_ushuaia_id = $this->dependencia_ushuaia_id ?: null;
+        $this->general->tipodispositivo_id = $this->tipodispositivo_id ?: null;
+        $this->general->cantidadram_id = $this->cantidadram_id ?: null;
+        $this->general->slotmemoria_id = $this->slotmemoria_id ?: null;
+        $this->general->destacamento_id = $this->destacamento_id ?: null;
+        $this->general->serviciosespeciale_id = $this->serviciosespeciale_id ?: null;
+        $this->general->custodiagubernamentale_id = $this->custodiagubernamentale_id ?: null;
+    // $this->general->cientifica_id = $this->cientifica_id ?: null;
 
-    $this->general->marca = $this->marca ?: null;
-    $this->general->modelo= $this->modelo ?: null;
-    $this->general->procesador= $this->procesador ?: null;
-    $this->general->fecha_service= $this->fecha_service ?: null;
-    $this->general->tipo_service= $this->tipo_service ?: null;
-    $this->general->fecha_inventario= $this->fecha_inventario ?: null;
-    $this->general->detalles_inventario= $this->detalles_inventario ?: null;
-    $this->general->tipo_ram= $this->tipo_ram ?: null;
-    $this->general->tipo_disco= $this->tipo_disco ?: null;
-    $this->general->cant_almacenamiento= $this->cant_almacenamiento ?: null;
-    $this->general->tipo_mouse= $this->tipo_mouse ?: null;
-    $this->general->tipo_teclado= $this->tipo_teclado ?: null;
-    $this->general->softwares_instalados= $this->softwares_instalados ?: null;
+        $this->general->marca = $this->marca ?: null;
+        $this->general->modelo= $this->modelo ?: null;
+        $this->general->procesador= $this->procesador ?: null;
+        $this->general->fecha_service= $this->fecha_service ?: null;
+        $this->general->tipo_service= $this->tipo_service ?: null;
+        $this->general->fecha_inventario= $this->fecha_inventario ?: null;
+        $this->general->detalles_inventario= $this->detalles_inventario ?: null;
+        $this->general->tipo_ram= $this->tipo_ram ?: null;
+        $this->general->tipo_disco= $this->tipo_disco ?: null;
+        $this->general->cant_almacenamiento= $this->cant_almacenamiento ?: null;
+        $this->general->tipo_mouse= $this->tipo_mouse ?: null;
+        $this->general->tipo_teclado= $this->tipo_teclado ?: null;
+        $this->general->softwares_instalados= $this->softwares_instalados ?: null;
 
-    $this->general->save();
+        $this->general->save();
+/*
+        AuditoriaDetalleInventario::create([
+            'generalinformatica_id' => $this->general->id,
+            'detalles_inventario'   => $this->detalles_inventario,
+            'user_id'               => auth()->id(),
+            'ip_address'            => request()->ip(),
+            'user_agent'            => request()->userAgent(),
+        ]); */
 
-    // Generar el código QR después de guardar los cambios
-    $this->generateQRCode();
+        // Generar el código QR después de guardar los cambios
+        $this->generateQRCode();
 
-    session()->flash('message', 'Datos actualizados correctamente.');
-}
+        session()->flash('message', 'Datos actualizados correctamente.');
+    }
 
 
     private function generateQRCode()

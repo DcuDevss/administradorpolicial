@@ -1,0 +1,100 @@
+<div>
+
+    {{-- estilos globales --}}
+    <x-inventario.pdf-styles />
+
+
+    {{-- SELECT (fuera del pdf) --}}
+    <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Dependencia</label>
+
+        <select class="w-full form-control" wire:model="dependenciaSeleccionada">
+            <option value="0">Todas las dependencias</option>
+
+            @foreach($dependencias as $id => $nombre)
+                <option value="{{ $id }}">{{ $nombre }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    {{-- botón --}}
+    <div class="mb-4">
+        <button
+            type="button"
+            class="btn-pdf"
+            onclick="descargarPdfEquiposRiogrande()"
+            @disabled(empty($registros))
+        >
+            Generar PDF
+        </button>
+    </div>
+
+
+    {{-- CONTENIDO PDF --}}
+    <div id="pdf-content">
+
+        <div style="display:flex; justify-content:flex-end; margin-bottom:8mm;">
+            <div style="font-size:12px;">
+                <strong>Fecha:</strong> {{ now()->format('d/m/Y H:i') }}
+            </div>
+        </div>
+
+        <h2 style="text-align:center;margin-bottom:4mm;">
+            Inventario Equipos de Informática
+        </h2>
+
+        @php
+            $depNombre = $dependencias[$dependenciaSeleccionada] ?? '-';
+        @endphp
+
+        <div style="text-align:center;margin-bottom:6mm;">
+            <strong>Dependencia: {{ $depNombre }} Rio Grande</strong>
+        </div>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:30%;">Tipo equipo</th>
+                    <th style="width:25%;">Marca</th>
+                    <th style="width:45%;">Detalles</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            @forelse($registros as $r)
+                <tr>
+                    <td>{{ $r->tipo ?? '-' }}</td>
+                    <td>{{ $r->marca ?? '-' }}</td>
+                    <td>{{ $r->detalles_inventario ?? '-' }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="3" style="text-align:center;">Sin datos</td>
+                </tr>
+            @endforelse
+            </tbody>
+        </table>
+
+    </div>
+
+
+    {{-- script --}}
+    <div wire:ignore>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <script>
+            window.descargarPdfEquiposRiogrande = function () {
+                const el = document.getElementById('pdf-content');
+
+                html2pdf().set({
+                    margin: [25, 15, 20, 15],
+                    filename: `inventario_riogrande_${Date.now()}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 1.4, backgroundColor: '#ffffff' },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                }).from(el).save();
+            }
+        </script>
+    </div>
+
+</div>

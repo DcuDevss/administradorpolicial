@@ -99,7 +99,7 @@
                                         <input type="text"
                                             class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                             wire:model="nro_serie"value="{{ $comunicaciones->nro_serie }}"
-                                            placeholder="nro_serie" />
+                                            placeholder="N° de Serie" />
                                         @error('nro_serie')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
@@ -176,17 +176,22 @@
                             </div>
 
                         </div>
-                        <div x-data="{ mensaje: '' }">
-                            <div class="mt-6">
-                                <button @click="mensaje = '¡Cambios guardados correctamente!'"
+                            <div class="flex gap-3 mt-6">
+                                <button
+                                    type="button"
+                                    wire:click="edit"
+                                    wire:loading.attr="disabled"
                                     class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                                    Guardar cambios
+                                    <span wire:loading.remove>Guardar cambios</span>
+                                    <span wire:loading>Guardando...</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    onclick="history.back()"
+                                    class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                                    Cancelar
                                 </button>
                             </div>
-                            <p x-show.transition.duration.500ms="mensaje"
-                                class="mt-2 px-4 py-2  text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto"
-                                x-text="mensaje"></p>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
 
 class HistorialTrabajoCientifica extends Model
 {
+
     // Asegúrate de que el nombre de la tabla es correcto
     protected $table = 'historial_comunicaciones_cientifica';
 

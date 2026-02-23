@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
 
 class AuditoriaInventarioTolhuin extends Model
 {
     use HasFactory;
+    use Auditable;
 
     protected $table = 'auditoria_inventario_tolhuins';
 
@@ -27,5 +29,4 @@ class AuditoriaInventarioTolhuin extends Model
             throw new \Exception('No se puede eliminar un registro histórico de trabajo.');
         });
     }
-
 }

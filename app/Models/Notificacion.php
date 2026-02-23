@@ -3,12 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Auditable;
 
 class Notificacion extends Model
 {
+    use Auditable;
     protected $table = 'notificaciones';
     protected $fillable = [
-        'mensaje', 'user_comisaria_id', 'tecnico_id', 'activa',
+        'mensaje',
+        'user_comisaria_id',
+        'tecnico_id',
+        'activa',
     ];
     public function respuestas()
     {
@@ -18,7 +23,7 @@ class Notificacion extends Model
     {
         return $this->belongsTo(User::class, 'user_comisaria_id');
     }
-   /* public function users()
+    /* public function users()
     {
         return $this->belongsToMany(User::class, 'notificacion_user', 'notificacion_id', 'user_id');
     }*/
@@ -32,7 +37,7 @@ class Notificacion extends Model
     }
 
     public function tecnicos()
-{
-    return $this->belongsTo(Tecnicocomunicacione::class, 'tecnico_id');
-}
+    {
+        return $this->belongsTo(Tecnicocomunicacione::class, 'tecnico_id');
+    }
 }
