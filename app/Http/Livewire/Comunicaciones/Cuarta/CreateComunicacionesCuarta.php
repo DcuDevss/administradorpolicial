@@ -115,7 +115,7 @@ class CreateComunicacionesCuarta extends Component
         ->where('marcaequipo_id', 2)
         ->count();
         $marcaMotorola = Comunicacionescuarta::where('equipocomunicacion_id', 4)
-            ->where('marcaequipo_id', 1)
+            ->where('marcaequipo_id', 3)
             ->count();
         $marcaKenwood = Comunicacionescuarta::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 2)
@@ -192,6 +192,8 @@ class CreateComunicacionesCuarta extends Component
         $RepetidoraCount = Comunicacionescuarta::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionescuarta::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionescuarta::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionescuarta::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionescuarta::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionescuarta::where('equipocomunicacion_id', '1')->count();
 
 
@@ -225,6 +227,8 @@ class CreateComunicacionesCuarta extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

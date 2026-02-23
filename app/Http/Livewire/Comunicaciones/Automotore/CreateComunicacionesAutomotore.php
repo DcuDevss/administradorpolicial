@@ -195,6 +195,8 @@ class CreateComunicacionesAutomotore extends Component
         $FuenteCount = Comunicacionesautomotore::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesautomotore::where('equipocomunicacion_id', '7')->count();
         $OtrosCount = Comunicacionesautomotore::where('equipocomunicacion_id','1')->count();
+        $PttCount = Comunicacionesautomotore::where('equipocomunicacion_id','9')->count();
+        $ComandoBalizaCount = Comunicacionesautomotore::where('equipocomunicacion_id','10')->count();
 
 
 
@@ -228,6 +230,8 @@ class CreateComunicacionesAutomotore extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount'
         ));
     }
 }

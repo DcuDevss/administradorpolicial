@@ -194,6 +194,8 @@ class CreateComunicacionesCustodia extends Component
         $RepetidoraCount = Comunicacionescustodia::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionescustodia::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionescustodia::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionescustodia::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionescustodia::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionescustodia::where('equipocomunicacion_id', '1')->count();
 
 
@@ -229,6 +231,8 @@ class CreateComunicacionesCustodia extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

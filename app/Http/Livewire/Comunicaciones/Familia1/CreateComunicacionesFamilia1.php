@@ -194,6 +194,8 @@ class CreateComunicacionesFamilia1 extends Component
         $RepetidoraCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '1')->count();
 
 
@@ -227,6 +229,8 @@ class CreateComunicacionesFamilia1 extends Component
             'yagi',
             'latigo',
             'ringo',
+            'Ptt',
+            'ComandoBalizaCount',
         ));
     }
 }
