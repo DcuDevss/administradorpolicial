@@ -323,6 +323,26 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser = Riograndegenerale::where('dependencia_riogrande_id', 3)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 11)
@@ -339,13 +359,37 @@ class CreateRiograndeGeneral extends Component
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras = Riograndegenerale::where('dependencia_riogrande_id', 3)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacion = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor = Riograndegenerale::where('dependencia_riogrande_id', 3)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizador = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auriculares = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cable = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tv = Riograndegenerale::where('dependencia_riogrande_id', 3)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica = Riograndegenerale::where('dependencia_riogrande_id', 3)
             //->where('tipodeoficina_id', 9)
@@ -407,6 +451,26 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 11)
@@ -423,13 +487,37 @@ class CreateRiograndeGeneral extends Component
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacion2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizador2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auriculares2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cable2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tv2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica2da = Riograndegenerale::where('dependencia_riogrande_id', 4)
             //->where('tipodeoficina_id', 9)
@@ -491,11 +579,30 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 11)
             ->count();
-
         $impresoraChorro3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 10)
@@ -508,13 +615,37 @@ class CreateRiograndeGeneral extends Component
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacion3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizador3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auriculares3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cable3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tv3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica3da = Riograndegenerale::where('dependencia_riogrande_id', 5)
             //->where('tipodeoficina_id', 9)
@@ -576,6 +707,26 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaser4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 11)
@@ -592,13 +743,37 @@ class CreateRiograndeGeneral extends Component
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacion4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizador4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auriculares4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cable4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tv4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica4da = Riograndegenerale::where('dependencia_riogrande_id', 6)
             //->where('tipodeoficina_id', 9)
@@ -658,8 +833,28 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodispositivo_id', 3)
             ->count();
         $Pcautomotores5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
-            ->where('tipodeoficina_id', 9)
+            ->where('tipodeoficina_id', 10)
             ->where('tipodispositivo_id', 3)
+            ->count();
+        $monitor5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebook5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbook5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celular5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tablet5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 8)
             ->count();
         $impresoraLaser5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
             //->where('tipodeoficina_id', 9)
@@ -677,13 +872,37 @@ class CreateRiograndeGeneral extends Component
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $ups5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camaras5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacion5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidor5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizador5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auriculares5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cable5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tv5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonica5da = Riograndegenerale::where('dependencia_riogrande_id', 7)
             //->where('tipodeoficina_id', 9)
@@ -745,6 +964,26 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 11)
@@ -761,13 +1000,37 @@ class CreateRiograndeGeneral extends Component
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
             //->where('tipodeoficina_id', 9)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cableFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
+            //->where('tipodeoficina_id', 9)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicaFlia = Riograndegenerale::where('dependencia_riogrande_id', 8)
             //->where('tipodeoficina_id', 9)
@@ -823,6 +1086,21 @@ class CreateRiograndeGeneral extends Component
         $PcAdministrativa = Riograndegenerale::where('dependencia_riogrande_id', 9)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -835,11 +1113,29 @@ class CreateRiograndeGeneral extends Component
         $ruterServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cableServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicaServicios = Riograndegenerale::where('dependencia_riogrande_id', 9)
             //->where('tipodeoficina_id', 9)
@@ -870,7 +1166,21 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
-
+        $monitordireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celulardireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabledireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -883,11 +1193,29 @@ class CreateRiograndeGeneral extends Component
         $ruterdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estaciondireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidordireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadordireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cabledireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvdireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicadireccion = Riograndegenerale::where('dependencia_riogrande_id', 10)
             ->where('tipodispositivo_id', 23)
@@ -919,6 +1247,21 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -931,11 +1274,29 @@ class CreateRiograndeGeneral extends Component
         $ruterescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cableescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicaescuela = Riograndegenerale::where('dependencia_riogrande_id', 11)
             ->where('tipodispositivo_id', 23)
@@ -952,6 +1313,21 @@ class CreateRiograndeGeneral extends Component
         $repetidoraPc = Riograndegenerale::where('dependencia_riogrande_id', 12)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -964,11 +1340,29 @@ class CreateRiograndeGeneral extends Component
         $ruterrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablerepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvrepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicarepetidora = Riograndegenerale::where('dependencia_riogrande_id', 12)
             ->where('tipodispositivo_id', 23)
@@ -996,6 +1390,21 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLasercentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -1008,11 +1417,29 @@ class CreateRiograndeGeneral extends Component
         $rutercentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upscentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarascentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacioncentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularescentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablecentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvcentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicacentral = Riograndegenerale::where('dependencia_riogrande_id', 13)
             ->where('tipodispositivo_id', 23)
@@ -1041,6 +1468,21 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitorinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -1053,11 +1495,29 @@ class CreateRiograndeGeneral extends Component
         $ruterinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacioninves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cableinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvinves = Riograndegenerale::where('dependencia_riogrande_id', 14)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicainves = Riograndegenerale::where('dependencia_riogrande_id', 14)
             ->where('tipodispositivo_id', 23)
@@ -1086,7 +1546,21 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
-
+        $monitorbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -1099,11 +1573,29 @@ class CreateRiograndeGeneral extends Component
         $ruterbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablebienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvbienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicabienestar = Riograndegenerale::where('dependencia_riogrande_id', 15)
             ->where('tipodispositivo_id', 23)
@@ -1132,6 +1624,21 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitornarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebooknarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbooknarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularnarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletnarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLasernarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -1144,11 +1651,29 @@ class CreateRiograndeGeneral extends Component
         $ruternarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsnarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasnarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionnarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidornarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadornarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesnarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cablenarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvnarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicanarco = Riograndegenerale::where('dependencia_riogrande_id', 16)
             ->where('tipodispositivo_id', 23)
@@ -1177,7 +1702,21 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
-
+        $monitordelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celulardelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -1190,20 +1729,35 @@ class CreateRiograndeGeneral extends Component
         $ruterdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estaciondelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidordelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadordelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cabledelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvdelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicadelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
             ->where('tipodispositivo_id', 23)
             ->count();
         $telefonoFijodelito = Riograndegenerale::where('dependencia_riogrande_id', 17)
             ->where('tipodispositivo_id', 9)
-            ->count();
-        $sumaTotalPcdelito = Riograndegenerale::where('tipodispositivo_id', 3)
-            ->whereIn('dependencia_riogrande_id', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])
             ->count();
 
         //-----Automotores
@@ -1226,7 +1780,21 @@ class CreateRiograndeGeneral extends Component
             ->where('tipodeoficina_id', 7)
             ->where('tipodispositivo_id', 3)
             ->count();
-
+        $monitorauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 4)
+            ->count();
+        $notebookauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 5)
+            ->count();
+        $netbookauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 6)
+            ->count();
+        $celularauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 7)
+            ->count();
+        $tabletauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 8)
+            ->count();
         $impresoraLaserauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
             ->where('tipodispositivo_id', 11)
             ->count();
@@ -1239,11 +1807,29 @@ class CreateRiograndeGeneral extends Component
         $ruterauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
             ->where('tipodispositivo_id', 14)
             ->count();
+        $upsauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 15)
+            ->count();
         $camarasauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
             ->where('tipodispositivo_id', 16)
             ->count();
+        $estacionauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 17)
+            ->count();
         $servidorauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
             ->where('tipodispositivo_id', 18)
+            ->count();
+        $estabilizadorauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 19)
+            ->count();
+        $auricularesauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 20)
+            ->count();
+        $cableauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 21)
+            ->count();
+        $tvauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
+            ->where('tipodispositivo_id', 22)
             ->count();
         $centralTelefonicaauto = Riograndegenerale::where('dependencia_riogrande_id', 18)
             ->where('tipodispositivo_id', 23)
@@ -1277,12 +1863,23 @@ class CreateRiograndeGeneral extends Component
             'Pcdedia',
             'Pcadministrativa',
             'Pcautomotores',
+            'monitor',
+            'notebook',
+            'netbook',
+            'celular',
+            'tablet',
             'impresoraChorro',
             'impresoraLaser',
             'switch',
             'ruter',
+            'ups',
             'camaras',
+            'estacion',
             'servidor',
+            'estabilizador',
+            'auriculares',
+            'cable',
+            'tv',
             'centralTelefonica',
             'telefonoFijo',
 
@@ -1301,12 +1898,23 @@ class CreateRiograndeGeneral extends Component
             'Pcdedia2da',
             'Pcadministrativa2da',
             'Pcautomotores2da',
+            'monitor2da',
+            'notebook2da',
+            'netbook2da',
+            'celular2da',
+            'tablet2da',
             'impresoraChorro2da',
             'impresoraLaser2da',
             'switch2da',
             'ruter2da',
+            'ups2da',
             'camaras2da',
+            'estacion2da',
             'servidor2da',
+            'estabilizador2da',
+            'auriculares2da',
+            'cable2da',
+            'tv2da',
             'centralTelefonica2da',
             'telefonoFijo2da',
 
@@ -1324,13 +1932,24 @@ class CreateRiograndeGeneral extends Component
             'Pcdedia3da',
             'Pcadministrativa3da',
             'Pcautomotores3da',
+            'monitor3da',
+            'notebook3da',
+            'netbook3da',
+            'celular3da',
+            'tablet3da',
             'impresoraChorro3da',
             'impresoraLaser3da',
             'switch3da',
             'camaras3da',
             'ruter3da',
+            'ups3da',
             'camaras3da',
+            'estacion3da',
             'servidor3da',
+            'estabilizador3da',
+            'auriculares3da',
+            'cable3da',
+            'tv3da',
             'centralTelefonica3da',
             'telefonoFijo3da',
 
@@ -1347,13 +1966,24 @@ class CreateRiograndeGeneral extends Component
             'Pcguardia4da',
             'Pcdedia4da',
             'Pcadministrativa4da',
+            'monitor4da',
+            'notebook4da',
+            'netbook4da',
+            'celular4da',
+            'tablet4da',
             'Pcautomotores4da',
             'impresoraChorro4da',
             'impresoraLaser4da',
             'switch4da',
             'ruter4da',
+            'ups4da',
             'camaras4da',
+            'estacion4da',
             'servidor4da',
+            'estabilizador4da',
+            'auriculares4da',
+            'cable4da',
+            'tv4da',
             'centralTelefonica4da',
             'telefonoFijo4da',
 
@@ -1371,12 +2001,23 @@ class CreateRiograndeGeneral extends Component
             'Pcdedia5da',
             'Pcadministrativa5da',
             'Pcautomotores5da',
+            'monitor5da',
+            'notebook5da',
+            'netbook5da',
+            'celular5da',
+            'tablet5da',
             'impresoraChorro5da',
             'impresoraLaser5da',
             'switch5da',
             'ruter5da',
+            'ups5da',
             'camaras5da',
+            'estacion5da',
             'servidor5da',
+            'estabilizador5da',
+            'auriculares5da',
+            'cable5da',
+            'tv5da',
             'centralTelefonica5da',
             'telefonoFijo5da',
 
@@ -1394,12 +2035,23 @@ class CreateRiograndeGeneral extends Component
             'PcdediaFlia',
             'PcadministrativaFlia',
             'PcautomotoresFlia',
+            'monitorFlia',
+            'notebookFlia',
+            'netbookFlia',
+            'celularFlia',
+            'tabletFlia',
             'impresoraChorroFlia',
             'impresoraLaserFlia',
             'switchFlia',
             'ruterFlia',
+            'upsFlia',
             'camarasFlia',
+            'estacionFlia',
             'servidorFlia',
+            'estabilizadorFlia',
+            'auricularesFlia',
+            'cableFlia',
+            'tvFlia',
             'centralTelefonicaFlia',
             'telefonoFijoFlia',
 
@@ -1415,12 +2067,23 @@ class CreateRiograndeGeneral extends Component
             'PcBusquedaRescate',
             'PcSeccionExplosivos',
             'PcAdministrativa',
+            'monitorServicios',
+            'notebookServicios',
+            'netbookServicios',
+            'celularServicios',
+            'tabletServicios',
             'impresoraChorroServicios',
             'impresoraLaserServicios',
             'switchServicios',
             'ruterServicios',
+            'upsServicios',
             'camarasServicios',
+            'estacionServicios',
             'servidorServicios',
+            'estabilizadorServicios',
+            'auricularesServicios',
+            'cableServicios',
+            'tvServicios',
             'centralTelefonicaServicios',
             'telefonoFijoServicios',
 
@@ -1430,14 +2093,26 @@ class CreateRiograndeGeneral extends Component
             'Pcjefedireccion',
             'Pcsubjefedireccion',
             'PcGuardiadireccion',
+            'monitordireccion',
+            'notebookdireccion',
+            'netbookdireccion',
+            'celulardireccion',
+            'tabledireccion',
             'impresoraChorrodireccion',
             'impresoraLaserdireccion',
             'switchdireccion',
             'ruterdireccion',
             'camarasdireccion',
+            'upsdireccion',
+            'estaciondireccion',
             'servidordireccion',
+            'estabilizadordireccion',
+            'auricularesdireccion',
+            'cabledireccion',
+            'tvdireccion',
             'centralTelefonicadireccion',
             'telefonoFijodireccion',
+            'sumaTotalPcdireccion',
 
             //----------
             'escuelaotros',
@@ -1445,24 +2120,46 @@ class CreateRiograndeGeneral extends Component
             'Pcjefeescuela',
             'Pcsubjefeescuela',
             'PcGuardiaescuela',
+            'monitorescuela',
+            'notebookescuela',
+            'netbookescuela',
+            'celularescuela',
+            'tabletescuela',
             'impresoraChorroescuela',
             'impresoraLaserescuela',
             'switchescuela',
             'ruterescuela',
+            'upsescuela',
             'camarasescuela',
+            'estacionescuela',
             'servidorescuela',
+            'estabilizadorescuela',
+            'auricularesescuela',
+            'cableescuela',
+            'tvescuela',
             'centralTelefonicaescuela',
             'telefonoFijoescuela',
 
             //-----
             'repetidoraotros',
             'repetidoraPc',
+            'monitorrepetidora',
+            'notebookrepetidora',
+            'netbookrepetidora',
+            'celularrepetidora',
+            'tabletrepetidora',
             'impresoraChorrorepetidora',
             'impresoraLaserrepetidora',
             'switchrepetidora',
             'ruterrepetidora',
+            'upsrepetidora',
             'camarasrepetidora',
+            'estacionrepetidora',
             'servidorrepetidora',
+            'estabilizadorrepetidora',
+            'auricularesrepetidora',
+            'cablerepetidora',
+            'tvrepetidora',
             'centralTelefonicarepetidora',
             'telefonoFijorepetidora',
 
@@ -1472,12 +2169,23 @@ class CreateRiograndeGeneral extends Component
             'Pcjefecentral',
             'Pcsubjefecentral',
             'PcGuardiacentral',
+            'monitorcentral',
+            'notebookcentral',
+            'netbookcentral',
+            'celularcentral',
+            'tabletcentral',
             'impresoraChorrocentral',
             'impresoraLasercentral',
             'switchcentral',
             'rutercentral',
+            'upscentral',
             'camarascentral',
+            'estacioncentral',
             'servidorcentral',
+            'estabilizadorcentral',
+            'auricularescentral',
+            'cablecentral',
+            'tvcentral',
             'centralTelefonicacentral',
             'telefonoFijocentral',
 
@@ -1489,10 +2197,21 @@ class CreateRiograndeGeneral extends Component
             'PcGuardiainves',
             'impresoraChorroinves',
             'impresoraLaserinves',
+            'monitorinves',
+            'notebookinves',
+            'netbookinves',
+            'celularinves',
+            'tabletinves',
             'switchinves',
             'ruterinves',
+            'upsinves',
             'camarasinves',
+            'estacioninves',
             'servidorinves',
+            'estabilizadorinves',
+            'auricularesinves',
+            'cableinves',
+            'tvinves',
             'centralTelefonicainves',
             'telefonoFijoinves',
 
@@ -1502,12 +2221,23 @@ class CreateRiograndeGeneral extends Component
             'Pcjefebienestar',
             'Pcsubjefebienestar',
             'PcGuardiabienestar',
+            'monitorbienestar',
+            'notebookbienestar',
+            'netbookbienestar',
+            'celularbienestar',
+            'tabletbienestar',
             'impresoraChorrobienestar',
             'impresoraLaserbienestar',
             'switchbienestar',
             'ruterbienestar',
+            'upsbienestar',
             'camarasbienestar',
+            'estacionbienestar',
             'servidorbienestar',
+            'estabilizadorbienestar',
+            'auricularesbienestar',
+            'cablebienestar',
+            'tvbienestar',
             'centralTelefonicabienestar',
             'telefonoFijobienestar',
 
@@ -1517,12 +2247,23 @@ class CreateRiograndeGeneral extends Component
             'Pcjefenarco',
             'Pcsubjefenarco',
             'PcGuardianarco',
+            'monitornarco',
+            'notebooknarco',
+            'netbooknarco',
+            'celularnarco',
+            'tabletnarco',
             'impresoraChorronarco',
             'impresoraLasernarco',
             'switchnarco',
             'ruternarco',
+            'upsnarco',
             'camarasnarco',
+            'estacionnarco',
             'servidornarco',
+            'estabilizadornarco',
+            'auricularesnarco',
+            'cablenarco',
+            'tvnarco',
             'centralTelefonicanarco',
             'telefonoFijonarco',
 
@@ -1532,12 +2273,23 @@ class CreateRiograndeGeneral extends Component
             'Pcjefedelito',
             'Pcsubjefedelito',
             'PcGuardiadelito',
+            'monitordelito',
+            'notebookdelito',
+            'netbookdelito',
+            'celulardelito',
+            'tabletdelito',
             'impresoraChorrodelito',
             'impresoraLaserdelito',
             'switchdelito',
             'ruterdelito',
+            'upsdelito',
             'camarasdelito',
+            'estaciondelito',
             'servidordelito',
+            'estabilizadordelito',
+            'auricularesdelito',
+            'cabledelito',
+            'tvdelito',
             'centralTelefonicadelito',
             'telefonoFijodelito',
 
@@ -1547,12 +2299,23 @@ class CreateRiograndeGeneral extends Component
             'Pcjefeauto',
             'Pcsubjefeauto',
             'PcGuardiaauto',
+            'monitorauto',
+            'notebookauto',
+            'netbookauto',
+            'celularauto',
+            'tabletauto',
             'impresoraChorroauto',
             'impresoraLaserauto',
             'switchauto',
             'ruterauto',
+            'upsauto',
             'camarasauto',
+            'estacionauto',
             'servidorauto',
+            'estabilizadorauto',
+            'auricularesauto',
+            'cableauto',
+            'tvauto',
             'centralTelefonicaauto',
             'telefonoFijoauto',
 
