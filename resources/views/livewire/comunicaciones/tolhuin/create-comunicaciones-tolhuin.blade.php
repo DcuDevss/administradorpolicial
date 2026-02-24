@@ -267,6 +267,10 @@
                                                 {{ $FuenteCount }}</p>
                                             <p class="text-metric-primary font-extrabold mb-2">Total de "Balizas":
                                                 {{ $BalizaCount }}</p>
+                                            <p class="text-metric-primary font-extrabold mb-2">Total de "Ptt":
+                                                {{ $PttCount }}</p>
+                                            <p class="text-metric-primary font-extrabold mb-2">Total de "Comando Baliza":
+                                                {{ $ComandoBalizaCount }}</p>
                                             <p class="text-metric-primary font-extrabold mb-2">Total de "Otros"
                                                 equipos:
                                                 {{ $OtrosCount }}</p>

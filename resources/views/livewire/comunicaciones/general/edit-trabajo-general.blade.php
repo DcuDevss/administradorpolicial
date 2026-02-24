@@ -92,19 +92,23 @@
                                         @enderror
                                     </div>
 
-
-
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
-                                            for="fecha_trabajo">Fecha
-                                            del trabajo</label>
-                                        <input type="date"
+                                            for="fecha_service">Fecha de Trabajo</label>
+
+                                        <input type="date" lang="es"
                                             class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                                            wire:model="fecha_trabajo"value="{{ $trabajo->fecha_trabajo }}"
-                                            placeholder="ingrese fecha del trabajo" />
+                                            wire:model="fecha_trabajo" value="{{ $trabajo->fecha_trabajo }}"/>
+
                                         @error('fecha_trabajo')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
+
+                                        @if($trabajo->$fecha_trabajo)
+                                            <p class="text-metric-primary font-bold mt-2">
+                                                {{ \Carbon\Carbon::parse($trabajo->$fecha_trabajo)->format('Y-m-d') }}
+                                            </p>
+                                        @endif
                                     </div>
 
                                     <div class="mt-1">
@@ -125,10 +129,10 @@
 
                                 <div class="mt-1">
                                     <label class="block text-gray-700 text-sm font-bold mb-1"
-                                        for="detalle_trabjo">Modificacion Realizada</label>
+                                        for="detalle_trabajo">Modificacion Realizada</label>
                                     <textarea
                                         class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                                        wire:model="detalle_trabajo"value="{{ $trabajo->detalle_trabajo }}" placeholder="Ingrese la Modificacion Realizada"></textarea>
+                                        wire:model="detalle_trabajo" placeholder="Ingrese la Modificacion Realizada"></textarea>
                                     @error('detalle_trabajo')
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
@@ -138,17 +142,22 @@
 
 
                         <!-- ... resto del código ... -->
-
-
-                        <div x-data="{ mensaje: '' }">
-                            <div class="mt-6">
-                                <button @click="mensaje = '¡Cambios guardados correctamente!'"
-                                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                                    Guardar cambios
+                            <div class="flex gap-3 mt-6">
+                                <button
+                                    type="button"
+                                    wire:click="edit"
+                                    wire:loading.attr="disabled"
+                                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                    <span wire:loading.remove>Guardar cambios</span>
+                                    <span wire:loading>Guardando...</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    onclick="history.back()"
+                                    class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                                    Cancelar
                                 </button>
                             </div>
-                            <p x-show.transition.duration.500ms="mensaje" class="mt-2 px-4 py-2  text-green-800 bg-green-100 border border-green-300 rounded max-w-xs mx-auto" x-text="mensaje"></p>
-                        </div>
                     </div>
                 </div>
             </div>

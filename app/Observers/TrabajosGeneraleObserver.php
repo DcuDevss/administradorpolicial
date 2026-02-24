@@ -21,8 +21,8 @@ class TrabajosGeneraleObserver
      */
     public function updated(TrabajosGenerale $trabajosGenerale): void
     {
-        // Crear un registro en el historial para cada detalle de trabajo
-        if ($trabajosGenerale->detalle_trabajo) {
+        if ($trabajosGenerale->wasChanged('detalle_trabajo')) {
+
             HistorialDetalleTrabajo::create([
                 'trabajos_generale_id' => $trabajosGenerale->id,
                 'detalle_trabajo' => $trabajosGenerale->detalle_trabajo,

@@ -193,6 +193,8 @@ class CreateComunicacionesRecurso extends Component
         $RepetidoraCount = Comunicacionesrecurso::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesrecurso::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesrecurso::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesrecurso::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesrecurso::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesrecurso::where('equipocomunicacion_id', '1')->count();
 
 
@@ -227,6 +229,8 @@ class CreateComunicacionesRecurso extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

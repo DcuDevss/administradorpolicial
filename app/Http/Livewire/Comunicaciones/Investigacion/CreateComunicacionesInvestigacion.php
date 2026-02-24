@@ -192,6 +192,8 @@ class CreateComunicacionesInvestigacion extends Component
         $RepetidoraCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '1')->count();
 
         return view('livewire.comunicaciones.investigacion.create-comunicaciones-investigacion', compact(
@@ -224,6 +226,8 @@ class CreateComunicacionesInvestigacion extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

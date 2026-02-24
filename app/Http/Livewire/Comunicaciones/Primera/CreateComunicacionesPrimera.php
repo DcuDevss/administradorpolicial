@@ -223,6 +223,8 @@ class CreateComunicacionesPrimera extends Component
         $RepetidoraCount = Comunicacionesprimera::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesprimera::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesprimera::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesprimera::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesprimera::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesprimera::where('equipocomunicacion_id', '1')->count();
 
 
@@ -258,6 +260,8 @@ class CreateComunicacionesPrimera extends Component
                 'yagi',
                 'latigo',
                 'ringo',
+                'PttCount',
+                'ComandoBalizaCount',
             )
         );
     }

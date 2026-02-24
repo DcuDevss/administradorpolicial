@@ -195,6 +195,8 @@ class CreateComunicacionesFamilia2 extends Component
         $FuenteCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '7')->count();
         $OtrosCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '1')->count();
+        $PttCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesfamilia2::where('equipocomunicacion_id', '10')->count();
 
 
 
@@ -229,6 +231,8 @@ class CreateComunicacionesFamilia2 extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }
