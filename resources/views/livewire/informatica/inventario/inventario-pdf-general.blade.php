@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <h2 style="text-align:center;margin-bottom:6mm;">
+        <h2>
             Inventario General Equipos de Informática
         </h2>
 
