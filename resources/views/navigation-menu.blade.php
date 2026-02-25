@@ -200,10 +200,9 @@
 
                                 <div class="border-t border-gray-200"></div>
 
-                                <form method="POST" action="{{ route('logout') }}" x-data>
+                                <form method="POST" action="{{ route('logout') }}" class="form-logout">
                                     @csrf
-
-                                    <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                    <x-dropdown-link href="#">
                                         {{ __('Log Out') }}
                                     </x-dropdown-link>
                                 </form>

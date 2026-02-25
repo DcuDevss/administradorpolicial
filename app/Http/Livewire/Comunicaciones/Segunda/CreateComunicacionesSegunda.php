@@ -93,7 +93,11 @@ class CreateComunicacionesSegunda extends Component
 
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();
@@ -104,15 +108,6 @@ class CreateComunicacionesSegunda extends Component
             return $e->getMessage();
         }
     }
-
-
-
-
-
-
-
-
-
 
     public function render()
     {

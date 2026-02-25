@@ -122,7 +122,10 @@ class CreateComunicacionesPrimera extends Component
             }
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
 
 
             DB::commit();

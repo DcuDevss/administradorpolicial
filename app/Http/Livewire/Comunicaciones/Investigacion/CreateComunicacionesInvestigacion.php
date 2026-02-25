@@ -93,18 +93,19 @@ class CreateComunicacionesInvestigacion extends Component
             $this->comunicacionesinvestigacion->save();
 
 
-
-            session()->flash('mensaje', 'Datos guardados correctamente.');
-
-
             DB::commit();
             //$this->clearForm();
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
 
         } catch (\Exception $e) {
             DB::rollback();
             return $e->getMessage();
         }
     }
+
     public function render()
     {
         $HtCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '4')->count();

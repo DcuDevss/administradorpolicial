@@ -48,13 +48,18 @@
      * Intercepta clics en botones de acción para pedir confirmación con SweetAlert2.
      */
     document.addEventListener('click', function(event) {
+        if (event.defaultPrevented) return;
+
         const btn = event.target.closest('button, a');
         if (!btn || btn.dataset.confirmed === "true") return;
 
+        if (btn.closest('.form-logout')) return;
+
         const text = (btn.innerText || '').toLowerCase().replace(/[!?.¿¡]/g, '').trim();
 
+
         // Ignorar botones de navegación o cierre
-        if (['buscar', 'cerrar', 'volver', 'cancelar', 'logout', 'salir'].some(p => text.includes(p))) return;
+        if (['buscar', 'cerrar', 'volver', 'cancelar',].some(p => text.includes(p))) return;
 
         // Solo actuar en botones de "escritura" o "borrado"
         const acciones = ['guardar', 'actualizar', 'crear', 'registrar', 'modificar', 'confirmar', 'asignar',
@@ -63,10 +68,11 @@
         if (!acciones.some(p => text.includes(p))) return;
 
         const form = btn.closest('form');
-        const wireClick = btn.getAttribute('wire:click');
+        const wireClick = btn.dataset.wire;
         if (!form && !wireClick && btn.type !== 'submit') return;
 
         event.preventDefault();
+        event.stopImmediatePropagation();
 
         Swal.fire({
             title: '¿Confirmar operación?',
@@ -80,17 +86,17 @@
             confirmButtonColor: 'var(--color-acento)'
         }).then((result) => {
             if (result.isConfirmed) {
-                btn.dataset.confirmed = "true";
-                if (wireClick) {
-                    if (window.Livewire) btn.click();
+                if (wireClick && window.Livewire) {
+                    const componentId = btn.closest('[wire\\:id]')?.getAttribute('wire:id');
+                    if (componentId) {
+                        Livewire.find(componentId).call(wireClick);
+                    }
                 } else if (form) {
                     form.submit();
-                } else {
-                    btn.click();
                 }
             }
         });
-    }, true);
+    });
 
     /**
      * 3. SISTEMA DE NOTIFICACIONES TOAST UNIVERSAL
@@ -111,16 +117,12 @@
     });
 
     // Escuchar notificaciones desde Livewire (v3)
-    document.addEventListener('livewire:init', () => {
-        Livewire.on('notificacion', (event) => {
-            const data = Array.isArray(event) ? event[0] : event;
-            Toast.fire({
-                icon: data.type || 'success',
-                title: data.message
-            });
+    window.addEventListener('notificacion', event => {
+        Toast.fire({
+            icon: event.detail.type || 'success',
+            title: event.detail.message
         });
     });
-
     /**
      * 4. OBSERVADOR PARA OCULTAR "SAVED."
      * Evita que el mensaje por defecto de Jetstream ensucie la UI.
@@ -165,4 +167,29 @@
             });
         @endif
     });
+
+    document.addEventListener('click', function(e) {
+    const form = e.target.closest('.form-logout');
+    if (!form) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    Swal.fire({
+        title: '¿Seguro que desea cerrar sesión?',
+        text: 'Tu sesión actual se cerrará.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, salir',
+        cancelButtonText: 'Cancelar',
+        background: 'var(--bg-card)',
+        color: 'var(--texto-principal)',
+        confirmButtonColor: 'var(--color-acento)'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+
+});
 </script>

@@ -94,7 +94,11 @@ class CreateComunicacionesFamilia1 extends Component
 
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+             $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();
@@ -229,7 +233,7 @@ class CreateComunicacionesFamilia1 extends Component
             'yagi',
             'latigo',
             'ringo',
-            'Ptt',
+            'PttCount',
             'ComandoBalizaCount',
         ));
     }

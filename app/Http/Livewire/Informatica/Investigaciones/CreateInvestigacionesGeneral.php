@@ -137,7 +137,7 @@ class CreateInvestigacionesGeneral extends Component
         //try {
 
         $this->investigaciones = new Investigacionesgenerale();
-        $this->tipodeoficina_id === null || $this->tipodeoficina_id === '' ? $this->admin->tipodeoficina_id = null : $this->admin->tipodeoficina_id = $this->tipodeoficina_id;
+        //$this->tipodeoficina_id === null || $this->tipodeoficina_id === '' ? $this->admin->tipodeoficina_id = null : $this->admin->tipodeoficina_id = $this->tipodeoficina_id;
         $this->cantidadram_id === null || $this->cantidadram_id === '' ? $this->investigaciones->cantidadram_id = null : $this->investigaciones->cantidadram_id = $this->cantidadram_id;
         $this->slotmemoria_id === null || $this->slotmemoria_id === '' ? $this->investigaciones->slotmemoria_id = null : $this->investigaciones->slotmemoria_id = $this->slotmemoria_id;
         $this->tipodispositivo_id === null || $this->tipodispositivo_id === '' ? $this->investigaciones->tipodispositivo_id = null : $this->investigaciones->tipodispositivo_id = $this->tipodispositivo_id;
@@ -189,11 +189,10 @@ class CreateInvestigacionesGeneral extends Component
         $this->investigaciones->codigo_qr = $nombreImagenQR;
         $this->investigaciones->save();
 
-
-
-
-
-        session()->flash('message', 'Datos guardados correctamente.');
+        $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
 
         // DB::commit();
         //$this->clearForm();
