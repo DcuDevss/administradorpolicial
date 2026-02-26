@@ -71,15 +71,15 @@ class EditComunicacionesPrimera extends Component
 
 
 
- 
+
     public function edit()
     {
         $this->validate();
-        
+
 
         $this->comunicaciones->update([
             'marcaequipo_id' => $this->marcaequipo_id,
-            'vhfantena_id' => $this->vhfantena_id,            
+            'vhfantena_id' => $this->vhfantena_id,
             'equipocomunicacion_id' => $this->equipocomunicacion_id,
             'lugar_colocacion' => $this->lugar_colocacion,
             'nro_serie' => $this->nro_serie,
@@ -91,9 +91,10 @@ class EditComunicacionesPrimera extends Component
             'detalle_inventario' => $this->detalle_inventario,
         ]);
 
-
-
-        session()->flash('message', 'Datos actualizados correctamente.');
+    $this->dispatchBrowserEvent('notificacion', [
+    'type' => 'success',
+    'message' => 'Datos Editados correctamente.'
+    ]);
     }
 
     public function render()

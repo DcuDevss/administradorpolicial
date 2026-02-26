@@ -99,8 +99,10 @@ public function edit()
     ]);
 
 
-
-    session()->flash('message', 'Datos actualizados correctamente.');
+    $this->dispatchBrowserEvent('notificacion', [
+    'type' => 'success',
+    'message' => 'Datos Editados correctamente.'
+    ]);
 }
 
 

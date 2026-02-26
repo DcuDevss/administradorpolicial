@@ -89,6 +89,9 @@ class EditTrabajoGeneral extends Component
         $this->trabajo->detalle_trabajo = $this->detalle_trabajo ?: null;
         $this->trabajo->save();
 
-        session()->flash('message', 'Datos actualizados correctamente.');
+        $this->dispatchBrowserEvent('notificacion', [
+        'type' => 'success',
+        'message' => 'Datos Editados correctamente.'
+        ]);
     }
 }
