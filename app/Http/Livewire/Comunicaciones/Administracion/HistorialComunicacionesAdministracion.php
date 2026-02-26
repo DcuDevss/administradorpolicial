@@ -37,7 +37,7 @@ class HistorialComunicacionesAdministracion extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.Comunicaciones.administracion.historial-trabajo-Administracion', [
+        return view('livewire.comunicaciones.administracion.historial-trabajo-administracion', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

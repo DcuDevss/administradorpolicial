@@ -37,7 +37,7 @@ class HistorialComunicacionesDcu extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.Comunicaciones.dcu.historial-trabajo-Dcu', [
+        return view('livewire.comunicaciones.dcu.historial-trabajo-dcu', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

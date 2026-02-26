@@ -37,7 +37,7 @@ class HistorialComunicacionesCuarta extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.Comunicaciones.cuarta.historial-trabajo-Cuarta', [
+        return view('livewire.comunicaciones.cuarta.historial-trabajo-cuarta', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

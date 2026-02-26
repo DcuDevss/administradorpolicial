@@ -37,7 +37,7 @@ class HistorialComunicacionesNarco extends Component
             ->orderBy('updated_at', 'desc')
             ->paginate(25);
 
-        return view('livewire.Comunicaciones.narco.historial-trabajo-narco', [
+        return view('livewire.comunicaciones.narco.historial-trabajo-narco', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

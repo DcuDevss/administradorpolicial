@@ -37,7 +37,7 @@ class HistorialComunicacionesCientifica extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.Comunicaciones.cientifica.historial-trabajo-Cientifica', [
+        return view('livewire.comunicaciones.cientifica.historial-trabajo-cientifica', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

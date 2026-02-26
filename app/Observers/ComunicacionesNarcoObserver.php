@@ -6,7 +6,7 @@ use App\Models\Comunicacionesinvestigacion;
 use App\Models\Comunicacionesnarco;
 use App\Models\HistorialTrabajoNarco;
 
-class ComunicacionesnarcoObserver
+class ComunicacionesNarcoObserver
 {
     public function created(Comunicacionesnarco $historialTrabajoNarco):void
     {

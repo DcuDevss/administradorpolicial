@@ -37,7 +37,7 @@ class HistorialComunicacionesCustodia extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.Comunicaciones.custodia.historial-trabajo-Custodia', [
+        return view('livewire.comunicaciones.custodia.historial-trabajo-custodia', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

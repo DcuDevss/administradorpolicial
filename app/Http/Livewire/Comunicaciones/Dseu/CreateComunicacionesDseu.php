@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Comunicaciones\dseu;
+namespace App\Http\Livewire\Comunicaciones\Dseu;
 
 use App\Models\Comunicacionesdseu;
 use Livewire\Component;
@@ -197,7 +197,7 @@ class CreateComunicacionesDseu extends Component
         $OtrosCount = Comunicacionesdseu::where('equipocomunicacion_id', '1')->count();
 
 
-        return view('livewire.comunicaciones.dseu.create-comunicaciones-Dseu
+        return view('livewire.comunicaciones.dseu.create-comunicaciones-dseu
         ', compact(
             'HtCount',
             'BaseCount',

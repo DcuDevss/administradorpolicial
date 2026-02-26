@@ -37,7 +37,7 @@ class HistorialComunicacionesFamilia1 extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.Comunicaciones.familia1.historial-trabajo-Familia1', [
+        return view('livewire.comunicaciones.familia1.historial-trabajo-familia1', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }
