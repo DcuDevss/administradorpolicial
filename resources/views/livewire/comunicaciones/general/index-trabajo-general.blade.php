@@ -324,10 +324,14 @@
                                                 class="bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
                                                 Modificaciones
                                             </a>
+                                            <button
+                                                type="button"
+                                                class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded"
+                                                data-wire="eliminar"
+                                                data-id="{{ $comu->id }}">
+                                                Eliminar
+                                            </button>
                                         </td>
-
-
-
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -88,8 +88,9 @@
             if (result.isConfirmed) {
                 if (wireClick && window.Livewire) {
                     const componentId = btn.closest('[wire\\:id]')?.getAttribute('wire:id');
+                    const id = btn.dataset.id;
                     if (componentId) {
-                        Livewire.find(componentId).call(wireClick);
+                        Livewire.find(componentId).call(wireClick, id);
                     }
                 } else if (form) {
                     form.submit();
