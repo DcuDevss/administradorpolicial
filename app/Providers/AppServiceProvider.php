@@ -80,6 +80,7 @@ Livewire::component('comunicaciones.ushuaia.index-comunicaciones-ushuaia', \App\
 
 // Comunicaciones - Jefatura
 Livewire::component('comunicaciones.jefatura.create-comunicaciones-jefatura', \App\Http\Livewire\Comunicaciones\Jefatura\CreateComunicacionesJefatura::class);
+
 Livewire::component('comunicaciones.jefatura.index-comunicaciones-jefatura', \App\Http\Livewire\Comunicaciones\Jefatura\IndexComunicacionesJefatura::class);
 
 Livewire::component(

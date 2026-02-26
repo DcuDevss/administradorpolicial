@@ -37,7 +37,7 @@ class HistorialComunicacionesDto365 extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.comunicaciones.dto365.historial-trabajo-Dto365', [
+        return view('livewire.comunicaciones.dto365.historial-trabajo-dto365', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }
