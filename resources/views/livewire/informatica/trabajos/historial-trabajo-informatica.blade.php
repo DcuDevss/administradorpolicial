@@ -33,7 +33,7 @@
                             @if ($historialInformaticas->count())
                                 @foreach ($historialInformaticas as $historial )
                                         <td class="p-1  text-center text-m uppercase">
-                                            {{ $historial->detalles_inventario }}
+                                            {{ $historial->detalles_trabajo }}
                                         </td>
                                         <td class="p-1 text-center text-m">
                                             @php

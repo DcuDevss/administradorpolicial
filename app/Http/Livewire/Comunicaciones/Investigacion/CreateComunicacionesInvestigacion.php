@@ -93,18 +93,19 @@ class CreateComunicacionesInvestigacion extends Component
             $this->comunicacionesinvestigacion->save();
 
 
-
-            session()->flash('mensaje', 'Datos guardados correctamente.');
-
-
             DB::commit();
             //$this->clearForm();
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
 
         } catch (\Exception $e) {
             DB::rollback();
             return $e->getMessage();
         }
     }
+
     public function render()
     {
         $HtCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '4')->count();
@@ -192,6 +193,8 @@ class CreateComunicacionesInvestigacion extends Component
         $RepetidoraCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesinvestigacion::where('equipocomunicacion_id', '1')->count();
 
         return view('livewire.comunicaciones.investigacion.create-comunicaciones-investigacion', compact(
@@ -224,6 +227,8 @@ class CreateComunicacionesInvestigacion extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

@@ -117,4 +117,15 @@ class IndexComunicacionesFamilia2 extends Component
         $this->resetPage();
 
     }
+
+    public function eliminar($id)
+    {
+        $registro = ComunicacionesFamilia2::findOrFail($id);
+        $registro->delete(); // eliminación real
+
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
+    }
 }

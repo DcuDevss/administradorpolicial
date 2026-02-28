@@ -150,8 +150,10 @@ class EditRecursosGeneral extends Component
         ]);
         $this->recursos->save();
         $this->generateQRCode();
-
-        session()->flash('message', 'Datos actualizados correctamente.');
+        $this->dispatchBrowserEvent('notificacion', [
+        'type' => 'success',
+        'message' => 'Datos Editados correctamente.'
+        ]);
     }
 
     private function generateQRCode()

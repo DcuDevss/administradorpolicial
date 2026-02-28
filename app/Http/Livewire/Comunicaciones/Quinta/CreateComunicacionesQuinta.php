@@ -93,7 +93,10 @@ class CreateComunicacionesQuinta extends Component
 
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
 
 
             DB::commit();
@@ -192,6 +195,8 @@ class CreateComunicacionesQuinta extends Component
         $RepetidoraCount = Comunicacionesquinta::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesquinta::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesquinta::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesquinta::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesquinta::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesquinta::where('equipocomunicacion_id', '1')->count();
 
         return view('livewire.comunicaciones.quinta.create-comunicaciones-quinta',compact(
@@ -224,6 +229,8 @@ class CreateComunicacionesQuinta extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

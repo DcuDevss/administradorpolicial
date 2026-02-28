@@ -122,4 +122,15 @@ class IndexComunicacionesRecurso extends Component
         $this->resetPage();
 
     }
+
+    public function eliminar($id)
+    {
+        $registro = ComunicacionesRecurso::findOrFail($id);
+        $registro->delete(); // eliminación real
+
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
+    }
 }

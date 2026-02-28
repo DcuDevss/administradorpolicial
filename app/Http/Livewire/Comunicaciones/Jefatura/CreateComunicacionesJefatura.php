@@ -94,7 +94,11 @@ class CreateComunicacionesJefatura extends Component
 
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();
@@ -192,6 +196,8 @@ class CreateComunicacionesJefatura extends Component
         $RepetidoraCount = Comunicacionesjefatura::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesjefatura::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesjefatura::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesjefatura::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesjefatura::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesjefatura::where('equipocomunicacion_id', '1')->count();
 
 
@@ -225,6 +231,8 @@ class CreateComunicacionesJefatura extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

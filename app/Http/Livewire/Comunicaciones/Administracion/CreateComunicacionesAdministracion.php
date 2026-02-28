@@ -95,7 +95,11 @@ class CreateComunicacionesAdministracion extends Component
 
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+             $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();
@@ -194,6 +198,8 @@ class CreateComunicacionesAdministracion extends Component
         $FuenteCount = Comunicacionesadministracion::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesadministracion::where('equipocomunicacion_id', '7')->count();
         $OtrosCount = Comunicacionesadministracion::where('equipocomunicacion_id','1')->count();
+        $PttCount = Comunicacionesadministracion::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesadministracion::where('equipocomunicacion_id', '10')->count();
 
 
         return view('livewire.comunicaciones.administracion.create-comunicaciones-administracion',compact(
@@ -226,6 +232,8 @@ class CreateComunicacionesAdministracion extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

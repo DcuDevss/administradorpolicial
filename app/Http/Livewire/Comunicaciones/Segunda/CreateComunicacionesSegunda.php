@@ -93,7 +93,11 @@ class CreateComunicacionesSegunda extends Component
 
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();
@@ -104,15 +108,6 @@ class CreateComunicacionesSegunda extends Component
             return $e->getMessage();
         }
     }
-
-
-
-
-
-
-
-
-
 
     public function render()
     {
@@ -201,6 +196,8 @@ class CreateComunicacionesSegunda extends Component
         $RepetidoraCount = Comunicacionessegunda::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionessegunda::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionessegunda::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionessegunda::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionessegunda::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionessegunda::where('equipocomunicacion_id', '1')->count();
 
 
@@ -237,6 +234,8 @@ class CreateComunicacionesSegunda extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

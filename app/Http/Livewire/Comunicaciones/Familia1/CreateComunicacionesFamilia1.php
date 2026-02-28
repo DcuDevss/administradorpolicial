@@ -94,7 +94,11 @@ class CreateComunicacionesFamilia1 extends Component
 
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+             $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();
@@ -194,6 +198,8 @@ class CreateComunicacionesFamilia1 extends Component
         $RepetidoraCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesfamilia1::where('equipocomunicacion_id', '1')->count();
 
 
@@ -227,6 +233,8 @@ class CreateComunicacionesFamilia1 extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

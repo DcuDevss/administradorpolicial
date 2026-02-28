@@ -261,7 +261,9 @@
                                 <div class="flex justify-end mr-3 mt-4">
                                     <button
                                         class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                        wire:click="guardar">
+                                       type="button"
+                                        data-wire="guardar"
+                                        class="btn-confirm">
                                         Guardar!!
                                     </button>
                                 </div>
@@ -350,6 +352,10 @@
                                         {{ $FuenteCount }}</p>
                                     <p class="text-metric-primary font-extrabold mb-2">Total de "Balizas":
                                         {{ $BalizaCount }}</p>
+                                    <p class="text-metric-primary font-extrabold mb-2">Total de "Ptt":
+                                        {{ $PttCount }}</p>
+                                    <p class="text-metric-primary font-extrabold mb-2">Total de "Comando Baliza":
+                                        {{ $ComandoBalizaCount }}</p>
                                     <p class="text-metric-primary font-extrabold mb-2">Total de "Otros":
                                         {{ $OtrosCount }}</p>
                                 </div>

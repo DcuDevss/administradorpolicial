@@ -93,7 +93,10 @@ class CreateComunicacionesNarco extends Component
 
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
 
 
             DB::commit();
@@ -193,6 +196,8 @@ class CreateComunicacionesNarco extends Component
         $RepetidoraCount = Comunicacionesnarco::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesnarco::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesnarco::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesnarco::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesnarco::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesnarco::where('equipocomunicacion_id', '1')->count();
 
 
@@ -226,6 +231,8 @@ class CreateComunicacionesNarco extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

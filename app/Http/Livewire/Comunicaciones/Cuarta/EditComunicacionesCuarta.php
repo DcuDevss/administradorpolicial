@@ -89,9 +89,10 @@ public function edit()
         'detalle_inventario' => $this->detalle_inventario,
     ]);
 
-
-
-    session()->flash('message', 'Datos actualizados correctamente.');
+    $this->dispatchBrowserEvent('notificacion', [
+    'type' => 'success',
+    'message' => 'Datos Editados correctamente.'
+    ]);
 }
 
     public function render()

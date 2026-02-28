@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <h2 style="text-align:center;margin-bottom:4mm;">
+        <h2 id="titulo_pdf">
             Inventario Equipos de Comunicación
         </h2>
 
@@ -46,7 +46,7 @@
             </strong>
         </p>
 
-        <table class="pdf-table">
+        <table>
             <thead>
                 <tr>
                     <th>Tipo equipo</th>

@@ -126,7 +126,11 @@ class CreateComunicacionesRiogrande extends Component
                 $historial->save();
             }
 
-            session()->flash('message', 'Datos guardados correctamente.');
+             $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
             DB::commit();
             //$this->clearForm();
@@ -160,16 +164,16 @@ class CreateComunicacionesRiogrande extends Component
         $marcaotros = Comunicacionesrg::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 2)
             ->count();
-        $marcaMotorola = Comunicacionesrg::where('equipocomunicacion_id', 2)
+        $marcaMotorola = Comunicacionesrg::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 3)
             ->count();
-        $marcaKenwood = Comunicacionesrg::where('equipocomunicacion_id', 2)
+        $marcaKenwood = Comunicacionesrg::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 4)
             ->count();
-        $marcaYaesu = Comunicacionesrg::where('equipocomunicacion_id', 2)
+        $marcaYaesu = Comunicacionesrg::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 5)
             ->count();
-        $marcaHytera = Comunicacionesrg::where('equipocomunicacion_id', 2)
+        $marcaHytera = Comunicacionesrg::where('equipocomunicacion_id', 4)
             ->where('marcaequipo_id', 6)
             ->count();
 
@@ -216,6 +220,8 @@ class CreateComunicacionesRiogrande extends Component
         $RepetidoraCount = Comunicacionesrg::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesrg::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesrg::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesrg::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesrg::where('equipocomunicacion_id', '10')->count();
 
 
         return view('livewire.dcrgcomu.riograndecomu.create-comunicaciones-riogrande
@@ -243,6 +249,8 @@ class CreateComunicacionesRiogrande extends Component
             'dipolo8',
             'yagi',
             'latigo',
+            'PttCount',
+            'ComandoBalizaCount',
 
             //---
             'otrasCount',

@@ -101,4 +101,15 @@ class IndexComunicacionesDcu extends Component
         session()->flash('message', 'Recurso eliminado correctamente.');
         $this->render(); // Refrescar la lista
     }
+
+    public function eliminar($id)
+    {
+        $registro = ComunicacionesDcu::findOrFail($id);
+        $registro->delete(); // eliminación real
+
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
+    }
 }

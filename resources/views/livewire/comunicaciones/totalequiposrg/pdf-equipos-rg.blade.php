@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <h2 style="text-align:center;margin-bottom:4mm;">
+        <h2>
             Inventario Equipos de Comunicación
         </h2>
 

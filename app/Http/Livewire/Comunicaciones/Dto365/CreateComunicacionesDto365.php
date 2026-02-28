@@ -93,7 +93,11 @@ class CreateComunicacionesDto365 extends Component
             $this->comunicacionesdto365->save();
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+             $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();
@@ -190,6 +194,8 @@ class CreateComunicacionesDto365 extends Component
         $RepetidoraCount = Comunicacionesdto365::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesdto365::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesdto365::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesdto365::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesdto365::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesdto365::where('equipocomunicacion_id', '1')->count();
 
 
@@ -223,6 +229,8 @@ class CreateComunicacionesDto365 extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

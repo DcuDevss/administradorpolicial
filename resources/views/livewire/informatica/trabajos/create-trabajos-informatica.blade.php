@@ -89,7 +89,9 @@
                                 <div class="flex justify-end mt-4">
                                     <button
                                         class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                        wire:click="guardar">
+                                        type="button"
+                                        data-wire="guardar"
+                                        class="btn-confirm">
                                         Guardar!!
                                     </button>
                                 </div>

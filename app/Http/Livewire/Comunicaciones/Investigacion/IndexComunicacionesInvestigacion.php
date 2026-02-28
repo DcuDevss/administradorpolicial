@@ -116,4 +116,15 @@ class IndexComunicacionesInvestigacion extends Component
         $this->resetPage();
 
     }
+
+    public function eliminar($id)
+    {
+        $registro = ComunicacionesInvestigacion::findOrFail($id);
+        $registro->delete(); // eliminación real
+
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
+    }
 }
