@@ -101,4 +101,21 @@ class IndexJefaturaGeneral extends Component
 
         return view('livewire.informatica.jefatura.index-jefatura-general',compact('jefatu'));
     }
+
+    public function updatingSearch()
+    {
+
+        $this->resetPage();
+    }
+
+    public function eliminar($id)
+    {
+        $registro = Jefaturagenerale::findOrFail($id);
+        $registro->delete(); // eliminación real
+
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
+    }
 }

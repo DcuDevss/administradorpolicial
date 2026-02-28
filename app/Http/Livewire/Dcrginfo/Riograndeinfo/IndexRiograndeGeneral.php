@@ -144,4 +144,15 @@ class IndexRiograndeGeneral extends Component
         $this->resetPage();
 
     }
+
+    public function eliminar($id)
+    {
+        $registro = Riograndegenerale::findOrFail($id);
+        $registro->delete(); // eliminación real
+
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
+    }
 }
