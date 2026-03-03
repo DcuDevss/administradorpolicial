@@ -35,52 +35,40 @@
                                         @endif
                                     </th>
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
-
                                         Tipo de equipo
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Marca
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Tipo de antena
                                     </th>
                                     <th class="p-1   texte-center text-xs text-blue-800">
                                         Modelo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Nro serie
-
                                     </th>
-
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Donde se localiza
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Condicion del equipo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha inventario
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle inventario
-
                                     </th>
                                     {{-- <th class="p-1   text-center text-xs text-blue-800">
                                         QR
-
                                     </th> --}}
                                     <th class="p-1 text-center text-xs text-blue-800">
                                         Acciones
@@ -88,7 +76,6 @@
                                 </tr>
                             </thead>
                             <tbody class="text-sm divide-y divide-gray-100">
-
                                 @foreach ($comunicaciones as $comu)
                                     <tr>
                                         <td class="text-center py-6 font-bold">{{ $comu->id ?? 'No Encontrado'}}</td>
@@ -133,7 +120,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>

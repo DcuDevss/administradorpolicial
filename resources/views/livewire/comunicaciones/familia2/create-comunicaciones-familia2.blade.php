@@ -21,10 +21,7 @@
                         </div>
                         <form enctype="multipart/form-data">
                             <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                                 <div class="grid grid-cols-3 gap-3 mb-10">
-
                                     <div class="mt-2">
                                         <label for="equipocomunicacion_id"
                                             class="block text-sm font-medium text-gray-700">Tipo de
@@ -167,6 +164,7 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
+
                                 <div class="flex justify-end mr-3 mt-4">
                                     <button
                                         class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -176,7 +174,6 @@
                                         Guardar!!
                                     </button>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -189,8 +186,6 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                             <div class="grid grid-cols-4 gap-2 mb-10">
                                 <div>
                                     <h1 class="text-red-800 text-lg font-bold mb-2">Total de equipos "Ht":
@@ -206,6 +201,7 @@
                                     <p class="text-metric-secondary font-bold mb-2">Ht Hytera: {{ $marcaHytera }}</p>
                                     <p class="text-metric-secondary font-bold mb-2">Ht Alcom: {{ $marcaAlcom }} </p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Equipos Base":
                                         {{ $BaseCount }}</h1>
@@ -230,6 +226,7 @@
                                         Alcom:{{ $baseAlcom }}
                                     </p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Antenas":
                                         {{ $AntenaCount }}</h1>
@@ -252,7 +249,6 @@
                                     <p class="text-metric-secondary font-bold mb-2">Antena Ringo:{{ $ringo }}
                                     </p>
                                 </div>
-
 
                                 <div>
                                     <p class="text-red-800 font-extrabold mb-2">Total de "Repetidoras":
@@ -279,13 +275,9 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

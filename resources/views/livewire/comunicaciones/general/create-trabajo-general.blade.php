@@ -34,8 +34,6 @@
                                         </select>
                                     </div>
 
-
-
                                     <div class="mt-2">
                                         <label for="dependencia_riogrande_id"
                                             class="block text-sm font-medium text-gray-700">Dependencias Rio grande
@@ -90,8 +88,6 @@
                                         @enderror
                                     </div>
 
-
-
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="fecha_service">Fecha
@@ -129,7 +125,8 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
-                            <div class="flex justify-end gap-3 mt-6">
+
+                                <div class="flex justify-end gap-3 mt-6">
                                     <button
                                         class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                        type="button"
@@ -137,16 +134,11 @@
                                         class="btn-confirm">
                                         Guardar!!
                                     </button>
-                            </div>
-
+                                </div>
                             </div>
                         </form>
                     </div>
-
-
-
                 </div>
-
             </div>
         </div>
     </div>

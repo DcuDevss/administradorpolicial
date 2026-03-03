@@ -66,8 +66,6 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
                                     <div class="mt-2">
                                         <label class="block text-white text-sm font-bold mb-1"
                                             for="fecha_trabajo">Fecha
@@ -80,11 +78,7 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
                                 </div>
-
-
                                 <div class="mt-2">
                                     <label class="block text-white text-sm font-bold mb-1"
                                         for="detalles_servicios">Detalle del Trabajo</label>
@@ -95,13 +89,7 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
-
-
-
                         </div>
-
-
-
                     </div>
                     <div class="flex gap-3 mt-6">
                         <button

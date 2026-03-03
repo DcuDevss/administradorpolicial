@@ -18,8 +18,6 @@
                             </div>
                             <div x-show.transition.in.duration.800ms="open" class="border p-4">
                                 <div class="grid grid-cols-3 gap-3 mb-10">
-
-
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="equipocomunicacion_id">Tipo de equipo
@@ -37,7 +35,6 @@
                                     </div>
 
                                     <div class="mt-1">
-
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="marcaequipo_id">Marca del equipo
                                         </label>
@@ -168,26 +165,25 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
-
                             </div>
-
                         </div>
-                            <div class="flex gap-3 mt-6">
-                                <button
-                                    class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    type="button"
-                                    data-wire="edit"
-                                    class="btn-confirm">
-                                    Guardar!!
-                                </button>
-                                <button
-                                    type="button"
-                                    onclick="history.back()"
-                                    class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
-                                    Cancelar
-                                </button>
-                            </div>
-                </div>
+
+                        <div class="flex gap-3 mt-6">
+                            <button
+                                class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                type="button"
+                                data-wire="edit"
+                                class="btn-confirm">
+                                Guardar!!
+                            </button>
+                            <button
+                                type="button"
+                                onclick="history.back()"
+                                class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

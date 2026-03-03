@@ -20,7 +20,6 @@
                         <table class="w-full ">
                             <thead class="text-xs font-semibold uppercase text-gray-900 bg-slate-400 ">
                                 <tr>
-
                                     <th class="p-1   text-center text-xs text-red-500">
                                         Nro
                                         @if ($sort1 == 'id')
@@ -34,52 +33,41 @@
                                         @endif
                                     </th>
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
-
                                         Tipo de equipo
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Marca
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Tipo de antena
                                     </th>
                                     <th class="p-1   texte-center text-xs text-blue-800">
                                         Modelo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Nro serie
-
                                     </th>
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Donde se localiza
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Condicion del equipo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha inventario
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle inventario
-
                                     </th>
                                     {{-- <th class="p-1   text-center text-xs text-blue-800">
                                         QR
-
                                     </th> --}}
                                     <th class="p-1 text-center text-xs text-blue-800">
                                         Acciones
@@ -132,7 +120,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>

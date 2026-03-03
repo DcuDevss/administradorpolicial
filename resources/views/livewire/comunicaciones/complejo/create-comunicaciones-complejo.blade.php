@@ -157,8 +157,6 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
                                 </div>
 
                                 <div class="mt-1">
@@ -180,7 +178,6 @@
                                         Guardar!!
                                     </button>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -209,6 +206,7 @@
                                     <p class="text-metric-secondary font-bold mb-2">Ht Hytera: {{ $marcaHytera }}</p>
                                     <p class="text-metric-secondary font-bold mb-2">Ht Alcom: {{ $marcaAlcom }} </p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Equipos Base":
                                         {{ $BaseCount }}</h1>
@@ -227,6 +225,7 @@
                                     <p class="text-metric-secondary font-bold mb-2">Equipo Base
                                         Alcom:{{ $baseAlcom }}</p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Antenas":
                                         {{ $AntenaCount }}</h1>
@@ -273,14 +272,9 @@
                             <p class="text-lg font-extrabold text-white">TABLA DE INVENTARIO</p>
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
-                        <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
-                        </div>
+                        <div x-show.transition.in.duration.800ms="open" class="border p-4"></div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

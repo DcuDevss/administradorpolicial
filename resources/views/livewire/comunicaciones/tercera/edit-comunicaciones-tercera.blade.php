@@ -18,8 +18,6 @@
                             </div>
                             <div x-show.transition.in.duration.800ms="open" class="border p-4">
                                 <div class="grid grid-cols-3 gap-3 mb-10">
-
-
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="equipocomunicacion_id">Tipo de equipo
@@ -39,13 +37,11 @@
                                     </div>
 
                                     <div class="mt-1">
-
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="marcaequipo_id">Marca del equipo
                                         </label>
                                         <select class="w-full form-control rounded-md" wire:model="marcaequipo_id">
                                             <option value="" selected disabled>Seleccione el Equipo.</option>
-
                                             @foreach ($MarcaEquipo as $MarcaEqui)
                                                 <option value="{{ $MarcaEqui->id }}">{{ $MarcaEqui->nombre }}</option>
                                             @endforeach
@@ -59,7 +55,6 @@
                                         <select class="w-full form-control rounded-md" wire:model="vhfantena_id">
                                             <option value="" selected disabled>seleccione el tipo de antena
                                             </option>
-
                                             @foreach ($VhfAntena as $Vhf)
                                                 <option value="{{ $Vhf->id }}">{{ $Vhf->nombre }}</option>
                                             @endforeach
@@ -156,7 +151,6 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
                                 </div>
 
                                 <div class="mt-1">
@@ -170,6 +164,7 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
+
                             <div class="flex gap-3 mt-6">
                                 <button
                                     class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -186,10 +181,7 @@
                                 </button>
                             </div>
                             </div>
-
-
                         </div>
-
                     </div>
                 </div>
         </form>

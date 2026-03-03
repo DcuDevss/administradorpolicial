@@ -15,8 +15,8 @@
                             <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model="search"
                                 placeholder="Ingrese la busqueda">
                             <button wire:click="clear" class="ml-2"><span class="fa fa-eraser"></span></button>
-
                         </div>
+
                         <table class="w-full ">
                             <thead class="text-xs font-semibold uppercase text-gray-900 bg-slate-400 ">
                                 <tr>
@@ -32,46 +32,35 @@
                                             <i class="fas fa-sort text-yellow-400"></i>
                                         @endif
                                     </th>
-
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
-
                                         Categoria
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800 cursor-pointer">
                                         Nombre del Elemento
-
                                     </th>
-
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Marca
                                     </th>
                                     <th class="p-1   texte-center text-xs text-blue-800">
                                         Modelo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Nro serie
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha Service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Estado
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha inventario
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle inventario
-
                                     </th>
                                     {{-- <th class="p-1   text-center text-xs text-blue-800">
                                         QR
@@ -128,7 +117,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>

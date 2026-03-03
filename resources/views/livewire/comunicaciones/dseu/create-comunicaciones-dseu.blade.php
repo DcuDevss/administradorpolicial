@@ -11,8 +11,6 @@
             </button>
         </x-slot>
 
-
-
         <div class="col-xs-12">
             <div class="flex flex-col p-4 shadow-lg">
                 <div class="py-5 bg-white dark:bg-gray-100 rounded-md">
@@ -24,10 +22,7 @@
                         </div>
                         <form enctype="multipart/form-data">
                             <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                                 <div class="grid grid-cols-3 gap-3 mb-10">
-
                                     <div class="mt-2">
                                         <label for="equipocomunicacion_id"
                                             class="block text-sm font-medium text-gray-700">Tipo de
@@ -120,8 +115,6 @@
                                         @enderror
                                     </div>
 
-
-
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="fecha_service">Fecha
@@ -157,8 +150,6 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
                                 </div>
 
                                 <div class="mt-1">
@@ -180,7 +171,6 @@
                                         Guardar!!
                                     </button>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -233,6 +223,7 @@
                                         Alcom:{{ $baseAlcom }}
                                     </p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Antenas":
                                         {{ $AntenaCount }}</h1>
@@ -255,6 +246,7 @@
                                     <p class="text-metric-secondary font-bold mb-2">Antena Ringo:{{ $ringo }}
                                     </p>
                                 </div>
+
                                 <div>
                                     <p class="text-red-800 font-extrabold mb-2">Total de "Repetidoras":
                                         {{ $RepetidoraCount }}</p>
@@ -280,13 +272,9 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
