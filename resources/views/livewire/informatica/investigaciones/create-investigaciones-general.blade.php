@@ -9,11 +9,7 @@
 
         <div class="col-xs-12">
             <div class="flex flex-col p-4 rounded-md shadow-lg">
-
                 <div class="py-5 rounded-md bg-white dark:bg-gray-100">
-
-
-
                     <div x-data="{ open: false }" class="shadow-lg">
                         <div @click="open = !open"
                             class="flex items-center justify-between bg-slate-800 border p-4 rounded-md transition">
@@ -21,7 +17,6 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
                             {{-- <h1>la suma total de computadoras es: {{ $sumaTotalPc }}</h1> --}}
 
 
@@ -65,18 +60,14 @@
                             </div>
 
                             <div class="grid grid-cols-4 gap-2 mb-10">
-
                                 <div x-data="{ showModal: @entangle('showModal') }">
                                     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
                                         x-show="showModal" x-cloak>
-
                                         <div class="bg-white p-4 rounded-md shadow-md w-96"
                                             @click.away="showModal = false">
                                             <h2 class="text-2xl font-semibold mb-2 underline">Detalles del Inventario
                                             </h2>
-
                                             {{-- <p>Valor de showModal: {{ $showModal ? 'true' : 'false' }}</p> --}}
-
                                             <div class="mb-4">
                                                 @switch($button)
                                                     @case('Investigaciones')
@@ -89,52 +80,42 @@
                                                                 Pc. en Of. Segundo Jefe:
                                                                 <strong class="text-red-800">{{ $segundoJefePc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Prontuario:
                                                                 <strong class="text-red-800">{{ $prontuarioPc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Repar:
                                                                 <strong class="text-red-800">{{ $reparPc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Judicial:
                                                                 <strong class="text-red-800">{{ $judicialPc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Convenio:
                                                                 <strong class="text-red-800">{{ $convenioPc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Guardia:
                                                                 <strong class="text-red-800">{{ $guardiaPc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Ciudadanía:
                                                                 <strong class="text-red-800">{{ $ciudadaniaPc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Delitos Complejos:
                                                                 <strong class="text-red-800">{{ $delitoscomplejosPc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Narcocriminalidad:
                                                                 <strong class="text-red-800">{{ $narcocriminalidadPc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Científica:
                                                                 <strong class="text-red-800">{{ $cientificaPc }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Pc. en Det. Prontuario:
                                                                 <strong class="text-red-800">{{ $detalprontuarioPc }}</strong>
@@ -143,97 +124,78 @@
                                                                 Monitores:
                                                                 <strong class="text-red-800">{{ $monitor }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Notebooks:
                                                                 <strong class="text-red-800">{{ $notebook }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Netbooks:
                                                                 <strong class="text-red-800">{{ $netbook }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Celulares:
                                                                 <strong class="text-red-800">{{ $celular }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Tablets:
                                                                 <strong class="text-red-800">{{ $tablet }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Impresoras Láser:
                                                                 <strong class="text-red-800">{{ $impresoraLaser }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Impresoras Chorro:
                                                                 <strong class="text-red-800">{{ $impresoraChorro }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Switch:
                                                                 <strong class="text-red-800">{{ $switch }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Router:
                                                                 <strong class="text-red-800">{{ $ruter }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 UPS:
                                                                 <strong class="text-red-800">{{ $ups }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Cámaras:
                                                                 <strong class="text-red-800">{{ $camaras }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Estaciones de Trabajo:
                                                                 <strong class="text-red-800">{{ $Estacion_trabajo }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Servidores:
                                                                 <strong class="text-red-800">{{ $servidor }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Estabilizadores:
                                                                 <strong class="text-red-800">{{ $Estabilizador }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Auriculares:
                                                                 <strong class="text-red-800">{{ $Auriculares }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Cable Estructurado:
                                                                 <strong class="text-red-800">{{ $Cable_estructurado }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 TV:
                                                                 <strong class="text-red-800">{{ $Tv }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Central Telefónica:
                                                                 <strong class="text-red-800">{{ $centralTelefonica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Teléfonos Fijos:
                                                                 <strong class="text-red-800">{{ $telefonoFijo }}</strong>
                                                             </p>
-
                                                         </div>
                                                     @break
 
@@ -247,92 +209,74 @@
                                                                 Monitores Científica:
                                                                 <strong class="text-red-800">{{ $monitorCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Notebooks Científica:
                                                                 <strong class="text-red-800">{{ $notebookCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Netbooks Científica:
                                                                 <strong class="text-red-800">{{ $netbookCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Celulares Científica:
                                                                 <strong class="text-red-800">{{ $celularCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Tablets Científica:
                                                                 <strong class="text-red-800">{{ $tabletCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Impresoras Láser Científica:
                                                                 <strong class="text-red-800">{{ $impresoraLaserCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Impresoras Chorro Científica:
                                                                 <strong class="text-red-800">{{ $impresoraChorroCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Switch Científica:
                                                                 <strong class="text-red-800">{{ $switchCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Router Científica:
                                                                 <strong class="text-red-800">{{ $ruterCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 UPS Científica:
                                                                 <strong class="text-red-800">{{ $upsCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Cámaras Científica:
                                                                 <strong class="text-red-800">{{ $camarasCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Servidores Científica:
                                                                 <strong class="text-red-800">{{ $servidorCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Estabilizadores Científica:
                                                                 <strong class="text-red-800">{{ $EstabilizadorCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Auriculares Científica:
                                                                 <strong class="text-red-800">{{ $AuricularesCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Cable Estructurado Científica:
                                                                 <strong class="text-red-800">{{ $Cable_EstructuradoCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 TV Científica:
                                                                 <strong class="text-red-800">{{ $TvCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Central Telefónica Científica:
                                                                 <strong class="text-red-800">{{ $centralTelefonicaCientifica }}</strong>
                                                             </p>
-
                                                             <p class="text-metric-primary font-bold mb-2 text-xl">
                                                                 Teléfonos Fijos Científica:
                                                                 <strong class="text-red-800">{{ $telefonoFijoCientifica }}</strong>
                                                             </p>
-
                                                         </div>
                                                     @break
 
@@ -349,11 +293,7 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
-
-
                         </div>
                     </div>
                     <div x-data="{ open: false }" class="shadow-lg">
@@ -363,11 +303,8 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                             <form enctype="multipart/form-data">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-10">
-
 
                                     <div class="mt-2">
                                         <label for="investigacione_id"
@@ -375,7 +312,6 @@
                                         <select class="w-full form-control rounded-md" wire:model="investigacione_id">
                                             <option value="" selected disabled>Seleccione el departamento.
                                             </option>
-
                                             @foreach ($INvestigacione as $inv)
                                                 <option value="{{ $inv->id }}">{{ $inv->nombre }}</option>
                                             @endforeach
@@ -397,9 +333,8 @@
                                             </select>
                                         </div>
                                     @endif
-
-
                                 </div>
+
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-10">
 
                                     <div class="mt-2">
@@ -557,7 +492,6 @@
                                         @enderror
                                     </div>
 
-
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1" for="activo">Disp.
                                             En servicio/Fuera de servicio</label>
@@ -569,6 +503,7 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
+
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="fecha_service">Ultima fecha
@@ -580,6 +515,7 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
+
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="tipo_service">Tipo de service
@@ -630,8 +566,6 @@
                 </div>
             </div>
         </div>
-
         @livewire('informatica.investigaciones.index-investigaciones-general')
-
     </div>
 </div>

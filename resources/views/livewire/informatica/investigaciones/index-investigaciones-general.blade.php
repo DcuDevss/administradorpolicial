@@ -15,8 +15,8 @@
                             <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model="search"
                                 placeholder="Ingrese la busqueda">
                             <button wire:click="clear" class="ml-2"><span class="fa fa-eraser"></span></button>
-
                         </div>
+
                         <table class="w-full table-auto">
                             <thead class="text-xs font-semibold uppercase text-gray-900 bg-slate-400">
                                 <tr>
@@ -33,7 +33,6 @@
                                         @endif
                                     </th>
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
-
                                         Investigaciones
                                     </th>{{--
                                     <th class="p-1   text-center text-xs text-blue-800">
@@ -69,44 +68,34 @@
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de dispositivos
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Marca
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Modelo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Procesador
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Sistema operativo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de ram
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Cantidad de ram
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Slot de memoria ram
-
                                     </th>
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de disco
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Cantidad de almacenamiento
-
                                     </th>
                                     {{--  <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de mouse
@@ -118,38 +107,31 @@
                                     </th> --}}
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha de servis
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha de inventario
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Softwares
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle del inventario
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Codigo Qr
-
                                     </th>
 
                                     <th class="p-1   text-right text-xs text-blue-800">
-                                        Acciones
-                                    </th>
+                                        Acciones                                    </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Estado
-
                                     </th>
                                 </tr>
                             </thead>
+
                             <tbody class="text-sm divide-y divide-gray-100">
                                 @foreach ($investigacion as $comu)
                                     <tr>
@@ -197,7 +179,6 @@
                                                     <img x-on:click="open = !open"
                                                         src="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
                                                         alt="Código QR" class="cursor-pointer">
-
                                                     <div x-show="open"
                                                         class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                                                         <div class="relative">
@@ -254,7 +235,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>

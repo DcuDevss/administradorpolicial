@@ -21,7 +21,6 @@
                             </div>
                             <div x-show.transition.in.duration.800ms="open" class="border p-4">
                                 <!-- Contenido del acordeón aquí -->
-
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-10">
 
                                     <div class="mt-2">
@@ -32,14 +31,12 @@
                                             wire:model="recurso_humano_id">
                                             <option value="" selected disabled>Seleccione el departamento.
                                             </option>
-
                                             @foreach ($Recurso_Humano as $recur)
                                                 <option value="{{ $recur->id }}">{{ $recur->nombre }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
-
 
                                     <div class="mt-2">
                                         <label for="bienestare_id"
@@ -49,7 +46,6 @@
                                             wire:model="bienestare_id">
                                             <option value="" selected disabled>Seleccione la oficina.
                                             </option>
-
                                             @foreach ($BIenestare as $bien)
                                                 <option value="{{ $bien->id }}">{{ $bien->nombre }}
                                                 </option>
@@ -67,7 +63,6 @@
                                             wire:model="sumario_id">
                                             <option value="" selected disabled>Seleccione la oficina.
                                             </option>
-
                                             @foreach ($SUmario as $suma)
                                                 <option value="{{ $suma->id }}">{{ $suma->nombre }}
                                                 </option>
@@ -75,15 +70,12 @@
                                         </select>
                                     </div>
 
-
-
                                      <div class="mt-2">
                                         <label class="block text-white text-sm font-bold mb-1"
                                             for="tipodispositivo_id">Tipo dispositivo
                                         </label>
                                         <select class="w-full form-control rounded-md" wire:model="tipodispositivo_id">
                                             <option value="" selected disabled>Seleccione el dispositivo.</option>
-
                                             @foreach ($TipoDispositivo as $tipoDisp)
                                                 <option value="{{ $tipoDisp->id }}">{{ $tipoDisp->nombre }}</option>
                                             @endforeach
@@ -97,7 +89,6 @@
                                         <select class="w-full form-control rounded-md" wire:model="cantidadram_id">
                                             <option value="" selected disabled>Seleccione la cantidad de memoria
                                                 Ram.</option>
-
                                             @foreach ($CantidadRam as $cantRam)
                                                 <option value="{{ $cantRam->id }}">{{ $cantRam->cantidad }}</option>
                                             @endforeach
@@ -262,9 +253,8 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
                                 </div>
+
                                 <div class="mt-2">
                                     <label class="block text-white text-sm font-bold mb-1"
                                         for="softwares_instalados">Softwares instalados</label>
@@ -286,7 +276,6 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
-
                                {{--   <div class="mt-2 ml-80">
                                     <label class="block mb-2 font-semibold">Código QR Actual</label>
                                     @if ($recursos->codigo_qr)
@@ -296,18 +285,15 @@
                                         <p>No hay código QR disponible</p>
                                     @endif
                                 </div>--}}
-
                             </div>
-
                         </div>
-
                         {{--  @if ($comisariaprimera && $comisariaprimera->codigo_qr)
                             <div class="my-4">
                                 <img src="{{ asset('storage/codigoQR/' . $comisariaprimera->codigo_qr) }}" alt="Código QR">
                             </div>
                            @endif --}}
-
                     </div>
+
                     <div class="flex gap-3 mt-6">
                         <button
                             class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -323,7 +309,6 @@
                             Cancelar
                         </button>
                     </div>
-
                 </div>
             </div>
         </form>

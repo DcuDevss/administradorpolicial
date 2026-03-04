@@ -26,7 +26,6 @@
                                     <div class="mt-1">
                                         <label class="block text-text-gray-700 text-sm font-bold mb-1"
                                                for="dependencia_riogrande_id">Rio Grande</label>
-
                                         <select class="w-full form-control rounded-md"
                                                 wire:model="dependencia_riogrande_id"
                                                 id="dependencia_riogrande_id">
@@ -35,7 +34,6 @@
                                                 <option value="{{ $riogrande->id }}">{{ $riogrande->nombre }}</option>
                                             @endforeach
                                         </select>
-
                                         @error('dependencia_riogrande_id')
                                             <span class="text-red-500">{{ $message }}</span>
                                         @enderror
@@ -45,7 +43,6 @@
                                     <div class="mt-2">
                                         <label for="tipodeoficina_id"
                                                class="block text-text-gray-700 text-sm font-bold mb-1">Tipo de oficina</label>
-
                                         <select class="w-full form-control rounded-md"
                                                 wire:model="tipodeoficina_id"
                                                 id="tipodeoficina_id">
@@ -54,7 +51,6 @@
                                                 <option value="{{ $rg->id }}">{{ $rg->nombre }}</option>
                                             @endforeach
                                         </select>
-
                                         @error('tipodeoficina_id')
                                             <span class="text-red-500">{{ $message }}</span>
                                         @enderror
@@ -64,7 +60,6 @@
                                     <div class="mt-2">
                                         <label class="block text-text-gray-700 text-sm font-bold mb-1"
                                                for="tipodispositivo_id">Tipo dispositivo</label>
-
                                         <select class="w-full form-control rounded-md"
                                                 wire:model="tipodispositivo_id"
                                                 id="tipodispositivo_id">
@@ -73,7 +68,6 @@
                                                 <option value="{{ $tipoDisp->id }}">{{ $tipoDisp->nombre }}</option>
                                             @endforeach
                                         </select>
-
                                         @error('tipodispositivo_id')
                                             <span class="text-red-500">{{ $message }}</span>
                                         @enderror
@@ -83,7 +77,6 @@
                                     <div class="mt-2">
                                         <label class="block text-text-gray-700 text-sm font-bold mb-1"
                                                for="cantidadram_id">Cantidad de memoria ram</label>
-
                                         <select class="w-full form-control rounded-md"
                                                 wire:model="cantidadram_id"
                                                 id="cantidadram_id">
@@ -92,7 +85,6 @@
                                                 <option value="{{ $cantRam->id }}">{{ $cantRam->cantidad }}</option>
                                             @endforeach
                                         </select>
-
                                         @error('cantidadram_id')
                                             <span class="text-red-500">{{ $message }}</span>
                                         @enderror
@@ -102,7 +94,6 @@
                                     <div class="mt-2">
                                         <label for="slotmemoria_id"
                                                class="block text-text-gray-700 text-sm font-bold mb-1">Slot de memoria</label>
-
                                         <select class="w-full form-control rounded-md"
                                                 wire:model="slotmemoria_id"
                                                 id="slotmemoria_id">
@@ -111,7 +102,6 @@
                                                 <option value="{{ $slot->id }}">{{ $slot->cantidad }}</option>
                                             @endforeach
                                         </select>
-
                                         @error('slotmemoria_id')
                                             <span class="text-red-500">{{ $message }}</span>
                                         @enderror
@@ -249,7 +239,6 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
                                 </div>
 
                                 {{-- Softwares --}}
@@ -286,10 +275,10 @@
                                         <p>No hay código QR disponible</p>
                                     @endif
                                 </div>
-
                             </div>
                         </div>
                     </div>
+                    
                     <div class="flex gap-3 mt-6">
                         <button
                             class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

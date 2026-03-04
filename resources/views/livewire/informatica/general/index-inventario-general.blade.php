@@ -32,11 +32,9 @@
                                         @endif
                                     </th>
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
-
                                         Dependencias Ushuaia
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Oficinias operativas
                                     </th>
                                     {{--  <th class="p-1   text-center text-xs text-blue-800">
@@ -68,44 +66,34 @@
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de dispositivos
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Marca
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Modelo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Procesador
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Sistema operativo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de ram
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Cantidad de ram
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Slot de memoria ram
-
                                     </th>
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de disco
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Cantidad de almacenamiento
-
                                     </th>
                                     {{-- <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de mouse
@@ -117,35 +105,27 @@
                                     </th> --}}
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha de servis
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha de inventario
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Software instalados
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle del inventario
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Codigo Qr
-
                                     </th>
-
                                     <th class="p-1   text-right text-xs text-blue-800">
                                         Estado
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Acciones
-
                                     </th>
                                 </tr>
                             </thead>
@@ -164,7 +144,7 @@
                                             <td class="text-center py-6 font-bold">{{ $comu->serviciosespeciale->nombre ?? '----' }}</td> --}}
                                         {{--                                         <td class="text-center py-6 font-bold">
                                             {{ $comu->destacamento->nombre ?? '----' }}</td>
- --}} <td class="text-center py-6 font-bold">
+ --}}                                   <td class="text-center py-6 font-bold">
                                             {{ $comu->tipodispositivo->nombre ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->marca ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->modelo ?? '----' }}</td>
@@ -181,18 +161,15 @@
                                             {{ $comu->cant_almacenamiento ?? '----' }}</td>
                                         {{--  <td class="text-center py-6 font-bold">{{ $comu->tipo_mouse ?? '----' }}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->tipo_teclado ?? '----' }}</td> --}}
-
                                         <td class="text-center py-6 font-bold">{{ $comu->fecha_service ?? '----' }}
                                         </td>
                                         <td class="text-center py-6 font-bold">{{ $comu->tipo_service ?? '----' }}</td>
-
                                         <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? '----' }}
                                         </td>
                                         <td class="text-center py-6 font-bold">
                                             {{ $comu->softwares_instalados ?? '----' }}
                                         <td class="text-center py-6 font-bold">
                                             {{ $comu->detalles_inventario ?? '----' }}</td>
-
                                         <td class="border px-4 py-2">
                                             @if ($comu->codigo_qr)
                                                 <div x-data="{ open: false }">
@@ -220,7 +197,6 @@
                                                 </a>
                                             @endif
                                         </td>
-
                                         <td class="text-center py-6 font-bold">
                                             @if ($comu->activo)
                                                 <span class="px-2 py-1 bg-blue-600 text-white rounded">Activo</span>
@@ -228,7 +204,6 @@
                                                 <span class="px-2 py-1 bg-red-600 text-white rounded">Inactivo</span>
                                             @endif
                                         </td>
-
                                         <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editInventarioGeneral', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">

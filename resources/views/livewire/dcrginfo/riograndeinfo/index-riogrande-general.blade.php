@@ -33,11 +33,9 @@
                                         @endif
                                     </th> --}}
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
-
                                         Dependencia
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Oficina
                                     </th>
                                    {{--
@@ -70,44 +68,33 @@
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de dispositivos
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Marca
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Modelo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Procesador
-
                                     </th>
                                       <th class="p-1   text-center text-xs text-blue-800">
                                         Sistema operativo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de ram
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Cantidad de ram
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Slot de memoria ram
-
                                     </th>
-
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de disco
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Cantidad de almacenamiento
-
                                     </th>
                                     {{--<th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de mouse
@@ -118,36 +105,28 @@
 
                                     </th>--}}
                                     <th class="p-1   text-center text-xs text-blue-800">
-                                        Fecha de servis
-
+                                        Fecha de service
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha de inventario
-
                                     </th> {{-- --}}
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Software
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle del inventario
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Codigo Qr
-
                                     </th>
-
                                     <th class="p-1   text-right text-xs text-blue-800">
                                         Acciones
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Estado
-
                                     </th>
                                 </tr>
                             </thead>
@@ -182,7 +161,6 @@
                                         <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario ?? '----'}}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->softwares_instalados ?? '----'}}</td>{{-- --}}
                                         <td class="text-center py-6 font-bold">{{ $comu->detalles_inventario ?? '----'}}</td>
-
                                         <td class="border px-4 py-2">
                                             @if ($comu->codigo_qr)
                                                 <div x-data="{ open: false }">
@@ -246,7 +224,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>

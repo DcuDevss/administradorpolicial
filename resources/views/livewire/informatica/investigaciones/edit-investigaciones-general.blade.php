@@ -60,7 +60,6 @@
                                         </label>
                                         <select class="w-full form-control rounded-md " wire:model="investigacione_id">
                                             <option value="" selected disabled> Seleccione dependencias/oficina.</option>
-
                                             @foreach ($INVESTIGACIONE as $INV)
                                                 <option value="{{ $INV->id }}">{{ $INV->nombre }}</option>
                                             @endforeach
@@ -78,7 +77,6 @@
                                             wire:model="cientifica_id">
                                             <option value="" selected disabled>Seleccione la oficina.
                                             </option>
-
                                             @foreach ($CIentifica as $cust)
                                                 <option value="{{ $cust->id }}">{{ $cust->nombre }}</option>
                                             @endforeach
@@ -136,7 +134,6 @@
                                         </label>
                                         <select class="w-full form-control rounded-md" wire:model="tipodispositivo_id">
                                             <option value="" selected disabled>Seleccione el dispositivo.</option>
-
                                             @foreach ($TipoDispositivo as $tipoDisp)
                                                 <option value="{{ $tipoDisp->id }}">{{ $tipoDisp->nombre }}</option>
                                             @endforeach
@@ -150,7 +147,6 @@
                                         <select class="w-full form-control rounded-md" wire:model="cantidadram_id">
                                             <option value="" selected disabled>Seleccione la cantidad de memoria
                                                 Ram.</option>
-
                                             @foreach ($CantidadRam as $cantRam)
                                                 <option value="{{ $cantRam->id }}">{{ $cantRam->cantidad }}</option>
                                             @endforeach
@@ -315,9 +311,8 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
                                 </div>
+
                                 <div class="mt-2">
                                     <label class="block text-white text-sm font-bold mb-1"
                                         for="softwares_instalados">Softwares instalados</label>
@@ -349,17 +344,13 @@
                                         <p>No hay código QR disponible</p>
                                     @endif
                                 </div>
-
                             </div>
-
                         </div>
-
                         {{--  @if ($comisariaprimera && $comisariaprimera->codigo_qr)
                             <div class="my-4">
                                 <img src="{{ asset('storage/codigoQR/' . $comisariaprimera->codigo_qr) }}" alt="Código QR">
                             </div>
                            @endif --}}
-
                     </div>
                     <!-- ... resto del código ... -->
                     <div class="flex gap-3 mt-6">
