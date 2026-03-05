@@ -15,8 +15,8 @@
                             <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model="search"
                                 placeholder="Ingrese la busqueda">
                             <button wire:click="clear" class="ml-2"><span class="fa fa-eraser"></span></button>
-
                         </div>
+
                         <table class="w-full table-auto">
                             <thead class="text-xs font-semibold uppercase text-gray-900 bg-slate-400">
                                 <tr>
@@ -33,11 +33,9 @@
                                         @endif
                                     </th>
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
-
                                         Dependencia
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Oficina
                                     </th>
                                    {{--
@@ -70,44 +68,34 @@
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de dispositivos
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Marca
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Modelo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Procesador
-
                                     </th>
                                       <th class="p-1   text-center text-xs text-blue-800">
                                         Sistema operativo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de ram
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Cantidad de ram
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Slot de memoria ram
-
                                     </th>
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de disco
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Cantidad de almacenamiento
-
                                     </th>
                                     {{--<th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de mouse
@@ -118,36 +106,28 @@
 
                                     </th>--}}
                                     <th class="p-1   text-center text-xs text-blue-800">
-                                        Fecha de servis
-
+                                        Fecha de service
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo de service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha de inventario
-
                                     </th> {{-- --}}
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Software
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle del inventario
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Codigo Qr
-
                                     </th>
-
                                     <th class="p-1   text-right text-xs text-blue-800">
                                         Acciones
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Estado
-
                                     </th>
                                 </tr>
                             </thead>
@@ -188,7 +168,6 @@
                                                     <img x-on:click="open = !open"
                                                         src="{{ asset('storage/codigoQR/Tolhuin/' . $comu->codigo_qr) }}"
                                                         alt="Código QR" class="cursor-pointer">
-
                                                     <div x-show="open"
                                                         class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                                                         <div class="relative">
@@ -209,7 +188,6 @@
                                                 </a>
                                             @endif
                                         </td>
-
                                         <td class="text-center py-6 font-bold">
                                             @if ($comu->activo)
                                                 <span class="px-2 py-1 bg-blue-600 text-white rounded">Activo</span>
@@ -217,7 +195,6 @@
                                                 <span class="px-2 py-1 bg-red-600 text-white rounded">Inactivo</span>
                                             @endif
                                         </td>
-
                                         <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editTolhuinGeneral', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
@@ -245,7 +222,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>
