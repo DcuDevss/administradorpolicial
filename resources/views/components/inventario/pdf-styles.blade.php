@@ -1,11 +1,11 @@
 <style>
+    /*estilos para el neon de la tabla en pdf*/
     #pdf-content h1,
     #pdf-content h2,
     #pdf-content h3 {
         color: #000 !important;
         text-shadow: none !important;
     }
-
 
     .btn-pdf {
         background-color: #4f46e5 !important;
@@ -73,10 +73,21 @@
         white-space: normal;
     }
 
-    .col-dep   { width:22%; }
-    .col-tipo  { width:18%; }
-    .col-marca { width:18%; }
-    .col-det   { width:42%; }
+    .col-dep {
+        width: 22%;
+    }
+
+    .col-tipo {
+        width: 18%;
+    }
+
+    .col-marca {
+        width: 18%;
+    }
+
+    .col-det {
+        width: 42%;
+    }
 
     h2 {
         text-align: center !important;
@@ -85,5 +96,4 @@
         font-weight: bold !important;
         background-color: #fff !important;
     }
-
 </style>
