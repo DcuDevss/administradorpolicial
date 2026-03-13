@@ -123,7 +123,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                 </div>
 
                                 <div class="mt-1">
