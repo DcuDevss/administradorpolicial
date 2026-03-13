@@ -74,4 +74,15 @@ class IndexTrabajosInformatica extends Component
 
         return view('livewire.informatica.trabajos.index-trabajos-informatica',compact('trabajos'));
     }
+
+    public function eliminar($id)
+    {
+        $registro = TrabajosInformatico::findOrFail($id);
+        $registro->delete(); // eliminación real
+
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
+    }
 }

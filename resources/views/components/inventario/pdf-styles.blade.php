@@ -73,19 +73,17 @@
         white-space: normal;
     }
 
-    .col-dep {
-        width: 22%;
+    .col-dep   { width:22%; }
+    .col-tipo  { width:18%; }
+    .col-marca { width:18%; }
+    .col-det   { width:42%; }
+
+    h2 {
+        text-align: center !important;
+        margin-bottom: 4mm !important;
+        color: #000 !important;
+        font-weight: bold !important;
+        background-color: #fff !important;
     }
 
-    .col-tipo {
-        width: 18%;
-    }
-
-    .col-marca {
-        width: 18%;
-    }
-
-    .col-det {
-        width: 42%;
-    }
 </style>

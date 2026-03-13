@@ -36,7 +36,7 @@ class CreateComunicacionesPrimera extends Component
 
     public $codigo_qr, $comunicacionesprimera_id, $equipocomunicacion_id, $marcaequipo_id, $vhfantena_id, $lugar_colocacion, $modelo,
         $nro_serie, $condicion_equipo_comunicacion, $condicion_fuente, $condicion_baliza,
-        $fecha_inventario, $fecha_service, $tipo_service, $detalle_inventario, $comunicacionesprimera;
+        $fecha_inventario, $fecha_service, $tipo_service, $detalle_inventario, $comunicacionesprimera, $registro;
 
     protected $rules = [
         'equipocomunicacion_id' => 'nullable',
@@ -122,7 +122,10 @@ class CreateComunicacionesPrimera extends Component
             }
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
 
 
             DB::commit();
@@ -223,6 +226,8 @@ class CreateComunicacionesPrimera extends Component
         $RepetidoraCount = Comunicacionesprimera::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionesprimera::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionesprimera::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionesprimera::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionesprimera::where('equipocomunicacion_id', '10')->count();
         $OtrosCount = Comunicacionesprimera::where('equipocomunicacion_id', '1')->count();
 
 
@@ -258,6 +263,8 @@ class CreateComunicacionesPrimera extends Component
                 'yagi',
                 'latigo',
                 'ringo',
+                'PttCount',
+                'ComandoBalizaCount',
             )
         );
     }

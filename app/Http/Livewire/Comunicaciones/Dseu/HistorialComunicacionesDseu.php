@@ -37,7 +37,7 @@ class HistorialComunicacionesDseu extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.Comunicaciones.dseu.historial-trabajo-Dseu', [
+        return view('livewire.comunicaciones.dseu.historial-trabajo-dseu', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

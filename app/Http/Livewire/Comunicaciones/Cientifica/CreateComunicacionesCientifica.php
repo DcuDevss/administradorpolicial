@@ -93,7 +93,11 @@ class CreateComunicacionesCientifica extends Component
 
 
 
-            session()->flash('message', 'Datos guardados correctamente.');
+             $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();
@@ -194,7 +198,9 @@ class CreateComunicacionesCientifica extends Component
         $RepetidoraCount = Comunicacionescientifica::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionescientifica::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionescientifica::where('equipocomunicacion_id', '7')->count();
-        $OtrosCount = Comunicacionescientifica::where('equipocomunicacion_id', '0')->count();
+        $OtrosCount = Comunicacionescientifica::where('equipocomunicacion_id', '1')->count();
+        $PttCount = Comunicacionescientifica::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionescientifica::where('equipocomunicacion_id', '10')->count();
 
 
         return view('livewire.comunicaciones.cientifica.create-comunicaciones-cientifica', compact(
@@ -227,6 +233,8 @@ class CreateComunicacionesCientifica extends Component
             'yagi',
             'latigo',
             'ringo',
+            'PttCount',
+            'ComandoBalizaCount',
         ));
     }
 }

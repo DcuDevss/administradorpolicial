@@ -196,8 +196,10 @@ class EditJefaturaGeneral extends Component
 
         // Generar el código QR después de guardar los cambios
         $this->generateQRCode();
-
-        session()->flash('message', 'Datos actualizados correctamente.');
+        $this->dispatchBrowserEvent('notificacion', [
+        'type' => 'success',
+        'message' => 'Datos Editados correctamente.'
+        ]);
     }
 
     private function generateQRCode()

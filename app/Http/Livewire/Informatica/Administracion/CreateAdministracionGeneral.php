@@ -134,7 +134,7 @@ class CreateAdministracionGeneral extends Component
         // try {
 
         $this->admin = new Administraciongenerale();
-        // $this->tipodeoficina_id === null || $this->tipodeoficina_id === '' ? $this->admin->tipodeoficina_id = null : $this->admin->tipodeoficina_id = $this->tipodeoficina_id;
+        $this->tipodeoficina_id === null || $this->tipodeoficina_id === '' ? $this->admin->tipodeoficina_id = null : $this->admin->tipodeoficina_id = $this->tipodeoficina_id;
         $this->cantidadram_id === null || $this->cantidadram_id === '' ? $this->admin->cantidadram_id = null : $this->admin->cantidadram_id = $this->cantidadram_id;
         $this->slotmemoria_id === null || $this->slotmemoria_id === '' ? $this->admin->slotmemoria_id = null : $this->admin->slotmemoria_id = $this->slotmemoria_id;
         $this->tipodispositivo_id === null || $this->tipodispositivo_id === '' ? $this->admin->tipodispositivo_id = null : $this->admin->tipodispositivo_id = $this->tipodispositivo_id;
@@ -183,7 +183,10 @@ class CreateAdministracionGeneral extends Component
 
 
 
-        session()->flash('message', 'Datos guardados correctamente.');
+        $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
 
         // DB::commit();
         //$this->clearForm();
@@ -221,7 +224,13 @@ class CreateAdministracionGeneral extends Component
         $this->showModal = false;
     }
 
-
+    public function clearForm()
+    {
+        $this->cantidadram_id = '';
+        $this->tipodispositivo_id = '';
+        $this->tipodeoficina_id = '';
+        $this->slotmemoria_id = '';
+    }
 
     public function render()
     {
@@ -261,30 +270,89 @@ class CreateAdministracionGeneral extends Component
         $verificacionautomotoresPc = Administraciongenerale::where('administracion_id', 13)
             ->where('tipodispositivo_id', 3)
             ->count();
-        $armeriaPc = Administraciongenerale::where('administracion_id', 14)
+        $armeriaPc = Administraciongenerale::
+             where('administracion_id', 14)
             ->where('tipodispositivo_id', 3)
             ->count();
-        $switch = Administraciongenerale::where('tipodispositivo_id', 13)
+        $monitor = Administraciongenerale::where('tipodispositivo_id', 4)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             ->count();
-        $ruter = Administraciongenerale::where('tipodispositivo_id', 14)
+        $notebook = Administraciongenerale::
+            where('tipodispositivo_id', 5)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             ->count();
-        $camaras = Administraciongenerale::where('tipodispositivo_id', 16)
+        $netbook = Administraciongenerale::
+            where('tipodispositivo_id', 6)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             ->count();
-        $servidor = Administraciongenerale::where('tipodispositivo_id', 18)
+        $celular = Administraciongenerale::
+            where('tipodispositivo_id', 7)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             ->count();
-        $centralTelefonica = Administraciongenerale::where('tipodispositivo_id', 23)
+        $tablet = Administraciongenerale::
+            where('tipodispositivo_id', 8)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             ->count();
-        $telefonoFijo = Administraciongenerale::where('tipodispositivo_id', 9)
+        $switch = Administraciongenerale::
+            where('tipodispositivo_id', 13)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             ->count();
-        $telefonoInalambrico = Administraciongenerale::where('tipodispositivo_id', 10)
+        $ruter = Administraciongenerale::
+            where('tipodispositivo_id', 14)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             ->count();
-
-        $impresoraLaser = Administraciongenerale::where('tipodispositivo_id', 11)
+        $ups = Administraciongenerale::
+            where('tipodispositivo_id', 15)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             ->count();
-        $impresoraTinta = Administraciongenerale::where('tipodispositivo_id', 12)
+        $camaras = Administraciongenerale::
+            where('tipodispositivo_id', 16)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
             ->count();
-
-
+        $estacion = Administraciongenerale::
+            where('tipodispositivo_id', 17)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $servidor = Administraciongenerale::
+            where('tipodispositivo_id', 18)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $estabilizador = Administraciongenerale::
+            where('tipodispositivo_id', 19)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $auriculares = Administraciongenerale::
+            where('tipodispositivo_id', 20)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $cable = Administraciongenerale::
+            where('tipodispositivo_id', 21)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $tv = Administraciongenerale::
+            where('tipodispositivo_id', 22)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $centralTelefonica = Administraciongenerale::
+            where('tipodispositivo_id', 23)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $telefonoFijo = Administraciongenerale::
+            where('tipodispositivo_id', 9)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $telefonoInalambrico = Administraciongenerale::
+            where('tipodispositivo_id', 10)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $impresoraLaser = Administraciongenerale::
+            where('tipodispositivo_id', 11)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
+        $impresoraTinta = Administraciongenerale::
+            where('tipodispositivo_id', 12)
+            ->whereIn('administracion_id', [1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
+            ->count();
 
         return view('livewire.informatica.administracion.create-administracion-general', compact(
             'totalPc',
@@ -300,10 +368,21 @@ class CreateAdministracionGeneral extends Component
             'automotoresPc',
             'verificacionautomotoresPc',
             'armeriaPc',
+            'monitor',
+            'notebook',
+            'netbook',
+            'celular',
+            'tablet',
             'switch',
             'ruter',
+            'ups',
             'servidor',
             'camaras',
+            'estacion',
+            'estabilizador',
+            'auriculares',
+            'cable',
+            'tv',
             'centralTelefonica',
             'telefonoFijo',
             'telefonoInalambrico',

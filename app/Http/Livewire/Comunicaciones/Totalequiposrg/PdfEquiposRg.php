@@ -18,7 +18,7 @@ class PdfEquiposRg extends Component
             ->get(['id','nombre'])
             ->toArray();
 
-        // cargar todo al entrar
+        // cargar todo al entraroooo
         $this->cargar();
     }
 

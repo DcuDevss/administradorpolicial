@@ -5,7 +5,7 @@ namespace App\Observers;
 use App\Models\Comunicacionesfamilia1;
 use App\Models\HistorialTrabajoFamilia1;
 
-class Comunicacionesfamilia1Observer
+class ComunicacionesFamilia1Observer
 {
     public function created(ComunicacionesFamilia1 $historialTrabajoFamilia1):void
     {

@@ -23,6 +23,7 @@ use App\Models\Comunicacionestercera;
 use App\Models\Tipodoc;
 use Carbon\Carbon;
 use App\Models\Equipocomunicacion;
+use App\Observers\ComunicacionesCientificaObserver;
 
 class IndexComunicacionesCientifica extends Component
 {
@@ -121,5 +122,16 @@ class IndexComunicacionesCientifica extends Component
 
         $this->resetPage();
 
+    }
+
+    public function eliminar($id)
+    {
+        $registro = ComunicacionesCientifica::findOrFail($id);
+        $registro->delete(); // eliminación real
+
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
     }
 }

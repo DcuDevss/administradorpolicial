@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\Auditable;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
-#[ObservedBy(\App\Observers\ComunicacionesAdministracionObserver::class)]
+#[ObservedBy(\App\Observers\ComunicacionesInvestigacionesObserver::class)]
 
 class Comunicacionesinvestigacion extends Model
 {

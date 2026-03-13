@@ -126,7 +126,11 @@ class CreateComunicacionesTolhuin extends Component
                 $historial->save();
             }
 
-            session()->flash('message', 'Datos guardados correctamente.');
+             $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();
@@ -219,6 +223,8 @@ class CreateComunicacionesTolhuin extends Component
         $RepetidoraCount = Comunicacionestolhuin::where('equipocomunicacion_id', '5')->count();
         $FuenteCount = Comunicacionestolhuin::where('equipocomunicacion_id', '6')->count();
         $BalizaCount = Comunicacionestolhuin::where('equipocomunicacion_id', '7')->count();
+        $PttCount = Comunicacionestolhuin::where('equipocomunicacion_id', '9')->count();
+        $ComandoBalizaCount = Comunicacionestolhuin::where('equipocomunicacion_id', '10')->count();
 
 
         return view('livewire.comunicaciones.tolhuin.create-comunicaciones-tolhuin
@@ -246,6 +252,8 @@ class CreateComunicacionesTolhuin extends Component
             'dipolo8',
             'yagi',
             'latigo',
+            'PttCount',
+            'ComandoBalizaCount',
 
             //---
             'otrasCount',

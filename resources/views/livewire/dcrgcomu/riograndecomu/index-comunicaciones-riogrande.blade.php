@@ -81,7 +81,7 @@
                                         Detalle inventario
 
                                     </th>
-                                    {{-- <th class="p-1   text-center text-xs text-blue-800">
+                                    {{-- <th class="p-1   text-center text-xs text-bluee-800">
                                         QR
 
                                     </th> --}}
@@ -118,9 +118,16 @@
                                                 Editar
                                             </a>
                                             <a href="{{ url('/historial-trabajo-riogrande/' . $comu->id) }}"
-                                                class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
+                                                class="inline-block bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
                                                 Modificaciones
                                             </a>
+                                            <button
+                                                type="button"
+                                                class="inline-block bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded"
+                                                data-wire="eliminar"
+                                                data-id="{{ $comu->id }}">
+                                                Eliminar
+                                            </button>
                                         </td>
                                         </td>
                                     </tr>

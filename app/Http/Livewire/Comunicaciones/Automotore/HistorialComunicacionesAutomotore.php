@@ -37,7 +37,7 @@ class HistorialComunicacionesAutomotore extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.Comunicaciones.automotore.historial-trabajo-Automotore', [
+        return view('livewire.comunicaciones.automotore.historial-trabajo-automotore', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

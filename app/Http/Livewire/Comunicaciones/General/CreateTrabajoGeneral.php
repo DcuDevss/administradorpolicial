@@ -115,7 +115,11 @@ class CreateTrabajoGeneral extends Component
                 $historial->save();
             }
 
-            session()->flash('message', 'Datos guardados correctamente.');
+            $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
+
 
 
             DB::commit();

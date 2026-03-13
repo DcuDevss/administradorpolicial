@@ -37,7 +37,7 @@ class HistorialComunicacionesJefatura extends Component
             ->orderBy('updated_at', 'desc')
             ->paginate(25);
 
-        return view('livewire.Comunicaciones.jefatura.historial-trabajo-jefatura', [
+        return view('livewire.comunicaciones.jefatura.historial-trabajo-jefatura', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

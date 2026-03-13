@@ -186,5 +186,14 @@ class IndexInventarioGeneral extends Component
 
     }
 
+    public function eliminar($id)
+    {
+        $registro = Generalinformatica::findOrFail($id);
+        $registro->delete(); // eliminación real
 
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
+    }
 }

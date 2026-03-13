@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <h2 style="text-align:center;margin-bottom:6mm;">
+        <h2>
             Inventario Equipos Recursos Humanos
         </h2>
 

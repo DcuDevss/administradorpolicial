@@ -37,7 +37,7 @@ class HistorialComunicacionesComplejo extends Component
         ->orderBy('updated_at', 'desc')
         ->paginate(15);
 
-        return view('livewire.Comunicaciones.complejo.historial-trabajo-Complejo', [
+        return view('livewire.comunicaciones.complejo.historial-trabajo-complejo', [
             'historialTrabajos' => $historialTrabajos, // Usando el método de propiedad
         ]);
     }

@@ -23,7 +23,7 @@
 
                 @can('chatlist')
                     <a class="inline-flex items-center justify-center float-right mr-4 px-2 py-2 bg-pink-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"
-                        href="{{ route('chatlist') }}">Chats<span class="ml-1">@livewire('notificacion-chat')</span></a>
+                        href="{{ route('chatlist') }}">Chats<span class="ml-1">{{-- @livewire('notificacion-chat') --}}</span></a>
                 @endcan
 
                 @can('tecnico-informatico')
@@ -206,10 +206,9 @@
 
                                 <div class="border-t border-gray-200"></div>
 
-                                <form method="POST" action="{{ route('logout') }}" x-data>
+                                <form method="POST" action="{{ route('logout') }}" class="form-logout">
                                     @csrf
-
-                                    <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                    <x-dropdown-link href="#">
                                         {{ __('Log Out') }}
                                     </x-dropdown-link>
                                 </form>
@@ -308,7 +307,7 @@
             @endcan
             @can('chatlist')
                 <a class="mr-4 px-2 py-2 bg-pink-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition  flex-shrink-0"
-                    href="{{ route('chatlist') }}">Chats<span class="ml-1">@livewire('notificacion-chat')</span></a>
+                    href="{{ route('chatlist') }}">Chats<span class="ml-1">{{-- @livewire('notificacion-chat') --}}</span></a>
             @endcan
         </div>
 

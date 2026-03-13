@@ -729,4 +729,4 @@ Route::get('/informatica/inventario/inventario-pdf-riogrande', InventarioPdfRioG
 /* pdf tolhuin informatica */
 Route::get('/informatica/inventario/inventario-pdf-tolhuin', InventarioPdfTolhuin::class)->name('inventario-pdf-tolhuin');
 /* pdf general informatica */
-Route::get('/informatica/inventario/inventario-pdf-general', InventarioPdfGeneral::class)->name('inventario-pdf-general');
+Route::get('/informatica/inventario/inventario-pdf-general',InventarioPdfGeneral::class)->name('inventario-pdf-general');

@@ -183,7 +183,10 @@ class CreateJefaturaGeneral extends Component
 
 
 
-        session()->flash('message', 'Datos guardados correctamente.');
+        $this->dispatchBrowserEvent('notificacion', [
+                'type' => 'success',
+                'message' => 'Datos guardados correctamente.'
+            ]);
 
         //DB::commit();
         //$this->clearForm();
@@ -265,11 +268,33 @@ class CreateJefaturaGeneral extends Component
         $subJefaturaPc = Jefaturagenerale::where('jefatura_id', 12)
             ->where('tipodispositivo_id', 3)
             ->count();
+        $monitor = Jefaturagenerale::where('tipodispositivo_id', 4)
+            ->count();
+        $notebook = Jefaturagenerale::where('tipodispositivo_id', 5)
+            ->count();
+        $netbook = Jefaturagenerale::where('tipodispositivo_id', 6)
+            ->count();
+        $celular = Jefaturagenerale::where('tipodispositivo_id', 7)
+            ->count();
+        $tablet = Jefaturagenerale::where('tipodispositivo_id', 8)
+            ->count();
         $switch = Jefaturagenerale::where('tipodispositivo_id', 13)
             ->count();
         $ruter = Jefaturagenerale::where('tipodispositivo_id', 14)
             ->count();
+        $ups = Jefaturagenerale::where('tipodispositivo_id', 15)
+            ->count();
         $camaras = Jefaturagenerale::where('tipodispositivo_id', 16)
+            ->count();
+        $Estacion_trabajo = Jefaturagenerale::where('tipodispositivo_id', 17)
+            ->count();
+        $Estabilizador = Jefaturagenerale::where('tipodispositivo_id', 19)
+            ->count();
+        $Auriculares = Jefaturagenerale::where('tipodispositivo_id', 20)
+            ->count();
+        $Cable_estructurado = Jefaturagenerale::where('tipodispositivo_id', 21)
+            ->count();
+        $Tv = Jefaturagenerale::where('tipodispositivo_id', 22)
             ->count();
         $servidor = Jefaturagenerale::where('tipodispositivo_id', 18)
             ->count();
@@ -296,10 +321,21 @@ class CreateJefaturaGeneral extends Component
             'URS_Pc',
             'subJefaturaPc',
             'guardiaPc',
+            'monitor',
+            'notebook',
+            'netbook',
+            'celular',
+            'tablet',
+            'ups',
             'switch',
             'ruter',
             'servidor',
             'camaras',
+            'Estacion_trabajo',
+            'Estabilizador',
+            'Auriculares',
+            'Cable_estructurado',
+            'Tv',
             'centralTelefonica',
             'telefonoFijo',
             'impresoraLaser',

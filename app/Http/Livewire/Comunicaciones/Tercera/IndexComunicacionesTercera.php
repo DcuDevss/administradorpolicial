@@ -117,4 +117,15 @@ class IndexComunicacionesTercera extends Component
 
     }
 
+    public function eliminar($id)
+    {
+        $registro = ComunicacionesTercera::findOrFail($id);
+        $registro->delete(); // eliminación real
+
+        $this->dispatchBrowserEvent('notificacion', [
+            'type' => 'success',
+            'message' => 'Registro eliminado correctamente'
+        ]);
+    }
+
 }

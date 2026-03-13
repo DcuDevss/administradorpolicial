@@ -6,7 +6,7 @@ use App\Models\Comunicacionesinvestigacion;
 use App\Models\Comunicacionestercera;
 use App\Models\HistorialTrabajoTercera;
 
-class ComunicacionesterceraObserver
+class ComunicacionesTerceraObserver
 {
     public function created(Comunicacionestercera $historialTrabajoTercera):void
     {
