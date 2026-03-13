@@ -35,164 +35,164 @@
     </div>
 </div>
 
-
-<script>
-    // Gráfico de barras para trabajos por mes
-    var ctxPorMes = document.getElementById('trabajosPorMesChart').getContext('2d');
-    var chartPorMes = new Chart(ctxPorMes, {
-        type: 'bar',
-        data: {
-            labels: @json($dataPorMes->pluck('label')),
-            datasets: [{
-                label: 'Trabajos por Mes',
-                data: @json($dataPorMes->pluck('total')),
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+@push('scripts')
+    <script>
+        // Gráfico de barras para trabajos por mes
+        var ctxPorMes = document.getElementById('trabajosPorMesChart').getContext('2d');
+        var chartPorMes = new Chart(ctxPorMes, {
+            type: 'bar',
+            data: {
+                labels: @json($dataPorMes->pluck('label')),
+                datasets: [{
+                    label: 'Trabajos por Mes',
+                    data: @json($dataPorMes->pluck('total')),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
 
-    // Gráfico de barras para trabajos por día
-    var ctxPorDia = document.getElementById('trabajosPorDiaChart').getContext('2d');
-    var chartPorDia = new Chart(ctxPorDia, {
-        type: 'bar',
-        data: {
-            labels: @json($dataPorDia->pluck('label')),
-            datasets: [{
-                label: 'Trabajos por Día',
-                data: @json($dataPorDia->pluck('total')),
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        // Gráfico de barras para trabajos por día
+        var ctxPorDia = document.getElementById('trabajosPorDiaChart').getContext('2d');
+        var chartPorDia = new Chart(ctxPorDia, {
+            type: 'bar',
+            data: {
+                labels: @json($dataPorDia->pluck('label')),
+                datasets: [{
+                    label: 'Trabajos por Día',
+                    data: @json($dataPorDia->pluck('total')),
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
 
-    // Gráfico de torta para trabajos por mes
-    var ctxPorMesTorta = document.getElementById('trabajosPorMesTortaChart').getContext('2d');
-    var chartPorMesTorta = new Chart(ctxPorMesTorta, {
-        type: 'pie',
-        data: {
-            labels: @json($dataPorMes->pluck('label')),
-            datasets: [{
-                data: @json($dataPorMes->pluck('total')),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        }
-    });
+        // Gráfico de torta para trabajos por mes
+        var ctxPorMesTorta = document.getElementById('trabajosPorMesTortaChart').getContext('2d');
+        var chartPorMesTorta = new Chart(ctxPorMesTorta, {
+            type: 'pie',
+            data: {
+                labels: @json($dataPorMes->pluck('label')),
+                datasets: [{
+                    data: @json($dataPorMes->pluck('total')),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
 
-</script>
+    <script>
+        // Datos de los trabajos por dependencia
+        var dataPorDependencia = @json($dataPorDependencia);
 
-<script>
-    // Datos de los trabajos por dependencia
-    var dataPorDependencia = @json($dataPorDependencia);
+        // Extraer las etiquetas y los totales
+        var labelsPorDependencia = dataPorDependencia.map(function(item) {
+            return item.label;
+        });
 
-    // Extraer las etiquetas y los totales
-    var labelsPorDependencia = dataPorDependencia.map(function(item) {
-        return item.label;
-    });
+        var totalesPorDependencia = dataPorDependencia.map(function(item) {
+            return item.total;
+        });
 
-    var totalesPorDependencia = dataPorDependencia.map(function(item) {
-        return item.total;
-    });
+        // Colores personalizados para el gráfico de torta
+        var customColors = [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 0, 0, 0.6)',
+            'rgba(0, 255, 0, 0.6)',
+            'rgba(0, 0, 255, 0.6)'
+        ];
 
-    // Colores personalizados para el gráfico de torta
-    var customColors = [
-        'rgba(255, 99, 132, 0.6)',
-        'rgba(54, 162, 235, 0.6)',
-        'rgba(255, 206, 86, 0.6)',
-        'rgba(75, 192, 192, 0.6)',
-        'rgba(153, 102, 255, 0.6)',
-        'rgba(255, 159, 64, 0.6)',
-        'rgba(255, 0, 0, 0.6)',
-        'rgba(0, 255, 0, 0.6)',
-        'rgba(0, 0, 255, 0.6)'
-    ];
+        // Gráfico de torta para trabajos por dependencia
+        var ctxPorDependenciaTorta = document.getElementById('trabajosPorDependenciaTortaChart').getContext('2d');
+        var chartPorDependenciaTorta = new Chart(ctxPorDependenciaTorta, {
+            type: 'pie',
+            data: {
+                labels: labelsPorDependencia,
+                datasets: [{
+                    data: totalesPorDependencia,
+                    backgroundColor: customColors.slice(0, labelsPorDependencia.length),
+                    borderColor: customColors.slice(0, labelsPorDependencia.length),
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
 
-    // Gráfico de torta para trabajos por dependencia
-    var ctxPorDependenciaTorta = document.getElementById('trabajosPorDependenciaTortaChart').getContext('2d');
-    var chartPorDependenciaTorta = new Chart(ctxPorDependenciaTorta, {
-        type: 'pie',
-        data: {
-            labels: labelsPorDependencia,
-            datasets: [{
-                data: totalesPorDependencia,
-                backgroundColor: customColors.slice(0, labelsPorDependencia.length),
-                borderColor: customColors.slice(0, labelsPorDependencia.length),
-                borderWidth: 1
-            }]
-        }
-    });
-</script>
+    <script>
+        // Datos de notificaciones por usuario
+        var datosPorUsuario = @json($datosPorUsuario);
 
-<script>
-    // Datos de notificaciones por usuario
-    var datosPorUsuario = @json($datosPorUsuario);
+        // Extraer las etiquetas (nombres de usuario) y los totales
+        var etiquetasPorUsuario = datosPorUsuario.map(function(item) {
+            return item.usuario;
+        });
 
-    // Extraer las etiquetas (nombres de usuario) y los totales
-    var etiquetasPorUsuario = datosPorUsuario.map(function(item) {
-        return item.usuario;
-    });
+        var totalesPorUsuario = datosPorUsuario.map(function(item) {
+            return item.total;
+        });
 
-    var totalesPorUsuario = datosPorUsuario.map(function(item) {
-        return item.total;
-    });
+        // Colores personalizados para el gráfico de torta
+        var customColors = [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+        ];
 
-    // Colores personalizados para el gráfico de torta
-    var customColors = [
-        'rgba(255, 99, 132, 0.6)',
-        'rgba(54, 162, 235, 0.6)',
-        'rgba(255, 206, 86, 0.6)',
-        'rgba(75, 192, 192, 0.6)',
-        'rgba(153, 102, 255, 0.6)',
-    ];
-
-    // Gráfico de torta para notificaciones por usuario
-    var ctxTorta = document.getElementById('notificacionesPorUsuarioTortaChart').getContext('2d');
-    var chartTorta = new Chart(ctxTorta, {
-        type: 'pie',
-        data: {
-            labels: etiquetasPorUsuario,
-            datasets: [{
-                data: totalesPorUsuario,
-                backgroundColor: customColors.slice(0, etiquetasPorUsuario.length),
-                borderColor: customColors.slice(0, etiquetasPorUsuario.length),
-                borderWidth: 1
-            }]
-        }
-    });
-</script>
+        // Gráfico de torta para notificaciones por usuario
+        var ctxTorta = document.getElementById('notificacionesPorUsuarioTortaChart').getContext('2d');
+        var chartTorta = new Chart(ctxTorta, {
+            type: 'pie',
+            data: {
+                labels: etiquetasPorUsuario,
+                datasets: [{
+                    data: totalesPorUsuario,
+                    backgroundColor: customColors.slice(0, etiquetasPorUsuario.length),
+                    borderColor: customColors.slice(0, etiquetasPorUsuario.length),
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+@endpush
 
 
 
@@ -277,7 +277,7 @@
             }]
         }
     });
-</script>--}}
+</script> --}}
 
 {{-- <script>
     var nombresUsuarios = @json($nombresUsuarios);

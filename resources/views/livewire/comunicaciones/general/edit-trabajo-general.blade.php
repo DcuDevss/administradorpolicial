@@ -21,8 +21,10 @@
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
                                             for="dependencia_ushuaia_id">Dependencias en Ushuaia
                                         </label>
-                                        <select class="w-full form-control rounded-md " wire:model="dependencia_ushuaia_id">
-                                            <option value="" selected disabled> Seleccione dependencias en Ushuaia.</option>
+                                        <select class="w-full form-control rounded-md "
+                                            wire:model="dependencia_ushuaia_id">
+                                            <option value="" selected disabled> Seleccione dependencias en
+                                                Ushuaia.</option>
 
                                             @foreach ($Dependencia_Ushuaia as $ushuaia)
                                                 <option value="{{ $ushuaia->id }}">{{ $ushuaia->nombre }}</option>
@@ -35,10 +37,12 @@
 
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
-                                        for="dependencia_riogrande_id">Dependencias en Rio grande
-                                    </label>
-                                        <select class="w-full form-control rounded-md" wire:model="dependencia_riogrande_id">
-                                            <option value="" selected disabled>Seleccione la dependencia Rio grande.</option>
+                                            for="dependencia_riogrande_id">Dependencias en Rio grande
+                                        </label>
+                                        <select class="w-full form-control rounded-md"
+                                            wire:model="dependencia_riogrande_id">
+                                            <option value="" selected disabled>Seleccione la dependencia Rio
+                                                grande.</option>
 
                                             @foreach ($Dependencia_Riogrande as $riogrande)
                                                 <option value="{{ $riogrande->id }}">{{ $riogrande->nombre }}</option>
@@ -48,10 +52,12 @@
 
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
-                                        for="dependencia_tolhuin_id">Dependencias Tolhuin
-                                    </label>
-                                        <select class="w-full form-control rounded-md" wire:model="dependencia_tolhuin_id">
-                                            <option value="" selected disabled>Seleccione la dependencia en Tolhuin
+                                            for="dependencia_tolhuin_id">Dependencias Tolhuin
+                                        </label>
+                                        <select class="w-full form-control rounded-md"
+                                            wire:model="dependencia_tolhuin_id">
+                                            <option value="" selected disabled>Seleccione la dependencia en
+                                                Tolhuin
                                             </option>
                                             @foreach ($Dependencia_Tolhuin as $tolhuin)
                                                 <option value="{{ $tolhuin->id }}">{{ $tolhuin->nombre }}</option>
@@ -61,9 +67,10 @@
 
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
-                                        for="otras_institucione_id">Otras instituciones
-                                    </label>
-                                        <select class="w-full form-control rounded-md" wire:model="otras_institucione_id">
+                                            for="otras_institucione_id">Otras instituciones
+                                        </label>
+                                        <select class="w-full form-control rounded-md"
+                                            wire:model="otras_institucione_id">
                                             <option value="" selected disabled>Otras Instituciones
                                             </option>
 
@@ -105,9 +112,10 @@
 
                                     <div class="mt-1">
                                         <label class="block text-gray-700 text-sm font-bold mb-1"
-                                        for="dependencia_riogrande_id">Tecnico/s que efectuo el trabajo
-                                    </label>
-                                        <select class="w-full form-control rounded-md" wire:model="tecnicocomunicacione_id">
+                                            for="dependencia_riogrande_id">Tecnico/s que efectuo el trabajo
+                                        </label>
+                                        <select class="w-full form-control rounded-md"
+                                            wire:model="tecnicocomunicacione_id">
                                             <option value="" selected disabled>Seleccione el tecnico/s
                                             </option>
                                             @foreach ($Tecnico_Comunicacione as $tecnico)
@@ -130,7 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- ... resto del código ... -->
                         <div class="flex gap-3 mt-6">
                             <button

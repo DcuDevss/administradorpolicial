@@ -87,6 +87,11 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500" role="menuitem">
                                 Auditoria
                             </a>
+
+                            <a href="{{ route('situacion-operativa') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500" role="menuitem">
+                                Centro de situación
+                            </a>
                         </div>
                     </div>
                 @endcan
@@ -174,7 +179,8 @@
                                             {{ Auth::user()->name }}
 
                                             <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                             </svg>
@@ -363,6 +369,11 @@
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500" role="menuitem">
                             Crud de roles
                         </a>
+                        <a href="{{ route('situacion-operativa') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500" role="menuitem">
+                            Centro de situación
+                        </a>
+
                     </div>
                 </div>
             </div>
