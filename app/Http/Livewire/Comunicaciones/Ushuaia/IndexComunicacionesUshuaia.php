@@ -55,7 +55,13 @@ class IndexComunicacionesUshuaia extends Component
 
     public function render()
     {
-        $comunicaciones = Comunicacionesushuaia::where(function ($query) {
+        $comunicaciones = Comunicacionesushuaia::with([
+            'dependenciaushuaia',
+            'equipocomunicacion',
+            'marcaequipo',
+            'vhfantena',
+        ])
+        ->where(function ($query) {
             $query->where('nro_serie', 'like', "%{$this->search}%")
                 ->orWhere('fecha_service', 'like', "%{$this->search}%")
                 ->orWhere('modelo', 'like', "%{$this->search}%")

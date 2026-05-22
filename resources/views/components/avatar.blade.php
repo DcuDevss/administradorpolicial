@@ -1,5 +1,5 @@
 @props(['src'=>null])
-<div {{$attributes->merge(['class'=>"shrink-0 inline-flex items-center justify-center overflow-hidden rounded-full border border-gray-200 dark:border-secondary-500 w-10 h-10 text-base"])}}>
+<div {{$attributes->merge(['class'=>"shrink-0 inline-flex items-center justify-center overflow-hidden rounded-full border border-gray-200 dark:border-gray-700 w-10 h-10 text-base"])}}>
 
     @if ($src)
         <img @class([ 'shrink-0 w-full h-full object-cover object-center rounded-full', ])
