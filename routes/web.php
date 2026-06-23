@@ -239,9 +239,8 @@ use App\Http\Livewire\Informatica\Inventario\InventarioPdfJefatura;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfRecursos;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfRioGrande;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfTolhuin;
-
+use App\Http\Livewire\TermsAcceptance;
 use App\Http\Livewire\CentroSituacionOperativa;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -281,7 +280,7 @@ Route::middleware([
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified', 'terms.acceptance'
 ])->group(function () {
     Route::get('/dashboard', function () {
         $user = Auth::user(); // Obténgo al usuario autenticado
@@ -310,7 +309,7 @@ Route::view('/tailwind', 'tailwind');
 Route::post('/reserve', [SubmitController::class, 'reserve'])->name('reserve');
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'terms.acceptance')->group(function () {
 
     Route::get('/chat', Index::class)->name('chatlist');
     Route::get('/chat/{query}', Chat::class)->name('chat');
@@ -730,3 +729,30 @@ Route::get('/informatica/inventario/inventario-pdf-riogrande', InventarioPdfRioG
 Route::get('/informatica/inventario/inventario-pdf-tolhuin', InventarioPdfTolhuin::class)->name('inventario-pdf-tolhuin');
 /* pdf general informatica */
 Route::get('/informatica/inventario/inventario-pdf-general',InventarioPdfGeneral::class)->name('inventario-pdf-general');
+/* =====================================================
+| TÉRMINOS Y CONDICIONES
+===================================================== */
+
+Route::middleware('auth')->group(function () {
+
+    Route::get(
+        '/terms/accept',
+        TermsAcceptance::class
+    )->name('terms.accept');
+
+    Route::get(
+        '/terminos-condiciones',
+        \App\Http\Livewire\TermsConditions\Index::class
+    )->name('terms.index');
+
+    Route::get(
+        '/terminos-condiciones/create',
+        \App\Http\Livewire\TermsConditions\Create::class
+    )->name('terms.create');
+
+    Route::get(
+        '/terminos-condiciones/edit/{terms}',
+        \App\Http\Livewire\TermsConditions\Edit::class
+    )->name('terms.edit');
+
+});

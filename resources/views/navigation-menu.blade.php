@@ -92,6 +92,10 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500" role="menuitem">
                                 Centro de situación
                             </a>
+                            <a href="{{ route('terms.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500" role="menuitem">
+                                Términos y Condiciones
+                            </a>
                         </div>
                     </div>
                 @endcan

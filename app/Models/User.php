@@ -137,4 +137,9 @@ class User extends Authenticatable
     {
         return $this->role === 'Admin';
     }
+
+    public function termsAcceptances()
+    {
+        return $this->hasMany(UserTermsAcceptance::class);
+    }
 }
