@@ -8,6 +8,12 @@
         >
             Nueva versión
         </a>
+        <a
+            href="{{ route('terms.acceptances') }}"
+            class="px-4 py-2 rounded bg-orange-600 text-white ml-4"
+        >
+            Ver aceptaciones
+        </a>
 
     </div>
 

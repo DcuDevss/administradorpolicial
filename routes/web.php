@@ -309,7 +309,7 @@ Route::view('/tailwind', 'tailwind');
 Route::post('/reserve', [SubmitController::class, 'reserve'])->name('reserve');
 
 
-Route::middleware('auth', 'terms.acceptance')->group(function () {
+Route::middleware(['auth', 'terms.acceptance'])->group(function () {
 
     Route::get('/chat', Index::class)->name('chatlist');
     Route::get('/chat/{query}', Chat::class)->name('chat');
@@ -320,17 +320,27 @@ Route::middleware('auth', 'terms.acceptance')->group(function () {
     // NUEVA RUTA: Centro de Situación Operativa
     Route::get('/situacion-operativa', CentroSituacionOperativa::class)
         ->name('situacion-operativa');
+    Route::view('/tecnico-informatico', 'tecnico-informatico')->name('tecnico-informatico');
+    Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
+
+    //->middleware('can:panel-tecnicos')->middleware('can:panel-administrador')
+    //Route::view('/tecnicos','tecnicos')->name('tecnicos');
+
+    Route::view('/tecnico-comunicacion', 'tecnico-comunicacion')->name('tecnico-comunicacion');
+    Route::view('/tecnico-riogrande', 'tecnico-riogrande')->name('tecnico-riogrande');
+    /* Route::view('/administrador', 'administrador')->name('panel-administrador'); */
+    //Route::get('/generate-order', GenerateOrder::class)->name('generate.order');
+    Route::resource('users', UserController::class)->only('index', 'edit', 'update');
+    Route::resource('roles', RoleController::class)->names('admin-roles');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+    //Auditorias:
+    Route::get('/auditorias', AuditoriaGeneral::class)
+        ->middleware(['auth'])
+        ->name('auditorias-general');
 });
 
-Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
 
-//->middleware('can:panel-tecnicos')->middleware('can:panel-administrador')
-//Route::view('/tecnicos','tecnicos')->name('tecnicos');
-Route::view('/tecnico-informatico', 'tecnico-informatico')->name('tecnico-informatico');
-Route::view('/tecnico-comunicacion', 'tecnico-comunicacion')->name('tecnico-comunicacion');
-Route::view('/tecnico-riogrande', 'tecnico-riogrande')->name('tecnico-riogrande');
-/* Route::view('/administrador', 'administrador')->name('panel-administrador'); */
-//Route::get('/generate-order', GenerateOrder::class)->name('generate.order');
 
 
 Route::get('/crear-notificacion', CrearNotificacion::class)->name('crear-notificacion');
@@ -555,10 +565,7 @@ Route::get('/turnos', TurnosCalendar::class)->name('turnos-calendar');
 Route::get('/turabajos-generales-chart', TrabajosGeneralesChart::class)->name('estadistica');
 
 //Route::get('/turno-reservation', TurnoReservation::class)->name('turno-reservar');
-Route::resource('users', UserController::class)->only('index', 'edit', 'update');
-Route::resource('roles', RoleController::class)->names('admin-roles');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+
 
 
 //Route::get('/reservar-turno', TurnoReservation::class);
@@ -683,10 +690,7 @@ Route::get('/historial-riogrande-general/{riograndeGeneraleId}', HistorialRiogra
     ->name('historial-riogrande-general');
 
 
-//Auditorias:
-Route::get('/auditorias', AuditoriaGeneral::class)
-    ->middleware(['auth'])
-    ->name('auditorias-general');
+
 
 Route::get('/historial-investigaciones-general/{investigacioneGeneraleId}', HistorialinvestigacionesGeneral::class)
     ->name('historial-investigaciones-general');
@@ -732,27 +736,33 @@ Route::get('/informatica/inventario/inventario-pdf-general',InventarioPdfGeneral
 /* =====================================================
 | TÉRMINOS Y CONDICIONES
 ===================================================== */
+/* ruta para ver tabla de usuarios que aceptaron terminos y condiciones */
+Route::get(
+    '/terms-conditions/acceptances',
+    \App\Http\Livewire\TermsConditions\Acceptances::class
+)->name('terms.acceptances');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'terms.acceptance'])->group(function () {
 
     Route::get(
-        '/terms/accept',
+        '/terms-acceptance',
         TermsAcceptance::class
     )->name('terms.accept');
 
     Route::get(
-        '/terminos-condiciones',
+        '/terms-conditions/index',
         \App\Http\Livewire\TermsConditions\Index::class
     )->name('terms.index');
 
     Route::get(
-        '/terminos-condiciones/create',
+        '/terms-conditions/create',
         \App\Http\Livewire\TermsConditions\Create::class
     )->name('terms.create');
 
     Route::get(
-        '/terminos-condiciones/edit/{terms}',
+        '/terms-conditions/edit/{terms}',
         \App\Http\Livewire\TermsConditions\Edit::class
     )->name('terms.edit');
 
 });
+

@@ -10,6 +10,7 @@ class CheckTermsAcceptance
 {
     public function handle($request, Closure $next)
     {
+        
         if ($request->is('livewire/*')) {
             return $next($request);
         }

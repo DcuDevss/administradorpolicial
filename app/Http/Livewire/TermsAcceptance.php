@@ -9,6 +9,7 @@ use App\Models\UserTermsAcceptance;
 class TermsAcceptance extends Component
 {
     public $terms;
+    public $accepted = false;
 
     public function mount()
     {
@@ -23,6 +24,12 @@ class TermsAcceptance extends Component
 
     public function accept()
     {
+
+        $this->validate([
+            'accepted' => 'required|accepted',
+        ], [
+            'accepted.accepted' => 'Debe haber leído y aceptado los términos y condiciones.',
+        ]);
 
         UserTermsAcceptance::firstOrCreate(
             [
