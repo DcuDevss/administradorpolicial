@@ -239,6 +239,7 @@ use App\Http\Livewire\Informatica\Inventario\InventarioPdfJefatura;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfRecursos;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfRioGrande;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfTolhuin;
+use App\Http\Livewire\Comunicaciones\Dcu\PdfDcu;
 use App\Http\Livewire\TermsAcceptance;
 use App\Http\Livewire\CentroSituacionOperativa;
 /*
@@ -733,6 +734,7 @@ Route::get('/informatica/inventario/inventario-pdf-riogrande', InventarioPdfRioG
 Route::get('/informatica/inventario/inventario-pdf-tolhuin', InventarioPdfTolhuin::class)->name('inventario-pdf-tolhuin');
 /* pdf general informatica */
 Route::get('/informatica/inventario/inventario-pdf-general',InventarioPdfGeneral::class)->name('inventario-pdf-general');
+Route::get('/comunicaciones/dcu/pdf-dcu', PdfDcu::class)->name('comunicaciones.dcu.pdf-dcu');
 /* =====================================================
 | TÉRMINOS Y CONDICIONES
 ===================================================== */
