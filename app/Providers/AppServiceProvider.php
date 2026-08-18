@@ -347,6 +347,22 @@ Livewire::component('informatica.trabajos.edit-trabajos-informatica', \App\Http\
 
 Livewire::component('terms-conditions.edit', \App\Http\Livewire\TermsConditions\Edit::class);
 
+Livewire::component(
+    'comunicaciones.totalequiposush.pdf-equipos',
+    \App\Http\Livewire\Comunicaciones\Totalequiposush\PdfEquipos::class
+);
+Livewire::component(
+    'comunicaciones.totalequiposrg.pdf-equipos-rg',
+    \App\Http\Livewire\Comunicaciones\Totalequiposrg\PdfEquiposRg::class
+);
+Livewire::component(
+    'comunicaciones.totalequipostol.pdf-equipos-tol',
+    \App\Http\Livewire\Comunicaciones\Totalequipostol\PdfEquiposTol::class
+);
+Livewire::component(
+    'informatica.inventario.inventario-pdf-ushuaia',
+    \App\Http\Livewire\Informatica\Inventario\InventarioPdfUshuaia::class
+);
        }
 
 

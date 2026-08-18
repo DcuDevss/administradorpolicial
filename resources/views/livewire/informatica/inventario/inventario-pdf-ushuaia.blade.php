@@ -7,7 +7,7 @@
     <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700">Dependencia</label>
 
-        <select class="w-full form-control" wire:model="dependenciaSeleccionada">
+        <select class="w-full form-control" wire:model.live="dependenciaSeleccionada">
             <option value="0">Todas las dependencias</option>
 
             @foreach($dependencias as $id => $nombre)
