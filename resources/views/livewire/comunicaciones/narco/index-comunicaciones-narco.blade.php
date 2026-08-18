@@ -66,9 +66,9 @@
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle inventario
                                     </th>
-                                    {{-- <th class="p-1   text-center text-xs text-blue-800">
+                                    <th class="p-1   text-center text-xs text-blue-800">
                                         QR
-                                    </th> --}}
+                                    </th>
                                     <th class="p-1 text-center text-xs text-blue-800">
                                         Acciones
                                     </th>
@@ -92,6 +92,32 @@
                                             <div class="whitespace-normal break-words">{{ $comu->detalle_inventario ?? 'No Encontrado'}}
                                             </div>
                                         </td>
+                                        <td class="border px-4 py-2">
+                                            @if ($comu->codigo_qr)
+                                                <div x-data="{ open: false }">
+                                                    <img x-on:click="open = !open"
+                                                        src="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                        alt="Código QR" class="cursor-pointer">
+                                                    <div x-show="open"
+                                                        class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                                                        <div class="relative">
+                                                            <img src="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                                alt="Código QR" class="max-w-full max-h-full">
+                                                            <button x-on:click="open = false"
+                                                                class="absolute top-0 right-0 m-3 text-white text-2xl cursor-pointer">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                    download>
+                                                    <button
+                                                        class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Descargar
+                                                        QR</button>
+                                                </a>
+                                            @endif
+                                        </td>                                        
                                          <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editComunicacionesNarco', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">

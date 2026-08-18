@@ -205,10 +205,7 @@ class CreateInventarioGeneral extends Component
         Storage::put($rutaImagenQR, $codigoQR);
         $this->generalinformatica->codigo_qr = $nombreImagenQR;
         $this->generalinformatica->save();
-        $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
     }
 
 
@@ -1800,3 +1797,6 @@ class CreateInventarioGeneral extends Component
         ));
     }
 }
+
+
+

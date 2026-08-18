@@ -177,10 +177,7 @@ class EditRiograndeGeneral extends Component
 
         // Generar el código QR después de guardar los cambios
         /* $this->generateQRCode(); */
-        $this->dispatchBrowserEvent('notificacion', [
-        'type' => 'success',
-        'message' => 'Datos Editados correctamente.'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos Editados correctamente.');
     }
 
    /*  private function generateQRCode() */
@@ -241,3 +238,6 @@ class EditRiograndeGeneral extends Component
         return view('livewire.dcrginfo.riograndeinfo.edit-riogrande-general');
     }
 }
+
+
+

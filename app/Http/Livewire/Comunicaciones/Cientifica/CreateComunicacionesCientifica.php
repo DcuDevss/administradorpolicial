@@ -93,10 +93,7 @@ class CreateComunicacionesCientifica extends Component
 
 
 
-             $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+             $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
 
 
@@ -238,3 +235,6 @@ class CreateComunicacionesCientifica extends Component
         ));
     }
 }
+
+
+

@@ -95,10 +95,7 @@ class CreateComunicacionesInvestigacion extends Component
 
             DB::commit();
             //$this->clearForm();
-            $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+            $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
         } catch (\Exception $e) {
             DB::rollback();
@@ -232,3 +229,6 @@ class CreateComunicacionesInvestigacion extends Component
         ));
     }
 }
+
+
+

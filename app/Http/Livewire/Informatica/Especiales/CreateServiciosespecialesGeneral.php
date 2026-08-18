@@ -176,10 +176,7 @@ class CreateServiciosespecialesGeneral extends Component
 
 
 
-        $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
             DB::commit();
             //$this->clearForm();
@@ -204,3 +201,6 @@ class CreateServiciosespecialesGeneral extends Component
         return view('livewire.informatica.especiales.create-serviciosespeciales-general');
     }
 }
+
+
+

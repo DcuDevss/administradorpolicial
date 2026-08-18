@@ -183,10 +183,7 @@ class CreateJefaturaGeneral extends Component
 
 
 
-        $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
         //DB::commit();
         //$this->clearForm();
@@ -343,3 +340,5 @@ class CreateJefaturaGeneral extends Component
         ));
     }
 }
+
+

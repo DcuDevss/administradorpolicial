@@ -94,10 +94,7 @@ class CreateComunicacionesCustodia extends Component
 
 
 
-             $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+             $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
 
 
@@ -240,3 +237,6 @@ class CreateComunicacionesCustodia extends Component
         ));
     }
 }
+
+
+

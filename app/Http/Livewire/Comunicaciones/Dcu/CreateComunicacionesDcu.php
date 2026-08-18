@@ -77,10 +77,7 @@ class CreateComunicacionesDcu extends Component
 
             $this->comunicacionesdcu->save();
 
-             $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+             $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
 
             DB::commit();
@@ -123,3 +120,6 @@ class CreateComunicacionesDcu extends Component
         ));
     }
 }
+
+
+

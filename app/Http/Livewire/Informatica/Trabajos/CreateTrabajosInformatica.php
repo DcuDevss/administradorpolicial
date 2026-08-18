@@ -106,10 +106,7 @@ class CreateTrabajosInformatica extends Component
                 $historial->save();
             }
 
-        $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
             
             DB::commit();
         } catch (\Exception $e) {
@@ -191,3 +188,6 @@ class CreateTrabajosInformatica extends Component
         return view('livewire.informatica.trabajos.create-trabajos-informatica', compact('historiales'));
     }
 }
+
+
+

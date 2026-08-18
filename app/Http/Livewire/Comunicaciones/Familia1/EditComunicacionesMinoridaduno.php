@@ -92,10 +92,7 @@ public function edit()
     ]);
 
 
-    $this->dispatchBrowserEvent('notificacion', [
-    'type' => 'success',
-    'message' => 'Datos Editados correctamente.'
-    ]);
+    $this->dispatch('notificacion', type: 'success', message: 'Datos Editados correctamente.');
 }
 
     public function render()
@@ -103,3 +100,6 @@ public function edit()
         return view('livewire.comunicaciones.familia1.edit-comunicaciones-minoridaduno');
     }
 }
+
+
+
