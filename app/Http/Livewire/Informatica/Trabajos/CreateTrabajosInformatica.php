@@ -50,7 +50,7 @@ class CreateTrabajosInformatica extends Component
 
     protected $rules = [
         'totaldependencia_id' => 'nullable|exists:totaldependencias,id',
-        'dependencia_tolhuin_id' => 'nullable|exists:dependencia_tolhuin,id',
+        'dependencia_tolhuin_id' => 'nullable|exists:dependencia_tolhuins,id',
         'detalles_trabajo' => 'nullable|string',
         'fecha_trabajo' => 'nullable|date',
         'lugar_trabajo' => 'nullable|string',
@@ -107,7 +107,7 @@ class CreateTrabajosInformatica extends Component
             }
 
         $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
-            
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();

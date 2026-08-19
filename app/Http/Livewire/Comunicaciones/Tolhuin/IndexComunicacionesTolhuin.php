@@ -56,7 +56,8 @@ class IndexComunicacionesTolhuin extends Component
     public function render()
     {
         $comunicaciones = Comunicacionestolhuin::where(function ($query) {
-            $query->where('nro_serie', 'like', "%{$this->search}%")
+            $query->where('id', 'like', "%{$this->search}%")
+                ->orWhere('nro_serie', 'like', "%{$this->search}%")
                 ->orWhere('fecha_service', 'like', "%{$this->search}%")
                 ->orWhere('modelo', 'like', "%{$this->search}%")
                 ->orWhere('fecha_inventario', 'like', "%{$this->search}%")

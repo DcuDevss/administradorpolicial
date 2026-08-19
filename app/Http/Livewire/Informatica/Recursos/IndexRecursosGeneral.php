@@ -59,6 +59,7 @@ class IndexRecursosGeneral extends Component
     {
         $recurso = Recursoshumanosgenerale::where(function ($query) {
             $query->where('marca', 'like', "%{$this->search}%")
+                ->orwhere('id', 'like', "%{$this->search}%")
                 ->orWhere('modelo', 'like', "%{$this->search}%")
                 ->orWhere('procesador', 'like', "%{$this->search}%")
                 // ->orWhere('monitor', 'like', "%{$this->search}%")
