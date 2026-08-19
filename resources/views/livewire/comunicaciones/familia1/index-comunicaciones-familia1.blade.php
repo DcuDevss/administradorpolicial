@@ -12,7 +12,7 @@
                                 <option value="15">15</option>
                                 <option value="20">20</option>
                             </select>
-                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model="search"
+                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model.live.debounce.500ms="search"
                                 placeholder="Ingrese la busqueda">
                             <button wire:click="clear" class="ml-2"><span class="fa fa-eraser"></span></button>
                             {{--  <a class="inline-flex items-center justify-center float-right mr-4 px-4 py-3 bg-slate-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"
@@ -118,7 +118,7 @@
                                                         QR</button>
                                                 </a>
                                             @endif
-                                        </td>                                        
+                                        </td>
                                         <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editComunicacionesMinoridad', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">

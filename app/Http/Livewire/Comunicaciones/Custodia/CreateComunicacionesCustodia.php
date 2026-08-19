@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Comunicaciones\custodia;
+namespace App\Http\Livewire\Comunicaciones\Custodia;
 
 use App\Models\Comunicacionescustodia;
 use Livewire\Component;

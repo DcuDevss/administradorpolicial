@@ -12,7 +12,7 @@
                                 <option value="15">15</option>
                                 <option value="20">20</option>
                             </select>
-                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model="search"
+                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model.live.debounce.500ms="search"
                                 placeholder="Ingrese la busqueda">
                             <button wire:click="clear" class="ml-2"><span class="fa fa-eraser"></span></button>
                         </div>
@@ -115,7 +115,7 @@
                                                         QR</button>
                                                 </a>
                                             @endif
-                                        </td>                                        
+                                        </td>
                                         <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editComunicacionesDcu', $comu->id) }}"
                                                 class="inline-block bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 mr-1 rounded">
