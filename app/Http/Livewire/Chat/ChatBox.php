@@ -191,7 +191,7 @@ class ChatBox extends Component
 
 
         #refresh chatlist
-        $this->emitTo('chat.chat-list', 'refresh');
+        $this->dispatch('chat.chat-list', 'refresh');
 
         #broadcast
 
