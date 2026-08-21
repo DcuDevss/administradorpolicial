@@ -12,7 +12,6 @@
         </x-slot>
 
 
-
         <div class="col-xs-12">
             <div class="flex flex-col p-4 shadow-lg">
                 <div class="py-5 bg-white dark:bg-gray-100 rounded-md">
@@ -24,11 +23,7 @@
                         </div>
                         <form enctype="multipart/form-data">
                             <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                                 <div class="grid grid-cols-3 gap-3 mb-10">
-
-
                                     {{--  <div class="form-group row">
                                         <div class="col-md-6">
                                             <div class="col-md-12">
@@ -79,8 +74,6 @@
                                             });
                                         });
                                     </script> --}}
-
-
                                     <div class="mt-2">
                                         <label for="equipocomunicacion_id"
                                             class="block text-sm font-medium text-gray-700">Tipo de
@@ -241,9 +234,6 @@
                                             @endforeach
                                         </select>
                                     </div> --}}
-
-
-
                                 </div>
 
                                 <div class="mt-1">
@@ -267,7 +257,6 @@
                                         Guardar!!
                                     </button>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -279,8 +268,6 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                             <div class="grid grid-cols-4 gap-2 mb-10">
                                 <div>
                                     <h1 class="text-red-800 text-lg font-bold mb-2">Total de equipos "Ht":
@@ -296,6 +283,7 @@
                                     <p class="text-metric-secondary font-bold mb-2">Ht Hytera: {{ $marcaHytera }}</p>
                                     <p class="text-metric-secondary font-bold mb-2">Ht Alcom: {{ $marcaAlcom }} </p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Equipos Base":
                                         {{ $BaseCount }}</h1>
@@ -320,6 +308,7 @@
                                         Alcom:{{ $baseAlcom }}
                                     </p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Antenas":
                                         {{ $AntenaCount }}</h1>
@@ -341,9 +330,7 @@
                                     </p>
                                     <p class="text-metric-secondary font-bold mb-2">Antena Ringo:{{ $ringo }}
                                     </p>
-
                                 </div>
-
 
                                 <div>
                                     <p class="text-red-800 font-extrabold mb-2">Total de "Repetidoras":
@@ -370,14 +357,9 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

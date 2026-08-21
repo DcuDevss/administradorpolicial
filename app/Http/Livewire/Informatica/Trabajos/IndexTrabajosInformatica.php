@@ -57,6 +57,7 @@ class IndexTrabajosInformatica extends Component
     {
         $trabajos = TrabajosInformatico::where(function ($query) {
             $query->where('lugar_trabajo', 'like', "%{$this->search}%")
+                ->orwhere('id', 'like', "%{$this->search}%")
                 ->orWhere('fecha_trabajo', 'like', "%{$this->search}%")
                 ->orWhere('detalles_trabajo', 'like', "%{$this->search}%");
 
@@ -67,6 +68,10 @@ class IndexTrabajosInformatica extends Component
         ->orWhereHas('totaldependencia', function ($query) {
             $query->where('nombre', 'like', "%{$this->search}%");
         })
+        ->with([
+            'dependenciatolhuin',
+            'totaldependencia',
+        ])
 
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
@@ -80,9 +85,9 @@ class IndexTrabajosInformatica extends Component
         $registro = TrabajosInformatico::findOrFail($id);
         $registro->delete(); // eliminación real
 
-        $this->dispatchBrowserEvent('notificacion', [
-            'type' => 'success',
-            'message' => 'Registro eliminado correctamente'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Registro eliminado correctamente');
     }
 }
+
+
+

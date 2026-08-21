@@ -56,7 +56,8 @@ class IndexComunicacionesRiogrande extends Component
     public function render()
     {
         $comunicaciones = Comunicacionesrg::where(function ($query) {
-            $query->where('nro_serie', 'like', "%{$this->search}%")
+            $query->where('id', 'like', "%{$this->search}%")
+                ->orWhere('nro_serie', 'like', "%{$this->search}%")
                 ->orWhere('fecha_service', 'like', "%{$this->search}%")
                 ->orWhere('modelo', 'like', "%{$this->search}%")
                 ->orWhere('fecha_inventario', 'like', "%{$this->search}%")
@@ -135,9 +136,9 @@ class IndexComunicacionesRiogrande extends Component
         $registro = Comunicacionesrg::findOrFail($id);
         $registro->delete(); // eliminación real
 
-        $this->dispatchBrowserEvent('notificacion', [
-            'type' => 'success',
-            'message' => 'Registro eliminado correctamente'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Registro eliminado correctamente');
     }
 }
+
+
+

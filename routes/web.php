@@ -239,9 +239,11 @@ use App\Http\Livewire\Informatica\Inventario\InventarioPdfJefatura;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfRecursos;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfRioGrande;
 use App\Http\Livewire\Informatica\Inventario\InventarioPdfTolhuin;
-
+use App\Http\Livewire\Comunicaciones\Dcu\PdfDcu;
+use App\Http\Livewire\TermsAcceptance;
 use App\Http\Livewire\CentroSituacionOperativa;
-
+use App\Http\Livewire\Tickets\CreateTicketReparacion;
+use App\Http\Livewire\Tickets\IndexTicketsReparacion;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -281,7 +283,7 @@ Route::middleware([
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified', 'terms.acceptance'
 ])->group(function () {
     Route::get('/dashboard', function () {
         $user = Auth::user(); // Obténgo al usuario autenticado
@@ -310,7 +312,7 @@ Route::view('/tailwind', 'tailwind');
 Route::post('/reserve', [SubmitController::class, 'reserve'])->name('reserve');
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'terms.acceptance'])->group(function () {
 
     Route::get('/chat', Index::class)->name('chatlist');
     Route::get('/chat/{query}', Chat::class)->name('chat');
@@ -321,17 +323,29 @@ Route::middleware('auth')->group(function () {
     // NUEVA RUTA: Centro de Situación Operativa
     Route::get('/situacion-operativa', CentroSituacionOperativa::class)
         ->name('situacion-operativa');
+    Route::view('/tecnico-informatico', 'tecnico-informatico')->name('tecnico-informatico');
+    Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
+    Route::get('/tickets/reparaciones/nuevo', CreateTicketReparacion::class)->name('tickets.create');
+    Route::get('/tickets/reparaciones/{ticket?}', IndexTicketsReparacion::class)->name('tickets.index');
+
+    //->middleware('can:panel-tecnicos')->middleware('can:panel-administrador')
+    //Route::view('/tecnicos','tecnicos')->name('tecnicos');
+
+    Route::view('/tecnico-comunicacion', 'tecnico-comunicacion')->name('tecnico-comunicacion');
+    Route::view('/tecnico-riogrande', 'tecnico-riogrande')->name('tecnico-riogrande');
+    /* Route::view('/administrador', 'administrador')->name('panel-administrador'); */
+    //Route::get('/generate-order', GenerateOrder::class)->name('generate.order');
+    Route::resource('users', UserController::class)->only('index', 'edit', 'update');
+    Route::resource('roles', RoleController::class)->names('admin-roles');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+    //Auditorias:
+    Route::get('/auditorias', AuditoriaGeneral::class)
+        ->middleware(['auth'])
+        ->name('auditorias-general');
 });
 
-Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
 
-//->middleware('can:panel-tecnicos')->middleware('can:panel-administrador')
-//Route::view('/tecnicos','tecnicos')->name('tecnicos');
-Route::view('/tecnico-informatico', 'tecnico-informatico')->name('tecnico-informatico');
-Route::view('/tecnico-comunicacion', 'tecnico-comunicacion')->name('tecnico-comunicacion');
-Route::view('/tecnico-riogrande', 'tecnico-riogrande')->name('tecnico-riogrande');
-/* Route::view('/administrador', 'administrador')->name('panel-administrador'); */
-//Route::get('/generate-order', GenerateOrder::class)->name('generate.order');
 
 
 Route::get('/crear-notificacion', CrearNotificacion::class)->name('crear-notificacion');
@@ -556,10 +570,7 @@ Route::get('/turnos', TurnosCalendar::class)->name('turnos-calendar');
 Route::get('/turabajos-generales-chart', TrabajosGeneralesChart::class)->name('estadistica');
 
 //Route::get('/turno-reservation', TurnoReservation::class)->name('turno-reservar');
-Route::resource('users', UserController::class)->only('index', 'edit', 'update');
-Route::resource('roles', RoleController::class)->names('admin-roles');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+
 
 
 //Route::get('/reservar-turno', TurnoReservation::class);
@@ -684,10 +695,7 @@ Route::get('/historial-riogrande-general/{riograndeGeneraleId}', HistorialRiogra
     ->name('historial-riogrande-general');
 
 
-//Auditorias:
-Route::get('/auditorias', AuditoriaGeneral::class)
-    ->middleware(['auth'])
-    ->name('auditorias-general');
+
 
 Route::get('/historial-investigaciones-general/{investigacioneGeneraleId}', HistorialinvestigacionesGeneral::class)
     ->name('historial-investigaciones-general');
@@ -730,3 +738,36 @@ Route::get('/informatica/inventario/inventario-pdf-riogrande', InventarioPdfRioG
 Route::get('/informatica/inventario/inventario-pdf-tolhuin', InventarioPdfTolhuin::class)->name('inventario-pdf-tolhuin');
 /* pdf general informatica */
 Route::get('/informatica/inventario/inventario-pdf-general',InventarioPdfGeneral::class)->name('inventario-pdf-general');
+Route::get('/comunicaciones/dcu/pdf-dcu', PdfDcu::class)->name('comunicaciones.dcu.pdf-dcu');
+/* =====================================================
+| TÉRMINOS Y CONDICIONES
+===================================================== */
+/* ruta para ver tabla de usuarios que aceptaron terminos y condiciones */
+Route::get(
+    '/terms-conditions/acceptances',
+    \App\Http\Livewire\TermsConditions\Acceptances::class
+)->name('terms.acceptances');
+
+Route::middleware(['auth', 'terms.acceptance'])->group(function () {
+
+    Route::get(
+        '/terms-acceptance',
+        TermsAcceptance::class
+    )->name('terms.accept');
+
+    Route::get(
+        '/terms-conditions/index',
+        \App\Http\Livewire\TermsConditions\Index::class
+    )->name('terms.index');
+
+    Route::get(
+        '/terms-conditions/create',
+        \App\Http\Livewire\TermsConditions\Create::class
+    )->name('terms.create');
+
+    Route::get(
+        '/terms-conditions/edit/{terms}',
+        \App\Http\Livewire\TermsConditions\Edit::class
+    )->name('terms.edit');
+
+});

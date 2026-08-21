@@ -245,7 +245,6 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
-
                             </div>
 
                             <div class="mt-2">
@@ -279,7 +278,6 @@
                                     <p>No hay código QR disponible</p>
                                 @endif
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -299,9 +297,7 @@
                             Cancelar
                         </button>
                     </div>
-
+                </div>
             </div>
         </div>
-
     </div>
-</div>

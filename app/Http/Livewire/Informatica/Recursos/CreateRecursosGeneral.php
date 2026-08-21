@@ -198,10 +198,7 @@ class CreateRecursosGeneral extends Component
         $this->recursos->save();
 
 
-        $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
         //  DB::commit();
         //$this->clearForm();
@@ -686,3 +683,6 @@ class CreateRecursosGeneral extends Component
         $this->slotmemoria_id = '';
     }
 }
+
+
+

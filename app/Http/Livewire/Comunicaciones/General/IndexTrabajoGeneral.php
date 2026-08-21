@@ -50,45 +50,44 @@ class IndexTrabajoGeneral extends Component
     protected $listeners = ['render'=> 'render'];
 
 
-    public function render()
-    {
+public function render()
+{
+    $trabajos = TrabajosGenerale::where(function ($query) {
+        $query->where('id', $this->search)
+            ->orWhere('lugar_trabajo', 'like', "%{$this->search}%")
+            ->orWhere('fecha_trabajo', 'like', "%{$this->search}%")
+            ->orWhere('detalle_trabajo', 'like', "%{$this->search}%")
+            ->orWhereHas('dependenciaushuaia', function ($q) {
+                $q->where('nombre', 'like', "%{$this->search}%");
+            })
+            ->orWhereHas('dependenciariogrande', function ($q) {
+                $q->where('nombre', 'like', "%{$this->search}%");
+            })
+            ->orWhereHas('dependenciatolhuin', function ($q) {
+                $q->where('nombre', 'like', "%{$this->search}%");
+            })
+            ->orWhereHas('otrainstitucione', function ($q) {
+                $q->where('nombre', 'like', "%{$this->search}%");
+            })
+            ->orWhereHas('tecnicocomunicacione', function ($q) {
+                $q->where('nombre', 'like', "%{$this->search}%");
+            });
+    })
+    ->with([
+        'dependenciaushuaia',
+        'dependenciariogrande',
+        'dependenciatolhuin',
+        'otrainstitucione',
+        'tecnicocomunicacione',
+    ])
+    ->orderBy($this->sort1, $this->direction1)
+    ->paginate($this->perPage);
 
-        $trabajos = TrabajosGenerale::where(function ($query) {
-            $query->where('lugar_trabajo', 'like', "%{$this->search}%")
-                ->orWhere('fecha_trabajo', 'like', "%{$this->search}%")
-                ->orWhere('detalle_trabajo', 'like', "%{$this->search}%");
-
-        })
-        ->orWhereHas('dependenciaushuaia', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
-        ->orWhereHas('dependenciariogrande', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
-        ->orWhereHas('dependenciatolhuin', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
-        ->orWhereHas('otrainstitucione', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
-        ->orWhereHas('tecnicocomunicacione', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
-        ->with([
-            'dependenciaushuaia',
-            'dependenciariogrande',
-            'dependenciatolhuin',
-            'otrainstitucione',
-            'tecnicocomunicacione',
-        ])
-        ->orderBy($this->sort1, $this->direction1)
-        ->paginate($this->perPage);
-
-
-
-
-        return view('livewire.comunicaciones.general.index-trabajo-general',compact('trabajos'));
-    }
+    return view(
+        'livewire.comunicaciones.general.index-trabajo-general',
+        compact('trabajos')
+    );
+}
 
     public function order1($sort1)
     {
@@ -134,9 +133,9 @@ class IndexTrabajoGeneral extends Component
         $registro = TrabajosGenerale::findOrFail($id);
         $registro->delete(); // eliminación real
 
-        $this->dispatchBrowserEvent('notificacion', [
-            'type' => 'success',
-            'message' => 'Registro eliminado correctamente'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Registro eliminado correctamente');
     }
 }
+
+
+

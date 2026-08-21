@@ -189,10 +189,7 @@ class CreateInvestigacionesGeneral extends Component
         $this->investigaciones->codigo_qr = $nombreImagenQR;
         $this->investigaciones->save();
 
-        $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
         // DB::commit();
         //$this->clearForm();
@@ -532,3 +529,5 @@ class CreateInvestigacionesGeneral extends Component
         ));
     }
 }
+
+

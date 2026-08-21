@@ -89,7 +89,7 @@ class IndexComunicacionesDcu extends Component
 
     public function confirmDelete($id)
     {
-        $this->dispatchBrowserEvent('confirm-delete', ['comuId' => $id]);
+        $this->dispatch('confirm-delete', comuId: $id);
     }
 
 
@@ -107,9 +107,9 @@ class IndexComunicacionesDcu extends Component
         $registro = ComunicacionesDcu::findOrFail($id);
         $registro->delete(); // eliminación real
 
-        $this->dispatchBrowserEvent('notificacion', [
-            'type' => 'success',
-            'message' => 'Registro eliminado correctamente'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Registro eliminado correctamente');
     }
 }
+
+
+

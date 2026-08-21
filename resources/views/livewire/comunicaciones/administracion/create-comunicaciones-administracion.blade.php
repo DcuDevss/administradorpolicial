@@ -157,10 +157,7 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
                                 </div>
-
                                 <div class="mt-1">
                                     <label class="block text-gray-700 text-sm font-bold mb-1"
                                         for="detalle_inventario">Detalle del inventario</label>
@@ -179,9 +176,7 @@
                                         class="btn-confirm">
                                         Guardar!!
                                     </button>
-
                                 </div>
-
                             </div>
                         </form>
                         @if (session()->has('mensaje'))
@@ -189,8 +184,6 @@
                                 {{ session('mensaje') }}
                             </div>
                         @endif
-
-
                     </div>
 
 
@@ -291,13 +284,9 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

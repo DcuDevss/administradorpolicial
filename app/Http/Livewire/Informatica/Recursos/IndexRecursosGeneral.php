@@ -59,6 +59,7 @@ class IndexRecursosGeneral extends Component
     {
         $recurso = Recursoshumanosgenerale::where(function ($query) {
             $query->where('marca', 'like', "%{$this->search}%")
+                ->orwhere('id', 'like', "%{$this->search}%")
                 ->orWhere('modelo', 'like', "%{$this->search}%")
                 ->orWhere('procesador', 'like', "%{$this->search}%")
                 // ->orWhere('monitor', 'like', "%{$this->search}%")
@@ -154,9 +155,9 @@ class IndexRecursosGeneral extends Component
         $registro = Recursoshumanosgenerale::findOrFail($id);
         $registro->delete(); // eliminación real
 
-        $this->dispatchBrowserEvent('notificacion', [
-            'type' => 'success',
-            'message' => 'Registro eliminado correctamente'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Registro eliminado correctamente');
     }
 }
+
+
+

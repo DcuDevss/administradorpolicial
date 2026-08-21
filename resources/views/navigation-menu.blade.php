@@ -26,6 +26,27 @@
                         href="{{ route('chatlist') }}">Chats<span class="ml-1">{{-- @livewire('notificacion-chat') --}}</span></a>
                 @endcan
 
+                @auth
+                    @php
+                        $ticketNotifications = 0;
+                        $user = auth()->user();
+                        if ($user && ($user->hasRole('Admin') || $user->hasRole('tecnicoinformatico'))) {
+                            $ticketNotifications = $user->unreadNotifications
+                                ->where('type', 'App\Notifications\TicketReparacionNotification')
+                                ->count();
+                        }
+                    @endphp
+                    <div class="relative">
+                        @if ($ticketNotifications > 0)
+                            <span class="absolute -top-2 -right-2 z-10 rounded-full bg-pink-700 px-2 py-0.5 text-xs font-bold text-white">
+                                {{ $ticketNotifications }}
+                            </span>
+                        @endif
+                        <a class="inline-flex items-center justify-center float-right mr-4 px-3 py-2 bg-cyan-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"
+                            href="{{ route('tickets.index') }}">Tickets</a>
+                    </div>
+                @endauth
+
                 @can('tecnico-informatico')
                     <div class="relative m-4 flex-col w-fit">
                         @php
@@ -92,6 +113,10 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500" role="menuitem">
                                 Centro de situación
                             </a> --}}
+                            <a href="{{ route('terms.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500" role="menuitem">
+                                Términos y Condiciones
+                            </a>
                         </div>
                     </div>
                 @endcan
@@ -308,6 +333,10 @@
                 <a class="mr-4 px-2 py-2 bg-pink-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition  flex-shrink-0"
                     href="{{ route('chatlist') }}">Chats<span class="ml-1">{{-- @livewire('notificacion-chat') --}}</span></a>
             @endcan
+            @auth
+                <a class="mr-4 px-3 py-2 bg-cyan-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition flex-shrink-0"
+                    href="{{ route('tickets.index') }}">Tickets</a>
+            @endauth
         </div>
 
         @can('tecnico-informatico')

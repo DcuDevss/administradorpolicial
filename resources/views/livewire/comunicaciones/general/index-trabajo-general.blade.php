@@ -227,7 +227,7 @@
                                 <option value="15">15</option>
                                 <option value="20">20</option>
                             </select>
-                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model="search"
+                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model.live.debounce.500ms="search"
                                 placeholder="Ingrese la búsqueda">
                             <button wire:click="clear" class="ml-2"><span class="fa fa-eraser"></span></button>
                         </div>
@@ -247,43 +247,36 @@
                                         @endif
                                     </th>
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
-
                                         Dependencias Ushuaia
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Dependencias Rio grande
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Dependencias Tolhuin
                                     </th>
                                     <th class="p-1   texte-center text-xs text-blue-800">
                                         Otras Instituciones
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Lugar de trabajo
-
                                     </th>
 
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha de trabajo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tecnico designado/s
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle del trabajo
-
                                     </th>
                                     <th class="p-1 text-center text-xs text-blue-800">
                                         Acciones
                                     </th>
                                 </tr>
                             </thead>
+
                             <tbody class="text-sm divide-y divide-gray-100">
                                 @foreach ($trabajos as $comu)
                                     <tr>
@@ -314,7 +307,6 @@
                                             <div class="whitespace-normal break-words">{{ $comu->detalle_trabajo }}
                                             </div>
                                         </td>
-
                                         <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editTrabajoGeneral', $comu->id) }}"
                                                 class="bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded">

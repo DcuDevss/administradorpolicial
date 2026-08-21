@@ -90,10 +90,7 @@ public function edit()
     ]);
 
 
-    $this->dispatchBrowserEvent('notificacion', [
-    'type' => 'success',
-    'message' => 'Datos Editados correctamente.'
-    ]);
+    $this->dispatch('notificacion', type: 'success', message: 'Datos Editados correctamente.');
 }
 
 
@@ -102,3 +99,6 @@ public function edit()
         return view('livewire.comunicaciones.tercera.edit-comunicaciones-tercera');
     }
 }
+
+
+

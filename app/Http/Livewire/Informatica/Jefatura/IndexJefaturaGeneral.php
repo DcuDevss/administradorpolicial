@@ -60,6 +60,7 @@ class IndexJefaturaGeneral extends Component
     {
         $jefatu = Jefaturagenerale::where(function ($query) {
             $query->where('marca', 'like', "%{$this->search}%")
+                ->orwhere('id', 'like', "%{$this->search}%")
                 ->orWhere('modelo', 'like', "%{$this->search}%")
                 ->orWhere('procesador', 'like', "%{$this->search}%")
                // ->orWhere('monitor', 'like', "%{$this->search}%")
@@ -113,9 +114,8 @@ class IndexJefaturaGeneral extends Component
         $registro = Jefaturagenerale::findOrFail($id);
         $registro->delete(); // eliminación real
 
-        $this->dispatchBrowserEvent('notificacion', [
-            'type' => 'success',
-            'message' => 'Registro eliminado correctamente'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Registro eliminado correctamente');
     }
 }
+
+

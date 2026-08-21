@@ -44,7 +44,7 @@ class ChatBox extends Component
 
             if ($event['conversation_id'] == $this->selectedConversation->id) {
 
-                $this->dispatchBrowserEvent('scroll-bottom');
+                $this->dispatch('scroll-bottom');
 
                 $newMessage = Message::find($event['message_id']);
 
@@ -80,7 +80,7 @@ class ChatBox extends Component
 
 
         #update the chat height
-        $this->dispatchBrowserEvent('update-chat-height');
+        $this->dispatch('update-chat-height');
     }
 
 
@@ -178,7 +178,7 @@ class ChatBox extends Component
         $this->reset('body');
 
         #scroll to bottom
-        $this->dispatchBrowserEvent('scroll-bottom');
+        $this->dispatch('scroll-bottom');
 
 
         #push the message
@@ -191,7 +191,7 @@ class ChatBox extends Component
 
 
         #refresh chatlist
-        $this->emitTo('chat.chat-list', 'refresh');
+        $this->dispatch('chat.chat-list', 'refresh');
 
         #broadcast
 
@@ -225,3 +225,4 @@ class ChatBox extends Component
         return view('livewire.chat.chat-box');
     }
 }
+

@@ -126,10 +126,7 @@ class CreateComunicacionesTolhuin extends Component
                 $historial->save();
             }
 
-             $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+             $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
 
 
@@ -274,4 +271,7 @@ class CreateComunicacionesTolhuin extends Component
         ));
     }
 }
+
+
+
 

@@ -96,10 +96,9 @@
                                     </button>
                                 </div>
                             </form>
-
                         </div>
-
                     </div>
+
                     <div x-data="{ open: false }" class="shadow-lg">
                         <div @click="open = !open"
                             class="flex items-center justify-between bg-slate-800 border p-4 rounded-md transition">
@@ -127,7 +126,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                         </div>
                     </div>
                 </div>
@@ -136,6 +134,5 @@
         </div>
  @livewire('informatica.trabajos.index-trabajos-informatica')
     </div>
-
 </div>
 

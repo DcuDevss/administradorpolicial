@@ -194,10 +194,7 @@ class EditInventarioGeneral extends Component
 
         // Generar el código QR después de guardar los cambios
         $this->generateQRCode();
-        $this->dispatchBrowserEvent('notificacion', [
-        'type' => 'success',
-        'message' => 'Datos Editados correctamente.'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos Editados correctamente.');
     }
 
 
@@ -245,3 +242,6 @@ class EditInventarioGeneral extends Component
  */
     }
 }
+
+
+

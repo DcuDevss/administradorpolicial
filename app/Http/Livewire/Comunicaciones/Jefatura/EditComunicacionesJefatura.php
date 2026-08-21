@@ -91,10 +91,7 @@ public function edit()
         'detalle_inventario' => $this->detalle_inventario,
     ]);
 
-    $this->dispatchBrowserEvent('notificacion', [
-    'type' => 'success',
-    'message' => 'Datos Editados correctamente.'
-    ]);
+    $this->dispatch('notificacion', type: 'success', message: 'Datos Editados correctamente.');
 }
 
 
@@ -104,3 +101,6 @@ public function edit()
         return view('livewire.comunicaciones.jefatura.edit-comunicaciones-jefatura');
     }
 }
+
+
+

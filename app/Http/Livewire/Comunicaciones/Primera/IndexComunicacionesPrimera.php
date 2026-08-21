@@ -46,56 +46,24 @@ class IndexComunicacionesPrimera extends Component
 
     public function render()
     {
-
-        /*$comunicaciones=Comunicacionesprimera::where('id','like',"%{$this->search}%")
-        ->orWhere('nro_serie','like',"%{$this->search}%")
-        //->orWhere('$marcaequipo_id','like',"%{$this->search}%")
-        //->orWhere('$equipocomunicacion_id','like',"%{$this->search}%")condicion_equipo_comunicacion
-        ->orWhere('fecha_service','like',"%{$this->search}%")
-        ->orWhere('modelo','like',"%{$this->search}%")
-        ->orWhere('fecha_inventario','like',"%{$this->search}%")
-        ->orWhere('tipo_service','like',"%{$this->search}%")
-        ->orWhere('lugar_colocacion','like',"%{$this->search}%")
-        ->orWhere('detalle_inventario','like',"%{$this->search}%")
-        ->orWhere('condicion_equipo_comunicacion','like',"%{$this->search}%")
-        ->orderBy($this->sort1, $this->direction1)
-        ->paginate($this->perPage);*/
-        //$equiposConHtCount = Equipocomunicacion::where('nombre', 'Ht')->count();
-
-       /* $comunicaciones = Comunicacionesprimera::where('nro_serie', 'like', "%{$this->search}%")
-        ->orWhere('fecha_service', 'like', "%{$this->search}%")
-        ->orWhere('modelo', 'like', "%{$this->search}%")
-        ->orWhere('fecha_inventario', 'like', "%{$this->search}%")
-        ->orWhere('tipo_service', 'like', "%{$this->search}%")
-        ->orWhere('lugar_colocacion', 'like', "%{$this->search}%")
-        ->orWhere('detalle_inventario', 'like', "%{$this->search}%")
-        ->orWhere('condicion_equipo_comunicacion', 'like', "%{$this->search}%")
-        ->orWhereHas('marcaequipo', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
-        ->orWhereHas('equipocomunicacion', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
-        ->orderBy($this->sort1, $this->direction1)
-        ->paginate($this->perPage);*/
         $comunicaciones = Comunicacionesprimera::where(function ($query) {
-            $query->where('nro_serie', 'like', "%{$this->search}%")
-                ->orWhere('fecha_service', 'like', "%{$this->search}%")
+            $query->where('id', 'like', "%{$this->search}%")
+                ->orWhere('nro_serie', 'like', "%{$this->search}%")
                 ->orWhere('modelo', 'like', "%{$this->search}%")
                 ->orWhere('fecha_inventario', 'like', "%{$this->search}%")
                 ->orWhere('tipo_service', 'like', "%{$this->search}%")
                 ->orWhere('lugar_colocacion', 'like', "%{$this->search}%")
                 ->orWhere('detalle_inventario', 'like', "%{$this->search}%")
-                ->orWhere('condicion_equipo_comunicacion', 'like', "%{$this->search}%");
-        })
-        ->orWhereHas('equipocomunicacion', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
-        ->orWhereHas('marcaequipo', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
-        })
-        ->orWhereHas('vhfantena', function ($query) {
-            $query->where('nombre', 'like', "%{$this->search}%");
+                ->orWhere('condicion_equipo_comunicacion', 'like', "%{$this->search}%")
+                ->orWhereHas('equipocomunicacion', function ($q) {
+                    $q->where('nombre', 'like', "%{$this->search}%");
+                })
+                ->orWhereHas('marcaequipo', function ($q) {
+                    $q->where('nombre', 'like', "%{$this->search}%");
+                })
+                ->orWhereHas('vhfantena', function ($q) {
+                    $q->where('nombre', 'like', "%{$this->search}%");
+                });
         })
         ->with([
             'equipocomunicacion',
@@ -105,10 +73,10 @@ class IndexComunicacionesPrimera extends Component
         ->orderBy($this->sort1, $this->direction1)
         ->paginate($this->perPage);
 
-
-
-        //$comunicacionesPri = Comunicacionesprimera::all();
-        return view('livewire.comunicaciones.primera.index-comunicaciones-primera',compact('comunicaciones'));
+        return view(
+            'livewire.comunicaciones.primera.index-comunicaciones-primera',
+            compact('comunicaciones')
+        );
     }
 
     public function order1($sort1)
@@ -156,11 +124,11 @@ class IndexComunicacionesPrimera extends Component
         $registro = ComunicacionesPrimera::findOrFail($id);
         $registro->delete(); // eliminación real
 
-        $this->dispatchBrowserEvent('notificacion', [
-            'type' => 'success',
-            'message' => 'Registro eliminado correctamente'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Registro eliminado correctamente');
     }
 
 
 }
+
+
+

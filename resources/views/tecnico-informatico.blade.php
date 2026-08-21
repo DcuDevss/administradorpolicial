@@ -27,6 +27,7 @@
                 ['img' => 'Comisariatolhuin.jpg', 'title' => 'Tolhuin', 'route' => 'createTolhuinGeneral'],
                 ['img' => 'polrg.jpeg', 'title' => 'D.C.R.G', 'route' => 'createRiograndeGeneral'],
                 ['img' => 'notificacion4.png', 'title' => 'Notificaciones de trabajo', 'route' => 'ver-notificaciones'],
+                ['img' => 'reparador.jpg', 'title' => 'Tickets de reparacion', 'route' => 'tickets.index'],
                 ['img' => 'estadistica.jpg', 'title' => 'Estadísticas', 'route' => 'estadistica'],
                 ['img' => 'reparador.jpg', 'title' => 'Trabajos Generales', 'route' => 'createTrabajosInformatica'],
 

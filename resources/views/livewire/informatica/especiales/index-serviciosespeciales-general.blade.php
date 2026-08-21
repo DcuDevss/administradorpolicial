@@ -137,6 +137,10 @@
                                         Acciones
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
+                                        Codigo Qr
+
+                                    </th>                                    
+                                    <th class="p-1   text-center text-xs text-blue-800">
                                         Estado
 
                                     </th>
@@ -170,7 +174,32 @@
                                         <td class="text-center py-6 font-bold">{{ $comu->tipo_service}}</td>
                                         <td class="text-center py-6 font-bold">{{ $comu->fecha_inventario}}</td> {{-- --}}
                                         <td class="text-center py-6 font-bold">{{ $comu->detalles_inventario}}</td>
-
+                                        <td class="border px-4 py-2">
+                                            @if ($comu->codigo_qr)
+                                                <div x-data="{ open: false }">
+                                                    <img x-on:click="open = !open"
+                                                        src="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                        alt="Código QR" class="cursor-pointer">
+                                                    <div x-show="open"
+                                                        class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                                                        <div class="relative">
+                                                            <img src="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                                alt="Código QR" class="max-w-full max-h-full">
+                                                            <button x-on:click="open = false"
+                                                                class="absolute top-0 right-0 m-3 text-white text-2xl cursor-pointer">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                    download>
+                                                    <button
+                                                        class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Descargar
+                                                        QR</button>
+                                                </a>
+                                            @endif
+                                        </td>
                                         <td class="text-center py-6 font-bold">
                                             @if ($comu->activo)
                                                 <span class="px-2 py-1 bg-blue-600 text-white rounded">Activo</span>

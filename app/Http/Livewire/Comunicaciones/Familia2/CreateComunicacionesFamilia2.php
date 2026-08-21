@@ -94,10 +94,7 @@ class CreateComunicacionesFamilia2 extends Component
 
 
 
-             $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+             $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
 
             DB::commit();
@@ -239,3 +236,6 @@ class CreateComunicacionesFamilia2 extends Component
         ));
     }
 }
+
+
+

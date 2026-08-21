@@ -8,8 +8,6 @@
             </h2>
         </x-slot>
 
-
-
         <div class="col-xs-12">
             <div class="flex flex-col p-4 shadow-lg">
                 <div class="py-5 bg-white dark:bg-gray-100 rounded-md">
@@ -48,7 +46,6 @@
                                                 <select class="w-full form-control" wire:model="equipocomunicacion_id">
                                                     <option value="" selected disabled>Seleccione el equipo.
                                                     </option>
-
                                                     @foreach ($EquipoComunicacion as $equipoCom)
                                                         <option value="{{ $equipoCom->id }}">{{ $equipoCom->nombre }}
                                                         </option>
@@ -135,8 +132,6 @@
                                                 @enderror
                                             </div>
 
-
-
                                             <div class="mt-1">
                                                 <label class="block text-gray-700 text-sm font-bold mb-1"
                                                     for="fecha_service">Fecha
@@ -173,8 +168,6 @@
                                                     <p class="text-red-500 text-xs">{{ $message }}</p>
                                                 @enderror
                                             </div>
-
-
                                         </div>
 
                                         <div class="mt-1">
@@ -208,8 +201,6 @@
                                     <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                                 </div>
                                 <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                                     <div class="grid grid-cols-4 gap-2 mb-10">
                                         <div>
                                             <h1 class="text-red-800 text-lg font-bold mb-2">Total de equipos "Ht":
@@ -228,6 +219,7 @@
                                                 {{ $marcaHytera }}
                                             </p>
                                         </div>
+
                                         <div>
                                             <h1 class="text-red-800 font-extrabold mb-2">Total de "Equipos Base":
                                                 {{ $BaseCount }}</h1>
@@ -242,6 +234,7 @@
                                             <p class="text-metric-secondary font-bold mb-2">Equipo Base Hytera:
                                                 {{ $baseHytera }}</p>
                                         </div>
+
                                         <div>
                                             <h1 class="text-red-800 font-extrabold mb-2">Total de "Antenas":
                                                 {{ $AntenaCount }}</h1>
@@ -258,7 +251,6 @@
                                             <p class="text-metric-secondary font-bold mb-2">Antena Dipolo Latigo:
                                                 {{ $latigo }}</p>
                                         </div>
-
 
                                         <div>
                                             <p class="text-red-800 font-extrabold mb-2">Total de "Repetidoras":
@@ -287,13 +279,9 @@
                                     <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                                 </div>
                                 <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -115,10 +115,7 @@ class CreateTrabajoGeneral extends Component
                 $historial->save();
             }
 
-            $this->dispatchBrowserEvent('notificacion', [
-                'type' => 'success',
-                'message' => 'Datos guardados correctamente.'
-            ]);
+            $this->dispatch('notificacion', type: 'success', message: 'Datos guardados correctamente.');
 
 
 
@@ -141,3 +138,6 @@ class CreateTrabajoGeneral extends Component
         return view('livewire.comunicaciones.general.create-trabajo-general');
     }
 }
+
+
+

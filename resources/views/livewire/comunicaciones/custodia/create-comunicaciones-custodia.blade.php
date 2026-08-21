@@ -180,7 +180,6 @@
                                         Guardar!!
                                     </button>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -192,8 +191,6 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                             <div class="grid grid-cols-4 gap-2 mb-10">
                                 <div>
                                     <h1 class="text-red-800 text-lg font-bold mb-2">Total de equipos "Ht":
@@ -209,6 +206,7 @@
                                     <p class="text-metric-secondary font-bold mb-2">Ht Hytera: {{ $marcaHytera }}</p>
                                     <p class="text-metric-secondary font-bold mb-2">Ht Alcom: {{ $marcaAlcom }} </p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Equipos Base":
                                         {{ $BaseCount }}</h1>
@@ -227,6 +225,7 @@
                                     <p class="text-metric-secondary font-bold mb-2">Equipo Base
                                         Alcom:{{ $baseAlcom }}</p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Antenas":
                                         {{ $AntenaCount }}</h1>
@@ -246,9 +245,7 @@
                                         Latigo:{{ $latigo }}</p>
                                     <p class="text-metric-secondary font-bold mb-2">Antena Ringo:{{ $ringo }}
                                     </p>
-
                                 </div>
-
 
                                 <div>
                                     <p class="text-red-800 font-extrabold mb-2">Total de "Repetidoras":
@@ -275,13 +272,9 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

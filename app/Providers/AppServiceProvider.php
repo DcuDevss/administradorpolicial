@@ -278,7 +278,91 @@ Livewire::component(
     'dcrgcomu.riograndecomu.index-comunicaciones-riogrande',
     \App\Http\Livewire\Dcrgcomu\Riograndecomu\IndexComunicacionesRiogrande::class
 );
+Livewire::component(
+    'informatica.investigaciones.create-investigaciones-general',
+    \App\Http\Livewire\Informatica\Investigaciones\CreateInvestigacionesGeneral::class
+);
+Livewire::component(
+    'informatica.jefatura.create-jefatura-general',
+    \App\Http\Livewire\Informatica\Jefatura\CreateJefaturaGeneral::class
+);
+Livewire::component(
+    'informatica.general.create-inventario-general',
+    \App\Http\Livewire\Informatica\General\CreateInventarioGeneral::class
+);
+Livewire::component(
+    'informatica.general.create-recursos-general',
+    \App\Http\Livewire\Informatica\Recursos\CreateRecursosGeneral::class
+);
+Livewire::component(
+    'informatica.general.create-recursos-general',
+    \App\Http\Livewire\Informatica\Tolhuin\CreateTolhuinGeneral::class
+);
+Livewire::component(
+    'informatica.dcrginfo.create-recursos-general',
+    \App\Http\Livewire\Informatica\Tolhuin\CreateTolhuinGeneral::class
+);
+Livewire::component(
+    'dcrginfo.riograndeinfo.create-riogrande-general',
+    \App\Http\Livewire\Dcrginfo\Riograndeinfo\CreateRiograndeGeneral::class
+);
 
+Livewire::component('comisaria1.edit-comisaria-primera', \App\Http\Livewire\Comisaria1\EditComisariaPrimera::class);
+
+Livewire::component('comunicaciones.administracion.edit-comunicaciones-administracion', \App\Http\Livewire\Comunicaciones\Administracion\EditComunicacionesAdministracion::class);
+Livewire::component('comunicaciones.automotore.edit-comunicaciones-automotore', \App\Http\Livewire\Comunicaciones\Automotore\EditComunicacionesAutomotore::class);
+Livewire::component('comunicaciones.cientifica.edit-comunicaciones-cientifica', \App\Http\Livewire\Comunicaciones\Cientifica\EditComunicacionesCientifica::class);
+Livewire::component('comunicaciones.complejo.edit-comunicaciones-complejo', \App\Http\Livewire\Comunicaciones\Complejo\EditComunicacionesComplejo::class);
+Livewire::component('comunicaciones.cuarta.edit-comunicaciones-cuarta', \App\Http\Livewire\Comunicaciones\Cuarta\EditComunicacionesCuarta::class);
+Livewire::component('comunicaciones.custodia.edit-comunicaciones-custodia', \App\Http\Livewire\Comunicaciones\Custodia\EditComunicacionesCustodia::class);
+Livewire::component('comunicaciones.dcu.edit-comunicaciones-dcu', \App\Http\Livewire\Comunicaciones\Dcu\EditComunicacionesDcu::class);
+Livewire::component('comunicaciones.dseu.edit-comunicaciones-dseu', \App\Http\Livewire\Comunicaciones\Dseu\EditComunicacionesDseu::class);
+Livewire::component('comunicaciones.dto365.edit-comunicaciones-dto365', \App\Http\Livewire\Comunicaciones\Dto365\EditComunicacionesDto365::class);
+Livewire::component('comunicaciones.familia1.edit-comunicaciones-minoridaduno', \App\Http\Livewire\Comunicaciones\Familia1\EditComunicacionesMinoridaduno::class);
+Livewire::component('comunicaciones.familia2.edit-comunicaciones-minoridaddos', \App\Http\Livewire\Comunicaciones\Familia2\EditComunicacionesMinoridaddos::class);
+Livewire::component('comunicaciones.general.edit-trabajo-general', \App\Http\Livewire\Comunicaciones\General\EditTrabajoGeneral::class);
+Livewire::component('comunicaciones.investigacion.edit-comunicaciones-investigacion', \App\Http\Livewire\Comunicaciones\Investigacion\EditComunicacionesInvestigacion::class);
+Livewire::component('comunicaciones.jefatura.edit-comunicaciones-jefatura', \App\Http\Livewire\Comunicaciones\Jefatura\EditComunicacionesJefatura::class);
+Livewire::component('comunicaciones.narco.edit-comunicaciones-narco', \App\Http\Livewire\Comunicaciones\Narco\EditComunicacionesNarco::class);
+Livewire::component('comunicaciones.primera.edit-comunicaciones-primera', \App\Http\Livewire\Comunicaciones\Primera\EditComunicacionesPrimera::class);
+Livewire::component('comunicaciones.quinta.edit-comunicaciones-quinta', \App\Http\Livewire\Comunicaciones\Quinta\EditComunicacionesQuinta::class);
+Livewire::component('comunicaciones.recurso.edit-comunicaciones-recurso', \App\Http\Livewire\Comunicaciones\Recurso\EditComunicacionesRecurso::class);
+Livewire::component('comunicaciones.segunda.edit-comunicaciones-segunda', \App\Http\Livewire\Comunicaciones\Segunda\EditComunicacionesSegunda::class);
+Livewire::component('comunicaciones.tercera.edit-comunicaciones-tercera', \App\Http\Livewire\Comunicaciones\Tercera\EditComunicacionesTercera::class);
+Livewire::component('comunicaciones.tolhuin.edit-comunicaciones-tolhuin', \App\Http\Livewire\Comunicaciones\Tolhuin\EditComunicacionesTolhuin::class);
+Livewire::component('comunicaciones.ushuaia.edit-comunicaciones-ushuaia', \App\Http\Livewire\Comunicaciones\Ushuaia\EditComunicacionesUshuaia::class);
+
+Livewire::component('dcrgcomu.riograndecomu.edit-comunicaciones-riogrande', \App\Http\Livewire\Dcrgcomu\Riograndecomu\EditComunicacionesRiogrande::class);
+Livewire::component('dcrginfo.riograndeinfo.edit-riogrande-general', \App\Http\Livewire\Dcrginfo\Riograndeinfo\EditRiograndeGeneral::class);
+
+Livewire::component('informatica.administracion.edit-administracion-general', \App\Http\Livewire\Informatica\Administracion\EditAdministracionGeneral::class);
+Livewire::component('informatica.custodia.edit-custodia-general', \App\Http\Livewire\Informatica\Custodia\EditCustodiaGeneral::class);
+Livewire::component('informatica.especiales.edit-serviciosespeciales-general', \App\Http\Livewire\Informatica\Especiales\EditServiciosespecialesGeneral::class);
+Livewire::component('informatica.general.edit-inventario-general', \App\Http\Livewire\Informatica\General\EditInventarioGeneral::class);
+Livewire::component('informatica.investigaciones.edit-investigaciones-general', \App\Http\Livewire\Informatica\Investigaciones\EditInvestigacionesGeneral::class);
+Livewire::component('informatica.jefatura.edit-jefatura-general', \App\Http\Livewire\Informatica\Jefatura\EditJefaturaGeneral::class);
+Livewire::component('informatica.recursos.edit-recursos-general', \App\Http\Livewire\Informatica\Recursos\EditRecursosGeneral::class);
+Livewire::component('informatica.tolhuin.edit-tolhuin-general', \App\Http\Livewire\Informatica\Tolhuin\EditTolhuinGeneral::class);
+Livewire::component('informatica.trabajos.edit-trabajos-informatica', \App\Http\Livewire\Informatica\Trabajos\EditTrabajosInformatica::class);
+
+Livewire::component('terms-conditions.edit', \App\Http\Livewire\TermsConditions\Edit::class);
+
+Livewire::component(
+    'comunicaciones.totalequiposush.pdf-equipos',
+    \App\Http\Livewire\Comunicaciones\Totalequiposush\PdfEquipos::class
+);
+Livewire::component(
+    'comunicaciones.totalequiposrg.pdf-equipos-rg',
+    \App\Http\Livewire\Comunicaciones\Totalequiposrg\PdfEquiposRg::class
+);
+Livewire::component(
+    'comunicaciones.totalequipostol.pdf-equipos-tol',
+    \App\Http\Livewire\Comunicaciones\Totalequipostol\PdfEquiposTol::class
+);
+Livewire::component(
+    'informatica.inventario.inventario-pdf-ushuaia',
+    \App\Http\Livewire\Informatica\Inventario\InventarioPdfUshuaia::class
+);
        }
 
 

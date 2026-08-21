@@ -5,6 +5,39 @@
                 {{ __('Historial de Modificaciones Tolhuin') }}
             </h2>
         </div>
+
+                <div class="mb-5 bg-slate-100 dark:bg-slate-700 border-l-4 border-red-500 rounded-md p-4">
+            <div class="flex flex-wrap items-center gap-x-8 gap-y-2">
+                <div>
+                    <span class="text-sm font-semibold text-gray-500 dark:text-gray-300">
+                        Equipo/Elemnto
+                    </span>
+                    <div class="text-lg font-bold text-gray-800 dark:text-white">
+                        {{ $comunicaciones->marcaequipo->nombre ?? 'Sin marca' }}
+                        {{ $comunicaciones->modelo ?? '' }}
+                    </div>
+                </div>
+
+                <div>
+                    <span class="text-sm font-semibold text-gray-500 dark:text-gray-300">
+                        N.º de serie
+                    </span>
+                    <div class="text-lg font-bold text-gray-800 dark:text-white">
+                        {{ $comunicaciones->nro_serie ?? 'Sin número de serie' }}
+                    </div>
+                </div>
+
+                <div>
+                    <span class="text-sm font-semibold text-gray-500 dark:text-gray-300">
+                        Ubicación
+                    </span>
+                    <div class="text-lg font-bold text-gray-800 dark:text-white">
+                        {{ $comunicaciones->lugar_colocacion ?? 'Sin ubicación' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="content bg-white dark:bg-gray-100 shadow-lg rounded-md p-6">
             <div x-data="{ open: true }" class="accordion mb-6">
                 <div @click="open = !open"

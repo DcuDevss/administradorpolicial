@@ -150,10 +150,7 @@ class EditRecursosGeneral extends Component
         ]);
         $this->recursos->save();
         $this->generateQRCode();
-        $this->dispatchBrowserEvent('notificacion', [
-        'type' => 'success',
-        'message' => 'Datos Editados correctamente.'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos Editados correctamente.');
     }
 
     private function generateQRCode()
@@ -198,3 +195,6 @@ class EditRecursosGeneral extends Component
         return view('livewire.informatica.recursos.edit-recursos-general');
     }
 }
+
+
+

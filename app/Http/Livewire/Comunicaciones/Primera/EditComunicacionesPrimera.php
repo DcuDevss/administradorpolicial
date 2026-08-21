@@ -91,10 +91,7 @@ class EditComunicacionesPrimera extends Component
             'detalle_inventario' => $this->detalle_inventario,
         ]);
 
-    $this->dispatchBrowserEvent('notificacion', [
-    'type' => 'success',
-    'message' => 'Datos Editados correctamente.'
-    ]);
+    $this->dispatch('notificacion', type: 'success', message: 'Datos Editados correctamente.');
     }
 
     public function render()
@@ -103,3 +100,6 @@ class EditComunicacionesPrimera extends Component
     }
 
 }
+
+
+

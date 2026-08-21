@@ -18,10 +18,7 @@
                         </div>
                         <form enctype="multipart/form-data">
                             <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
                                 <div class="grid grid-cols-3 gap-3 mb-10">
-
-
                                     <div class="mt-2">
                                         <label for="categoriacomunicacion_id"
                                             class="block text-sm font-medium text-gray-700">categoria de herramientas
@@ -128,8 +125,6 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
                                 </div>
 
                                 <div class="mt-1">
@@ -142,6 +137,7 @@
                                         <p class="text-red-500 text-xs">{{ $message }}</p>
                                     @enderror
                                 </div>
+
                                 <div class="flex justify-end mr-3 mt-4">
                                     <button
                                         class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -152,11 +148,7 @@
                                     </button>
                                 </div>
                             </div>
-
-
-
                         </form>
-
 
                         <div x-data="{ open: false }" class="shadow-lg">
                             <div @click="open = !open"
@@ -165,8 +157,6 @@
                                 <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                             </div>
                             <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                                 <div class="grid grid-cols-4 gap-2 mb-10">
                                     <div>
                                         <p class="text-metric-primary text-lg font-bold mb-2">Total del Heramientas
@@ -188,17 +178,12 @@
                                         <p class="text-metric-primary text-lg font-bold mb-2">Total de Otros Equipos:
                                             {{ $OtrosCount }}</p>
                                     </div>
-
                                 </div>
-
                             </div>
-
-
                             @livewire('comunicaciones.dcu.index-comunicaciones-dcu')
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

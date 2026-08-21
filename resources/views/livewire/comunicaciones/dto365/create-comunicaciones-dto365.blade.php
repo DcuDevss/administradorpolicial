@@ -24,10 +24,7 @@
                         </div>
                         <form enctype="multipart/form-data">
                             <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                                 <div class="grid grid-cols-3 gap-3 mb-10">
-
                                     <div class="mt-2">
                                         <label for="equipocomunicacion_id"
                                             class="block text-sm font-medium text-gray-700">Tipo de
@@ -157,8 +154,6 @@
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-
-
                                 </div>
 
                                 <div class="mt-1">
@@ -180,7 +175,6 @@
                                         Guardar!!
                                     </button>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -234,6 +228,7 @@
                                         Alcom:{{ $baseAlcom }}
                                     </p>
                                 </div>
+
                                 <div>
                                     <h1 class="text-red-800 font-extrabold mb-2">Total de "Antenas":
                                         {{ $AntenaCount }}</h1>
@@ -273,8 +268,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
                     <div x-data="{ open: false }" class="shadow-lg">
                         <div @click="open = !open"
                             class="flex items-center justify-between bg-slate-800 border p-4 rounded-md transition">
@@ -282,13 +277,9 @@
                             <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas"></span>
                         </div>
                         <div x-show.transition.in.duration.800ms="open" class="border p-4">
-
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

@@ -126,6 +126,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(OrdenTrabajo::class, 'user_id');
     }
+
+    public function ticketsReparacionCreados()
+    {
+        return $this->hasMany(TicketReparacion::class, 'user_id');
+    }
+
+    public function ticketsReparacionAsignados()
+    {
+        return $this->hasMany(TicketReparacion::class, 'tecnico_id');
+    }
+
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
@@ -136,5 +147,10 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->role === 'Admin';
+    }
+
+    public function termsAcceptances()
+    {
+        return $this->hasMany(UserTermsAcceptance::class);
     }
 }

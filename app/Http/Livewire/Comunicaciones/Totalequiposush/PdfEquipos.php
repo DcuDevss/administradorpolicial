@@ -33,7 +33,7 @@ class PdfEquipos extends Component
             'comunicacionesinvestigacions' => 'Investigación',
             'comunicacionesnarcos' => 'Narcos',
             'comunicacionesrecursos' => 'Recursos',
-            'comunicacionesjefaturas' => 'Jefaturas',
+            'comunicacionesjefaturas' => 'Jefaturas'
         ];
 
         // cargar todas al iniciar

@@ -58,6 +58,7 @@ class IndexAdministracionGeneral extends Component
     {
         $administra = Administraciongenerale::where(function ($query) {
             $query->where('marca', 'like', "%{$this->search}%")
+                ->orwhere('id', 'like', "%{$this->search}%")
                 ->orWhere('modelo', 'like', "%{$this->search}%")
                 ->orWhere('procesador', 'like', "%{$this->search}%")
                // ->orWhere('monitor', 'like', "%{$this->search}%")
@@ -143,9 +144,9 @@ class IndexAdministracionGeneral extends Component
         $registro = Administraciongenerale::findOrFail($id);
         $registro->delete(); // eliminación real
 
-        $this->dispatchBrowserEvent('notificacion', [
-            'type' => 'success',
-            'message' => 'Registro eliminado correctamente'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Registro eliminado correctamente');
     }
 }
+
+
+

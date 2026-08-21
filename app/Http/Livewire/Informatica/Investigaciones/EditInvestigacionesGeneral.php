@@ -169,10 +169,7 @@ class EditInvestigacionesGeneral extends Component
 
     // Generar el código QR después de guardar los cambioos
     $this->generateQRCode();
-        $this->dispatchBrowserEvent('notificacion', [
-        'type' => 'success',
-        'message' => 'Datos Editados correctamente.'
-        ]);
+        $this->dispatch('notificacion', type: 'success', message: 'Datos Editados correctamente.');
 }
 
 private function generateQRCode()
@@ -231,3 +228,6 @@ private function generateQRCode()
         return view('livewire.informatica.investigaciones.edit-investigaciones-general');
     }
 }
+
+
+

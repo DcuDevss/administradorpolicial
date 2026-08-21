@@ -12,7 +12,7 @@
                                 <option value="15">15</option>
                                 <option value="20">20</option>
                             </select>
-                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model="search"
+                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model.live.debounce.500ms="search"
                                 placeholder="Ingrese la busqueda">
                             <button wire:click="clear" class="ml-2"><span class="fa fa-eraser"></span></button>
                             {{--  <a class="inline-flex items-center justify-center float-right mr-4 px-4 py-3 bg-slate-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"
@@ -78,10 +78,10 @@
                                         Detalle inventario
 
                                     </th>
-                                    {{-- <th class="p-1   text-center text-xs text-blue-800">
+                                    <th class="p-1   text-center text-xs text-blue-800">
                                         QR
 
-                                    </th> --}}
+                                    </th>
                                     <th class="p-1 text-center text-xs text-blue-800">
                                         Acciones
                                     </th>
@@ -105,6 +105,32 @@
                                         <td class="text-center py-6 font-bold">
                                             <div class="whitespace-normal break-words">{{ $comu->detalle_inventario ?? 'No encontrado' }}
                                             </div>
+                                        </td>
+                                        <td class="border px-4 py-2">
+                                            @if ($comu->codigo_qr)
+                                                <div x-data="{ open: false }">
+                                                    <img x-on:click="open = !open"
+                                                        src="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                        alt="Código QR" class="cursor-pointer">
+                                                    <div x-show="open"
+                                                        class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                                                        <div class="relative">
+                                                            <img src="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                                alt="Código QR" class="max-w-full max-h-full">
+                                                            <button x-on:click="open = false"
+                                                                class="absolute top-0 right-0 m-3 text-white text-2xl cursor-pointer">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                    download>
+                                                    <button
+                                                        class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Descargar
+                                                        QR</button>
+                                                </a>
+                                            @endif
                                         </td>
                                         <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editComunicacionesCientifica', $comu->id) }}"

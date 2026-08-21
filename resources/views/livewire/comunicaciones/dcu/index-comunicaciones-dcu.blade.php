@@ -12,11 +12,11 @@
                                 <option value="15">15</option>
                                 <option value="20">20</option>
                             </select>
-                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model="search"
+                            <input type="text" class="form-input text-gray-500 ml-6 rounded-md" wire:model.live.debounce.500ms="search"
                                 placeholder="Ingrese la busqueda">
                             <button wire:click="clear" class="ml-2"><span class="fa fa-eraser"></span></button>
-
                         </div>
+
                         <table class="w-full ">
                             <thead class="text-xs font-semibold uppercase text-gray-900 bg-slate-400 ">
                                 <tr>
@@ -32,51 +32,40 @@
                                             <i class="fas fa-sort text-yellow-400"></i>
                                         @endif
                                     </th>
-
                                     <th class="p-1  text-center  text-xs text-blue-800 cursor-pointer">
-
                                         Categoria
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800 cursor-pointer">
                                         Nombre del Elemento
-
                                     </th>
-
                                     <th class="p-1   text-center text-xs text-blue-800">
-
                                         Marca
                                     </th>
                                     <th class="p-1   texte-center text-xs text-blue-800">
                                         Modelo
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Nro serie
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha Service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Tipo service
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Estado
-
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Fecha inventario
                                     </th>
                                     <th class="p-1   text-center text-xs text-blue-800">
                                         Detalle inventario
-
                                     </th>
-                                    {{-- <th class="p-1   text-center text-xs text-blue-800">
+                                    <th class="p-1   text-center text-xs text-blue-800">
                                         QR
 
-                                    </th> --}}
+                                    </th>
                                     <th class="p-1 text-center text-xs text-blue-800">
                                         Acciones
                                     </th>
@@ -100,6 +89,32 @@
                                         <td class="text-center py-6 font-bold">
                                             <div class="whitespace-normal break-words">{{ $comu->detalle_inventario ?? '' }}
                                             </div>
+                                        </td>
+                                        <td class="border px-4 py-2">
+                                            @if ($comu->codigo_qr)
+                                                <div x-data="{ open: false }">
+                                                    <img x-on:click="open = !open"
+                                                        src="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                        alt="Código QR" class="cursor-pointer">
+                                                    <div x-show="open"
+                                                        class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                                                        <div class="relative">
+                                                            <img src="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                                alt="Código QR" class="max-w-full max-h-full">
+                                                            <button x-on:click="open = false"
+                                                                class="absolute top-0 right-0 m-3 text-white text-2xl cursor-pointer">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="{{ asset('storage/codigoQR/Investigaciones/' . $comu->codigo_qr) }}"
+                                                    download>
+                                                    <button
+                                                        class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Descargar
+                                                        QR</button>
+                                                </a>
+                                            @endif
                                         </td>
                                         <td class="text-center py-2 flex flex-col space-y-2">
                                             <a href="{{ route('editComunicacionesDcu', $comu->id) }}"
@@ -128,7 +143,12 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
+       <div class="flex justify-end mt-4 mb-4">
+        <a href="{{ route('comunicaciones.dcu.pdf-dcu') }}"
+        class="inline-flex items-center px-6 py-3 bg-red-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            PDF DCU
+        </a>
+</div>
     </div>
