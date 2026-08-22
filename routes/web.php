@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\UserRegistration;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Comisaria1\IndexComisariaPrimera;
 use App\Http\Livewire\Comisaria1\CreateComisariaPrimera;
@@ -242,64 +243,17 @@ use App\Http\Livewire\Informatica\Inventario\InventarioPdfTolhuin;
 use App\Http\Livewire\Comunicaciones\Dcu\PdfDcu;
 use App\Http\Livewire\TermsAcceptance;
 use App\Http\Livewire\CentroSituacionOperativa;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
 
 Route::get('/', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'create'])->middleware('guest');
-
-/*Route::middleware(['auth', 'role:administrador'])->group(function () {
-    Route::get('/admin-panel', AdminPanel::class)->name('admin-panel');
-});*/
-
-//Route::get('/create-chat',CreateChat::class)->name('users.chat');
-//Route::get('/chat{key?}',Main::class)->name('chat');
-
-/*
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'terms.acceptance'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-}); */
 
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified', 'terms.acceptance'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        $user = Auth::user(); // Obténgo al usuario autenticado
-
-        // Lógica para redirigir según el rol
-        if ($user->hasRole('Admin')) {
-            return redirect()->intended(route('panel-administrador'));
-        } elseif ($user->hasRole('tecnicoinformatico')) {
-            return redirect()->intended(route('tecnico-informatico'));
-        } elseif ($user->hasRole('tecnicocomunicacion')) {
-            return redirect()->intended(route('tecnico-comunicacion'));
-        } elseif ($user->hasRole('Adminrg')) {
-            return redirect()->intended(route('tecnico-riogrande'));
-        } else {
-            // Si el usuario no tiene un rol específico, se redirige a un dashboard genéral
-            return view('dashboard');
-        }
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 });
 
 
@@ -733,7 +687,7 @@ Route::get('/informatica/inventario/inventario-pdf-riogrande', InventarioPdfRioG
 /* pdf tolhuin informatica */
 Route::get('/informatica/inventario/inventario-pdf-tolhuin', InventarioPdfTolhuin::class)->name('inventario-pdf-tolhuin');
 /* pdf general informatica */
-Route::get('/informatica/inventario/inventario-pdf-general',InventarioPdfGeneral::class)->name('inventario-pdf-general');
+Route::get('/informatica/inventario/inventario-pdf-general', InventarioPdfGeneral::class)->name('inventario-pdf-general');
 Route::get('/comunicaciones/dcu/pdf-dcu', PdfDcu::class)->name('comunicaciones.dcu.pdf-dcu');
 /* =====================================================
 | TÉRMINOS Y CONDICIONES
@@ -765,6 +719,4 @@ Route::middleware(['auth', 'terms.acceptance'])->group(function () {
         '/terms-conditions/edit/{terms}',
         \App\Http\Livewire\TermsConditions\Edit::class
     )->name('terms.edit');
-
 });
-
