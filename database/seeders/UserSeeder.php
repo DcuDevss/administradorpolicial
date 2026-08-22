@@ -18,11 +18,13 @@ class UserSeeder extends Seeder
             'email'=>'retacris30@gmail.com',
             'password'=>bcrypt('12345678')
          ])->assignRole('Admin');
+         
          User::updateOrCreate([
             'name'=>'Gabriel Molina',
             'email'=>'gabrielmolinalp@gmail.com',
             'password'=>bcrypt('DCU911')
-         ])->assignRole('Admin');
+         ])->assignRole('tecnicoinformatico');
+
          User::updateOrCreate([
             'name'=>'Rosana Segovia',
             'email'=>'roxisegovia20@gmail.com',
