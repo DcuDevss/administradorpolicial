@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Activos;
 
 use App\Models\Activo;
 use App\Models\CategoriaActivo;
@@ -106,7 +106,7 @@ class MisActivos extends Component
             ->orderBy('nombre')
             ->get();
 
-        return view('livewire.mis-activos', [
+        return view('livewire.activos.mis-activos', [
             'activos' => $activos,
             'categorias' => $categorias,
             'ubicaciones' => $ubicaciones,

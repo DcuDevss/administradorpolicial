@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Activos;
 
 use App\Models\Activo;
 use Livewire\Component;
@@ -21,6 +21,6 @@ class DetalleActivo extends Component
 
     public function render()
     {
-        return view('livewire.detalle-activo');
+        return view('livewire.activos.detalle-activo');
     }
 }

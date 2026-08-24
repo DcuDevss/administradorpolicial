@@ -243,8 +243,9 @@ use App\Http\Livewire\Informatica\Inventario\InventarioPdfTolhuin;
 use App\Http\Livewire\Comunicaciones\Dcu\PdfDcu;
 use App\Http\Livewire\TermsAcceptance;
 use App\Http\Livewire\CentroSituacionOperativa;
-use App\Http\Livewire\DetalleActivo;
-use App\Http\Livewire\MisActivos;
+use App\Http\Livewire\Activos\MisActivos;
+use App\Http\Livewire\Activos\DetalleActivo;
+use App\Http\Livewire\Activos\CrearActivo;
 
 Route::get('/', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'create'])->middleware('guest');
 Route::middleware([
@@ -256,15 +257,23 @@ Route::middleware([
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+
+    /* Nuevas rutas */
+
+    Route::get('/mis-activos', MisActivos::class)
+        ->name('mis-activos');
+
+    // Ruta fija: debe estar antes de /mis-activos/{activo}
+    Route::get('/mis-activos/crear', CrearActivo::class)
+        ->name('mis-activos.crear');
+
+    // Ruta dinámica: debe quedar después
+    Route::get('/mis-activos/{activo}', DetalleActivo::class)
+        ->name('mis-activos.detalle');
 });
 
-/* nuevas  rutas */
-Route::get('/mis-activos', MisActivos::class)
-    ->name('mis-activos');
+/* ****************************************************************** */
 
-Route::get('/mis-activos/{activo}', DetalleActivo::class)
-    ->name('mis-activos.detalle');
-    
 Route::view('/tailwind', 'tailwind');
 //Route::view('bootstrap', 'bootstrap')->name('bootstrap');
 
