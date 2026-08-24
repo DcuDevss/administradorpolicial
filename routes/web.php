@@ -243,6 +243,8 @@ use App\Http\Livewire\Informatica\Inventario\InventarioPdfTolhuin;
 use App\Http\Livewire\Comunicaciones\Dcu\PdfDcu;
 use App\Http\Livewire\TermsAcceptance;
 use App\Http\Livewire\CentroSituacionOperativa;
+use App\Http\Livewire\DetalleActivo;
+use App\Http\Livewire\MisActivos;
 
 Route::get('/', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'create'])->middleware('guest');
 Route::middleware([
@@ -256,7 +258,13 @@ Route::middleware([
         ->name('dashboard');
 });
 
+/* nuevas  rutas */
+Route::get('/mis-activos', MisActivos::class)
+    ->name('mis-activos');
 
+Route::get('/mis-activos/{activo}', DetalleActivo::class)
+    ->name('mis-activos.detalle');
+    
 Route::view('/tailwind', 'tailwind');
 //Route::view('bootstrap', 'bootstrap')->name('bootstrap');
 
