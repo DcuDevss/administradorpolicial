@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Activo extends Model
 {
@@ -62,5 +63,10 @@ class Activo extends Model
     public function referenciasLegacy()
     {
         return $this->hasMany(ActivoReferenciaLegacy::class);
+    }
+
+    public function solicitudesReparacion(): HasMany
+    {
+        return $this->hasMany(SolicitudReparacion::class);
     }
 }

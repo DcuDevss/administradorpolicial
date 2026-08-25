@@ -247,6 +247,7 @@ use App\Http\Livewire\Activos\MisActivos;
 use App\Http\Livewire\Activos\DetalleActivo;
 use App\Http\Livewire\Activos\CrearActivo;
 use App\Http\Livewire\Activos\EditarActivo;
+use App\Http\Livewire\Activos\SolicitarReparacion;
 
 Route::get('/', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'create'])->middleware('guest');
 Route::middleware([
@@ -271,6 +272,9 @@ Route::middleware([
 
     Route::get('/mis-activos/{activo}', DetalleActivo::class)
         ->name('mis-activos.detalle');
+
+    Route::get('/mis-activos/{activo}/solicitar-reparacion', SolicitarReparacion::class)
+        ->name('mis-activos.solicitar-reparacion');
 });
 
 /* ****************************************************************** */

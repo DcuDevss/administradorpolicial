@@ -6,9 +6,12 @@ use App\Models\Activo;
 use App\Models\CategoriaActivo;
 use App\Models\Ubicacion;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class MisActivos extends Component
 {
+    use WithPagination;
+
     public string $buscar = '';
 
     public string $categoriaId = '';
@@ -16,6 +19,27 @@ class MisActivos extends Component
     public string $ubicacionId = '';
 
     public string $estado = '';
+
+
+    public function updatingBuscar(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingCategoriaId(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingUbicacionId(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingEstado(): void
+    {
+        $this->resetPage();
+    }
 
     public function limpiarFiltros(): void
     {
@@ -32,6 +56,11 @@ class MisActivos extends Component
                 'categoria',
                 'dependencia',
                 'ubicacion',
+            ])
+            ->withExists([
+                'solicitudesReparacion as tiene_solicitud_pendiente' => function ($q) {
+                    $q->where('estado', 'pendiente');
+                },
             ]);
 
         /*

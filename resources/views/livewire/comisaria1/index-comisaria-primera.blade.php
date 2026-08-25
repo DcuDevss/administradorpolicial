@@ -104,7 +104,6 @@
 
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js"></script>
     <script>
         function simpleDatatable(table) {
             return {

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -122,5 +123,10 @@ class User extends Authenticatable
     public function termsAcceptances()
     {
         return $this->hasMany(UserTermsAcceptance::class);
+    }
+
+    public function solicitudesReparacion(): HasMany
+    {
+        return $this->hasMany(SolicitudReparacion::class, 'usuario_id');
     }
 }
