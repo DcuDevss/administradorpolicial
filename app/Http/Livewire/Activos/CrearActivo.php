@@ -17,6 +17,8 @@ class CrearActivo extends Component
     public $modelo = '';
     public $observaciones = '';
 
+    public string $modo = 'crear';
+
     public function mount(): void
     {
         Log::info('CrearActivo: componente iniciado', [
@@ -25,8 +27,7 @@ class CrearActivo extends Component
         ]);
     }
 
-
-    public function guardar()
+    public function guardar(): void
     {
         Log::info('CrearActivo: inicio de guardar', [
             'user_id' => Auth::id(),
@@ -38,11 +39,29 @@ class CrearActivo extends Component
         ]);
 
         $this->validate([
-            'categoria_activo_id' => ['required', 'exists:categorias_activos,id'],
-            'ubicacion_id' => ['required', 'exists:ubicaciones,id'],
-            'marca' => ['nullable', 'string', 'max:100'],
-            'modelo' => ['nullable', 'string', 'max:100'],
-            'observaciones' => ['nullable', 'string', 'max:2000'],
+            'categoria_activo_id' => [
+                'required',
+                'exists:categorias_activos,id',
+            ],
+            'ubicacion_id' => [
+                'required',
+                'exists:ubicaciones,id',
+            ],
+            'marca' => [
+                'nullable',
+                'string',
+                'max:100',
+            ],
+            'modelo' => [
+                'nullable',
+                'string',
+                'max:100',
+            ],
+            'observaciones' => [
+                'nullable',
+                'string',
+                'max:2000',
+            ],
         ]);
 
         Log::info('CrearActivo: validación correcta');
@@ -86,14 +105,14 @@ class CrearActivo extends Component
             'activo_id' => $activo->id,
         ]);
 
-        return redirect()->route('mis-activos');
+        $this->redirectRoute('mis-activos');
     }
+
     public function render()
     {
         Log::info('CrearActivo: render ejecutado', [
             'user_id' => Auth::id(),
         ]);
-
 
         return view('livewire.activos.crear-activo', [
             'categorias' => CategoriaActivo::query()

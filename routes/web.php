@@ -246,6 +246,7 @@ use App\Http\Livewire\CentroSituacionOperativa;
 use App\Http\Livewire\Activos\MisActivos;
 use App\Http\Livewire\Activos\DetalleActivo;
 use App\Http\Livewire\Activos\CrearActivo;
+use App\Http\Livewire\Activos\EditarActivo;
 
 Route::get('/', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'create'])->middleware('guest');
 Route::middleware([
@@ -259,15 +260,15 @@ Route::middleware([
         ->name('dashboard');
 
     /* Nuevas rutas */
-
     Route::get('/mis-activos', MisActivos::class)
         ->name('mis-activos');
 
-    // Ruta fija: debe estar antes de /mis-activos/{activo}
     Route::get('/mis-activos/crear', CrearActivo::class)
         ->name('mis-activos.crear');
 
-    // Ruta dinámica: debe quedar después
+    Route::get('/mis-activos/{activo}/editar', EditarActivo::class)
+        ->name('mis-activos.editar');
+
     Route::get('/mis-activos/{activo}', DetalleActivo::class)
         ->name('mis-activos.detalle');
 });
