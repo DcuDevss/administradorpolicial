@@ -86,16 +86,7 @@ class User extends Authenticatable
         return $this->hasMany(Notificacion::class, 'tecnico_id');
     }
 
-    /*public function notificacionesEnviadas()
-    {
-        return $this->hasMany(Notificacion::class, 'user_comisaria_id');
-    }
-
-    public function notificacionesRecibidas()
-    {
-        return $this->belongsToMany(Notificacion::class, 'notificacion_user', 'user_id', 'notificacion_id');
-    }*/
-
+  
     public function turnos()
     {
         return $this->hasMany(Turno::class);

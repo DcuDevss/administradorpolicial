@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Activos;
 
+use App\Events\SolicitudReparacionCreada;
 use App\Models\Activo;
 use App\Models\SolicitudReparacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
+
+/* NO ESTA EN USO, DE DESCARTO Y SE PUSO LA LOGICA DENTRO DE DETALLEACTIVO */
 class SolicitarReparacion extends Component
 {
     public Activo $activo;
@@ -92,6 +95,8 @@ class SolicitarReparacion extends Component
             'prioridad' => $solicitud->prioridad,
         ]);
 
+        event(new SolicitudReparacionCreada($solicitud));
+        
         $this->reset([
             'titulo',
             'descripcion',

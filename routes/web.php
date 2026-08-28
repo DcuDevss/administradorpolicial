@@ -297,7 +297,9 @@ Route::middleware(['auth', 'terms.acceptance'])->group(function () {
     // NUEVA RUTA: Centro de Situación Operativa
     Route::get('/situacion-operativa', CentroSituacionOperativa::class)
         ->name('situacion-operativa');
+
     Route::view('/tecnico-informatico', 'tecnico-informatico')->name('tecnico-informatico');
+    
     Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
 
     //->middleware('can:panel-tecnicos')->middleware('can:panel-administrador')

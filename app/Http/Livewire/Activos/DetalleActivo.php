@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Activos;
 
+use App\Events\SolicitudReparacionCreada;
 use App\Models\Activo;
 use App\Models\SolicitudReparacion;
 use Illuminate\Support\Facades\Auth;
@@ -128,6 +129,8 @@ class DetalleActivo extends Component
             'prioridad' => $solicitud->prioridad,
         ]);
 
+        event(new SolicitudReparacionCreada($solicitud));
+        
         // Limpiar formulario
         $this->reset([
             'tituloSolicitud',

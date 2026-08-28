@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\OrderEvent;
+use App\Events\SolicitudReparacionCreada;
+use App\Listeners\NotificarNuevaSolicitudReparacion;
 use App\Listeners\OrderListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -20,9 +22,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        OrderEvent::class=>[
+        // LEGADO
+        OrderEvent::class => [
             OrderListener::class,
-        ]
+        ],
+
+        // NUEVO SISTEMA DE REPARACIONES
+        SolicitudReparacionCreada::class => [
+            NotificarNuevaSolicitudReparacion::class,
+        ],
     ];
 
     /**
