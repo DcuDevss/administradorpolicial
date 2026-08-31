@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Reparaciones;
 
 use App\Models\SolicitudReparacion;
 use App\Models\TurnoReparacion;
+use App\Notifications\TurnoReparacionAsignado;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Layout;
@@ -170,6 +171,15 @@ class DetalleSolicitud extends Component
         $this->solicitud->update([
             'estado' => 'turnada',
         ]);
+
+
+        /*
+        * Notificamos al usuario que generó la solicitud
+        * informándole que el turno fue asignado.
+        */
+        $this->solicitud->usuario->notify(
+            new TurnoReparacionAsignado($turno)
+        );
 
         Log::info('DetalleSolicitud: turno asignado correctamente', [
             'turno_id' => $turno->id,

@@ -16,6 +16,149 @@
             </div>
 
             <div class="hidden md:ml-6 md:flex md:items-center">
+                @can('dependencias.notificacion')
+                    
+
+                    @php
+                        $user = auth()->user();
+
+                        $notificacionesNoLeidas = $user->unreadNotifications->filter(function ($notification) {
+                            return in_array($notification->type, [
+                                'App\Notifications\NuevaSolicitudReparacion',
+                                'App\Notifications\TurnoReparacionAsignado',
+                            ]);
+                        });
+
+                        $countNotifications = $notificacionesNoLeidas->count();
+                    @endphp
+
+                    <div class="relative" x-data="{ open: false }">
+
+                        {{-- BOTÓN CAMPANA --}}
+                        <button type="button" @click="open = !open"
+                            class="relative inline-flex items-center justify-center rounded-lg bg-indigo-500 px-4 py-3 text-white shadow-lg transition hover:bg-indigo-600 focus:outline-none">
+
+                            {{-- CAMPANA --}}
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                                <path fill-rule="evenodd"
+                                    d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+                            {{-- CONTADOR --}}
+                            @if ($countNotifications > 0)
+                                <span
+                                    class="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-600 px-1 text-xs font-bold text-white">
+                                    {{ $countNotifications }}
+                                </span>
+                            @endif
+
+                        </button>
+
+
+                        {{-- DROPDOWN --}}
+                        <div x-show="open" @click.away="open = false" x-transition style="display: none;"
+                            class="absolute right-0 z-50 mt-2 w-96 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-2xl">
+
+                            {{-- ENCABEZADO --}}
+                            <div class="border-b border-gray-200 px-4 py-3">
+
+                                <div class="flex items-center justify-between">
+
+                                    <h3 class="text-sm font-bold text-gray-800">
+                                        Notificaciones
+                                    </h3>
+
+                                    @if ($countNotifications > 0)
+                                        <span class="text-xs text-gray-500">
+                                            {{ $countNotifications }} sin leer
+                                        </span>
+                                    @endif
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- LISTADO --}}
+                            <div class="max-h-96 overflow-y-auto">
+
+                                @forelse ($notificacionesNoLeidas->take(5) as $notification)
+                                    @php
+                                        $data = $notification->data;
+                                    @endphp
+
+                                    <a href="{{ route('detalle-solicitud', ['solicitud' => $data['solicitud_id']]) }}"
+                                        class="block border-b border-gray-100 px-4 py-3 transition hover:bg-gray-50">
+
+                                        <div class="flex gap-3">
+
+                                            {{-- INDICADOR --}}
+                                            <div class="mt-1 flex-shrink-0">
+
+                                                <span class="block h-2.5 w-2.5 rounded-full bg-blue-500"></span>
+
+                                            </div>
+
+
+                                            {{-- CONTENIDO --}}
+                                            <div class="min-w-0 flex-1">
+
+                                                <div class="text-sm font-semibold text-gray-800">
+                                                    {{ $data['titulo'] ?? 'Nueva notificación' }}
+                                                </div>
+
+                                                @if (!empty($data['mensaje']))
+                                                    <div class="mt-1 truncate text-sm text-gray-600">
+                                                        {{ $data['mensaje'] }}
+                                                    </div>
+                                                @endif
+
+                                                <div class="mt-1 text-xs text-gray-400">
+                                                    {{ $notification->created_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i') }}
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </a>
+
+                                @empty
+
+                                    <div class="px-4 py-8 text-center">
+
+                                        <div class="text-3xl">
+                                            🔔
+                                        </div>
+
+                                        <p class="mt-2 text-sm text-gray-500">
+                                            No tienes notificaciones nuevas.
+                                        </p>
+
+                                    </div>
+                                @endforelse
+
+                            </div>
+
+
+                            {{-- PIE --}}
+                            @if ($countNotifications > 0)
+                                <div class="border-t border-gray-200 bg-gray-50 px-4 py-3">
+
+                                    <a href="{{ route('ver-notificaciones') }}"
+                                        class="block text-center text-sm font-semibold text-blue-600 hover:text-blue-800">
+                                        Ver todas las notificaciones
+                                    </a>
+
+                                </div>
+                            @endif
+
+                        </div>
+
+                    </div>
+
+                @endcan
                 @can('userpolicia')
                     <a class="float-right mr-4 inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-3 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-red-500 focus:border-red-700 focus:outline-none focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25"
                         href="{{ route('userpolicia') }}">Usuarios</a>
@@ -26,178 +169,157 @@
                         href="{{ route('chatlist') }}">Chats<span class="ml-1">{{-- @livewire('notificacion-chat') --}}</span></a>
                 @endcan
 
-              @can('tecnico-informatico')
-    @php
-        $user = auth()->user();
-
-        $notificacionesNoLeidas = collect();
-
-        if ($user && $user->hasRole('tecnicoinformatico')) {
-            $notificacionesNoLeidas = $user->unreadNotifications()
-                ->whereIn('type', [
-                    'App\Notifications\OrderNotification',
-                    'App\Notifications\NuevaSolicitudReparacion',
-                ])
-                ->latest()
-                ->take(5)
-                ->get();
-        }
-    @endphp
-
-    <div class="relative m-4" x-data="{ openNotifications: false }">
-
-        {{-- BOTÓN CAMPANA --}}
-        <button
-            type="button"
-            @click="openNotifications = !openNotifications"
-            @click.away="openNotifications = false"
-            :aria-expanded="openNotifications.toString()"
-            aria-haspopup="true"
-            class="relative flex items-center justify-center rounded-lg bg-indigo-400 px-4 py-3 text-white shadow-lg transition hover:bg-indigo-500 focus:outline-none"
-        >
-
-            {{-- CONTADOR --}}
-            @if ($notificacionesNoLeidas->count() > 0)
-                <span
-                    class="absolute -right-2 -top-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-pink-700 px-1 text-[10px] font-bold text-white shadow"
-                >
-                    {{ $notificacionesNoLeidas->count() }}
-                </span>
-            @endif
-
-            {{-- CAMPANA --}}
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="h-4 w-4"
-            >
-                <path
-                    fill-rule="evenodd"
-                    d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z"
-                    clip-rule="evenodd"
-                />
-            </svg>
-
-        </button>
-
-        {{-- DROPDOWN DE NOTIFICACIONES --}}
-        <div
-            x-show="openNotifications"
-            x-transition
-            class="absolute right-0 z-50 mt-2 w-80 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-2xl"
-            role="menu"
-            style="display: none;"
-        >
-
-            {{-- ENCABEZADO --}}
-            <div class="flex items-center justify-between border-b border-gray-200 px-4 py-3">
-                <div>
-                    <h3 class="text-sm font-bold text-gray-800">
-                        Notificaciones
-                    </h3>
-
-                    <p class="text-xs text-gray-500">
-                        Solicitudes pendientes
-                    </p>
-                </div>
-
-                @if ($notificacionesNoLeidas->count() > 0)
-                    <span class="rounded-full bg-pink-100 px-2 py-1 text-xs font-semibold text-pink-700">
-                        {{ $notificacionesNoLeidas->count() }} nuevas
-                    </span>
-                @endif
-            </div>
-
-            {{-- LISTADO --}}
-            <div class="max-h-96 overflow-y-auto">
-
-                @forelse ($notificacionesNoLeidas as $notification)
-
+                @can('tecnico-informatico')
                     @php
-                        $data = is_array($notification->data)
-                            ? $notification->data
-                            : json_decode($notification->data, true);
+                        $user = auth()->user();
 
-                        $titulo = $data['titulo'] ?? 'Nueva notificación';
-                        $mensaje = $data['mensaje'] ?? 'Tenés una nueva notificación.';
-                        $solicitudId = $data['solicitud_id'] ?? null;
+                        $notificacionesNoLeidas = collect();
+
+                        if ($user && $user->hasRole('tecnicoinformatico')) {
+                            $notificacionesNoLeidas = $user
+                                ->unreadNotifications()
+                                ->whereIn('type', [
+                                    'App\Notifications\OrderNotification',
+                                    'App\Notifications\NuevaSolicitudReparacion',
+                                ])
+                                ->latest()
+                                ->take(5)
+                                ->get();
+                        }
                     @endphp
 
-                    <a
-                        href="{{ $solicitudId ? route('ver-notificaciones') . '?solicitud=' . $solicitudId : route('ver-notificaciones') }}"
-                        class="block border-b border-gray-100 px-4 py-3 transition hover:bg-gray-50"
-                    >
+                    <div class="relative m-4" x-data="{ openNotifications: false }">
 
-                        <div class="flex gap-3">
+                        {{-- BOTÓN CAMPANA --}}
+                        <button type="button" @click="openNotifications = !openNotifications"
+                            @click.away="openNotifications = false" :aria-expanded="openNotifications.toString()"
+                            aria-haspopup="true"
+                            class="relative flex items-center justify-center rounded-lg bg-indigo-400 px-4 py-3 text-white shadow-lg transition hover:bg-indigo-500 focus:outline-none">
 
-                            {{-- INDICADOR --}}
-                            <div class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-pink-600"></div>
+                            {{-- CONTADOR --}}
+                            @if ($notificacionesNoLeidas->count() > 0)
+                                <span
+                                    class="absolute -right-2 -top-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-pink-700 px-1 text-[10px] font-bold text-white shadow">
+                                    {{ $notificacionesNoLeidas->count() }}
+                                </span>
+                            @endif
 
-                            <div class="min-w-0 flex-1">
+                            {{-- CAMPANA --}}
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4">
+                                <path fill-rule="evenodd"
+                                    d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
 
-                                <div class="flex items-start justify-between gap-2">
-                                    <p class="text-sm font-semibold text-gray-800">
-                                        {{ $titulo }}
+                        </button>
+
+                        {{-- DROPDOWN DE NOTIFICACIONES --}}
+                        <div x-show="openNotifications" x-transition
+                            class="absolute right-0 z-50 mt-2 w-80 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-2xl"
+                            role="menu" style="display: none;">
+
+                            {{-- ENCABEZADO --}}
+                            <div class="flex items-center justify-between border-b border-gray-200 px-4 py-3">
+                                <div>
+                                    <h3 class="text-sm font-bold text-gray-800">
+                                        Notificaciones
+                                    </h3>
+
+                                    <p class="text-xs text-gray-500">
+                                        Solicitudes pendientes
                                     </p>
-
-                                    <span class="whitespace-nowrap text-[10px] text-gray-400">
-                                        {{ $notification->created_at->diffForHumans() }}
-                                    </span>
                                 </div>
 
-                                <p class="mt-1 truncate text-xs text-gray-600">
-                                    {{ $mensaje }}
-                                </p>
-
-                                @if ($solicitudId)
-                                    <p class="mt-1 text-[10px] font-semibold uppercase text-indigo-600">
-                                        Solicitud #{{ $solicitudId }}
-                                    </p>
+                                @if ($notificacionesNoLeidas->count() > 0)
+                                    <span class="rounded-full bg-pink-100 px-2 py-1 text-xs font-semibold text-pink-700">
+                                        {{ $notificacionesNoLeidas->count() }} nuevas
+                                    </span>
                                 @endif
+                            </div>
+
+                            {{-- LISTADO --}}
+                            <div class="max-h-96 overflow-y-auto">
+
+                                @forelse ($notificacionesNoLeidas as $notification)
+                                    @php
+                                        $data = is_array($notification->data)
+                                            ? $notification->data
+                                            : json_decode($notification->data, true);
+
+                                        $titulo = $data['titulo'] ?? 'Nueva notificación';
+                                        $mensaje = $data['mensaje'] ?? 'Tenés una nueva notificación.';
+                                        $solicitudId = $data['solicitud_id'] ?? null;
+                                    @endphp
+
+                                    <a href="{{ $solicitudId ? route('ver-notificaciones') . '?solicitud=' . $solicitudId : route('ver-notificaciones') }}"
+                                        class="block border-b border-gray-100 px-4 py-3 transition hover:bg-gray-50">
+
+                                        <div class="flex gap-3">
+
+                                            {{-- INDICADOR --}}
+                                            <div class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-pink-600"></div>
+
+                                            <div class="min-w-0 flex-1">
+
+                                                <div class="flex items-start justify-between gap-2">
+                                                    <p class="text-sm font-semibold text-gray-800">
+                                                        {{ $titulo }}
+                                                    </p>
+
+                                                    <span class="whitespace-nowrap text-[10px] text-gray-400">
+                                                        {{ $notification->created_at->diffForHumans() }}
+                                                    </span>
+                                                </div>
+
+                                                <p class="mt-1 truncate text-xs text-gray-600">
+                                                    {{ $mensaje }}
+                                                </p>
+
+                                                @if ($solicitudId)
+                                                    <p class="mt-1 text-[10px] font-semibold uppercase text-indigo-600">
+                                                        Solicitud #{{ $solicitudId }}
+                                                    </p>
+                                                @endif
+
+                                            </div>
+
+                                        </div>
+
+                                    </a>
+
+                                @empty
+
+                                    <div class="px-4 py-8 text-center">
+                                        <div class="text-2xl">
+                                            🔔
+                                        </div>
+
+                                        <p class="mt-2 text-sm font-semibold text-gray-700">
+                                            No hay notificaciones nuevas
+                                        </p>
+
+                                        <p class="mt-1 text-xs text-gray-500">
+                                            No tenés solicitudes pendientes de revisar.
+                                        </p>
+                                    </div>
+                                @endforelse
+
+                            </div>
+
+                            {{-- PIE --}}
+                            <div class="border-t border-gray-200 bg-gray-50">
+
+                                <a href="{{ route('ver-notificaciones') }}"
+                                    class="block px-4 py-3 text-center text-xs font-bold uppercase tracking-wide text-indigo-600 transition hover:bg-gray-100">
+                                    Ver todas las notificaciones
+                                </a>
 
                             </div>
 
                         </div>
 
-                    </a>
-
-                @empty
-
-                    <div class="px-4 py-8 text-center">
-                        <div class="text-2xl">
-                            🔔
-                        </div>
-
-                        <p class="mt-2 text-sm font-semibold text-gray-700">
-                            No hay notificaciones nuevas
-                        </p>
-
-                        <p class="mt-1 text-xs text-gray-500">
-                            No tenés solicitudes pendientes de revisar.
-                        </p>
                     </div>
-
-                @endforelse
-
-            </div>
-
-            {{-- PIE --}}
-            <div class="border-t border-gray-200 bg-gray-50">
-
-                <a
-                    href="{{ route('ver-notificaciones') }}"
-                    class="block px-4 py-3 text-center text-xs font-bold uppercase tracking-wide text-indigo-600 transition hover:bg-gray-100"
-                >
-                    Ver todas las notificaciones
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-@endcan
+                @endcan
 
                 @can('users.index')
                     <div class="relative" x-data="{ open: false }">
@@ -206,7 +328,8 @@
                             Administrador
                             <svg x-bind:class="{ 'rotate-180': open }"
                                 class="-mr-1 ml-1 h-4 w-4 transform transition-transform duration-200 ease-in-out"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7">
                                 </path>
                             </svg>
@@ -262,7 +385,8 @@
                                             {{ Auth::user()->currentTeam->name }}
 
                                             <svg class="-mr-0.5 ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
                                             </svg>
@@ -314,7 +438,8 @@
                                     <button
                                         class="flex rounded-full border-2 border-transparent text-sm transition focus:border-gray-300 focus:outline-none">
                                         <img class="h-8 w-8 rounded-full object-cover"
-                                            src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                            src="{{ Auth::user()->profile_photo_url }}"
+                                            alt="{{ Auth::user()->name }}" />
                                     </button>
                                 @else
                                     <span class="inline-flex rounded-md">

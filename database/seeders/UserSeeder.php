@@ -21,12 +21,12 @@ class UserSeeder extends Seeder
       )->assignRole('Admin');
 
       User::firstOrCreate(
-         ['email' => 'gabrielmolinalp@gmail.com'],
+         ['email' => 'comisaria@gmail.com'],
          [
             'name' => 'Gabriel Molina',
             'password' => bcrypt('DCU911'),
          ]
-      )->assignRole('userComisaria1');
+      )->assignRole('Dependencias');
 
       User::firstOrCreate(
          ['email' => 'tecnico-informatico@gmail.com'],

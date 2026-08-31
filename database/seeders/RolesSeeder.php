@@ -69,11 +69,25 @@ class RolesSeeder extends Seeder
             'guard_name' => 'web',
         ]);
 
+        $dependencias = Role::firstOrCreate([
+            'name' => 'Dependencias',
+            'guard_name' => 'web',
+        ]);
+
         /*
         |--------------------------------------------------------------------------
         | Permisos
         |--------------------------------------------------------------------------
         */
+        Permission::firstOrCreate(
+            [
+                'name' => 'dependencias.notificacion',
+                'guard_name' => 'web',
+            ],
+            [
+                'description' => 'Notificaciones',
+            ]
+        )->syncRoles([$dependencias]);
 
         Permission::firstOrCreate(
             [
@@ -95,16 +109,7 @@ class RolesSeeder extends Seeder
             ]
         )->syncRoles([$role1]);
 
-        // Permission::firstOrCreate(
-        //     [
-        //         'name' => 'users.update',
-        //         'guard_name' => 'web',
-        //     ],
-        //     [
-        //         'description' => 'update de usuarios rol/solo ve el Admin.',
-        //     ]
-        // )->syncRoles([$role1]);
-
+   
         Permission::firstOrCreate(
             [
                 'name' => 'tecnico-comunicacion',
@@ -206,13 +211,9 @@ class RolesSeeder extends Seeder
         )->syncRoles([
             $role1,
             $role2,
-            $role3,
-            $role4,
-            $role5,
-            $role6,
-            $role7,
-            $role8,
+            $role3,          
             $role9,
+
         ]);
 
         Permission::firstOrCreate(
@@ -233,6 +234,7 @@ class RolesSeeder extends Seeder
             $role7,
             $role8,
             $role9,
+            $dependencias,
         ]);
 
         /*

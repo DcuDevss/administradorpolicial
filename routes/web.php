@@ -279,6 +279,11 @@ Route::middleware([
 
     Route::get('/solicitudes-reparacion/{solicitud}',DetalleSolicitud::class
     )->name('solicitudes-reparacion.detalle');
+
+    Route::get(
+        '/reparaciones/solicitudes/{solicitud}',
+        DetalleSolicitud::class
+    )->name('detalle-solicitud');
 });
 
 /* ****************************************************************** */
