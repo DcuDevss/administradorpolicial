@@ -22,6 +22,11 @@ class DetalleSolicitud extends Component
 
     public string $observaciones = '';
 
+    /**
+     * Fecha actualmente seleccionada en la agenda.
+     */
+    public string $fechaAgenda = '';
+
     public function mount(SolicitudReparacion $solicitud): void
     {
         $this->solicitud = $solicitud->load([
@@ -31,10 +36,12 @@ class DetalleSolicitud extends Component
             'usuario',
             'turno',
         ]);
+
+        $this->fechaAgenda = now()->format('Y-m-d');
     }
 
     /**
-     * Abre el formulario para asignar un turno.
+     * Abre la agenda para asignar un turno.
      */
     public function abrirTurno(): void
     {
@@ -58,11 +65,15 @@ class DetalleSolicitud extends Component
             'observaciones',
         ]);
 
+        $this->fechaAgenda = now()->format('Y-m-d');
+
+        $this->fecha = $this->fechaAgenda;
+
         $this->mostrarTurno = true;
     }
 
     /**
-     * Cierra el formulario de asignación.
+     * Cierra la agenda.
      */
     public function cerrarTurno(): void
     {
@@ -72,7 +83,17 @@ class DetalleSolicitud extends Component
     }
 
     /**
-     * Asigna un turno a la solicitud.
+     * Cambia el día mostrado en la agenda.
+     */
+    public function seleccionarFecha(string $fecha): void
+    {
+        $this->fechaAgenda = $fecha;
+
+        $this->fecha = $fecha;
+    }
+
+    /**
+     * Asigna el turno.
      */
     public function asignarTurno(): void
     {
@@ -102,9 +123,6 @@ class DetalleSolicitud extends Component
             'observaciones.max' => 'Las observaciones no pueden superar los 1000 caracteres.',
         ]);
 
-        /*
-         * Evitamos que una solicitud tenga más de un turno.
-         */
         $this->solicitud->refresh();
 
         if ($this->solicitud->turno) {
@@ -118,9 +136,6 @@ class DetalleSolicitud extends Component
             return;
         }
 
-        /*
-         * Verificamos que la solicitud pueda recibir un turno.
-         */
         if (in_array($this->solicitud->estado, [
             'cancelada',
             'cerrada',
@@ -135,25 +150,14 @@ class DetalleSolicitud extends Component
         }
 
         /*
-         * Evitamos reservar dos turnos exactamente en la misma
-         * fecha y hora dentro del nuevo sistema de Reparaciones.
+         * IMPORTANTE:
+         *
+         * No se verifica si existe otro turno a la misma fecha/hora.
+         *
+         * El Área de Reparaciones puede tener múltiples equipos
+         * simultáneamente. El turno organiza la recepción y no
+         * representa un cupo de reparación.
          */
-        $turnoOcupado = TurnoReparacion::query()
-            ->where('fecha', $this->fecha)
-            ->where('hora', $this->hora)
-            ->whereIn('estado', [
-                'confirmado',
-            ])
-            ->exists();
-
-        if ($turnoOcupado) {
-            $this->addError(
-                'hora',
-                'Ya existe un turno asignado para esa fecha y hora.'
-            );
-
-            return;
-        }
 
         $turno = TurnoReparacion::create([
             'solicitud_id' => $this->solicitud->id,
@@ -163,12 +167,6 @@ class DetalleSolicitud extends Component
             'observaciones' => $this->observaciones ?: null,
         ]);
 
-        /*
-         * Actualizamos el estado de la solicitud.
-         *
-         * En el documento técnico el estado definido para este punto
-         * es "turnada".
-         */
         $this->solicitud->update([
             'estado' => 'turnada',
         ]);
@@ -190,9 +188,6 @@ class DetalleSolicitud extends Component
             'observaciones',
         ]);
 
-        /*
-         * Recargamos la solicitud y sus relaciones.
-         */
         $this->solicitud->refresh()->load([
             'activo.dependencia',
             'activo.ubicacion',
@@ -207,8 +202,61 @@ class DetalleSolicitud extends Component
         );
     }
 
+    /**
+     * Turnos correspondientes al día seleccionado.
+     */
+    public function getTurnosDelDiaProperty()
+    {
+        return TurnoReparacion::query()
+            ->with([
+                'solicitud.activo.dependencia',
+                'solicitud.usuario',
+            ])
+            ->whereDate('fecha', $this->fechaAgenda)
+            ->orderBy('hora')
+            ->get();
+    }
+
+    /**
+     * Cantidad de solicitudes según estado.
+     */
+    public function getResumenOcupacionProperty(): array
+    {
+        return [
+            'turnadas' => SolicitudReparacion::where('estado', 'turnada')->count(),
+
+            'recepcionadas' => SolicitudReparacion::where(
+                'estado',
+                'recepcionada'
+            )->count(),
+
+            'diagnostico' => SolicitudReparacion::where(
+                'estado',
+                'en_diagnostico'
+            )->count(),
+
+            'reparacion' => SolicitudReparacion::where(
+                'estado',
+                'en_reparacion'
+            )->count(),
+
+            'esperando_repuesto' => SolicitudReparacion::where(
+                'estado',
+                'esperando_repuesto'
+            )->count(),
+
+            'listas_retirar' => SolicitudReparacion::where(
+                'estado',
+                'lista_para_retirar'
+            )->count(),
+        ];
+    }
+
     public function render()
     {
-        return view('livewire.reparaciones.detalle-solicitud');
+        return view('livewire.reparaciones.detalle-solicitud', [
+            'turnosDelDia' => $this->turnosDelDia,
+            'resumenOcupacion' => $this->resumenOcupacion,
+        ]);
     }
 }

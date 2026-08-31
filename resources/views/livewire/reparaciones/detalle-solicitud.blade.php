@@ -1,239 +1,237 @@
-<div class="min-h-screen bg-gray-950 px-4 py-6 text-white sm:px-6 lg:px-8">
+<div class="min-h-screen bg-gray-900 px-4 py-6 text-gray-100">
 
-    <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-7xl">
 
-        {{-- MENSAJE DE ÉXITO --}}
-        @if (session()->has('success'))
-            <div
-                class="mb-5 flex items-center gap-3 rounded-lg border border-green-700/50 bg-green-900/30 px-4 py-3 text-sm text-green-300"
-            >
-                <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                    />
-                </svg>
-
-                <span>{{ session('success') }}</span>
-            </div>
-        @endif
-
-
-        {{-- ERRORES GENERALES --}}
-        @error('general')
-            <div
-                class="mb-5 rounded-lg border border-red-700/50 bg-red-900/30 px-4 py-3 text-sm text-red-300"
-            >
-                {{ $message }}
-            </div>
-        @enderror
-
-
-        {{-- ENCABEZADO --}}
-        <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        {{-- ============================================================
+             ENCABEZADO
+        ============================================================ --}}
+        <div class="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
             <div>
-                <div class="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">
-                    Área de Reparaciones
+                <div class="mb-1 flex items-center gap-2">
+                    <a
+                        href="{{ url()->previous() }}"
+                        class="text-sm text-gray-400 transition hover:text-white"
+                    >
+                        ← Volver
+                    </a>
                 </div>
 
                 <h1 class="text-2xl font-bold text-white">
-                    Solicitud de reparación #{{ $solicitud->id }}
+                    Detalle de solicitud
                 </h1>
 
                 <p class="mt-1 text-sm text-gray-400">
-                    Detalle y gestión de la solicitud.
+                    Gestión de la solicitud de reparación y asignación de turno.
                 </p>
             </div>
 
-            <a
-                href="{{ url()->previous() }}"
-                class="inline-flex items-center justify-center rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm font-semibold text-gray-200 transition hover:bg-gray-700"
+            <div class="flex items-center gap-2">
+
+                <span
+                    class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold
+                    @switch($solicitud->estado)
+                        @case('pendiente')
+                            bg-yellow-900/40 text-yellow-300
+                            @break
+
+                        @case('turnada')
+                            bg-blue-900/40 text-blue-300
+                            @break
+
+                        @case('recepcionada')
+                            bg-indigo-900/40 text-indigo-300
+                            @break
+
+                        @case('en_diagnostico')
+                            bg-purple-900/40 text-purple-300
+                            @break
+
+                        @case('en_reparacion')
+                            bg-orange-900/40 text-orange-300
+                            @break
+
+                        @case('esperando_repuesto')
+                            bg-red-900/40 text-red-300
+                            @break
+
+                        @case('reparada')
+                            bg-green-900/40 text-green-300
+                            @break
+
+                        @case('lista_para_retirar')
+                            bg-emerald-900/40 text-emerald-300
+                            @break
+
+                        @case('entregada')
+                            bg-gray-700 text-gray-300
+                            @break
+
+                        @case('cancelada')
+                            bg-red-900/40 text-red-300
+                            @break
+
+                        @default
+                            bg-gray-700 text-gray-300
+                    @endswitch
+                    "
+                >
+                    Estado:
+                    {{ ucfirst(str_replace('_', ' ', $solicitud->estado)) }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        {{-- ============================================================
+             MENSAJE DE ÉXITO
+        ============================================================ --}}
+        @if (session()->has('success'))
+
+            <div
+                class="mb-6 rounded-lg border border-green-700/50 bg-green-900/30 px-4 py-3 text-sm text-green-300"
             >
-                ← Volver
-            </a>
+                <div class="flex items-center gap-2">
+                    <span class="text-lg">✓</span>
 
-        </div>
+                    <span>
+                        {{ session('success') }}
+                    </span>
+                </div>
+            </div>
+
+        @endif
 
 
-        {{-- INFORMACIÓN PRINCIPAL --}}
-        <div class="grid gap-5 lg:grid-cols-3">
+        {{-- ============================================================
+             ERROR GENERAL
+        ============================================================ --}}
+        @error('general')
 
-            {{-- SOLICITUD --}}
-            <div class="lg:col-span-2">
+            <div
+                class="mb-6 rounded-lg border border-red-700/50 bg-red-900/30 px-4 py-3 text-sm text-red-300"
+            >
+                {{ $message }}
+            </div>
 
-                <div class="overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-xl">
+        @enderror
 
-                    <div class="border-b border-gray-800 px-5 py-4">
 
-                        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        {{-- ============================================================
+             INFORMACIÓN PRINCIPAL
+        ============================================================ --}}
+        <div class="mb-6 grid gap-6 lg:grid-cols-3">
 
-                            <div>
-                                <h2 class="text-lg font-bold text-white">
-                                    {{ $solicitud->titulo }}
-                                </h2>
+            {{-- --------------------------------------------------------
+                 SOLICITUD
+            --------------------------------------------------------- --}}
+            <div class="rounded-xl border border-gray-700 bg-gray-800 shadow-lg lg:col-span-2">
 
-                                <p class="mt-1 text-xs text-gray-500">
-                                    Registrada el
-                                    {{ $solicitud->created_at
-                                        ->tz('America/Argentina/Buenos_Aires')
-                                        ->format('d/m/Y H:i:s') }}
-                                </p>
-                            </div>
+                <div class="border-b border-gray-700 px-5 py-4">
 
-                            {{-- ESTADO --}}
-                            @php
-                                $estadoClasses = match ($solicitud->estado) {
-                                    'pendiente' => 'bg-yellow-900/40 text-yellow-300 border-yellow-700/40',
-                                    'en_evaluacion' => 'bg-blue-900/40 text-blue-300 border-blue-700/40',
-                                    'aprobada' => 'bg-green-900/40 text-green-300 border-green-700/40',
-                                    'rechazada' => 'bg-red-900/40 text-red-300 border-red-700/40',
-                                    'turnada' => 'bg-indigo-900/40 text-indigo-300 border-indigo-700/40',
-                                    'cancelada' => 'bg-gray-800 text-gray-400 border-gray-700',
-                                    'cerrada' => 'bg-gray-800 text-gray-400 border-gray-700',
-                                    default => 'bg-gray-800 text-gray-300 border-gray-700',
-                                };
-                            @endphp
+                    <div class="flex items-center justify-between">
 
-                            <span
-                                class="inline-flex w-fit items-center rounded-full border px-3 py-1 text-xs font-bold uppercase {{ $estadoClasses }}"
-                            >
-                                {{ str_replace('_', ' ', $solicitud->estado) }}
-                            </span>
+                        <div>
+                            <h2 class="text-lg font-bold text-white">
+                                Solicitud #{{ $solicitud->id }}
+                            </h2>
 
+                            <p class="text-xs text-gray-400">
+                                Información de la solicitud de reparación
+                            </p>
+                        </div>
+
+                        <div
+                            class="rounded-lg bg-gray-900 px-3 py-2 text-xs text-gray-400"
+                        >
+                            {{ $solicitud->created_at
+                                ? $solicitud->created_at
+                                    ->tz('America/Argentina/Buenos_Aires')
+                                    ->format('d/m/Y H:i')
+                                : '-' }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="grid gap-5 p-5 md:grid-cols-2">
+
+                    {{-- TÍTULO --}}
+                    <div class="md:col-span-2">
+
+                        <div class="mb-1 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            Motivo / título
+                        </div>
+
+                        <div class="text-base font-semibold text-white">
+                            {{ $solicitud->titulo }}
                         </div>
 
                     </div>
 
 
-                    <div class="space-y-6 p-5">
+                    {{-- PRIORIDAD --}}
+                    <div>
 
-                        {{-- ACTIVO --}}
-                        <div>
-
-                            <div class="mb-3 text-xs font-bold uppercase tracking-wider text-gray-500">
-                                Activo
-                            </div>
-
-                            <div class="rounded-lg border border-gray-800 bg-gray-950 p-4">
-
-                                <div class="grid gap-4 sm:grid-cols-2">
-
-                                    <div>
-                                        <div class="text-xs text-gray-500">
-                                            Identificación
-                                        </div>
-
-                                        <div class="mt-1 font-semibold text-white">
-                                            {{ $solicitud->activo->codigo_interno
-                                                ?? $solicitud->activo->codigo_patrimonial
-                                                ?? 'Sin código' }}
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div class="text-xs text-gray-500">
-                                            Tipo
-                                        </div>
-
-                                        <div class="mt-1 font-semibold text-white">
-                                            {{ $solicitud->activo->categoria->nombre ?? 'Sin categoría' }}
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div class="text-xs text-gray-500">
-                                            Marca / Modelo
-                                        </div>
-
-                                        <div class="mt-1 font-semibold text-white">
-                                            {{ $solicitud->activo->marca ?? '—' }}
-                                            {{ $solicitud->activo->modelo ?? '' }}
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div class="text-xs text-gray-500">
-                                            Número de serie
-                                        </div>
-
-                                        <div class="mt-1 font-semibold text-white">
-                                            {{ $solicitud->activo->numero_serie ?? '—' }}
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+                        <div class="mb-1 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            Prioridad
                         </div>
 
+                        <span
+                            class="inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase
+                            @switch($solicitud->prioridad)
+                                @case('urgente')
+                                    bg-red-900/50 text-red-300
+                                    @break
 
-                        {{-- SOLICITANTE --}}
-                        <div>
+                                @case('alta')
+                                    bg-orange-900/50 text-orange-300
+                                    @break
 
-                            <div class="mb-3 text-xs font-bold uppercase tracking-wider text-gray-500">
-                                Solicitante
-                            </div>
+                                @case('media')
+                                    bg-yellow-900/50 text-yellow-300
+                                    @break
 
-                            <div class="rounded-lg border border-gray-800 bg-gray-950 p-4">
+                                @default
+                                    bg-green-900/50 text-green-300
+                            @endswitch
+                            "
+                        >
+                            {{ $solicitud->prioridad }}
+                        </span>
 
-                                <div class="font-semibold text-white">
-                                    {{ $solicitud->usuario->name ?? 'Usuario no disponible' }}
-                                </div>
+                    </div>
 
-                                @if ($solicitud->activo->dependencia)
-                                    <div class="mt-1 text-sm text-gray-400">
-                                        {{ $solicitud->activo->dependencia->nombre
-                                            ?? $solicitud->activo->dependencia->name
-                                            ?? 'Dependencia no disponible' }}
-                                    </div>
-                                @endif
 
-                            </div>
+                    {{-- SOLICITANTE --}}
+                    <div>
 
+                        <div class="mb-1 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            Solicitante
                         </div>
 
-
-                        {{-- PRIORIDAD --}}
-                        <div>
-
-                            <div class="mb-3 text-xs font-bold uppercase tracking-wider text-gray-500">
-                                Prioridad
-                            </div>
-
-                            @php
-                                $prioridadClasses = match ($solicitud->prioridad) {
-                                    'baja' => 'bg-gray-800 text-gray-300',
-                                    'normal', 'media' => 'bg-blue-900/40 text-blue-300',
-                                    'alta' => 'bg-orange-900/40 text-orange-300',
-                                    'critica', 'urgente' => 'bg-red-900/40 text-red-300',
-                                    default => 'bg-gray-800 text-gray-300',
-                                };
-                            @endphp
-
-                            <span
-                                class="inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase {{ $prioridadClasses }}"
-                            >
-                                {{ $solicitud->prioridad }}
-                            </span>
-
+                        <div class="text-sm font-semibold text-white">
+                            {{ $solicitud->usuario->name ?? 'Sin información' }}
                         </div>
 
+                    </div>
 
-                        {{-- DESCRIPCIÓN --}}
-                        <div>
 
-                            <div class="mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
-                                Descripción del problema
-                            </div>
+                    {{-- DESCRIPCIÓN --}}
+                    <div class="md:col-span-2">
 
-                            <div class="whitespace-pre-wrap rounded-lg border border-gray-800 bg-gray-950 p-4 text-sm leading-relaxed text-gray-300">
-                                {{ $solicitud->descripcion }}
-                            </div>
+                        <div class="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            Descripción de la falla
+                        </div>
 
+                        <div
+                            class="rounded-lg border border-gray-700 bg-gray-900 p-4 text-sm leading-relaxed text-gray-300"
+                        >
+                            {{ $solicitud->descripcion }}
                         </div>
 
                     </div>
@@ -243,153 +241,84 @@
             </div>
 
 
-            {{-- PANEL DE TURNO --}}
-            <div>
+            {{-- --------------------------------------------------------
+                 ACTIVO
+            --------------------------------------------------------- --}}
+            <div class="rounded-xl border border-gray-700 bg-gray-800 shadow-lg">
 
-                <div class="overflow-hidden rounded-xl border border-gray-800 bg-gray-900 shadow-xl">
+                <div class="border-b border-gray-700 px-5 py-4">
 
-                    <div class="border-b border-gray-800 px-5 py-4">
+                    <h2 class="text-lg font-bold text-white">
+                        Activo
+                    </h2>
 
-                        <div class="text-xs font-bold uppercase tracking-wider text-blue-400">
-                            Gestión del turno
+                    <p class="text-xs text-gray-400">
+                        Equipo asociado a la solicitud
+                    </p>
+
+                </div>
+
+
+                <div class="space-y-4 p-5">
+
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-gray-500">
+                            Tipo
                         </div>
 
-                        <h2 class="mt-1 text-lg font-bold text-white">
-                            Turno de reparación
-                        </h2>
-
+                        <div class="mt-1 text-sm font-semibold text-white">
+                            {{ $solicitud->activo->categoria->nombre ?? 'Sin categoría' }}
+                        </div>
                     </div>
 
 
-                    <div class="p-5">
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-gray-500">
+                            Marca / modelo
+                        </div>
 
-                        @if ($solicitud->turno)
+                        <div class="mt-1 text-sm text-gray-200">
+                            {{ $solicitud->activo->marca ?? 'Sin marca' }}
 
-                            {{-- TURNO EXISTENTE --}}
-                            <div class="space-y-4">
-
-                                <div
-                                    class="rounded-lg border border-indigo-700/40 bg-indigo-900/20 p-4"
-                                >
-
-                                    <div class="mb-3 flex items-center justify-between">
-
-                                        <span class="text-xs font-bold uppercase tracking-wider text-gray-500">
-                                            Estado
-                                        </span>
-
-                                        <span
-                                            class="rounded-full border border-green-700/40 bg-green-900/30 px-3 py-1 text-xs font-bold uppercase text-green-300"
-                                        >
-                                            {{ str_replace('_', ' ', $solicitud->turno->estado) }}
-                                        </span>
-
-                                    </div>
+                            @if (!empty($solicitud->activo->modelo))
+                                / {{ $solicitud->activo->modelo }}
+                            @endif
+                        </div>
+                    </div>
 
 
-                                    <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-gray-500">
+                            Número de serie
+                        </div>
 
-                                        <div>
-
-                                            <div class="text-xs text-gray-500">
-                                                Fecha
-                                            </div>
-
-                                            <div class="mt-1 font-bold text-white">
-                                                {{ $solicitud->turno->fecha->format('d/m/Y') }}
-                                            </div>
-
-                                        </div>
+                        <div class="mt-1 text-sm font-mono text-gray-300">
+                            {{ $solicitud->activo->numero_serie ?? 'Sin número de serie' }}
+                        </div>
+                    </div>
 
 
-                                        <div>
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-gray-500">
+                            Dependencia
+                        </div>
 
-                                            <div class="text-xs text-gray-500">
-                                                Hora
-                                            </div>
-
-                                            <div class="mt-1 font-bold text-white">
-                                                {{ substr($solicitud->turno->hora, 0, 5) }}
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
+                        <div class="mt-1 text-sm font-semibold text-white">
+                            {{ $solicitud->activo->dependencia->nombre
+                                ?? $solicitud->activo->dependencia->name
+                                ?? 'Sin dependencia' }}
+                        </div>
+                    </div>
 
 
-                                @if ($solicitud->turno->observaciones)
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-gray-500">
+                            Ubicación
+                        </div>
 
-                                    <div>
-
-                                        <div class="mb-1 text-xs font-bold uppercase tracking-wider text-gray-500">
-                                            Observaciones
-                                        </div>
-
-                                        <div class="rounded-lg border border-gray-800 bg-gray-950 p-3 text-sm text-gray-300">
-                                            {{ $solicitud->turno->observaciones }}
-                                        </div>
-
-                                    </div>
-
-                                @endif
-
-
-                                <div class="rounded-lg border border-gray-800 bg-gray-950 p-3 text-xs text-gray-400">
-                                    La solicitud ya posee un turno asignado.
-                                </div>
-
-                            </div>
-
-                        @else
-
-                            {{-- SIN TURNO --}}
-                            <div class="text-center">
-
-                                <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-blue-900/30 text-blue-400">
-
-                                    <svg
-                                        class="h-7 w-7"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="1.8"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                        />
-                                    </svg>
-
-                                </div>
-
-                                <h3 class="font-bold text-white">
-                                    Sin turno asignado
-                                </h3>
-
-                                <p class="mt-1 text-sm leading-relaxed text-gray-400">
-                                    Esta solicitud todavía no tiene un turno programado.
-                                </p>
-
-
-                                @if (!in_array($solicitud->estado, ['cancelada', 'cerrada', 'rechazada'], true))
-
-                                    <button
-                                        type="button"
-                                        wire:click="abrirTurno"
-                                        class="mt-5 inline-flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-500"
-                                    >
-                                        Asignar turno
-                                    </button>
-
-                                @endif
-
-                            </div>
-
-                        @endif
-
+                        <div class="mt-1 text-sm text-gray-300">
+                            {{ $solicitud->activo->ubicacion->nombre ?? 'Sin ubicación' }}
+                        </div>
                     </div>
 
                 </div>
@@ -399,66 +328,436 @@
         </div>
 
 
-        {{-- MODAL ASIGNAR TURNO --}}
+        {{-- ============================================================
+             TURNO ACTUAL
+        ============================================================ --}}
+        @if ($solicitud->turno)
+
+            <div class="mb-6 rounded-xl border border-blue-700/50 bg-blue-900/20 shadow-lg">
+
+                <div class="border-b border-blue-700/40 px-5 py-4">
+
+                    <div class="flex items-center gap-3">
+
+                        <div
+                            class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600/30 text-xl"
+                        >
+                            📅
+                        </div>
+
+                        <div>
+                            <h2 class="text-lg font-bold text-white">
+                                Turno asignado
+                            </h2>
+
+                            <p class="text-xs text-blue-300">
+                                La solicitud ya posee un turno de reparación.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="grid gap-5 p-5 md:grid-cols-4">
+
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-gray-500">
+                            Fecha
+                        </div>
+
+                        <div class="mt-1 text-sm font-bold text-white">
+                            {{ $solicitud->turno->fecha
+                                ? $solicitud->turno->fecha->format('d/m/Y')
+                                : '-' }}
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-gray-500">
+                            Hora
+                        </div>
+
+                        <div class="mt-1 text-sm font-bold text-white">
+                            {{ \Carbon\Carbon::parse($solicitud->turno->hora)->format('H:i') }}
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-gray-500">
+                            Estado
+                        </div>
+
+                        <div class="mt-1">
+
+                            <span
+                                class="rounded-full bg-blue-900/50 px-3 py-1 text-xs font-semibold text-blue-300"
+                            >
+                                {{ ucfirst($solicitud->turno->estado) }}
+                            </span>
+
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-gray-500">
+                            Observaciones
+                        </div>
+
+                        <div class="mt-1 text-sm text-gray-300">
+                            {{ $solicitud->turno->observaciones ?? 'Sin observaciones' }}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        @endif
+
+
+        {{-- ============================================================
+             ESTADO OPERATIVO DEL ÁREA
+        ============================================================ --}}
+        <div class="mb-6">
+
+            <div class="mb-3">
+
+                <h2 class="text-lg font-bold text-white">
+                    Situación del Área de Reparaciones
+                </h2>
+
+                <p class="text-sm text-gray-400">
+                    Estado actual de las solicitudes y equipos.
+                </p>
+
+            </div>
+
+
+            <div class="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
+
+                {{-- TURNADAS --}}
+                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
+
+                    <div class="text-2xl font-bold text-blue-400">
+                        {{ $resumenOcupacion['turnadas'] ?? 0 }}
+                    </div>
+
+                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
+                        Turnadas
+                    </div>
+
+                </div>
+
+
+                {{-- RECEPCIONADAS --}}
+                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
+
+                    <div class="text-2xl font-bold text-indigo-400">
+                        {{ $resumenOcupacion['recepcionadas'] ?? 0 }}
+                    </div>
+
+                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
+                        Recepcionadas
+                    </div>
+
+                </div>
+
+
+                {{-- DIAGNÓSTICO --}}
+                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
+
+                    <div class="text-2xl font-bold text-purple-400">
+                        {{ $resumenOcupacion['diagnostico'] ?? 0 }}
+                    </div>
+
+                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
+                        Diagnóstico
+                    </div>
+
+                </div>
+
+
+                {{-- REPARACIÓN --}}
+                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
+
+                    <div class="text-2xl font-bold text-orange-400">
+                        {{ $resumenOcupacion['reparacion'] ?? 0 }}
+                    </div>
+
+                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
+                        En reparación
+                    </div>
+
+                </div>
+
+
+                {{-- REPUESTOS --}}
+                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
+
+                    <div class="text-2xl font-bold text-red-400">
+                        {{ $resumenOcupacion['esperando_repuesto'] ?? 0 }}
+                    </div>
+
+                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
+                        Esperando repuesto
+                    </div>
+
+                </div>
+
+
+                {{-- LISTOS --}}
+                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
+
+                    <div class="text-2xl font-bold text-emerald-400">
+                        {{ $resumenOcupacion['listas_retirar'] ?? 0 }}
+                    </div>
+
+                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
+                        Listos para retirar
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {{-- ============================================================
+             BOTÓN ASIGNAR TURNO
+        ============================================================ --}}
+        @if (!$solicitud->turno)
+
+            @if (!in_array($solicitud->estado, ['cancelada', 'cerrada', 'rechazada'], true))
+
+                <div class="mb-6 flex justify-end">
+
+                    <button
+                        wire:click="abrirTurno"
+                        type="button"
+                        class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                    >
+                        <span class="text-lg">📅</span>
+
+                        Asignar turno
+                    </button>
+
+                </div>
+
+            @endif
+
+        @endif
+
+
+        {{-- ============================================================
+             AGENDA
+        ============================================================ --}}
         @if ($mostrarTurno)
 
             <div
-                class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm"
-                wire:key="modal-asignar-turno"
+                class="mb-6 overflow-hidden rounded-xl border border-gray-700 bg-gray-800 shadow-2xl"
             >
 
-                <div
-                    class="w-full max-w-lg overflow-hidden rounded-xl border border-gray-700 bg-gray-900 shadow-2xl"
-                    wire:click.stop
-                >
+                {{-- CABECERA --}}
+                <div class="border-b border-gray-700 bg-gray-800 px-5 py-4">
 
-                    {{-- CABECERA --}}
-                    <div class="flex items-center justify-between border-b border-gray-800 px-5 py-4">
+                    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
 
                         <div>
 
-                            <h2 class="text-lg font-bold text-white">
-                                Asignar turno
+                            <h2 class="text-xl font-bold text-white">
+                                Agenda de Reparaciones
                             </h2>
 
-                            <p class="mt-1 text-xs text-gray-400">
-                                Solicitud #{{ $solicitud->id }}
+                            <p class="mt-1 text-sm text-gray-400">
+                                Seleccione la fecha y horario para recibir el equipo.
                             </p>
 
                         </div>
 
                         <button
-                            type="button"
                             wire:click="cerrarTurno"
-                            class="rounded-lg p-2 text-gray-400 transition hover:bg-gray-800 hover:text-white"
+                            type="button"
+                            class="rounded-lg px-3 py-2 text-sm text-gray-400 transition hover:bg-gray-700 hover:text-white"
                         >
-                            <svg
-                                class="h-5 w-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
+                            ✕ Cerrar
                         </button>
 
                     </div>
 
+                </div>
 
-                    {{-- FORMULARIO --}}
-                    <div class="space-y-5 p-5">
+
+                <div class="grid gap-6 p-5 lg:grid-cols-3">
+
+                    {{-- =================================================
+                         CALENDARIO / FECHA
+                    ================================================== --}}
+                    <div class="lg:col-span-2">
+
+                        <div class="mb-4">
+
+                            <label
+                                for="fechaAgenda"
+                                class="mb-2 block text-sm font-semibold text-gray-300"
+                            >
+                                Fecha de agenda
+                            </label>
+
+                            <input
+                                id="fechaAgenda"
+                                type="date"
+                                wire:model.live="fechaAgenda"
+                                wire:change="seleccionarFecha($event.target.value)"
+                                min="{{ now()->format('Y-m-d') }}"
+                                class="w-full rounded-lg border border-gray-600 bg-gray-900 px-4 py-3 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 md:max-w-xs"
+                            >
+
+                        </div>
+
+
+                        {{-- TURNOS DEL DÍA --}}
+                        <div>
+
+                            <div class="mb-3 flex items-center justify-between">
+
+                                <div>
+                                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-300">
+                                        Turnos del día
+                                    </h3>
+
+                                    <p class="text-xs text-gray-500">
+                                        {{ \Carbon\Carbon::parse($fechaAgenda)->format('d/m/Y') }}
+                                    </p>
+                                </div>
+
+                                <span
+                                    class="rounded-full bg-gray-700 px-3 py-1 text-xs font-semibold text-gray-300"
+                                >
+                                    {{ $turnosDelDia->count() }} turno(s)
+                                </span>
+
+                            </div>
+
+
+                            @if ($turnosDelDia->count())
+
+                                <div class="space-y-2">
+
+                                    @foreach ($turnosDelDia as $turno)
+
+                                        <div
+                                            class="rounded-lg border border-gray-700 bg-gray-900 p-3"
+                                        >
+
+                                            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+
+                                                <div class="flex items-center gap-3">
+
+                                                    <div
+                                                        class="flex min-w-[70px] items-center justify-center rounded-lg bg-blue-900/40 px-3 py-2 text-sm font-bold text-blue-300"
+                                                    >
+                                                        {{ \Carbon\Carbon::parse($turno->hora)->format('H:i') }}
+                                                    </div>
+
+                                                    <div>
+
+                                                        <div class="text-sm font-semibold text-white">
+                                                            {{ $turno->solicitud->activo->categoria->nombre
+                                                                ?? 'Activo' }}
+                                                        </div>
+
+                                                        <div class="text-xs text-gray-400">
+
+                                                            {{ $turno->solicitud->activo->dependencia->nombre
+                                                                ?? $turno->solicitud->activo->dependencia->name
+                                                                ?? 'Sin dependencia' }}
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="text-right">
+
+                                                    <div class="text-xs text-gray-500">
+                                                        Solicitud #{{ $turno->solicitud_id }}
+                                                    </div>
+
+                                                    <span
+                                                        class="text-xs font-semibold text-blue-400"
+                                                    >
+                                                        {{ ucfirst($turno->estado) }}
+                                                    </span>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    @endforeach
+
+                                </div>
+
+                            @else
+
+                                <div
+                                    class="rounded-lg border border-dashed border-gray-700 bg-gray-900 px-5 py-8 text-center"
+                                >
+
+                                    <div class="mb-2 text-3xl">
+                                        📅
+                                    </div>
+
+                                    <p class="text-sm font-semibold text-gray-300">
+                                        No hay turnos registrados para este día.
+                                    </p>
+
+                                    <p class="mt-1 text-xs text-gray-500">
+                                        Puede asignar este horario sin restricciones de cantidad.
+                                    </p>
+
+                                </div>
+
+                            @endif
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- =================================================
+                         FORMULARIO
+                    ================================================== --}}
+                    <div class="rounded-xl border border-gray-700 bg-gray-900 p-5">
+
+                        <div class="mb-5">
+
+                            <h3 class="text-lg font-bold text-white">
+                                Nuevo turno
+                            </h3>
+
+                            <p class="mt-1 text-xs text-gray-500">
+                                Para la solicitud #{{ $solicitud->id }}
+                            </p>
+
+                        </div>
+
 
                         {{-- FECHA --}}
-                        <div>
+                        <div class="mb-4">
 
                             <label
                                 for="fecha"
-                                class="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-400"
+                                class="mb-2 block text-sm font-medium text-gray-300"
                             >
                                 Fecha
                             </label>
@@ -468,24 +767,24 @@
                                 type="date"
                                 wire:model="fecha"
                                 min="{{ now()->format('Y-m-d') }}"
-                                class="w-full rounded-lg border border-gray-700 bg-gray-950 px-4 py-3 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                class="w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2.5 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                             >
 
                             @error('fecha')
-                                <span class="mt-1 block text-xs text-red-400">
+                                <p class="mt-1 text-xs text-red-400">
                                     {{ $message }}
-                                </span>
+                                </p>
                             @enderror
 
                         </div>
 
 
                         {{-- HORA --}}
-                        <div>
+                        <div class="mb-4">
 
                             <label
                                 for="hora"
-                                class="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-400"
+                                class="mb-2 block text-sm font-medium text-gray-300"
                             >
                                 Hora
                             </label>
@@ -494,24 +793,24 @@
                                 id="hora"
                                 type="time"
                                 wire:model="hora"
-                                class="w-full rounded-lg border border-gray-700 bg-gray-950 px-4 py-3 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                class="w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2.5 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                             >
 
                             @error('hora')
-                                <span class="mt-1 block text-xs text-red-400">
+                                <p class="mt-1 text-xs text-red-400">
                                     {{ $message }}
-                                </span>
+                                </p>
                             @enderror
 
                         </div>
 
 
                         {{-- OBSERVACIONES --}}
-                        <div>
+                        <div class="mb-5">
 
                             <label
                                 for="observaciones"
-                                class="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-400"
+                                class="mb-2 block text-sm font-medium text-gray-300"
                             >
                                 Observaciones
                             </label>
@@ -521,47 +820,71 @@
                                 wire:model="observaciones"
                                 rows="4"
                                 maxlength="1000"
-                                placeholder="Observaciones relacionadas con el turno..."
-                                class="w-full resize-none rounded-lg border border-gray-700 bg-gray-950 px-4 py-3 text-sm text-white placeholder-gray-600 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                class="w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2.5 text-sm text-white placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                placeholder="Observaciones relacionadas con la recepción..."
                             ></textarea>
 
                             @error('observaciones')
-                                <span class="mt-1 block text-xs text-red-400">
+                                <p class="mt-1 text-xs text-red-400">
                                     {{ $message }}
-                                </span>
+                                </p>
                             @enderror
 
                         </div>
 
-                    </div>
 
-
-                    {{-- ACCIONES --}}
-                    <div class="flex flex-col-reverse gap-3 border-t border-gray-800 px-5 py-4 sm:flex-row sm:justify-end">
-
-                        <button
-                            type="button"
-                            wire:click="cerrarTurno"
-                            class="rounded-lg border border-gray-700 bg-gray-800 px-5 py-2.5 text-sm font-semibold text-gray-300 transition hover:bg-gray-700"
+                        {{-- INFORMACIÓN --}}
+                        <div
+                            class="mb-5 rounded-lg border border-blue-800/40 bg-blue-900/20 p-3"
                         >
-                            Cancelar
-                        </button>
 
-                        <button
-                            type="button"
-                            wire:click="asignarTurno"
-                            wire:loading.attr="disabled"
-                            wire:target="asignarTurno"
-                            class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
-                        >
-                            <span wire:loading.remove wire:target="asignarTurno">
-                                Confirmar turno
-                            </span>
+                            <div class="flex gap-2">
 
-                            <span wire:loading wire:target="asignarTurno">
-                                Guardando...
-                            </span>
-                        </button>
+                                <span class="text-blue-400">
+                                    ℹ
+                                </span>
+
+                                <p class="text-xs leading-relaxed text-blue-300">
+                                    Los turnos organizan la recepción de los equipos.
+                                    La existencia de otros turnos en el mismo horario
+                                    no impide asignar uno nuevo.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- BOTONES --}}
+                        <div class="flex flex-col gap-2">
+
+                            <button
+                                wire:click="asignarTurno"
+                                wire:loading.attr="disabled"
+                                type="button"
+                                class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+                            >
+
+                                <span wire:loading.remove wire:target="asignarTurno">
+                                    Confirmar turno
+                                </span>
+
+                                <span wire:loading wire:target="asignarTurno">
+                                    Asignando...
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                wire:click="cerrarTurno"
+                                type="button"
+                                class="rounded-lg px-4 py-3 text-sm font-semibold text-gray-400 transition hover:bg-gray-700 hover:text-white"
+                            >
+                                Cancelar
+                            </button>
+
+                        </div>
 
                     </div>
 
@@ -570,6 +893,143 @@
             </div>
 
         @endif
+
+
+        {{-- ============================================================
+             INFORMACIÓN DEL FLUJO
+        ============================================================ --}}
+        <div
+            class="rounded-xl border border-gray-700 bg-gray-800 p-5 shadow-lg"
+        >
+
+            <div class="mb-4">
+
+                <h2 class="text-lg font-bold text-white">
+                    Flujo de la solicitud
+                </h2>
+
+                <p class="text-sm text-gray-400">
+                    Seguimiento general del proceso de reparación.
+                </p>
+
+            </div>
+
+
+            <div class="overflow-x-auto">
+
+                <div class="flex min-w-[800px] items-center justify-between gap-2">
+
+                    {{-- SOLICITUD --}}
+                    <div class="flex flex-col items-center text-center">
+
+                        <div
+                            class="flex h-10 w-10 items-center justify-center rounded-full
+                            {{ in_array($solicitud->estado, ['pendiente', 'turnada', 'recepcionada', 'en_diagnostico', 'en_reparacion', 'esperando_repuesto', 'reparada', 'lista_para_retirar', 'entregada'])
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-700 text-gray-500' }}"
+                        >
+                            1
+                        </div>
+
+                        <span class="mt-2 text-xs text-gray-400">
+                            Solicitud
+                        </span>
+
+                    </div>
+
+
+                    <div class="h-px flex-1 bg-gray-700"></div>
+
+
+                    {{-- TURNO --}}
+                    <div class="flex flex-col items-center text-center">
+
+                        <div
+                            class="flex h-10 w-10 items-center justify-center rounded-full
+                            {{ $solicitud->turno || in_array($solicitud->estado, ['turnada', 'recepcionada', 'en_diagnostico', 'en_reparacion', 'esperando_repuesto', 'reparada', 'lista_para_retirar', 'entregada'])
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-700 text-gray-500' }}"
+                        >
+                            2
+                        </div>
+
+                        <span class="mt-2 text-xs text-gray-400">
+                            Turno
+                        </span>
+
+                    </div>
+
+
+                    <div class="h-px flex-1 bg-gray-700"></div>
+
+
+                    {{-- RECEPCIÓN --}}
+                    <div class="flex flex-col items-center text-center">
+
+                        <div
+                            class="flex h-10 w-10 items-center justify-center rounded-full
+                            {{ in_array($solicitud->estado, ['recepcionada', 'en_diagnostico', 'en_reparacion', 'esperando_repuesto', 'reparada', 'lista_para_retirar', 'entregada'])
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-700 text-gray-500' }}"
+                        >
+                            3
+                        </div>
+
+                        <span class="mt-2 text-xs text-gray-400">
+                            Recepción
+                        </span>
+
+                    </div>
+
+
+                    <div class="h-px flex-1 bg-gray-700"></div>
+
+
+                    {{-- REPARACIÓN --}}
+                    <div class="flex flex-col items-center text-center">
+
+                        <div
+                            class="flex h-10 w-10 items-center justify-center rounded-full
+                            {{ in_array($solicitud->estado, ['en_diagnostico', 'en_reparacion', 'esperando_repuesto', 'reparada'])
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-700 text-gray-500' }}"
+                        >
+                            4
+                        </div>
+
+                        <span class="mt-2 text-xs text-gray-400">
+                            Reparación
+                        </span>
+
+                    </div>
+
+
+                    <div class="h-px flex-1 bg-gray-700"></div>
+
+
+                    {{-- ENTREGA --}}
+                    <div class="flex flex-col items-center text-center">
+
+                        <div
+                            class="flex h-10 w-10 items-center justify-center rounded-full
+                            {{ in_array($solicitud->estado, ['lista_para_retirar', 'entregada'])
+                                ? 'bg-green-600 text-white'
+                                : 'bg-gray-700 text-gray-500' }}"
+                        >
+                            5
+                        </div>
+
+                        <span class="mt-2 text-xs text-gray-400">
+                            Entrega
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
