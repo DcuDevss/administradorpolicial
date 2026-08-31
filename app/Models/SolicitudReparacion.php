@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SolicitudReparacion extends Model
 {
@@ -35,5 +36,16 @@ class SolicitudReparacion extends Model
     public function usuario(): BelongsTo
     {
         return $this->belongsTo(User::class, 'usuario_id');
+    }
+
+    /**
+     * Turno asignado a la solicitud.
+     */
+    public function turno(): HasOne
+    {
+        return $this->hasOne(
+            TurnoReparacion::class,
+            'solicitud_id'
+        );
     }
 }

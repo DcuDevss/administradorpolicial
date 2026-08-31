@@ -1,278 +1,482 @@
-<div class="container mx-auto p-1">
+<div class="container mx-auto p-2">
 
-    <div class="relative" x-data="{ open: false }">
-        <button @click="open = !open"
-            class="inline-flex items-center justify-center float-right mr-4 px-3 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition group">
-            Inventarios
-            <!-- Icono de flecha hacia abajo para indicar que es un menú desplegable -->
-            <svg x-bind:class="{ 'rotate-180': open }"
-                class="w-4 h-4 ml-1 -mr-1 transform transition-transform ease-in-out duration-200" fill="none"
-                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7">
-                </path>
-            </svg>
-        </button>
+    {{-- =========================================================
+         ENCABEZADO
+    ========================================================== --}}
+    <div class="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
-        <!-- Contenedor del menú desplegable -->
-        <div x-show="open" @click.away="open = false"
-            class="absolute right-0 mt-2 py-2 w-32 bg-white border border-gray-300 rounded-md shadow-lg">
-            <!-- Opciones del menú -->
-            <a href="{{ route('createInventarioGeneral') }}"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Dependencias Operativas</a>
-            <a href="{{ route('createInvestigacionesGeneral') }}"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Investigaciones </a>
-            <a href="{{ route('createAdministracionGeneral') }}"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Administracion </a>
-            <a href="{{ route('createAdministracionGeneral') }}"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Recursos Humanos </a>
-            <a href="{{ route('createJefaturaGeneral') }}"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500">Jefatura </a>
+        <div>
+            <h1 class="text-2xl font-bold text-white">
+                Notificaciones
+            </h1>
+
+            <p class="mt-1 text-sm text-gray-400">
+                Solicitudes de reparación y novedades del Área de Reparaciones.
+            </p>
         </div>
+
+
+        {{-- =====================================================
+             INVENTARIOS
+        ====================================================== --}}
+        <div class="relative" x-data="{ open: false }">
+
+            <button type="button" @click="open = !open"
+                class="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-3 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-blue-500 focus:outline-none">
+                Inventarios
+
+                <svg x-bind:class="{ 'rotate-180': open }"
+                    class="ml-1 h-4 w-4 transform transition-transform duration-200" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+
+            <div x-show="open" @click.away="open = false" x-transition style="display: none;"
+                class="absolute right-0 z-50 mt-2 w-52 overflow-hidden rounded-md border border-gray-600 bg-gray-800 py-1 shadow-xl">
+
+                <a href="{{ route('createInventarioGeneral') }}"
+                    class="block px-4 py-2 text-sm text-gray-200 transition hover:bg-blue-600 hover:text-white">
+                    Dependencias Operativas
+                </a>
+
+                <a href="{{ route('createInvestigacionesGeneral') }}"
+                    class="block px-4 py-2 text-sm text-gray-200 transition hover:bg-blue-600 hover:text-white">
+                    Investigaciones
+                </a>
+
+                <a href="{{ route('createAdministracionGeneral') }}"
+                    class="block px-4 py-2 text-sm text-gray-200 transition hover:bg-blue-600 hover:text-white">
+                    Administración
+                </a>
+
+                <a href="{{ route('createAdministracionGeneral') }}"
+                    class="block px-4 py-2 text-sm text-gray-200 transition hover:bg-blue-600 hover:text-white">
+                    Recursos Humanos
+                </a>
+
+                <a href="{{ route('createJefaturaGeneral') }}"
+                    class="block px-4 py-2 text-sm text-gray-200 transition hover:bg-blue-600 hover:text-white">
+                    Jefatura
+                </a>
+
+            </div>
+        </div>
+
     </div>
-    <h1 class="text-2xl text-red-700 font-bold my-3">Notificaciones de trabajos</h1>
-    <div class="mb-4">
-        <input wire:model="search" type="text" class="rounded-md" placeholder="Buscar por nombre, mensaje o fecha">
+
+
+    {{-- =========================================================
+         RESUMEN
+    ========================================================== --}}
+    <div class="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+        {{-- TOTAL --}}
+        <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                        Total
+                    </p>
+
+                    <p class="mt-1 text-2xl font-bold text-white">
+                        {{ $notificaciones->total() }}
+                    </p>
+                </div>
+
+                <div class="rounded-lg bg-blue-500/20 p-3 text-blue-400">
+                    🔔
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {{-- SIN LEER --}}
+        <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                        Sin leer
+                    </p>
+
+                    <p class="mt-1 text-2xl font-bold text-pink-400">
+                        {{ auth()->user()->unreadNotifications->count() }}
+                    </p>
+                </div>
+
+                <div class="rounded-lg bg-pink-500/20 p-3 text-pink-400">
+                    ●
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {{-- MOSTRANDO --}}
+        <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                        Mostrando
+                    </p>
+
+                    <p class="mt-1 text-2xl font-bold text-white">
+                        {{ $notificaciones->count() }}
+                    </p>
+                </div>
+
+                <div class="rounded-lg bg-gray-700 p-3 text-gray-300">
+                    📋
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-    <ul class="border border-gray-300 rounded-md p-2">
+
+
+    {{-- =========================================================
+         BÚSQUEDA
+    ========================================================== --}}
+    <div class="mb-6">
+
+        <input wire:model.live.debounce.300ms="search" type="text"
+            class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-sm text-white placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 md:w-96"
+            placeholder="Buscar notificaciones...">
+
+    </div>
+
+
+    {{-- =========================================================
+         LISTADO
+    ========================================================== --}}
+    <div class="space-y-4">
+
         @forelse ($notificaciones as $notificacion)
-            <li class="py-1">
-                <div class="flex justify-between items-center mt-2">
-                    <div>
+
+            @php
+                $data = is_array($notificacion->data) ? $notificacion->data : json_decode($notificacion->data, true);
+
+                $data = $data ?? [];
+
+                $esNoLeida = is_null($notificacion->read_at);
+
+                $titulo = $data['titulo'] ?? 'Nueva notificación';
+
+                $mensaje = $data['mensaje'] ?? ($data['descripcion'] ?? 'Sin información disponible.');
+
+                $descripcion = $data['descripcion'] ?? null;
+
+                $prioridad = $data['prioridad'] ?? null;
+
+                $solicitudId = $data['solicitud_id'] ?? null;
+
+                $activoId = $data['activo_id'] ?? null;
+
+                $usuarioId = $data['usuario_id'] ?? null;
+            @endphp
+
+
+            {{-- =================================================
+                 NOTIFICACIÓN
+            ================================================== --}}
+            <div
+                class="{{ $esNoLeida ? 'border-pink-500/60 bg-gray-800 ring-1 ring-pink-500/20' : 'border-gray-700 bg-gray-800/90' }} overflow-hidden rounded-xl border shadow-lg transition">
+
+                {{-- =============================================
+                     CABECERA
+                ============================================== --}}
+                <div
+                    class="flex flex-col gap-3 border-b border-gray-700 px-4 py-4 md:flex-row md:items-center md:justify-between">
+
+                    <div class="flex items-center gap-3">
+
+                        {{-- INDICADOR --}}
+                        <div
+                            class="{{ $esNoLeida ? 'bg-pink-500 shadow-lg shadow-pink-500/50 animate-pulse' : 'bg-gray-500' }} h-3 w-3 shrink-0 rounded-full">
+                        </div>
+
+
                         <div>
-                            <button wire:click="cambiarEstado({{ $notificacion->id }})">
-                                <div
-                                    class="w-4 h-4 {{ $notificacion->activa ? 'font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white animate-pulse' : 'bg-red-500' }} rounded-full">
-                                </div>
-                            </button>
-                            <strong
-                                class="text-center {{ $notificacion->activa ? 'font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white animate-pulse' : 'text-red-500' }}">
-                                {{ $notificacion->activa ? 'Activa' : 'Inactiva' }}
-                            </strong>
-                        </div>
-                        <strong class="text-white">Remitente: {{ $notificacion->usercomisaria->name }}</strong> <br>
-                        <strong class="text-white">Fecha: {{ $notificacion->created_at }}</strong> <br>
-                        <strong class="text-white">Mensaje: {{ $notificacion->mensaje }}</strong> <br>
 
-                        @foreach ($notificacion->respuestas as $respuesta)
-                            <div>
-                                <strong class="text-pink-400">Fecha del trabajo realizado:
-                                    {{ $respuesta->created_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i:s') }}</strong>
-                                <br>
-                                <strong class="text-pink-400">Detalles de lo Realizado:
-                                    {{ $respuesta->mensaje }}</strong> <br>
+                            <div class="flex flex-wrap items-center gap-2">
+
+                                <h2 class="text-sm font-bold text-white">
+                                    {{ $titulo }}
+                                </h2>
+
+                                @if ($esNoLeida)
+                                    <span
+                                        class="rounded-full bg-pink-600 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                                        Nueva
+                                    </span>
+                                @else
+                                    <span
+                                        class="rounded-full bg-gray-700 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+                                        Leída
+                                    </span>
+                                @endif
+
                             </div>
-                        @endforeach
-                        <strong
-                            class="text-gray-300">----------------------------------------------------------------------------</strong>
-                    </div>
-
-                    <div class="text-end">
-                        @foreach ($users as $key => $user)
-                            @if ($user->id == $notificacion->usercomisaria->id)
-                                <button wire:click="message({{ $user->id }})"
-                                    class="bg-black rounded-md p-3 text-white">
-                                    Enviar Mensaje
-                                </button>
-                                @livewire('enviar-respuesta', ['notificacionId' => $notificacion->id], key($notificacion->id))
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            </li>
-        @empty
-            <li class="py-2 text-white">No hay notificaciones disponibles.</li>
-        @endforelse
-    </ul>
-    {{ $notificaciones->links() }}
-</div>
 
 
+                            <p class="mt-1 text-xs text-gray-500">
+                                Tipo:
+                                {{ class_basename($notificacion->type) }}
+                            </p>
 
-
-
-
-
-
-<!-- resources/views/livewire/ver-notificaciones.blade.php -->
-{{--
-@if (session()->has('nuevaRespuesta'))
-    <div class="p-4 bg-green-500 text-white font-bold">
-        ¡Tienes una nueva respuesta del técnico!
-    </div>
-@endif
-
-<div class="container mx-auto p-1">
-    <!-- ... -->
-</div>  --}}
-
-{{-- resources/views/livewire/ver-notificaciones.blade.php
-
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Notificaciones</h1>
-    <div class="overflow-x-auto">
-        <table class="w-full border border-gray-300 rounded-md">
-            <thead>
-                <tr>
-
-                    <th class="p-2">Remitente</th>
-                    <th class="p-2">Fecha</th>
-                    <th class="p-2">Mensaje</th>
-                    <th class="p-2">Formulario</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($notificaciones as $notificacion)
-                    <tr class="border-t">
-
-                        <td class="p-2">{{ $notificacion->usercomisaria->name }}</td>
-                        <td class="p-2">{{ $notificacion->created_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i:s') }}</td>
-                        <td class="p-2 max-w-sm whitespace-pre-wrap break-words">{{ $notificacion->mensaje }}</td>
-                        <td>
-
-                        <div class="flex items-center">
-                            <button wire:click="cambiarEstado({{ $notificacion->id }})">
-                                <div class="w-4 h-4 {{ $notificacion->activa ? 'bg-blue-500' : 'bg-red-500' }} rounded-full"></div>
-                            </button>
-                            <strong class="text-center {{ $notificacion->activa ? 'text-blue-500' : 'text-red-500' }}">
-                                {{ $notificacion->activa ? 'Activa' : 'Inactiva' }}
-                            </strong>
-
-                           @livewire('enviar-respuesta', ['notificacionId' => $notificacion->id], key($notificacion->id))
                         </div>
-                    </td>
-                    </tr>
-                    @foreach ($notificacion->respuestas as $respuesta)
-                        <tr class="border-t">
-                             <td class="p-2"></td>
-                            <td class="p-2">{{ $respuesta->user->name }}</td>
-                            <td class="p-2">{{ $respuesta->created_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i:s') }}</td>
-                            <td class="p-2 max-w-sm whitespace-pre-wrap break-words">
-                                <strong>Trabajo Realizado:</strong> {{ $respuesta->mensaje }}
-                            </td>
-                        </tr>
-                    @endforeach
-                @empty
-                    <tr>
-                        <td class="p-2 text-center" colspan="4">No hay notificaciones disponibles.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+
+                    </div>
+
+
+                    {{-- FECHA --}}
+                    <div class="text-xs text-gray-400">
+
+                        {{ $notificacion->created_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i:s') }}
+
+                    </div>
+
+                </div>
+
+
+                {{-- =============================================
+                     CONTENIDO
+                ============================================== --}}
+                <div class="grid gap-5 p-5 lg:grid-cols-3">
+
+
+                    {{-- =========================================
+                         INFORMACIÓN
+                    ========================================== --}}
+                    <div class="lg:col-span-2">
+
+
+                        {{-- MENSAJE --}}
+                        <div class="mb-5">
+
+                            <div class="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                                Mensaje
+                            </div>
+
+                            <div
+                                class="rounded-lg border border-gray-700 bg-gray-900 p-4 text-sm leading-relaxed text-gray-200">
+                                {{ $mensaje }}
+                            </div>
+
+                        </div>
+
+
+                        {{-- DESCRIPCIÓN --}}
+                        @if ($descripcion && $descripcion !== $mensaje)
+                            <div class="mb-5">
+
+                                <div class="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                                    Descripción
+                                </div>
+
+                                <div
+                                    class="rounded-lg border border-gray-700 bg-gray-900/70 p-4 text-sm leading-relaxed text-gray-300">
+                                    {{ $descripcion }}
+                                </div>
+
+                            </div>
+                        @endif
+
+
+                        {{-- =====================================
+                             DATOS DE SOLICITUD
+                        ====================================== --}}
+                        @if ($solicitudId || $activoId || $prioridad)
+                            <div class="grid gap-3 sm:grid-cols-3">
+
+
+                                @if ($solicitudId)
+                                    <div class="rounded-lg border border-gray-700 bg-gray-900 p-3">
+
+                                        <p class="text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+                                            Solicitud
+                                        </p>
+
+                                        <p class="mt-1 text-sm font-bold text-white">
+                                            #{{ $solicitudId }}
+                                        </p>
+
+                                    </div>
+                                @endif
+
+
+                                @if ($activoId)
+                                    <div class="rounded-lg border border-gray-700 bg-gray-900 p-3">
+
+                                        <p class="text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+                                            Activo
+                                        </p>
+
+                                        <p class="mt-1 text-sm font-bold text-white">
+                                            #{{ $activoId }}
+                                        </p>
+
+                                    </div>
+                                @endif
+
+
+                                @if ($prioridad)
+                                    <div class="rounded-lg border border-gray-700 bg-gray-900 p-3">
+
+                                        <p class="text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+                                            Prioridad
+                                        </p>
+
+                                        <p
+                                            class="{{ strtolower($prioridad) === 'alta'
+                                                ? 'text-red-400'
+                                                : (strtolower($prioridad) === 'media'
+                                                    ? 'text-yellow-400'
+                                                    : 'text-green-400') }} mt-1 text-sm font-bold uppercase">
+                                            {{ $prioridad }}
+                                        </p>
+
+                                    </div>
+                                @endif
+
+                            </div>
+                        @endif
+
+
+                    </div>
+
+
+                    {{-- =========================================
+                         ACCIONES
+                    ========================================== --}}
+                    <div class="flex flex-col gap-3 lg:border-l lg:border-gray-700 lg:pl-5">
+
+                        <div class="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            Acciones
+                        </div>
+
+
+                        {{-- SOLICITUD --}}
+                        @if ($solicitudId)
+                            <a href="{{ route('solicitudes-reparacion.detalle', $solicitudId) }}"
+                                class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500">
+                                Ver solicitud
+                            </a>
+                        @endif
+
+                        {{-- ACTIVO --}}
+                        @if ($activoId)
+                            <div class="rounded-lg border border-gray-700 bg-gray-900 px-4 py-3">
+
+                                <p class="text-xs text-gray-500">
+                                    Activo relacionado
+                                </p>
+
+                                <p class="mt-1 text-sm font-semibold text-gray-200">
+                                    Equipo #{{ $activoId }}
+                                </p>
+
+                            </div>
+                        @endif
+
+
+                        {{-- ESTADO --}}
+                        <div class="rounded-lg border border-gray-700 bg-gray-900 px-4 py-3">
+
+                            <p class="text-xs text-gray-500">
+                                Estado
+                            </p>
+
+                            <p class="{{ $esNoLeida ? 'text-pink-400' : 'text-gray-400' }} mt-1 text-sm font-semibold">
+                                {{ $esNoLeida ? 'Pendiente de lectura' : 'Leída' }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {{-- =============================================
+                     PIE
+                ============================================== --}}
+                <div class="border-t border-gray-700 bg-gray-900/50 px-4 py-3">
+
+                    <div
+                        class="flex flex-col gap-2 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+
+                        <span>
+                            ID de notificación:
+                            <span class="font-mono text-gray-400">
+                                {{ $notificacion->id }}
+                            </span>
+                        </span>
+
+
+                        @if ($notificacion->read_at)
+                            <span>
+                                Leída:
+                                {{ $notificacion->read_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i:s') }}
+                            </span>
+                        @else
+                            <span class="font-semibold text-pink-400">
+                                ● Sin leer
+                            </span>
+                        @endif
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        @empty
+
+            {{-- =================================================
+                 SIN NOTIFICACIONES
+            ================================================== --}}
+            <div class="rounded-xl border border-gray-700 bg-gray-800 px-6 py-12 text-center shadow-lg">
+
+                <div class="mb-4 text-5xl">
+                    🔔
+                </div>
+
+                <h3 class="text-lg font-semibold text-white">
+                    No hay notificaciones
+                </h3>
+
+                <p class="mx-auto mt-2 max-w-md text-sm text-gray-400">
+                    No se encontraron notificaciones para el usuario actual
+                    con los criterios de búsqueda seleccionados.
+                </p>
+
+            </div>
+
+        @endforelse
+
     </div>
-    {{ $notificaciones->links() }}
-</div> --}}
 
 
-{{-- 11111111
-<div class="container mx-auto p-1">
-    <h1 class="text-2xl font-bold mb-1">Notificaciones</h1>
-    <div class="overflow-x-auto">
-        <table class="w-full border border-gray-300 rounded-md">
-            <thead>
-                <tr>
-                    <th class="p-2">Estado</th>
-                    <th class="p-2">Remitente</th>
-                    <th class="p-2">Fecha</th>
-                    <th class="p-2">Mensaje</th>
-                    <th class="p-2">Respuesta</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($notificaciones as $notificacion)
-                    <tr class="border-t">
-                        <td class="p-2">
-                            <button wire:click="cambiarEstado({{ $notificacion->id }})">
-                                <div class="w-4 h-4 {{ $notificacion->activa ? 'bg-blue-500' : 'bg-red-500' }} rounded-full"></div>
-                            </button>
-                            <strong class="text-center {{ $notificacion->activa ? 'text-blue-500' : 'text-red-500' }}">
-                                {{ $notificacion->activa ? 'Activa' : 'Inactiva' }}
-                            </strong>
-                        </td>
-                        <td class="p-2">{{ $notificacion->usercomisaria->name }}</td>
-                        <td class="p-2">{{ $notificacion->created_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i:s') }}</td>
-                        <td class="p-2 max-w-sm whitespace-pre-wrap break-words">{{ $notificacion->mensaje }}</td>
-                        <td class="p-2">
-                            @livewire('enviar-respuesta', ['notificacionId' => $notificacion->id], key($notificacion->id))
-                        </td>
-                    </tr>
-                    <tr>
+    {{-- =========================================================
+         PAGINACIÓN
+    ========================================================== --}}
+    @if ($notificaciones->hasPages())
+        <div class="mt-6 rounded-lg border border-gray-700 bg-gray-800 p-3">
+            {{ $notificaciones->links() }}
+        </div>
+    @endif
 
-                    </tr>
-                @empty
-                    <tr>
-                        <td class="p-2 text-center" colspan="5">No hay notificaciones disponibles.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-    {{ $notificaciones->links() }}        <a class="inline-flex items-center justify-center float-right mr-4 px-3 py-2 bg-slate-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-slate-600 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"
-                href="{{route('userpolicia')}}">Elegir dependencia</a>
 </div>
- --}}
-
-{{-- <div class="container mx-auto p-1">
-    <h1 class="text-2xl font-bold mb-1">Notificaciones</h1>
-    <ul class="border border-gray-300 rounded-md p-2">
-        @forelse ($notificaciones as $notificacion)
-            <li class="py-1">
-                <div class="flex justify-between items-center">
-                    <div>
-                    <div>
-                        <button wire:click="cambiarEstado({{ $notificacion->id }})">
-                            <div class="w-4 h-4 {{ $notificacion->activa ? 'bg-blue-500' : 'bg-red-500' }} rounded-full"></div>
-                        </button>
-                        <strong class="text-center {{ $notificacion->activa ? 'text-blue-500' : 'text-red-500' }}">
-                            {{ $notificacion->activa ? 'Activa' : 'Inactiva' }}
-                        </strong>
-                    </div>
-                        <strong>Remitente:</strong> {{ $notificacion->usercomisaria->name }}<br>
-                        <strong>Fecha:</strong> {{ ($notificacion->created_at)->format('d/m/Y H:i:s') }}<br>
-                        <strong>Mensaje:</strong> {{ $notificacion->mensaje }}
-                    </div>
-
-                    <div class="flex items-center space-x-2">
-
-
-
-                        @livewire('enviar-respuesta', ['notificacionId' => $notificacion->id], key($notificacion->id))
-                    </div>
-                </div>
-            </li>
-        @empty
-            <li class="py-2">No hay notificaciones disponibles.</li>
-        @endforelse
-    </ul>
-  {{ $notificaciones->links() }}
-</div> --}}
-
-
-{{--  <div class="container mx-auto p-1">
-    <h1 class="text-2xl font-bold mb-1">Notificaciones</h1>
-    <ul class="border border-gray-300 rounded-md p-2">
-        @forelse ($notificaciones as $notificacion)
-            <li class="py-1">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <strong>Remitente:</strong> {{ $notificacion->usercomisaria->name }}<br>
-                        <strong>Fecha:</strong> {{ $notificacion->created_at }}<br>
-                        <strong>Mensaje:</strong> {{ $notificacion->mensaje }}
-                    </div>
-                    <div class="flex items-center">
-                        <button wire:click="cambiarEstado({{ $notificacion->id }})">
-                            <div class="w-4 h-4 {{ $notificacion->activa ? 'bg-blue-500' : 'bg-red-500' }} rounded-full mr-2"></div>
-                        </button>
-                        <strong class="{{ $notificacion->activa ? 'text-blue-500' : 'text-red-500' }}">
-                            {{ $notificacion->activa ? 'Activa' : 'Inactiva' }}
-                        </strong>
-
-                        @livewire('enviar-respuesta', ['notificacionId' => $notificacion->id], key($notificacion->id))
-                    </div>
-                </div>
-            </li>
-        @empty
-            <li class="py-2">No hay notificaciones disponibles.</li>
-        @endforelse
-    </ul>
-  {{ $notificaciones->links() }}
-</div> --}}
