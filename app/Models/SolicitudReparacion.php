@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SolicitudReparacion extends Model
@@ -48,4 +49,21 @@ class SolicitudReparacion extends Model
             'solicitud_id'
         );
     }
+    
+    public function recepciones(): HasMany
+    {
+        return $this->hasMany(
+            Recepcion::class,
+            'solicitud_reparacion_id'
+        );
+    }
+
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(
+            TicketReparacion::class,
+            'solicitud_reparacion_id'
+        );
+    }
+
 }
