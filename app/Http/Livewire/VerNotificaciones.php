@@ -63,28 +63,28 @@ class VerNotificaciones extends Component
         $user = auth()->user();
 
         $query = $user->notificacionesRecibidas()
-                       ->with('respuestas')
-                       ->orderByDesc('id'); // Ordenar por ID de manera descendente
+            ->with('respuestas')
+            ->orderByDesc('id');
 
-        // Aplico filtro de búsqueda si hay un valor en $search
         if (!empty($this->search)) {
             $query->where(function ($q) {
                 $q->where('mensaje', 'LIKE', '%' . $this->search . '%')
-                  ->orWhere('created_at', 'LIKE', '%' . $this->search . '%')
-                  ->orWhereHas('usercomisaria', function ($q) {
-                      $q->where('name', 'LIKE', '%' . $this->search . '%');
-                  });
+                    ->orWhere('created_at', 'LIKE', '%' . $this->search . '%')
+                    ->orWhereHas('usercomisaria', function ($q) {
+                        $q->where('name', 'LIKE', '%' . $this->search . '%');
+                    });
             });
         }
 
         $notificaciones = $query->paginate(5);
 
-        $borrar=auth()->user()->unreadNotifications->markAsRead();
-        //$this->emit('notificationsUpdated');
-
-        return view('livewire.ver-notificaciones', compact('notificaciones','borrar'), [
-            'users' => User::where('id', '!=', auth()->id())->get()
-        ]);
+        return view(
+            'livewire.ver-notificaciones',
+            compact('notificaciones'),
+            [
+                'users' => User::where('id', '!=', auth()->id())->get()
+            ]
+        );
     }
 
     public function cambiarEstado($notificacionId)
