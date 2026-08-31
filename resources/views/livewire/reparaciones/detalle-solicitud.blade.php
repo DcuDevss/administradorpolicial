@@ -9,10 +9,7 @@
 
             <div>
                 <div class="mb-1 flex items-center gap-2">
-                    <a
-                        href="{{ url()->previous() }}"
-                        class="text-sm text-gray-400 transition hover:text-white"
-                    >
+                    <a href="{{ url()->previous() }}" class="text-sm text-gray-400 transition hover:text-white">
                         ← Volver
                     </a>
                 </div>
@@ -29,8 +26,7 @@
             <div class="flex items-center gap-2">
 
                 <span
-                    class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold
-                    @switch($solicitud->estado)
+                    class="@switch($solicitud->estado)
                         @case('pendiente')
                             bg-yellow-900/40 text-yellow-300
                             @break
@@ -73,9 +69,7 @@
 
                         @default
                             bg-gray-700 text-gray-300
-                    @endswitch
-                    "
-                >
+                    @endswitch inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold">
                     Estado:
                     {{ ucfirst(str_replace('_', ' ', $solicitud->estado)) }}
                 </span>
@@ -89,10 +83,7 @@
              MENSAJE DE ÉXITO
         ============================================================ --}}
         @if (session()->has('success'))
-
-            <div
-                class="mb-6 rounded-lg border border-green-700/50 bg-green-900/30 px-4 py-3 text-sm text-green-300"
-            >
+            <div class="mb-6 rounded-lg border border-green-700/50 bg-green-900/30 px-4 py-3 text-sm text-green-300">
                 <div class="flex items-center gap-2">
                     <span class="text-lg">✓</span>
 
@@ -101,7 +92,6 @@
                     </span>
                 </div>
             </div>
-
         @endif
 
 
@@ -109,13 +99,9 @@
              ERROR GENERAL
         ============================================================ --}}
         @error('general')
-
-            <div
-                class="mb-6 rounded-lg border border-red-700/50 bg-red-900/30 px-4 py-3 text-sm text-red-300"
-            >
+            <div class="mb-6 rounded-lg border border-red-700/50 bg-red-900/30 px-4 py-3 text-sm text-red-300">
                 {{ $message }}
             </div>
-
         @enderror
 
 
@@ -143,13 +129,9 @@
                             </p>
                         </div>
 
-                        <div
-                            class="rounded-lg bg-gray-900 px-3 py-2 text-xs text-gray-400"
-                        >
+                        <div class="rounded-lg bg-gray-900 px-3 py-2 text-xs text-gray-400">
                             {{ $solicitud->created_at
-                                ? $solicitud->created_at
-                                    ->tz('America/Argentina/Buenos_Aires')
-                                    ->format('d/m/Y H:i')
+                                ? $solicitud->created_at->tz('America/Argentina/Buenos_Aires')->format('d/m/Y H:i')
                                 : '-' }}
                         </div>
 
@@ -182,8 +164,7 @@
                         </div>
 
                         <span
-                            class="inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase
-                            @switch($solicitud->prioridad)
+                            class="@switch($solicitud->prioridad)
                                 @case('urgente')
                                     bg-red-900/50 text-red-300
                                     @break
@@ -198,9 +179,7 @@
 
                                 @default
                                     bg-green-900/50 text-green-300
-                            @endswitch
-                            "
-                        >
+                            @endswitch inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase">
                             {{ $solicitud->prioridad }}
                         </span>
 
@@ -229,8 +208,7 @@
                         </div>
 
                         <div
-                            class="rounded-lg border border-gray-700 bg-gray-900 p-4 text-sm leading-relaxed text-gray-300"
-                        >
+                            class="rounded-lg border border-gray-700 bg-gray-900 p-4 text-sm leading-relaxed text-gray-300">
                             {{ $solicitud->descripcion }}
                         </div>
 
@@ -292,7 +270,7 @@
                             Número de serie
                         </div>
 
-                        <div class="mt-1 text-sm font-mono text-gray-300">
+                        <div class="mt-1 font-mono text-sm text-gray-300">
                             {{ $solicitud->activo->numero_serie ?? 'Sin número de serie' }}
                         </div>
                     </div>
@@ -304,9 +282,7 @@
                         </div>
 
                         <div class="mt-1 text-sm font-semibold text-white">
-                            {{ $solicitud->activo->dependencia->nombre
-                                ?? $solicitud->activo->dependencia->name
-                                ?? 'Sin dependencia' }}
+                            {{ $solicitud->activo->dependencia->nombre ?? ($solicitud->activo->dependencia->name ?? 'Sin dependencia') }}
                         </div>
                     </div>
 
@@ -332,16 +308,13 @@
              TURNO ACTUAL
         ============================================================ --}}
         @if ($solicitud->turno)
-
             <div class="mb-6 rounded-xl border border-blue-700/50 bg-blue-900/20 shadow-lg">
 
                 <div class="border-b border-blue-700/40 px-5 py-4">
 
                     <div class="flex items-center gap-3">
 
-                        <div
-                            class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600/30 text-xl"
-                        >
+                        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600/30 text-xl">
                             📅
                         </div>
 
@@ -368,9 +341,7 @@
                         </div>
 
                         <div class="mt-1 text-sm font-bold text-white">
-                            {{ $solicitud->turno->fecha
-                                ? $solicitud->turno->fecha->format('d/m/Y')
-                                : '-' }}
+                            {{ $solicitud->turno->fecha ? $solicitud->turno->fecha->format('d/m/Y') : '-' }}
                         </div>
                     </div>
 
@@ -393,9 +364,7 @@
 
                         <div class="mt-1">
 
-                            <span
-                                class="rounded-full bg-blue-900/50 px-3 py-1 text-xs font-semibold text-blue-300"
-                            >
+                            <span class="rounded-full bg-blue-900/50 px-3 py-1 text-xs font-semibold text-blue-300">
                                 {{ ucfirst($solicitud->turno->estado) }}
                             </span>
 
@@ -416,7 +385,6 @@
                 </div>
 
             </div>
-
         @endif
 
 
@@ -526,29 +494,134 @@
             </div>
 
         </div>
-
-
         {{-- ============================================================
-             BOTÓN ASIGNAR TURNO
-        ============================================================ --}}
-        @if (!$solicitud->turno)
+                TURNO / RECEPCIÓN
+            ============================================================ --}}
 
-            @if (!in_array($solicitud->estado, ['cancelada', 'cerrada', 'rechazada'], true))
+        @if ($solicitud->turno)
 
-                <div class="mb-6 flex justify-end">
+            {{-- ========================================================
+                TURNO ASIGNADO
+            ========================================================= --}}
 
-                    <button
-                        wire:click="abrirTurno"
-                        type="button"
-                        class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-                    >
-                        <span class="text-lg">📅</span>
+            <div class="mb-6 rounded-xl border border-blue-700/50 bg-blue-900/20 p-5">
 
-                        Asignar turno
-                    </button>
+                <div class="mb-4 flex items-center justify-between">
+
+                    <div class="flex items-center gap-3">
+
+                        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-xl">
+                            📅
+                        </div>
+
+                        <div>
+                            <h2 class="text-lg font-bold text-white">
+                                Turno asignado
+                            </h2>
+
+                            <p class="text-sm text-gray-400">
+                                La solicitud tiene un turno confirmado.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <span class="rounded-full bg-blue-600/20 px-3 py-1 text-xs font-semibold text-blue-400">
+                        {{ ucfirst($solicitud->turno->estado) }}
+                    </span>
 
                 </div>
 
+
+                {{-- DATOS DEL TURNO --}}
+
+                <div class="grid gap-4 md:grid-cols-3">
+
+                    <div class="rounded-lg border border-gray-700 bg-gray-900/60 p-4">
+
+                        <div class="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            Fecha
+                        </div>
+
+                        <div class="mt-1 text-sm font-semibold text-white">
+                            {{ $solicitud->turno->fecha->format('d/m/Y') }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="rounded-lg border border-gray-700 bg-gray-900/60 p-4">
+
+                        <div class="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            Hora
+                        </div>
+
+                        <div class="mt-1 text-sm font-semibold text-white">
+                            {{ \Carbon\Carbon::parse($solicitud->turno->hora)->format('H:i') }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="rounded-lg border border-gray-700 bg-gray-900/60 p-4">
+
+                        <div class="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            Estado de solicitud
+                        </div>
+
+                        <div class="mt-1 text-sm font-semibold text-blue-400">
+                            {{ ucfirst($solicitud->estado) }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {{-- OBSERVACIONES DEL TURNO --}}
+
+                @if ($solicitud->turno->observaciones)
+                    <div class="mt-4 rounded-lg border border-gray-700 bg-gray-900/60 p-4">
+
+                        <div class="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            Observaciones
+                        </div>
+
+                        <div class="mt-1 text-sm text-gray-300">
+                            {{ $solicitud->turno->observaciones }}
+                        </div>
+
+                    </div>
+                @endif
+
+            </div>
+
+
+            {{-- ========================================================
+                RECEPCIÓN DEL EQUIPO
+            ========================================================= --}}
+
+            @livewire('reparaciones.registrar-recepcion', ['solicitud' => $solicitud], key('recepcion-' . $solicitud->id))
+        @else
+            {{-- ========================================================
+                SIN TURNO
+            ========================================================= --}}
+
+            @if (!in_array($solicitud->estado, ['cancelada', 'cerrada', 'rechazada'], true))
+                <div class="mb-6 flex justify-end">
+
+                    <button wire:click="abrirTurno" type="button"
+                        class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+
+                        <span class="text-lg">
+                            📅
+                        </span>
+
+                        Asignar turno
+
+                    </button>
+
+                </div>
             @endif
 
         @endif
@@ -559,9 +632,7 @@
         ============================================================ --}}
         @if ($mostrarTurno)
 
-            <div
-                class="mb-6 overflow-hidden rounded-xl border border-gray-700 bg-gray-800 shadow-2xl"
-            >
+            <div class="mb-6 overflow-hidden rounded-xl border border-gray-700 bg-gray-800 shadow-2xl">
 
                 {{-- CABECERA --}}
                 <div class="border-b border-gray-700 bg-gray-800 px-5 py-4">
@@ -580,11 +651,8 @@
 
                         </div>
 
-                        <button
-                            wire:click="cerrarTurno"
-                            type="button"
-                            class="rounded-lg px-3 py-2 text-sm text-gray-400 transition hover:bg-gray-700 hover:text-white"
-                        >
+                        <button wire:click="cerrarTurno" type="button"
+                            class="rounded-lg px-3 py-2 text-sm text-gray-400 transition hover:bg-gray-700 hover:text-white">
                             ✕ Cerrar
                         </button>
 
@@ -602,21 +670,14 @@
 
                         <div class="mb-4">
 
-                            <label
-                                for="fechaAgenda"
-                                class="mb-2 block text-sm font-semibold text-gray-300"
-                            >
+                            <label for="fechaAgenda" class="mb-2 block text-sm font-semibold text-gray-300">
                                 Fecha de agenda
                             </label>
 
-                            <input
-                                id="fechaAgenda"
-                                type="date"
-                                wire:model.live="fechaAgenda"
+                            <input id="fechaAgenda" type="date" wire:model.live="fechaAgenda"
                                 wire:change="seleccionarFecha($event.target.value)"
                                 min="{{ now()->format('Y-m-d') }}"
-                                class="w-full rounded-lg border border-gray-600 bg-gray-900 px-4 py-3 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 md:max-w-xs"
-                            >
+                                class="w-full rounded-lg border border-gray-600 bg-gray-900 px-4 py-3 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 md:max-w-xs">
 
                         </div>
 
@@ -636,9 +697,7 @@
                                     </p>
                                 </div>
 
-                                <span
-                                    class="rounded-full bg-gray-700 px-3 py-1 text-xs font-semibold text-gray-300"
-                                >
+                                <span class="rounded-full bg-gray-700 px-3 py-1 text-xs font-semibold text-gray-300">
                                     {{ $turnosDelDia->count() }} turno(s)
                                 </span>
 
@@ -650,33 +709,28 @@
                                 <div class="space-y-2">
 
                                     @foreach ($turnosDelDia as $turno)
+                                        <div class="rounded-lg border border-gray-700 bg-gray-900 p-3">
 
-                                        <div
-                                            class="rounded-lg border border-gray-700 bg-gray-900 p-3"
-                                        >
-
-                                            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                            <div
+                                                class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
                                                 <div class="flex items-center gap-3">
 
                                                     <div
-                                                        class="flex min-w-[70px] items-center justify-center rounded-lg bg-blue-900/40 px-3 py-2 text-sm font-bold text-blue-300"
-                                                    >
+                                                        class="flex min-w-[70px] items-center justify-center rounded-lg bg-blue-900/40 px-3 py-2 text-sm font-bold text-blue-300">
                                                         {{ \Carbon\Carbon::parse($turno->hora)->format('H:i') }}
                                                     </div>
 
                                                     <div>
 
                                                         <div class="text-sm font-semibold text-white">
-                                                            {{ $turno->solicitud->activo->categoria->nombre
-                                                                ?? 'Activo' }}
+                                                            {{ $turno->solicitud->activo->categoria->nombre ?? 'Activo' }}
                                                         </div>
 
                                                         <div class="text-xs text-gray-400">
 
-                                                            {{ $turno->solicitud->activo->dependencia->nombre
-                                                                ?? $turno->solicitud->activo->dependencia->name
-                                                                ?? 'Sin dependencia' }}
+                                                            {{ $turno->solicitud->activo->dependencia->nombre ??
+                                                                ($turno->solicitud->activo->dependencia->name ?? 'Sin dependencia') }}
 
                                                         </div>
 
@@ -691,9 +745,7 @@
                                                         Solicitud #{{ $turno->solicitud_id }}
                                                     </div>
 
-                                                    <span
-                                                        class="text-xs font-semibold text-blue-400"
-                                                    >
+                                                    <span class="text-xs font-semibold text-blue-400">
                                                         {{ ucfirst($turno->estado) }}
                                                     </span>
 
@@ -702,16 +754,12 @@
                                             </div>
 
                                         </div>
-
                                     @endforeach
 
                                 </div>
-
                             @else
-
                                 <div
-                                    class="rounded-lg border border-dashed border-gray-700 bg-gray-900 px-5 py-8 text-center"
-                                >
+                                    class="rounded-lg border border-dashed border-gray-700 bg-gray-900 px-5 py-8 text-center">
 
                                     <div class="mb-2 text-3xl">
                                         📅
@@ -755,20 +803,13 @@
                         {{-- FECHA --}}
                         <div class="mb-4">
 
-                            <label
-                                for="fecha"
-                                class="mb-2 block text-sm font-medium text-gray-300"
-                            >
+                            <label for="fecha" class="mb-2 block text-sm font-medium text-gray-300">
                                 Fecha
                             </label>
 
-                            <input
-                                id="fecha"
-                                type="date"
-                                wire:model="fecha"
+                            <input id="fecha" type="date" wire:model="fecha"
                                 min="{{ now()->format('Y-m-d') }}"
-                                class="w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2.5 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                            >
+                                class="w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2.5 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
 
                             @error('fecha')
                                 <p class="mt-1 text-xs text-red-400">
@@ -782,19 +823,12 @@
                         {{-- HORA --}}
                         <div class="mb-4">
 
-                            <label
-                                for="hora"
-                                class="mb-2 block text-sm font-medium text-gray-300"
-                            >
+                            <label for="hora" class="mb-2 block text-sm font-medium text-gray-300">
                                 Hora
                             </label>
 
-                            <input
-                                id="hora"
-                                type="time"
-                                wire:model="hora"
-                                class="w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2.5 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                            >
+                            <input id="hora" type="time" wire:model="hora"
+                                class="w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2.5 text-sm text-white focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
 
                             @error('hora')
                                 <p class="mt-1 text-xs text-red-400">
@@ -808,21 +842,13 @@
                         {{-- OBSERVACIONES --}}
                         <div class="mb-5">
 
-                            <label
-                                for="observaciones"
-                                class="mb-2 block text-sm font-medium text-gray-300"
-                            >
+                            <label for="observaciones" class="mb-2 block text-sm font-medium text-gray-300">
                                 Observaciones
                             </label>
 
-                            <textarea
-                                id="observaciones"
-                                wire:model="observaciones"
-                                rows="4"
-                                maxlength="1000"
+                            <textarea id="observaciones" wire:model="observaciones" rows="4" maxlength="1000"
                                 class="w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2.5 text-sm text-white placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                                placeholder="Observaciones relacionadas con la recepción..."
-                            ></textarea>
+                                placeholder="Observaciones relacionadas con la recepción..."></textarea>
 
                             @error('observaciones')
                                 <p class="mt-1 text-xs text-red-400">
@@ -834,9 +860,7 @@
 
 
                         {{-- INFORMACIÓN --}}
-                        <div
-                            class="mb-5 rounded-lg border border-blue-800/40 bg-blue-900/20 p-3"
-                        >
+                        <div class="mb-5 rounded-lg border border-blue-800/40 bg-blue-900/20 p-3">
 
                             <div class="flex gap-2">
 
@@ -858,12 +882,8 @@
                         {{-- BOTONES --}}
                         <div class="flex flex-col gap-2">
 
-                            <button
-                                wire:click="asignarTurno"
-                                wire:loading.attr="disabled"
-                                type="button"
-                                class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
+                            <button wire:click="asignarTurno" wire:loading.attr="disabled" type="button"
+                                class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50">
 
                                 <span wire:loading.remove wire:target="asignarTurno">
                                     Confirmar turno
@@ -876,11 +896,8 @@
                             </button>
 
 
-                            <button
-                                wire:click="cerrarTurno"
-                                type="button"
-                                class="rounded-lg px-4 py-3 text-sm font-semibold text-gray-400 transition hover:bg-gray-700 hover:text-white"
-                            >
+                            <button wire:click="cerrarTurno" type="button"
+                                class="rounded-lg px-4 py-3 text-sm font-semibold text-gray-400 transition hover:bg-gray-700 hover:text-white">
                                 Cancelar
                             </button>
 
@@ -893,14 +910,46 @@
             </div>
 
         @endif
+        @php
+            $recepcion = $solicitud->recepciones->first();
+            $ticket = $recepcion?->ticket;
+        @endphp
+        @if ($recepcion && !$ticket)
+            <div class="mt-4 flex flex-wrap gap-3">
 
+                <button type="button" wire:click="generarTicket" wire:loading.attr="disabled"
+                    class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:opacity-50">
+
+                    <span wire:loading.remove wire:target="generarTicket">
+                        🎫 Generar ticket
+                    </span>
+
+                    <span wire:loading wire:target="generarTicket">
+                        Generando...
+                    </span>
+
+                </button>
+
+            </div>
+        @endif
+
+        @if (!$ticket)
+            <div class="mt-4 flex flex-wrap gap-3">
+
+                <a href="{{ route('reparaciones.ticket.imprimir', $ticket) }}" target="_blank"
+                    class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500">
+
+                    🖨️ Imprimir ticket
+
+                </a>
+
+            </div>
+        @endif
 
         {{-- ============================================================
              INFORMACIÓN DEL FLUJO
         ============================================================ --}}
-        <div
-            class="rounded-xl border border-gray-700 bg-gray-800 p-5 shadow-lg"
-        >
+        <div class="rounded-xl border border-gray-700 bg-gray-800 p-5 shadow-lg">
 
             <div class="mb-4">
 
@@ -923,11 +972,19 @@
                     <div class="flex flex-col items-center text-center">
 
                         <div
-                            class="flex h-10 w-10 items-center justify-center rounded-full
-                            {{ in_array($solicitud->estado, ['pendiente', 'turnada', 'recepcionada', 'en_diagnostico', 'en_reparacion', 'esperando_repuesto', 'reparada', 'lista_para_retirar', 'entregada'])
+                            class="{{ in_array($solicitud->estado, [
+                                'pendiente',
+                                'turnada',
+                                'recepcionada',
+                                'en_diagnostico',
+                                'en_reparacion',
+                                'esperando_repuesto',
+                                'reparada',
+                                'lista_para_retirar',
+                                'entregada',
+                            ])
                                 ? 'bg-blue-600 text-white'
-                                : 'bg-gray-700 text-gray-500' }}"
-                        >
+                                : 'bg-gray-700 text-gray-500' }} flex h-10 w-10 items-center justify-center rounded-full">
                             1
                         </div>
 
@@ -945,11 +1002,19 @@
                     <div class="flex flex-col items-center text-center">
 
                         <div
-                            class="flex h-10 w-10 items-center justify-center rounded-full
-                            {{ $solicitud->turno || in_array($solicitud->estado, ['turnada', 'recepcionada', 'en_diagnostico', 'en_reparacion', 'esperando_repuesto', 'reparada', 'lista_para_retirar', 'entregada'])
+                            class="{{ $solicitud->turno ||
+                            in_array($solicitud->estado, [
+                                'turnada',
+                                'recepcionada',
+                                'en_diagnostico',
+                                'en_reparacion',
+                                'esperando_repuesto',
+                                'reparada',
+                                'lista_para_retirar',
+                                'entregada',
+                            ])
                                 ? 'bg-blue-600 text-white'
-                                : 'bg-gray-700 text-gray-500' }}"
-                        >
+                                : 'bg-gray-700 text-gray-500' }} flex h-10 w-10 items-center justify-center rounded-full">
                             2
                         </div>
 
@@ -967,11 +1032,17 @@
                     <div class="flex flex-col items-center text-center">
 
                         <div
-                            class="flex h-10 w-10 items-center justify-center rounded-full
-                            {{ in_array($solicitud->estado, ['recepcionada', 'en_diagnostico', 'en_reparacion', 'esperando_repuesto', 'reparada', 'lista_para_retirar', 'entregada'])
+                            class="{{ in_array($solicitud->estado, [
+                                'recepcionada',
+                                'en_diagnostico',
+                                'en_reparacion',
+                                'esperando_repuesto',
+                                'reparada',
+                                'lista_para_retirar',
+                                'entregada',
+                            ])
                                 ? 'bg-blue-600 text-white'
-                                : 'bg-gray-700 text-gray-500' }}"
-                        >
+                                : 'bg-gray-700 text-gray-500' }} flex h-10 w-10 items-center justify-center rounded-full">
                             3
                         </div>
 
@@ -989,11 +1060,9 @@
                     <div class="flex flex-col items-center text-center">
 
                         <div
-                            class="flex h-10 w-10 items-center justify-center rounded-full
-                            {{ in_array($solicitud->estado, ['en_diagnostico', 'en_reparacion', 'esperando_repuesto', 'reparada'])
+                            class="{{ in_array($solicitud->estado, ['en_diagnostico', 'en_reparacion', 'esperando_repuesto', 'reparada'])
                                 ? 'bg-blue-600 text-white'
-                                : 'bg-gray-700 text-gray-500' }}"
-                        >
+                                : 'bg-gray-700 text-gray-500' }} flex h-10 w-10 items-center justify-center rounded-full">
                             4
                         </div>
 
@@ -1011,11 +1080,9 @@
                     <div class="flex flex-col items-center text-center">
 
                         <div
-                            class="flex h-10 w-10 items-center justify-center rounded-full
-                            {{ in_array($solicitud->estado, ['lista_para_retirar', 'entregada'])
+                            class="{{ in_array($solicitud->estado, ['lista_para_retirar', 'entregada'])
                                 ? 'bg-green-600 text-white'
-                                : 'bg-gray-700 text-gray-500' }}"
-                        >
+                                : 'bg-gray-700 text-gray-500' }} flex h-10 w-10 items-center justify-center rounded-full">
                             5
                         </div>
 

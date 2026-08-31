@@ -140,7 +140,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubmitController;
 use Spatie\Permission\Traits\HasRoles;
 use App\Http\Controllers\RegisterController;
-
+use App\Http\Controllers\Reparaciones\TicketReparacionController;
 use App\Http\Livewire\GenerateOrder;
 use App\Http\Livewire\CrearNotificacion;
 use App\Http\Livewire\VerNotificaciones;
@@ -249,6 +249,7 @@ use App\Http\Livewire\Activos\CrearActivo;
 use App\Http\Livewire\Activos\EditarActivo;
 use App\Http\Livewire\Activos\SolicitarReparacion;
 use App\Http\Livewire\Reparaciones\DetalleSolicitud;
+use App\Http\Livewire\Reparaciones\RegistrarRecepcion;
 
 Route::get('/', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'create'])->middleware('guest');
 Route::middleware([
@@ -277,13 +278,22 @@ Route::middleware([
     Route::get('/mis-activos/{activo}/solicitar-reparacion', SolicitarReparacion::class)
         ->name('mis-activos.solicitar-reparacion');
 
-    Route::get('/solicitudes-reparacion/{solicitud}',DetalleSolicitud::class
+    Route::get(
+        '/solicitudes-reparacion/{solicitud}',
+        DetalleSolicitud::class
     )->name('solicitudes-reparacion.detalle');
 
     Route::get(
         '/reparaciones/solicitudes/{solicitud}',
         DetalleSolicitud::class
     )->name('detalle-solicitud');
+
+    Route::get(
+        '/reparaciones/tickets/{ticket}/imprimir',
+        [TicketReparacionController::class, 'imprimir']
+    )->name('reparaciones.ticket.imprimir');
+
+   
 });
 
 /* ****************************************************************** */
@@ -308,7 +318,7 @@ Route::middleware(['auth', 'terms.acceptance'])->group(function () {
         ->name('situacion-operativa');
 
     Route::view('/tecnico-informatico', 'tecnico-informatico')->name('tecnico-informatico');
-    
+
     Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
 
     //->middleware('can:panel-tecnicos')->middleware('can:panel-administrador')

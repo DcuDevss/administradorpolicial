@@ -36,6 +36,7 @@ class DetalleSolicitud extends Component
             'activo.categoria',
             'usuario',
             'turno',
+            'recepciones.ticket',
         ]);
 
         $this->fechaAgenda = now()->format('Y-m-d');
@@ -168,6 +169,14 @@ class DetalleSolicitud extends Component
             'observaciones' => $this->observaciones ?: null,
         ]);
 
+        Log::info('DetalleSolicitud DEBUG TURNO CREADO', [
+            'turno_id' => $turno->id,
+            'solicitud_id' => $turno->solicitud_id,
+            'fecha' => $turno->fecha,
+            'hora' => $turno->hora,
+            'exists' => $turno->exists,
+        ]);
+
         $this->solicitud->update([
             'estado' => 'turnada',
         ]);
@@ -181,13 +190,17 @@ class DetalleSolicitud extends Component
             new TurnoReparacionAsignado($turno)
         );
 
-        Log::info('DetalleSolicitud: turno asignado correctamente', [
-            'turno_id' => $turno->id,
+        Log::info('DetalleSolicitud DEBUG DESPUES UPDATE', [
             'solicitud_id' => $this->solicitud->id,
-            'activo_id' => $this->solicitud->activo_id,
-            'usuario_id' => Auth::id(),
-            'fecha' => $turno->fecha,
-            'hora' => $turno->hora,
+            'estado' => $this->solicitud->estado,
+        ]);
+
+        $turnoBD = TurnoReparacion::find($turno->id);
+
+        Log::info('DetalleSolicitud DEBUG VERIFICACION BD', [
+            'turno_id' => $turno->id,
+            'existe_en_bd' => $turnoBD !== null,
+            'solicitud_id' => $turnoBD?->solicitud_id,
         ]);
 
         $this->mostrarTurno = false;
@@ -204,8 +217,9 @@ class DetalleSolicitud extends Component
             'activo.categoria',
             'usuario',
             'turno',
+            'recepciones.ticket',
         ]);
-
+        
         session()->flash(
             'success',
             'El turno fue asignado correctamente.'
@@ -261,9 +275,16 @@ class DetalleSolicitud extends Component
             )->count(),
         ];
     }
-
     public function render()
     {
+        logger()->info('DetalleSolicitud DEBUG', [
+            'solicitud_id' => $this->solicitud->id,
+            'estado' => $this->solicitud->estado,
+            'turno_id' => $this->solicitud->turno?->id,
+            'fecha' => $this->solicitud->turno?->fecha,
+            'hora' => $this->solicitud->turno?->hora,
+        ]);
+
         return view('livewire.reparaciones.detalle-solicitud', [
             'turnosDelDia' => $this->turnosDelDia,
             'resumenOcupacion' => $this->resumenOcupacion,
