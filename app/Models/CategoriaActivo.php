@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CategoriaActivo extends Model
 {
@@ -23,18 +25,27 @@ class CategoriaActivo extends Model
         'activa' => 'boolean',
     ];
 
-    public function padre()
+    public function padre(): BelongsTo
     {
-        return $this->belongsTo(CategoriaActivo::class, 'parent_id');
+        return $this->belongsTo(
+            self::class,
+            'parent_id'
+        );
     }
 
-    public function hijas()
+    public function hijas(): HasMany
     {
-        return $this->hasMany(CategoriaActivo::class, 'parent_id');
+        return $this->hasMany(
+            self::class,
+            'parent_id'
+        );
     }
 
-    public function activos()
+    public function activos(): HasMany
     {
-        return $this->hasMany(Activo::class, 'categoria_activo_id');
+        return $this->hasMany(
+            Activo::class,
+            'categoria_activo_id'
+        );
     }
 }

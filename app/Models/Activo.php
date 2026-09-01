@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Activo extends Model
@@ -35,32 +35,38 @@ class Activo extends Model
         'qr_revocado_at' => 'datetime',
     ];
 
-    public function dependencia()
+    public function dependencia(): BelongsTo
     {
         return $this->belongsTo(Dependencia::class);
     }
 
-    public function ubicacion()
+    public function ubicacion(): BelongsTo
     {
         return $this->belongsTo(Ubicacion::class);
     }
 
-    public function responsable()
+    public function categoria(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'responsable_user_id');
+        return $this->belongsTo(
+            CategoriaActivo::class,
+            'categoria_activo_id'
+        );
     }
 
-    public function categoria()
+    public function responsable(): BelongsTo
     {
-        return $this->belongsTo(CategoriaActivo::class, 'categoria_activo_id');
+        return $this->belongsTo(
+            User::class,
+            'responsable_user_id'
+        );
     }
 
-    public function especificaciones()
+    public function especificaciones(): HasMany
     {
         return $this->hasMany(ActivoEspecificacion::class);
     }
 
-    public function referenciasLegacy()
+    public function referenciasLegacy(): HasMany
     {
         return $this->hasMany(ActivoReferenciaLegacy::class);
     }
@@ -69,4 +75,18 @@ class Activo extends Model
     {
         return $this->hasMany(SolicitudReparacion::class);
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relaciones futuras del dominio de Reparaciones
+    |--------------------------------------------------------------------------
+    |
+    | Se agregarán cuando las entidades estén formalmente implementadas.
+    |
+    | hasMany Recepcion
+    | hasMany OrdenTrabajo
+    | hasMany Entrega
+    | hasMany HistorialTecnico
+    |
+    */
 }

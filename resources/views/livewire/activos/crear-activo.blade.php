@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-dependencia-layout>
 
     <x-slot name="header">
         <div>
@@ -57,4 +57,4 @@
         </div>
     </div>
 
-</x-app-layout>
+</x-dependencia-layout>

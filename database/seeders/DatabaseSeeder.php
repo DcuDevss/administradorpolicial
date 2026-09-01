@@ -2,20 +2,13 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Bienestare;
 use App\Models\Cantidadram;
 use App\Models\Cientifica;
-use App\Models\ComisariaCuarta;
-use App\Models\ComisariaPrimera;
-use App\Models\ComisariaSegunda;
-use App\Models\ComisariaTercera;
 use App\Models\Equipocomunicacion;
 use App\Models\Investigacione;
 use App\Models\Jefatura;
 use App\Models\RecursoHumano;
-use App\Models\SubJefatura;
 use App\Models\Sumario;
 use App\Models\Tipodeoficina;
 use App\Models\Tipodispositivo;
@@ -29,26 +22,68 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        /*
+        |--------------------------------------------------------------------------
+        | Datos base
+        |--------------------------------------------------------------------------
+        */
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $this->call(TipodeoficinaSeeder::class);
         $this->call(TipodispositivoSeeder::class);
         $this->call(CantidadramSeeder::class);
-       // $this->call(TurnosCalendesSeeder::class);
+
+        // $this->call(TurnosCalendesSeeder::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Roles y permisos
+        |--------------------------------------------------------------------------
+        */
+
         $this->call(RolesSeeder::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Estructura organizacional
+        |--------------------------------------------------------------------------
+        |
+        | Las dependencias deben existir antes de crear usuarios
+        | vinculados a ellas.
+        |
+        */
+
+        $this->call(DependenciaSeeder::class);
+        $this->call(UbicacionSeeder::class);
+        $this->call(AreaSeeder::class);
+        $this->call(CategoriaActivoSeeder::class);
+        /*
+        |--------------------------------------------------------------------------
+        | Usuarios
+        |--------------------------------------------------------------------------
+        |
+        | Actualmente se ejecuta después de DependenciaSeeder para
+        | permitir vincular usuarios a una dependencia.
+        |
+        */
+
         $this->call(UserSeeder::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Datos existentes del sistema
+        |--------------------------------------------------------------------------
+        */
+
         $this->call(SlotmemoriaSeeder::class);
         $this->call(EquipocomunicacionSeeder::class);
         $this->call(MarcaequipoSeeder::class);
         $this->call(TerceradestacamentoSeeder::class);
         $this->call(VhfantenaSeeder::class);
+
         $this->call(DependenciaUshuaiaSeeder::class);
         $this->call(DependenciaRiograndeSeeder::class);
         $this->call(DependenciaTolhuinSeeder::class);
+
         $this->call(TecnicocomunicacioneSeeder::class);
         $this->call(OtrasInstitucioneSeeder::class);
         $this->call(AdministracionSeeder::class);

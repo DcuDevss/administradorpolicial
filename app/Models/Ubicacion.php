@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Ubicacion extends Model
 {
@@ -25,22 +27,52 @@ class Ubicacion extends Model
         'activa' => 'boolean',
     ];
 
-    public function dependencia()
+    /*
+    |--------------------------------------------------------------------------
+    | Dependencia a la que pertenece
+    |--------------------------------------------------------------------------
+    */
+
+    public function dependencia(): BelongsTo
     {
         return $this->belongsTo(Dependencia::class);
     }
 
-    public function padre()
+    /*
+    |--------------------------------------------------------------------------
+    | Ubicación superior
+    |--------------------------------------------------------------------------
+    */
+
+    public function padre(): BelongsTo
     {
-        return $this->belongsTo(Ubicacion::class, 'parent_id');
+        return $this->belongsTo(
+            Ubicacion::class,
+            'parent_id'
+        );
     }
 
-    public function hijas()
+    /*
+    |--------------------------------------------------------------------------
+    | Ubicaciones subordinadas
+    |--------------------------------------------------------------------------
+    */
+
+    public function hijas(): HasMany
     {
-        return $this->hasMany(Ubicacion::class, 'parent_id');
+        return $this->hasMany(
+            self::class,
+            'parent_id'
+        );
     }
 
-    public function activos()
+    /*
+    |--------------------------------------------------------------------------
+    | Activos ubicados aquí
+    |--------------------------------------------------------------------------
+    */
+
+    public function activos(): HasMany
     {
         return $this->hasMany(Activo::class);
     }

@@ -28,17 +28,7 @@ return new class extends Migration
                 ->constrained('solicitudes_reparacion')
                 ->restrictOnDelete();
 
-            /*
-             * Ticket asociado.
-             *
-             * Se deja nullable porque el ticket se genera
-             * durante el proceso de recepción.
-             */
-            $table->foreignId('ticket_reparacion_id')
-                ->nullable()
-                ->constrained('tickets_reparacion')
-                ->nullOnDelete();
-
+            
             /*
              * Turno mediante el cual ingresó el equipo.
              */
@@ -97,7 +87,6 @@ return new class extends Migration
 
             $table->index('activo_id');
             $table->index('solicitud_reparacion_id');
-            $table->index('ticket_reparacion_id');
             $table->index('turno_reparacion_id');
             $table->index('dependencia_id');
             $table->index('recibido_por_id');

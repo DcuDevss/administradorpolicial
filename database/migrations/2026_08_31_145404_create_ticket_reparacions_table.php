@@ -55,14 +55,6 @@ return new class extends Migration
                 ->nullOnDelete();
 
             /*
-             * La entrega se incorporará posteriormente.
-             */
-            $table->foreignId('entrega_id')
-                ->nullable()
-                ->constrained('entregas')
-                ->nullOnDelete();
-
-            /*
              * Estados definidos en el documento técnico:
              *
              * abierto

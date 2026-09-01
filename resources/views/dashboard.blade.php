@@ -1,16 +1,15 @@
-<x-app-layout>
+<x-dependencia-layout>
     <x-slot name="header">
         <div>
             <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                Panel de usuario
+                Panel de dependencia
             </h2>
 
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                Sistema de gestión de activos y reparaciones
+                Gestión de activos y solicitudes de reparación
             </p>
         </div>
     </x-slot>
-
     <div class="py-10">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
@@ -20,8 +19,9 @@
                     <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
 
                         <div>
+
                             <p class="text-sm font-medium text-blue-600 dark:text-blue-400">
-                                Área de Reparaciones
+                                Gestión de activos tecnológicos
                             </p>
 
                             <h1 class="mt-1 text-2xl font-bold text-gray-900 dark:text-white">
@@ -29,9 +29,10 @@
                             </h1>
 
                             <p class="mt-2 max-w-2xl text-sm text-gray-600 dark:text-gray-400">
-                                Desde este panel podrás gestionar tus activos tecnológicos,
-                                solicitar revisiones y consultar el estado de tus reparaciones.
+                                Desde este panel podrás consultar los equipos de tu dependencia,
+                                solicitar revisiones y realizar el seguimiento de tus reparaciones.
                             </p>
+
                         </div>
 
                         <div class="shrink-0">
@@ -44,9 +45,9 @@
             </div>
 
             {{-- Acciones principales --}}
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-                {{-- Activos --}}
+                {{-- Mis activos --}}
                 <a href="{{ route('mis-activos') }}"
                     class="group block rounded-2xl bg-blue-100 p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-900/40 dark:hover:bg-gray-800 dark:focus:ring-offset-gray-900">
 
@@ -62,53 +63,27 @@
                         </svg>
                     </div>
 
-                    <h3
-                        class="mt-4 text-lg font-semibold text-blue-900 transition duration-200 group-hover:text-gray-900 dark:text-white dark:group-hover:text-white">
+                    <h3 class="mt-4 text-lg font-semibold text-blue-900 dark:text-white">
                         Mis activos
                     </h3>
 
-                    <p
-                        class="mt-2 text-sm text-blue-800 transition duration-200 group-hover:text-gray-500 dark:text-blue-200 dark:group-hover:text-gray-400">
+                    <p class="mt-2 text-sm text-blue-800 dark:text-blue-200">
                         Consulta los equipos tecnológicos asociados a tu dependencia.
                     </p>
 
-                    <div
-                        class="mt-4 inline-flex items-center text-sm font-semibold text-blue-700 transition duration-200 group-hover:text-blue-600 dark:text-blue-300 dark:group-hover:text-blue-400">
+                    <div class="mt-4 inline-flex items-center text-sm font-semibold text-blue-700 dark:text-blue-300">
+
                         Ver mis activos
 
-                        <svg class="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
 
                         </svg>
+
                     </div>
 
                 </a>
-
-                {{-- Solicitud --}}
-                <div class="rounded-2xl bg-white p-6 shadow-sm dark:bg-gray-800">
-                    <div
-                        class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/40">
-                        <svg class="h-6 w-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 9v2m0 4h.01M5.07 19h13.86a2 2 0 001.73-3L13.73 4a2 2 0 00-3.46 0L3.34 16a2 2 0 001.73 3z" />
-                        </svg>
-                    </div>
-
-                    <h3 class="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
-                        Solicitar revisión
-                    </h3>
-
-                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                        Informa una falla o solicita la revisión de un equipo.
-                    </p>
-
-                    <span class="mt-4 inline-block text-sm font-medium text-gray-400">
-                        Próximamente
-                    </span>
-                </div>
 
                 {{-- Solicitudes --}}
                 <div class="rounded-2xl bg-white p-6 shadow-sm dark:bg-gray-800">
@@ -175,4 +150,4 @@
 
         </div>
     </div>
-</x-app-layout>
+</x-dependencia-layout>

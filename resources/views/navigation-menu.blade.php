@@ -24,7 +24,7 @@
 
                         $notificacionesNoLeidas = $user->unreadNotifications->filter(function ($notification) {
                             return in_array($notification->type, [
-                                'App\Notifications\NuevaSolicitudReparacion',
+                            
                                 'App\Notifications\TurnoReparacionAsignado',
                             ]);
                         });
@@ -32,7 +32,7 @@
                         $countNotifications = $notificacionesNoLeidas->count();
                     @endphp
 
-                    <div class="relative" x-data="{ open: false }">
+                    <div class="relative m-4" x-data="{ open: false }">
 
                         {{-- BOTÓN CAMPANA --}}
                         <button type="button" @click="open = !open"
@@ -181,6 +181,7 @@
                                 ->whereIn('type', [
                                     'App\Notifications\OrderNotification',
                                     'App\Notifications\NuevaSolicitudReparacion',
+                                    
                                 ])
                                 ->latest()
                                 ->take(5)

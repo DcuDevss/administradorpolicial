@@ -30,13 +30,13 @@ class AppServiceProvider extends ServiceProvider
                 $queries = DB::getQueryLog();
                 $totalMs = array_sum(array_column($queries, 'time'));
 
-                Log::info('PERF', [
+               /*  Log::info('PERF', [
                     'url' => request()->fullUrl(),
                     'method' => request()->method(),
                     'queries_count' => count($queries),
                     'db_total_ms' => round($totalMs, 2),
                     'top5' => collect($queries)->sortByDesc('time')->take(5)->values()->all(),
-                ]);
+                ]); */
             });
         }
         if (app()->isLocal()) {
