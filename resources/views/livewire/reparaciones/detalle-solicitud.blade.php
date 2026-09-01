@@ -5,6 +5,7 @@
         {{-- ============================================================
              ENCABEZADO
         ============================================================ --}}
+        zczxc
         @include('livewire.reparaciones.partials.encabezado')
 
 
@@ -45,6 +46,13 @@
              TURNO ACTUAL
         ============================================================ --}}
         @include('livewire.reparaciones.partials.turno')
+
+        {{-- ============================================================
+     RECEPCIÓN DEL EQUIPO
+============================================================ --}}
+        @if ($solicitud->turno && $solicitud->estado === 'turnada')
+            @livewire('reparaciones.registrar-recepcion', ['solicitud' => $solicitud], key('recepcion-' . $solicitud->id))
+        @endif
 
         {{-- ============================================================
              ESTADO OPERATIVO DEL ÁREA
@@ -152,19 +160,18 @@
             </div>
 
         </div>
-      
 
         {{-- ============================================================
              AGENDA
         ============================================================ --}}
-       @include('livewire.reparaciones.partials.agenda')
+        @include('livewire.reparaciones.partials.agenda')
 
 
         {{-- ============================================================
              INFORMACIÓN DEL FLUJO
         ============================================================ --}}
-          @include('livewire.reparaciones.partials.flujo')
-     
+        @include('livewire.reparaciones.partials.flujo')
+
 
     </div>
 

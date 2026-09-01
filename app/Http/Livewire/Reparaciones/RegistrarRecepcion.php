@@ -309,7 +309,7 @@ class RegistrarRecepcion extends Component
                 $recepcion = Recepcion::create([
                     'activo_id' => $this->solicitud->activo_id,
                     'solicitud_reparacion_id' => $this->solicitud->id,
-                    'turno_reparacion_id' => $this->solicitud->turno_id,
+                    'turno_reparacion_id' => $this->solicitud->turno?->id,
                     'dependencia_id' => $this->solicitud->activo->dependencia_id,
 
                     'persona_entrega_nombre' => $this->personaEntregaNombre,
@@ -337,8 +337,8 @@ class RegistrarRecepcion extends Component
                     'estado_nuevo' => 'recepcionada',
                 ]);
 
-                $this->solicitud->update([
-                    'estado' => 'recepcionada',
+                $this->solicitud->activo->update([
+                    'estado' => 'en_revision',
                 ]);
 
                 Log::info('RegistrarRecepcion: solicitud actualizada a recepcionada', [

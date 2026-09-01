@@ -8,7 +8,6 @@
     <title>{{ $ticket->numero }}</title>
 
     <style>
-
         @page {
             size: 72mm 210mm;
             margin: 4mm;
@@ -37,6 +36,20 @@
             border-bottom: 1px solid #111;
             padding-bottom: 5px;
             margin-bottom: 7px;
+        }
+
+        .logo {
+            display: block;
+            width: 28mm;
+            max-height: 20mm;
+            margin: 0 auto 4px auto;
+        }
+
+        .division {
+            font-size: 9px;
+            font-weight: bold;
+            margin-top: 2px;
+            margin-bottom: 2px;
         }
 
         .titulo {
@@ -101,22 +114,22 @@
         }
 
         .firmas {
-            margin-top: 18px;
+            margin-top: 35px;
             page-break-inside: avoid;
         }
 
         .firma {
-            width: 48%;
-            display: inline-block;
-            vertical-align: top;
+            width: 100%;
+            display: block;
             text-align: center;
             font-size: 7px;
+            margin-bottom: 25px;
         }
 
         .linea {
             border-top: 1px solid #111;
-            margin-top: 20px;
-            padding-top: 3px;
+            margin-top: 35px;
+            padding-top: 4px;
         }
 
         .pie {
@@ -138,7 +151,6 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
     </style>
 
 </head>
@@ -146,10 +158,16 @@
 <body>
 
     {{-- =========================================================
-         ENCABEZADO
-    ========================================================== --}}
+     ENCABEZADO
+========================================================== --}}
 
     <div class="header">
+
+        <img src="{{ public_path('images/EscudoDivision.png') }}" class="logo" alt="División Comunicaciones">
+
+        <div class="division">
+            DIVISIÓN COMUNICACIONES
+        </div>
 
         <div class="titulo">
             ÁREA DE REPARACIONES
@@ -160,7 +178,6 @@
         </div>
 
     </div>
-
 
     {{-- =========================================================
          NÚMERO DE TICKET
@@ -205,7 +222,7 @@
             <tr>
                 <td class="label">Marca</td>
                 <td class="valor">
-                    {{ $ticket->activo?->marca?->nombre ?? '—' }}
+                    {{ $ticket->activo?->marca ?? '—' }}
                 </td>
             </tr>
 
@@ -340,8 +357,8 @@
 
 
     {{-- =========================================================
-         FIRMAS
-    ========================================================== --}}
+     FIRMAS
+========================================================== --}}
 
     <div class="firmas">
 
@@ -356,6 +373,7 @@
             </div>
 
         </div>
+
 
         <div class="firma">
 

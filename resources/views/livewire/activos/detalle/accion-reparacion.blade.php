@@ -13,25 +13,37 @@
 
            </div>
 
-           @if ($this->tieneSolicitudPendiente())
+
+           @if ($this->tieneSolicitudActiva())
                <div
-                   class="inline-flex items-center justify-center rounded-lg bg-gray-200 px-5 py-2.5 text-sm font-semibold text-gray-500 dark:bg-gray-700 dark:text-gray-400">
+                   class="inline-flex items-center justify-center rounded-lg border border-yellow-700/50 bg-yellow-900/30 px-5 py-2.5 text-sm font-semibold text-yellow-300">
 
                    <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+
                    </svg>
 
-                   Solicitud pendiente
+                   Solicitud en curso
 
                </div>
            @else
                <button type="button" wire:click="abrirSolicitud" wire:loading.attr="disabled"
                    wire:target="abrirSolicitud"
-                   class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white">
-                   Solicitar revisión
+                   class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50">
+
+                   <span wire:loading.remove wire:target="abrirSolicitud">
+                       Solicitar revisión
+                   </span>
+
+                   <span wire:loading wire:target="abrirSolicitud">
+                       Abriendo...
+                   </span>
+
                </button>
            @endif
+
        </div>
 
        {{-- modal --}}

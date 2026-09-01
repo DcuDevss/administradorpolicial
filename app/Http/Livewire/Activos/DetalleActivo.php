@@ -52,19 +52,17 @@ class DetalleActivo extends Component
     }
 
     /**
-     * Indica si el activo posee una solicitud pendiente.
+     * Indica si el activo posee una solicitud de reparación
+     * que todavía se encuentra en curso.
      */
-    public function tieneSolicitudPendiente(): bool
+    public function tieneSolicitudActiva(): bool
     {
-        return $this->service->tieneSolicitudPendiente($this->activo);
+        return $this->service->tieneSolicitudActiva($this->activo);
     }
 
-    /**
-     * Abre el formulario de solicitud.
-     */
     public function abrirSolicitud(): void
     {
-        if ($this->tieneSolicitudPendiente()) {
+        if ($this->tieneSolicitudActiva()) {
             return;
         }
 
@@ -79,6 +77,7 @@ class DetalleActivo extends Component
 
         $this->mostrarSolicitud = true;
     }
+
     /**
      * Cierra el formulario de solicitud.
      */

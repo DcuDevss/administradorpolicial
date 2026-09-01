@@ -19,7 +19,7 @@
                   {{ ucfirst($activo->estado) }}
               </span>
 
-              @if ($this->tieneSolicitudPendiente())
+              @if ($this->tieneSolicitudActiva())
                   {{-- Edición bloqueada durante revisión --}}
                   <button type="button" disabled
                       title="El activo no puede editarse mientras tenga una solicitud de revisión pendiente"

@@ -26,8 +26,8 @@ class MisActivosService
                 'ubicacion',
             ])
             ->withExists([
-                'solicitudesReparacion as tiene_solicitud_pendiente' => function ($q) {
-                    $q->where('estado', 'pendiente');
+                'solicitudesReparacion as tiene_solicitud_activa' => function ($q) {
+                    $q->whereIn('estado', self::ESTADOS_SOLICITUD_ACTIVA);
                 },
             ]);
 
@@ -233,15 +233,33 @@ class MisActivosService
     }
 
     /**
-     * Indica si un activo posee una solicitud de reparación pendiente.
+     * Estados que representan una solicitud de reparación
+     * que todavía se encuentra en curso.
      */
-    public function tieneSolicitudPendiente(Activo $activo): bool
+    protected const ESTADOS_SOLICITUD_ACTIVA = [
+        'pendiente',
+        'turnada',
+        'recepcionada',
+        'en_diagnostico',
+        'en_reparacion',
+        'esperando_repuesto',
+        'reparada',
+        'lista_para_retirar',
+        'entregada',
+    ];
+
+    /**
+     * Indica si el activo posee una solicitud de reparación
+     * que todavía se encuentra en curso.
+     */
+    public function tieneSolicitudActiva(Activo $activo): bool
     {
         return $activo
             ->solicitudesReparacion()
-            ->where('estado', 'pendiente')
+            ->whereIn('estado', self::ESTADOS_SOLICITUD_ACTIVA)
             ->exists();
     }
+
 
     /**
      * Crear una solicitud de reparación para un activo.
@@ -264,9 +282,10 @@ class MisActivosService
         |--------------------------------------------------------------------------
         */
 
-        if ($this->tieneSolicitudPendiente($activo)) {
+
+        if ($this->tieneSolicitudActiva($activo)) {
             throw ValidationException::withMessages([
-                'general' => 'Este activo ya tiene una solicitud de reparación pendiente.',
+                'general' => 'Este activo ya tiene una solicitud de reparación en curso.',
             ]);
         }
 

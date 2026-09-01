@@ -39,9 +39,20 @@ class DetalleSolicitud extends Component
             'recepciones.ticket',
         ]);
 
+        /*
+        * Al ingresar al detalle de la solicitud,
+        * marcamos como leída la notificación correspondiente
+        * al usuario autenticado.
+        */
+        Auth::user()
+            ->unreadNotifications()
+            ->where('data->solicitud_id', $this->solicitud->id)
+            ->update([
+                'read_at' => now(),
+            ]);
+
         $this->fechaAgenda = now()->format('Y-m-d');
     }
-
     /**
      * Abre la agenda para asignar un turno.
      */
@@ -219,7 +230,7 @@ class DetalleSolicitud extends Component
             'turno',
             'recepciones.ticket',
         ]);
-        
+
         session()->flash(
             'success',
             'El turno fue asignado correctamente.'
