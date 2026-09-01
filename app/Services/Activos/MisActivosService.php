@@ -4,6 +4,7 @@ namespace App\Services\Activos;
 
 use App\Models\Activo;
 use App\Models\CategoriaActivo;
+use App\Models\SolicitudReparacion;
 use App\Models\Ubicacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -229,5 +230,94 @@ class MisActivosService
             ->with('dependencia')
             ->orderBy('nombre')
             ->get();
+    }
+
+    /**
+     * Indica si un activo posee una solicitud de reparación pendiente.
+     */
+    public function tieneSolicitudPendiente(Activo $activo): bool
+    {
+        return $activo
+            ->solicitudesReparacion()
+            ->where('estado', 'pendiente')
+            ->exists();
+    }
+
+    /**
+     * Crear una solicitud de reparación para un activo.
+     */
+    public function crearSolicitudReparacion(
+        Activo $activo,
+        array $datos
+    ): SolicitudReparacion {
+        $usuario = Auth::user();
+
+        if (!$usuario) {
+            throw ValidationException::withMessages([
+                'general' => 'No hay un usuario autenticado.',
+            ]);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Verificar solicitud pendiente
+        |--------------------------------------------------------------------------
+        */
+
+        if ($this->tieneSolicitudPendiente($activo)) {
+            throw ValidationException::withMessages([
+                'general' => 'Este activo ya tiene una solicitud de reparación pendiente.',
+            ]);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Crear solicitud
+        |--------------------------------------------------------------------------
+        */
+
+        return SolicitudReparacion::create([
+            'activo_id' => $activo->id,
+            'usuario_id' => $usuario->id,
+            'estado' => 'pendiente',
+            'prioridad' => $datos['prioridad'],
+            'titulo' => trim($datos['titulo']),
+            'descripcion' => trim($datos['descripcion']),
+        ]);
+    }
+
+    /**
+     * Cancelar una solicitud de reparación.
+     */
+    public function cancelarSolicitud(
+        Activo $activo,
+        int $solicitudId
+    ): SolicitudReparacion {
+        $usuario = Auth::user();
+
+        if (!$usuario) {
+            throw ValidationException::withMessages([
+                'general' => 'No hay un usuario autenticado.',
+            ]);
+        }
+
+        $solicitud = $activo
+            ->solicitudesReparacion()
+            ->where('id', $solicitudId)
+            ->where('usuario_id', $usuario->id)
+            ->where('estado', 'pendiente')
+            ->first();
+
+        if (!$solicitud) {
+            throw ValidationException::withMessages([
+                'general' => 'La solicitud no puede ser cancelada.',
+            ]);
+        }
+
+        $solicitud->update([
+            'estado' => 'cancelada',
+        ]);
+
+        return $solicitud;
     }
 }

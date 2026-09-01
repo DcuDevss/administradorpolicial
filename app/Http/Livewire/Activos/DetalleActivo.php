@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Activos;
 use App\Events\SolicitudReparacionCreada;
 use App\Models\Activo;
 use App\Models\SolicitudReparacion;
+use App\Services\Activos\MisActivosService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
@@ -16,6 +17,8 @@ class DetalleActivo extends Component
 {
     use WithPagination;
 
+    protected MisActivosService $service;
+
     public Activo $activo;
 
     public bool $mostrarSolicitud = false;
@@ -26,14 +29,25 @@ class DetalleActivo extends Component
 
     public string $prioridadSolicitud = 'media';
 
+    public function boot(MisActivosService $service): void
+    {
+        $this->service = $service;
+    }
+
     public function mount(Activo $activo): void
     {
         $this->activo = $activo->refresh()->load([
             'dependencia',
-            'ubicacion',
+            'ubicacion.dependencia',
             'categoria',
             'especificaciones',
-            'solicitudesReparacion',
+        ]);
+
+        Log::info('DetalleActivo: activo cargado', [
+            'activo_id' => $this->activo->id,
+            'dependencia_id' => $this->activo->dependencia_id,
+            'ubicacion_id' => $this->activo->ubicacion_id,
+            'categoria_activo_id' => $this->activo->categoria_activo_id,
         ]);
     }
 
@@ -42,10 +56,7 @@ class DetalleActivo extends Component
      */
     public function tieneSolicitudPendiente(): bool
     {
-        return $this->activo
-            ->solicitudesReparacion()
-            ->where('estado', 'pendiente')
-            ->exists();
+        return $this->service->tieneSolicitudPendiente($this->activo);
     }
 
     /**
@@ -68,7 +79,6 @@ class DetalleActivo extends Component
 
         $this->mostrarSolicitud = true;
     }
-
     /**
      * Cierra el formulario de solicitud.
      */
@@ -78,7 +88,6 @@ class DetalleActivo extends Component
 
         $this->resetValidation();
     }
-
 
     /**
      * Registra una nueva solicitud de reparación.
@@ -104,23 +113,14 @@ class DetalleActivo extends Component
             ],
         ]);
 
-        if ($this->tieneSolicitudPendiente()) {
-            $this->addError(
-                'general',
-                'Este activo ya tiene una solicitud de reparación pendiente.'
-            );
-
-            return;
-        }
-
-        $solicitud = SolicitudReparacion::create([
-            'activo_id' => $this->activo->id,
-            'usuario_id' => Auth::id(),
-            'estado' => 'pendiente',
-            'prioridad' => $this->prioridadSolicitud,
-            'titulo' => $this->tituloSolicitud,
-            'descripcion' => $this->descripcionSolicitud,
-        ]);
+        $solicitud = $this->service->crearSolicitudReparacion(
+            $this->activo,
+            [
+                'titulo' => $this->tituloSolicitud,
+                'descripcion' => $this->descripcionSolicitud,
+                'prioridad' => $this->prioridadSolicitud,
+            ]
+        );
 
         Log::info('DetalleActivo: solicitud creada correctamente', [
             'solicitud_id' => $solicitud->id,
@@ -130,8 +130,7 @@ class DetalleActivo extends Component
         ]);
 
         event(new SolicitudReparacionCreada($solicitud));
-        
-        // Limpiar formulario
+
         $this->reset([
             'tituloSolicitud',
             'descripcionSolicitud',
@@ -139,10 +138,8 @@ class DetalleActivo extends Component
 
         $this->prioridadSolicitud = 'media';
 
-        // Cerrar modal
         $this->mostrarSolicitud = false;
 
-        // Actualizar el activo y su historial
         $this->activo->refresh()->load([
             'dependencia',
             'ubicacion',
@@ -157,14 +154,15 @@ class DetalleActivo extends Component
         );
     }
 
+    /**
+     * Cancela una solicitud de reparación pendiente.
+     */
     public function cancelarSolicitud(int $solicitudId): void
     {
-        $solicitud = $this->activo
-            ->solicitudesReparacion()
-            ->where('id', $solicitudId)
-            ->where('usuario_id', Auth::id())
-            ->where('estado', 'pendiente')
-            ->firstOrFail();
+        $solicitud = $this->service->cancelarSolicitud(
+            $this->activo,
+            $solicitudId
+        );
 
         Log::info('DetalleActivo: cancelación de solicitud', [
             'user_id' => Auth::id(),
@@ -172,13 +170,6 @@ class DetalleActivo extends Component
             'solicitud_id' => $solicitud->id,
         ]);
 
-        $solicitud->update([
-            'estado' => 'cancelada',
-        ]);
-
-        /*
-         * Actualizamos el historial.
-         */
         $this->activo->load('solicitudesReparacion');
 
         session()->flash(
