@@ -64,14 +64,14 @@ class TicketReparacion extends Model
 
     /**
      * Entrega del activo.
-     *
-     * La entidad Entrega se implementará posteriormente.
      */
-   /*  public function entrega(): BelongsTo
+    /*
+    public function entrega(): BelongsTo
     {
         return $this->belongsTo(
             Entrega::class,
             'entrega_id'
         );
-    } */
+    }
+    */
 }

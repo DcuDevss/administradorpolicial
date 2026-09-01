@@ -5,97 +5,138 @@
 
     <meta charset="UTF-8">
 
-    <title>
-        {{ $ticket->numero }}
-    </title>
+    <title>{{ $ticket->numero }}</title>
 
     <style>
 
+        @page {
+            size: 72mm 210mm;
+            margin: 4mm;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 64mm;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: DejaVu Sans, sans-serif;
-            font-size: 12px;
+            font-size: 8px;
+            line-height: 1.35;
             color: #111;
-            margin: 30px;
         }
 
         .header {
             text-align: center;
-            border-bottom: 2px solid #111;
-            padding-bottom: 15px;
+            border-bottom: 1px solid #111;
+            padding-bottom: 5px;
+            margin-bottom: 7px;
         }
 
         .titulo {
-            font-size: 20px;
+            font-size: 12px;
             font-weight: bold;
         }
 
         .subtitulo {
-            font-size: 12px;
-            margin-top: 5px;
+            font-size: 8px;
+            margin-top: 2px;
         }
 
         .ticket {
             text-align: center;
-            font-size: 26px;
+            font-size: 15px;
             font-weight: bold;
-            margin: 25px 0;
+            margin: 7px 0;
+        }
+
+        .estado {
+            text-align: center;
+            font-size: 9px;
+            font-weight: bold;
+            border: 1px solid #111;
+            padding: 3px;
+            margin-bottom: 8px;
         }
 
         .seccion {
-            margin-top: 20px;
+            margin-top: 7px;
+            page-break-inside: avoid;
         }
 
         .seccion-titulo {
-            font-size: 13px;
+            font-size: 8px;
             font-weight: bold;
             border-bottom: 1px solid #999;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
+            padding-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            table-layout: fixed;
         }
 
         td {
-            padding: 7px;
+            padding: 2px 1px;
+            vertical-align: top;
             border-bottom: 1px solid #ddd;
+            word-wrap: break-word;
         }
 
         .label {
-            width: 35%;
+            width: 36%;
             font-weight: bold;
         }
 
-        .estado {
-            text-align: center;
-            font-size: 15px;
-            font-weight: bold;
-            margin: 20px 0;
+        .valor {
+            width: 64%;
         }
 
         .firmas {
-            margin-top: 80px;
+            margin-top: 18px;
+            page-break-inside: avoid;
         }
 
         .firma {
-            width: 45%;
+            width: 48%;
             display: inline-block;
-            text-align: center;
             vertical-align: top;
+            text-align: center;
+            font-size: 7px;
         }
 
         .linea {
             border-top: 1px solid #111;
-            margin-top: 60px;
-            padding-top: 8px;
+            margin-top: 20px;
+            padding-top: 3px;
         }
 
         .pie {
-            margin-top: 40px;
+            margin-top: 10px;
+            padding-top: 5px;
+            border-top: 1px solid #999;
             text-align: center;
-            font-size: 10px;
+            font-size: 7px;
+        }
+
+        .codigo {
+            margin-top: 5px;
+            text-align: center;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .texto-largo {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
     </style>
@@ -103,6 +144,10 @@
 </head>
 
 <body>
+
+    {{-- =========================================================
+         ENCABEZADO
+    ========================================================== --}}
 
     <div class="header">
 
@@ -117,6 +162,10 @@
     </div>
 
 
+    {{-- =========================================================
+         NÚMERO DE TICKET
+    ========================================================== --}}
+
     <div class="ticket">
         {{ $ticket->numero }}
     </div>
@@ -127,6 +176,10 @@
     </div>
 
 
+    {{-- =========================================================
+         DATOS DEL ACTIVO
+    ========================================================== --}}
+
     <div class="seccion">
 
         <div class="seccion-titulo">
@@ -136,52 +189,51 @@
         <table>
 
             <tr>
-                <td class="label">
-                    Activo
-                </td>
-
-                <td>
-                    #{{ $ticket->activo->id }}
+                <td class="label">Identificador</td>
+                <td class="valor">
+                    #{{ $ticket->activo?->id ?? '—' }}
                 </td>
             </tr>
 
             <tr>
-                <td class="label">
-                    Tipo
-                </td>
-
-                <td>
-                    {{ $ticket->activo->categoria->nombre ?? '—' }}
+                <td class="label">Tipo</td>
+                <td class="valor">
+                    {{ $ticket->activo?->categoria?->nombre ?? '—' }}
                 </td>
             </tr>
 
             <tr>
-                <td class="label">
-                    Dependencia
-                </td>
-
-                <td>
-                    {{ $ticket->activo->dependencia->nombre ?? '—' }}
+                <td class="label">Marca</td>
+                <td class="valor">
+                    {{ $ticket->activo?->marca?->nombre ?? '—' }}
                 </td>
             </tr>
 
             <tr>
-                <td class="label">
-                    Número de serie
-                </td>
-
-                <td>
-                    {{ $ticket->activo->numero_serie ?? '—' }}
+                <td class="label">Modelo</td>
+                <td class="valor">
+                    {{ $ticket->activo?->modelo ?? '—' }}
                 </td>
             </tr>
 
             <tr>
-                <td class="label">
-                    Código patrimonial
+                <td class="label">N.º serie</td>
+                <td class="valor">
+                    {{ $ticket->activo?->numero_serie ?? '—' }}
                 </td>
+            </tr>
 
-                <td>
-                    {{ $ticket->activo->codigo_patrimonial ?? '—' }}
+            <tr>
+                <td class="label">Código patrimonial</td>
+                <td class="valor">
+                    {{ $ticket->activo?->codigo_patrimonial ?? '—' }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">Dependencia</td>
+                <td class="valor">
+                    {{ $ticket->activo?->dependencia?->nombre ?? '—' }}
                 </td>
             </tr>
 
@@ -189,6 +241,10 @@
 
     </div>
 
+
+    {{-- =========================================================
+         DATOS DE RECEPCIÓN
+    ========================================================== --}}
 
     <div class="seccion">
 
@@ -199,42 +255,37 @@
         <table>
 
             <tr>
-                <td class="label">
-                    Fecha y hora
-                </td>
-
-                <td>
+                <td class="label">Fecha y hora</td>
+                <td class="valor">
                     {{ $ticket->recepcion?->fecha_recepcion?->format('d/m/Y H:i') ?? '—' }}
                 </td>
             </tr>
 
             <tr>
-                <td class="label">
-                    Persona que entrega
-                </td>
-
-                <td>
+                <td class="label">Entrega</td>
+                <td class="valor">
                     {{ $ticket->recepcion?->persona_entrega_nombre ?? '—' }}
                 </td>
             </tr>
 
             <tr>
-                <td class="label">
-                    Estado físico
-                </td>
-
-                <td>
+                <td class="label">Estado físico</td>
+                <td class="valor texto-largo">
                     {{ $ticket->recepcion?->estado_fisico ?? '—' }}
                 </td>
             </tr>
 
             <tr>
-                <td class="label">
-                    Accesorios
-                </td>
-
-                <td>
+                <td class="label">Accesorios</td>
+                <td class="valor texto-largo">
                     {{ $ticket->recepcion?->accesorios ?? '—' }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">Observaciones</td>
+                <td class="valor texto-largo">
+                    {{ $ticket->recepcion?->observaciones ?? '—' }}
                 </td>
             </tr>
 
@@ -243,41 +294,43 @@
     </div>
 
 
+    {{-- =========================================================
+         SOLICITUD
+    ========================================================== --}}
+
     <div class="seccion">
 
         <div class="seccion-titulo">
-            SOLICITUD
+            SOLICITUD DE REPARACIÓN
         </div>
 
         <table>
 
             <tr>
-                <td class="label">
-                    Solicitud
-                </td>
-
-                <td>
-                    #{{ $ticket->solicitud?->id }}
+                <td class="label">Solicitud</td>
+                <td class="valor">
+                    #{{ $ticket->solicitud?->id ?? '—' }}
                 </td>
             </tr>
 
             <tr>
-                <td class="label">
-                    Motivo
-                </td>
-
-                <td>
+                <td class="label">Motivo</td>
+                <td class="valor texto-largo">
                     {{ $ticket->solicitud?->titulo ?? '—' }}
                 </td>
             </tr>
 
             <tr>
-                <td class="label">
-                    Descripción
-                </td>
-
-                <td>
+                <td class="label">Descripción</td>
+                <td class="valor texto-largo">
                     {{ $ticket->solicitud?->descripcion ?? '—' }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">Prioridad</td>
+                <td class="valor">
+                    {{ ucfirst($ticket->solicitud?->prioridad ?? '—') }}
                 </td>
             </tr>
 
@@ -285,6 +338,10 @@
 
     </div>
 
+
+    {{-- =========================================================
+         FIRMAS
+    ========================================================== --}}
 
     <div class="firmas">
 
@@ -299,7 +356,6 @@
             </div>
 
         </div>
-
 
         <div class="firma">
 
@@ -316,13 +372,23 @@
     </div>
 
 
+    {{-- =========================================================
+         PIE
+    ========================================================== --}}
+
     <div class="pie">
 
-        {{ $ticket->numero }}
+        <strong>{{ $ticket->numero }}</strong>
 
         <br>
 
-        Conservar este comprobante para la identificación del equipo.
+        Conservar este comprobante para identificar el equipo.
+
+        <div class="codigo">
+            Código de verificación
+            <br>
+            {{ $ticket->codigo_verificacion }}
+        </div>
 
     </div>
 

@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class TicketReparacionController extends Controller
 {
+    
     public function imprimir(TicketReparacion $ticket)
     {
         $ticket->load([

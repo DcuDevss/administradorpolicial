@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('tickets_reparacion', function (Blueprint $table) {
             $table->id();
-
             /*
-             * Identificador operativo visible del ciclo de reparación.
-             *
-             * Ejemplo:
-             * REP-2026-000001
-             */
-            $table->string('numero')->unique();
+            * Identificador operativo visible del ciclo de reparación.
+            *
+            * Ejemplo:
+            * REP-2026-000001
+            *
+            * Se genera después de crear el registro,
+            * utilizando el ID autoincremental del ticket.
+            */
+            $table->string('numero')
+                ->nullable()
+                ->unique();
 
             /*
              * Código utilizado para verificación del ticket.

@@ -601,7 +601,8 @@
                 RECEPCIÓN DEL EQUIPO
             ========================================================= --}}
 
-            @livewire('reparaciones.registrar-recepcion', ['solicitud' => $solicitud], key('recepcion-' . $solicitud->id))
+            @livewire('reparaciones.registrar-recepcion', 
+            ['solicitud' => $solicitud], key('recepcion-' . $solicitud->id))
         @else
             {{-- ========================================================
                 SIN TURNO
@@ -910,41 +911,7 @@
             </div>
 
         @endif
-        @php
-            $recepcion = $solicitud->recepciones->first();
-            $ticket = $recepcion?->ticket;
-        @endphp
-        @if ($recepcion && !$ticket)
-            <div class="mt-4 flex flex-wrap gap-3">
-
-                <button type="button" wire:click="generarTicket" wire:loading.attr="disabled"
-                    class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:opacity-50">
-
-                    <span wire:loading.remove wire:target="generarTicket">
-                        🎫 Generar ticket
-                    </span>
-
-                    <span wire:loading wire:target="generarTicket">
-                        Generando...
-                    </span>
-
-                </button>
-
-            </div>
-        @endif
-
-        @if (!$ticket)
-            <div class="mt-4 flex flex-wrap gap-3">
-
-                <a href="{{ route('reparaciones.ticket.imprimir', $ticket) }}" target="_blank"
-                    class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500">
-
-                    🖨️ Imprimir ticket
-
-                </a>
-
-            </div>
-        @endif
+  
 
         {{-- ============================================================
              INFORMACIÓN DEL FLUJO

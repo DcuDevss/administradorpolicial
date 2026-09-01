@@ -49,7 +49,7 @@ class RegistrarRecepcion extends Component
             ->recepciones
             ->first()
             ?->ticket;
-            
+
         Log::info('RegistrarRecepcion: componente montado', [
             'solicitud_id' => $this->solicitud->id,
             'estado' => $this->solicitud->estado,
@@ -282,7 +282,7 @@ class RegistrarRecepcion extends Component
             'solicitud_id' => $this->solicitud->id,
         ]);
 
-      
+
         /**
          * --------------------------------------------------------
          * 5. TRANSACCIÓN
@@ -411,10 +411,8 @@ class RegistrarRecepcion extends Component
          */
         session()->flash(
             'success',
-            'La recepción fue registrada y se generó el ticket correctamente.'
+            'La recepción fue registrada correctamente. Puede generar el ticket correspondiente.'
         );
-
-     
     }
 
 
@@ -427,12 +425,24 @@ class RegistrarRecepcion extends Component
 
         $this->solicitud->refresh();
 
-        $recepcion = $this->solicitud->recepciones()->latest('id')->first();
+        $recepcion = $this->solicitud
+            ->recepciones()
+            ->latest('id')
+            ->first();
 
+        /**
+         * --------------------------------------------------------
+         * 1. VERIFICAR RECEPCIÓN
+         * --------------------------------------------------------
+         */
         if (!$recepcion) {
-            Log::warning('RegistrarRecepcion: no existe recepción para generar ticket', [
-                'solicitud_id' => $this->solicitud->id,
-            ]);
+
+            Log::warning(
+                'RegistrarRecepcion: no existe recepción para generar ticket',
+                [
+                    'solicitud_id' => $this->solicitud->id,
+                ]
+            );
 
             $this->addError(
                 'general',
@@ -442,12 +452,24 @@ class RegistrarRecepcion extends Component
             return;
         }
 
-        if ($recepcion->ticket_id) {
-            Log::warning('RegistrarRecepcion: la recepción ya posee ticket', [
-                'solicitud_id' => $this->solicitud->id,
-                'recepcion_id' => $recepcion->id,
-                'ticket_id' => $recepcion->ticket_id,
-            ]);
+        /**
+         * --------------------------------------------------------
+         * 2. VERIFICAR TICKET EXISTENTE
+         * --------------------------------------------------------
+         */
+        if ($recepcion->ticket()->exists()) {
+
+            $ticketExistente = $recepcion->ticket()->first();
+
+            Log::warning(
+                'RegistrarRecepcion: la recepción ya posee ticket',
+                [
+                    'solicitud_id' => $this->solicitud->id,
+                    'recepcion_id' => $recepcion->id,
+                    'ticket_id' => $ticketExistente?->id,
+                    'ticket_numero' => $ticketExistente?->numero,
+                ]
+            );
 
             $this->addError(
                 'general',
@@ -457,53 +479,106 @@ class RegistrarRecepcion extends Component
             return;
         }
 
+        /**
+         * --------------------------------------------------------
+         * 3. CREAR TICKET
+         * --------------------------------------------------------
+         */
         try {
 
             DB::transaction(function () use ($recepcion) {
 
-                Log::info('RegistrarRecepcion: creando ticket', [
-                    'solicitud_id' => $this->solicitud->id,
-                    'recepcion_id' => $recepcion->id,
-                    'activo_id' => $this->solicitud->activo_id,
-                ]);
+                Log::info(
+                    'RegistrarRecepcion: creando ticket',
+                    [
+                        'solicitud_id' => $this->solicitud->id,
+                        'recepcion_id' => $recepcion->id,
+                        'activo_id' => $this->solicitud->activo_id,
+                    ]
+                );
 
+                /*
+             * Creamos primero el ticket.
+             *
+             * El ID autoincremental permite construir
+             * posteriormente el número operativo.
+             */
                 $ticket = TicketReparacion::create([
                     'solicitud_reparacion_id' => $this->solicitud->id,
                     'activo_id' => $this->solicitud->activo_id,
                     'recepcion_id' => $recepcion->id,
-                    'numero' => 'REP-' . now()->format('Y') . '-' . str_pad(
-                        TicketReparacion::max('id') + 1,
-                        6,
-                        '0',
-                        STR_PAD_LEFT
-                    ),
                     'codigo_verificacion' => Str::uuid()->toString(),
                     'estado' => 'abierto',
                     'emitido_at' => now(),
                 ]);
 
-                $recepcion->update([
-                    'ticket_id' => $ticket->id,
+                Log::info(
+                    'RegistrarRecepcion: ticket creado',
+                    [
+                        'ticket_id' => $ticket->id,
+                    ]
+                );
+
+                /**
+                 * ----------------------------------------------------
+                 * GENERAR NÚMERO DEL TICKET
+                 * ----------------------------------------------------
+                 */
+
+                $numeroTicket =
+                    'REP-' .
+                    now()->format('Y') .
+                    '-' .
+                    str_pad(
+                        $ticket->id,
+                        6,
+                        '0',
+                        STR_PAD_LEFT
+                    );
+
+                $ticket->update([
+                    'numero' => $numeroTicket,
                 ]);
 
-                $this->ticket = $ticket;
+                Log::info(
+                    'RegistrarRecepcion: número de ticket generado',
+                    [
+                        'ticket_id' => $ticket->id,
+                        'numero' => $numeroTicket,
+                    ]
+                );
 
-                Log::info('RegistrarRecepcion: ticket creado correctamente', [
-                    'ticket_id' => $ticket->id,
-                    'numero' => $ticket->numero,
-                    'recepcion_id' => $recepcion->id,
-                ]);
+                /*
+             * No actualizamos la recepción.
+             *
+             * La relación ya queda establecida mediante:
+             *
+             * tickets_reparacion.recepcion_id
+             */
+
+                $this->ticket = $ticket->fresh();
+
+                Log::info(
+                    'RegistrarRecepcion: ticket preparado para Livewire',
+                    [
+                        'ticket_id' => $this->ticket->id,
+                        'ticket_numero' => $this->ticket->numero,
+                    ]
+                );
             });
         } catch (Throwable $e) {
 
-            Log::error('RegistrarRecepcion: ERROR generando ticket', [
-                'solicitud_id' => $this->solicitud->id,
-                'usuario_id' => Auth::id(),
-                'exception' => get_class($e),
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-            ]);
+            Log::error(
+                'RegistrarRecepcion: ERROR generando ticket',
+                [
+                    'solicitud_id' => $this->solicitud->id,
+                    'usuario_id' => Auth::id(),
+                    'exception' => get_class($e),
+                    'message' => $e->getMessage(),
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine(),
+                ]
+            );
 
             $this->addError(
                 'general',
@@ -513,6 +588,12 @@ class RegistrarRecepcion extends Component
             return;
         }
 
+        /**
+         * --------------------------------------------------------
+         * 4. RECARGAR RELACIONES
+         * --------------------------------------------------------
+         */
+
         $this->solicitud->refresh()->load([
             'activo.dependencia',
             'activo.categoria',
@@ -521,21 +602,42 @@ class RegistrarRecepcion extends Component
             'recepciones.ticket',
         ]);
 
-        $this->ticket = $this->solicitud
-            ->recepciones
-            ->first()
-            ?->ticket;
+        $recepcion = $this->solicitud
+            ->recepciones()
+            ->latest('id')
+            ->first();
+
+        $this->ticket = $recepcion?->ticket;
+
+        Log::info(
+            'RegistrarRecepcion: ticket recargado después de transacción',
+            [
+                'solicitud_id' => $this->solicitud->id,
+                'recepcion_id' => $recepcion?->id,
+                'ticket_id' => $this->ticket?->id,
+                'ticket_numero' => $this->ticket?->numero,
+            ]
+        );
+
+        /**
+         * --------------------------------------------------------
+         * 5. MENSAJE FINAL
+         * --------------------------------------------------------
+         */
 
         session()->flash(
             'success',
             'El ticket fue generado correctamente.'
         );
 
-        Log::info('RegistrarRecepcion: FIN generarTicket() OK', [
-            'solicitud_id' => $this->solicitud->id,
-            'ticket_id' => $this->ticket?->id,
-            'ticket_numero' => $this->ticket?->numero,
-        ]);
+        Log::info(
+            'RegistrarRecepcion: FIN generarTicket() OK',
+            [
+                'solicitud_id' => $this->solicitud->id,
+                'ticket_id' => $this->ticket?->id,
+                'ticket_numero' => $this->ticket?->numero,
+            ]
+        );
     }
 
     /**

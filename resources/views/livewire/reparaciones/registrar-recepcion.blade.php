@@ -114,14 +114,14 @@
             @endif
 
 
+
             {{-- ====================================================
-                 TICKET GENERADO
+                TICKET DE REPARACIÓN
             ==================================================== --}}
 
-            @if ($ticket)
+            <div class="mt-4 rounded-xl border border-blue-700/50 bg-blue-900/10 p-5">
 
-                <div class="mt-4 rounded-xl border border-blue-700/50 bg-blue-900/10 p-5">
-
+                @if ($ticket)
                     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
                         <div>
@@ -135,62 +135,67 @@
                             </div>
 
                             <div class="mt-2 text-sm text-gray-400">
-
                                 Estado:
 
                                 <span class="font-semibold text-emerald-400">
                                     {{ str_replace('_', ' ', ucfirst($ticket->estado)) }}
                                 </span>
-
                             </div>
 
                         </div>
 
-
-                        {{-- ACCIONES DEL TICKET --}}
-
                         <div class="flex flex-wrap gap-2">
 
-                            {{-- Reservado para futura ruta de PDF --}}
-                            @if (Route::has('reparaciones.ticket.pdf'))
-                                <a href="{{ route('reparaciones.ticket.pdf', $ticket) }}" target="_blank"
-                                    class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">
-
-                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l4.414 4.414A1 1 0 0118 8.414V19a2 2 0 01-2 2z" />
-                                    </svg>
-
-                                    Ver comprobante
-
-                                </a>
-                            @endif
+                            <a href="{{ route('reparaciones.ticket.imprimir', $ticket) }}" target="_blank"
+                                class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">
+                                🖨️ Imprimir ticket
+                            </a>
 
                         </div>
 
                     </div>
 
-
-                    {{-- AVISO SOBRE EL COMPROBANTE --}}
-
                     <div class="mt-4 rounded-lg border border-gray-700 bg-gray-900 px-4 py-3">
 
                         <p class="text-xs leading-5 text-gray-400">
-
                             El ticket identifica el ingreso del equipo al Área de Reparaciones
-                            y permitirá realizar el seguimiento de la reparación.
-
-                            El comprobante contempla espacio para la firma de la persona que
-                            entrega y del personal que recibe el equipo.
-
+                            y permite realizar el seguimiento de la reparación.
                         </p>
 
                     </div>
+                @else
+                    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
-                </div>
+                        <div>
 
-            @endif
+                            <div class="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                                Ticket de reparación
+                            </div>
 
+                            <div class="mt-1 text-sm font-semibold text-gray-300">
+                                La recepción fue registrada, pero todavía no se generó el ticket.
+                            </div>
+
+                        </div>
+
+                        <button type="button" wire:click="generarTicket" wire:loading.attr="disabled"
+                            wire:target="generarTicket"
+                            class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50">
+
+                            <span wire:loading.remove wire:target="generarTicket">
+                                🎫 Generar ticket
+                            </span>
+
+                            <span wire:loading wire:target="generarTicket">
+                                Generando...
+                            </span>
+
+                        </button>
+
+                    </div>
+                @endif
+
+            </div>
         </div>
 
     @endif
@@ -498,13 +503,15 @@
                                     </h4>
 
                                     <p class="mt-1 text-xs leading-5 text-gray-400">
-                                        Al confirmar la recepción se generará automáticamente
-                                        el ticket correspondiente a este ingreso.
+                                        Al confirmar la recepción se registrará el ingreso físico del equipo.
+                                        Luego podrá generar el ticket correspondiente para dejar constancia
+                                        del ingreso y realizar su seguimiento.
                                     </p>
 
                                     <p class="mt-2 text-xs leading-5 text-gray-500">
-                                        El comprobante dejará constancia de la entrega y recepción
-                                        del equipo e incluirá espacio para las firmas correspondientes.
+                                        El comprobante podrá imprimirse una vez generado el ticket e incluirá
+                                        la información de la recepción y los espacios correspondientes para
+                                        las firmas.
                                     </p>
 
                                 </div>

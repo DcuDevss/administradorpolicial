@@ -6,6 +6,7 @@ use App\Models\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Recepcion extends Model
 {
@@ -17,7 +18,6 @@ class Recepcion extends Model
     protected $fillable = [
         'activo_id',
         'solicitud_reparacion_id',
-        'ticket_reparacion_id',
         'turno_reparacion_id',
         'dependencia_id',
         'recibido_por_id',
@@ -58,12 +58,14 @@ class Recepcion extends Model
 
     /**
      * Ticket operativo de reparación.
+     *
+     * La FK se encuentra en tickets_reparacion.recepcion_id.
      */
-    public function ticket(): BelongsTo
+    public function ticket(): HasOne
     {
-        return $this->belongsTo(
+        return $this->hasOne(
             TicketReparacion::class,
-            'ticket_reparacion_id'
+            'recepcion_id'
         );
     }
 
