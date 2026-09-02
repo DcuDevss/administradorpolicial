@@ -35,10 +35,7 @@
 
                         </div>
 
-                        <div class="shrink-0">
-                            <img src="{{ asset('foto/ComunicacioneNuevoSinFondo.webp') }}"
-                                alt="Policía de Tierra del Fuego" class="h-24 w-auto object-contain" loading="lazy">
-                        </div>
+                      
 
                     </div>
                 </div>
