@@ -250,6 +250,7 @@ use App\Http\Livewire\Activos\EditarActivo;
 use App\Http\Livewire\Activos\SolicitarReparacion;
 use App\Http\Livewire\Reparaciones\DetalleSolicitud;
 use App\Http\Livewire\Reparaciones\RegistrarRecepcion;
+use App\Http\Livewire\Reparaciones\FichaActivo;
 
 Route::get('/', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'create'])->middleware('guest');
 Route::middleware([
@@ -297,6 +298,11 @@ Route::middleware([
         '/reparaciones/equipos-recibidos',
         \App\Http\Livewire\Reparaciones\EquiposRecibidos::class
     )->name('reparaciones.equipos-recibidos');
+
+    Route::get(
+        '/reparaciones/activos/{activo}/ficha',
+        FichaActivo::class
+    )->name('reparaciones.activos.ficha');
 
    
 });

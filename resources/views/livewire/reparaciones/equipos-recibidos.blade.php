@@ -170,10 +170,12 @@
 
                         {{-- ACCIÓN --}}
 
-                        <a href="#"
+                        {{-- ACCIÓN --}}
+
+                        <a href="{{ route('reparaciones.activos.ficha', $activo->id) }}"
                             class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-500">
 
-                            Ver equipo
+                            Ver ficha
 
                             <span>→</span>
 
