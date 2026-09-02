@@ -293,6 +293,11 @@ Route::middleware([
         [TicketReparacionController::class, 'imprimir']
     )->name('reparaciones.ticket.imprimir');
 
+    Route::get(
+        '/reparaciones/equipos-recibidos',
+        \App\Http\Livewire\Reparaciones\EquiposRecibidos::class
+    )->name('reparaciones.equipos-recibidos');
+
    
 });
 

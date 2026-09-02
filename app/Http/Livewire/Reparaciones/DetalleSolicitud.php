@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 #[Layout('layouts.app')]
 class DetalleSolicitud extends Component
@@ -22,6 +23,7 @@ class DetalleSolicitud extends Component
     public string $hora = '';
 
     public string $observaciones = '';
+
 
     /**
      * Fecha actualmente seleccionada en la agenda.
@@ -53,6 +55,24 @@ class DetalleSolicitud extends Component
 
         $this->fechaAgenda = now()->format('Y-m-d');
     }
+
+    #[On('solicitud-actualizada')]
+    public function actualizarSolicitud(int $solicitudId): void
+    {
+        if ($this->solicitud->id !== $solicitudId) {
+            return;
+        }
+
+        $this->solicitud->refresh()->load([
+            'activo.dependencia',
+            'activo.ubicacion',
+            'activo.categoria',
+            'usuario',
+            'turno',
+            'recepciones.ticket',
+        ]);
+    }
+
     /**
      * Abre la agenda para asignar un turno.
      */

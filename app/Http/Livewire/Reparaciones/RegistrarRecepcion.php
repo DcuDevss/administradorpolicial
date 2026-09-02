@@ -337,9 +337,10 @@ class RegistrarRecepcion extends Component
                     'estado_nuevo' => 'recepcionada',
                 ]);
 
-                $this->solicitud->activo->update([
-                    'estado' => 'en_revision',
+                $this->solicitud->update([
+                    'estado' => 'recepcionada',
                 ]);
+
 
                 Log::info('RegistrarRecepcion: solicitud actualizada a recepcionada', [
                     'solicitud_id' => $this->solicitud->id,
@@ -404,11 +405,11 @@ class RegistrarRecepcion extends Component
             'recepciones.ticket',
         ]);
 
-        /**
-         * --------------------------------------------------------
-         * 8. MENSAJE FINAL
-         * --------------------------------------------------------
-         */
+        $this->dispatch(
+            'solicitud-actualizada',
+            solicitudId: $this->solicitud->id
+        );
+
         session()->flash(
             'success',
             'La recepción fue registrada correctamente. Puede generar el ticket correspondiente.'

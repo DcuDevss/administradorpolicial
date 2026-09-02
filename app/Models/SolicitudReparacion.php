@@ -14,6 +14,12 @@ class SolicitudReparacion extends Model
 
     protected $table = 'solicitudes_reparacion';
 
+    public const ETAPA_SOLICITUD = 1;
+    public const ETAPA_TURNO = 2;
+    public const ETAPA_RECEPCION = 3;
+    public const ETAPA_REPARACION = 4;
+    public const ETAPA_ENTREGA = 5;
+
     protected $fillable = [
         'activo_id',
         'usuario_id',
@@ -22,6 +28,34 @@ class SolicitudReparacion extends Model
         'titulo',
         'descripcion',
     ];
+
+    public function getEtapaActualAttribute(): int
+    {
+        return match ($this->estado) {
+
+            'pendiente' =>
+            self::ETAPA_SOLICITUD,
+
+            'turnada' =>
+            self::ETAPA_TURNO,
+
+            'recepcionada' =>
+            self::ETAPA_RECEPCION,
+
+            'en_diagnostico',
+            'en_reparacion',
+            'esperando_repuesto',
+            'reparada' =>
+            self::ETAPA_REPARACION,
+
+            'lista_para_retirar',
+            'entregada' =>
+            self::ETAPA_ENTREGA,
+
+            default =>
+            self::ETAPA_SOLICITUD,
+        };
+    }
 
     /**
      * Activo sobre el cual se generó la solicitud.
@@ -62,6 +96,17 @@ class SolicitudReparacion extends Model
     {
         return $this->hasMany(
             TicketReparacion::class,
+            'solicitud_reparacion_id'
+        );
+    }
+
+    /**
+     * Orden de trabajo asociada a la solicitud.
+     */
+    public function ordenTrabajo(): HasOne
+    {
+        return $this->hasOne(
+            OrdenTrabajo::class,
             'solicitud_reparacion_id'
         );
     }

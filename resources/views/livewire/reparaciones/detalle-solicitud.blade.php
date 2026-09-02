@@ -48,118 +48,13 @@
         @include('livewire.reparaciones.partials.turno')
 
         {{-- ============================================================
-     RECEPCIÓN DEL EQUIPO
-============================================================ --}}
+            RECEPCIÓN DEL EQUIPO
+        ============================================================ --}}
         @if ($solicitud->turno && $solicitud->estado === 'turnada')
             @livewire('reparaciones.registrar-recepcion', ['solicitud' => $solicitud], key('recepcion-' . $solicitud->id))
         @endif
 
-        {{-- ============================================================
-             ESTADO OPERATIVO DEL ÁREA
-        ============================================================ --}}
-        <div class="mb-6">
-
-            <div class="mb-3">
-
-                <h2 class="text-lg font-bold text-white">
-                    Situación del Área de Reparaciones
-                </h2>
-
-                <p class="text-sm text-gray-400">
-                    Estado actual de las solicitudes y equipos.
-                </p>
-
-            </div>
-
-
-            <div class="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-
-                {{-- TURNADAS --}}
-                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
-
-                    <div class="text-2xl font-bold text-blue-400">
-                        {{ $resumenOcupacion['turnadas'] ?? 0 }}
-                    </div>
-
-                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
-                        Turnadas
-                    </div>
-
-                </div>
-
-
-                {{-- RECEPCIONADAS --}}
-                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
-
-                    <div class="text-2xl font-bold text-indigo-400">
-                        {{ $resumenOcupacion['recepcionadas'] ?? 0 }}
-                    </div>
-
-                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
-                        Recepcionadas
-                    </div>
-
-                </div>
-
-
-                {{-- DIAGNÓSTICO --}}
-                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
-
-                    <div class="text-2xl font-bold text-purple-400">
-                        {{ $resumenOcupacion['diagnostico'] ?? 0 }}
-                    </div>
-
-                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
-                        Diagnóstico
-                    </div>
-
-                </div>
-
-
-                {{-- REPARACIÓN --}}
-                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
-
-                    <div class="text-2xl font-bold text-orange-400">
-                        {{ $resumenOcupacion['reparacion'] ?? 0 }}
-                    </div>
-
-                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
-                        En reparación
-                    </div>
-
-                </div>
-
-
-                {{-- REPUESTOS --}}
-                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
-
-                    <div class="text-2xl font-bold text-red-400">
-                        {{ $resumenOcupacion['esperando_repuesto'] ?? 0 }}
-                    </div>
-
-                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
-                        Esperando repuesto
-                    </div>
-
-                </div>
-
-
-                {{-- LISTOS --}}
-                <div class="rounded-xl border border-gray-700 bg-gray-800 p-4 shadow-lg">
-
-                    <div class="text-2xl font-bold text-emerald-400">
-                        {{ $resumenOcupacion['listas_retirar'] ?? 0 }}
-                    </div>
-
-                    <div class="mt-1 text-xs uppercase tracking-wider text-gray-500">
-                        Listos para retirar
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+       
 
         {{-- ============================================================
              AGENDA
