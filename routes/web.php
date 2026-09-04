@@ -141,6 +141,7 @@ use App\Http\Controllers\SubmitController;
 use Spatie\Permission\Traits\HasRoles;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Reparaciones\TicketReparacionController;
+use App\Http\Controllers\TecnicoInformaticoController;
 use App\Http\Livewire\GenerateOrder;
 use App\Http\Livewire\CrearNotificacion;
 use App\Http\Livewire\VerNotificaciones;
@@ -304,7 +305,8 @@ Route::middleware([
         FichaActivo::class
     )->name('reparaciones.activos.ficha');
 
-   
+    Route::get('/tecnico-informatico', [TecnicoInformaticoController::class, 'index'])
+        ->name('tecnico-informatico');
 });
 
 /* ****************************************************************** */
@@ -327,8 +329,6 @@ Route::middleware(['auth', 'terms.acceptance'])->group(function () {
     // NUEVA RUTA: Centro de Situación Operativa
     Route::get('/situacion-operativa', CentroSituacionOperativa::class)
         ->name('situacion-operativa');
-
-    Route::view('/tecnico-informatico', 'tecnico-informatico')->name('tecnico-informatico');
 
     Route::get('/notificacion-chat', NotificacionChat::class)->name('notifi');
 
