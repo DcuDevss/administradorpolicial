@@ -18,7 +18,15 @@ class FichaActivo extends Component
             'ubicacion',
             'categoria',
             'responsable',
-            'solicitudesReparacion',
+
+            'solicitudesReparacion' => function ($query) {
+                $query->latest()
+                    ->with([
+                        'usuario',
+                        'turno',
+                        'recepciones.ticket',
+                    ]);
+            },
         ]);
     }
 
